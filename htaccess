@@ -1,0 +1,9 @@
+# Pour faire parser les fichiers .php par PHP5
+AddType application/x-httpd-php5 .php
+
+# Pour faire parser les fichiers .php3 par PHP5
+AddType application/x-httpd-php5 .php3
+
+AddType video/ogg  .ogv
+AddType video/mp4  .mp4
+AddType video/webm .webm
