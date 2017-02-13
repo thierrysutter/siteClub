@@ -1,0 +1,376 @@
+<?php
+ob_start();
+
+?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+	<meta charset="ISO-8859-1">
+	<META HTTP-EQUIV="Expires" CONTENT="Jeu, 31 Dec 2015 23:59:59 GMT" >
+	<meta name=viewport content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="mots-clés" />
+    <meta name="description" content="description" />
+    <meta name="author" content="auteur">
+	<title>AS SAINT JULIEN LES METZ</title>
+	
+	
+</head>
+<body>
+	<!-- Header -->
+	<?php
+	  include("head.php");
+	?>
+	<!-- End Header -->
+
+	<!-- Navigation Haut-->
+	<?php
+	  include("menuHaut.php");
+	?>
+	<!-- End Navigation -->
+
+	<!-- Heading -->
+	<div id="heading">
+		<div class="shell">
+			<div id="heading-cnt">
+
+				<!-- Sub nav -->
+				<div id="side-nav">
+					<?php
+					session_start();
+					/*$user = $_SESSION['user'];
+					if (!empty($user)) {
+					  include("menu.php");
+					}*/
+					?>
+					<ul><li><div style="text-align: center;"><img id="blason" style="width: 200px; height: 250px; cursor: pointer;vertical-align: middle;" src="images/logo.png" /></div></li></ul>
+				</div>
+				
+				<!-- End Sub nav -->
+
+				<!-- Widget -->
+				<div id="heading-box">
+					<div id="heading-box-cnt">
+						<div class="cl">&nbsp;</div>
+
+<?php
+
+$listeArticles = array();
+$listeDernier = array();
+$listeProchain = array();
+//if (isset($_SESSION['session_started'])) {
+	// une session est ouverte, on récupère le login de l'utilisateur connecté
+	if (isset($_SESSION['listeArticles'])) {
+		$listeArticles = $_SESSION['listeArticles'];
+	}
+
+	if (isset($_SESSION['listeDernier'])) {
+		$listeDernier = $_SESSION['listeDernier'];
+	}
+
+	if (isset($_SESSION['listeProchain'])) {
+		$listeProchain = $_SESSION['listeProchain'];
+	}
+//}
+
+	$user = null;
+	if (isset($_SESSION['user'])) {
+		$user = $_SESSION['user'];
+	}
+
+if (!empty($listeArticles)) {
+?>
+						<!-- Main Slide Item -->
+						<div class="featured-main">
+							<a href="#"><img id="imageArticle_<?php echo $listeArticles[0]->getId(); ?>" src="<?php echo $listeArticles[0]->getPhoto(); ?>" width="438px" height="310px" alt="" /></a>
+							<div class="featured-main-details">
+								<div class="featured-main-details-cnt">
+									<h4><a class="lienArticle" id="<?php echo $listeArticles[0]->getId(); ?>" href="#"><?php echo $listeArticles[0]->getTitre(); ?></a>
+									<?php if ($user != null) {?>
+									&nbsp;<img id="<?php echo $listeArticles[0]->getId(); ?>" class="modifArticle" style="width: 10px; height: 10px;" alt="modifier l'article" src="images/modify16.png">
+									<?php } ?>
+									</h4>
+									<p id="texteArticle_<?php echo $listeArticles[0]->getId(); ?>"><?php 
+									if (strlen($listeArticles[0]->getTexte()) > 173)
+										echo substr($listeArticles[0]->getTexte(), 0, 173)." ...";
+									else
+										echo $listeArticles[0]->getTexte();
+									?></p>
+								</div>
+							</div>
+						</div>
+						<!-- End Main Slide Item -->
+
+						<div class="featured-side">
+
+						<?php if (count($listeArticles) > 5)
+								$cpt = 5;
+							  else
+								$cpt = count($listeArticles);
+
+							  for ($i=1; $i<$cpt; $i++) {
+								$article = $listeArticles[$i];
+						?>
+							<div class="featured-side-item">
+								<div class="cl">&nbsp;</div>
+								<a href="#" class="left"><img id="imageArticle_<?php echo $article->getId(); ?>" src="<?php echo $article->getPhoto(); ?>" width="60px" height="60px" alt="" /></a>
+								<h4><a class="lienArticle" id="<?php echo $article->getId(); ?>" href="#"><?php echo $article->getTitre(); ?></a>
+								<?php if ($user != null) {?>
+									&nbsp;<img id="<?php echo $article->getId(); ?>" class="modifArticle" style="cursor: pointer; width: 10px; height: 10px;" alt="modifier l'article" src="images/modify16.png">
+									<?php } ?>
+								</h4>
+								<p id="texteArticle_<?php echo $article->getId(); ?>"><?php if (strlen($article->getTexte()) > 110)
+										echo substr($article->getTexte(), 0, 110)." ...";
+									else
+										echo $article->getTexte(); ?></p>
+								<div class="cl">&nbsp;</div>
+							</div>
+						<?php } ?>
+						</div>
+						<div class="cl">&nbsp;</div>
+
+<?php } ?>
+					</div>
+				</div>
+
+				<!-- End Widget -->
+			</div>
+		</div>
+	</div>
+	<!-- End Heading -->
+
+	<!-- Main -->
+	<div id="main">
+		<div class="shell">
+			<div class="cl">&nbsp;</div>
+			<div id="sidebar">
+				<!--<h2>Dernières nouvelles</h2>-->
+
+				<!-- <h2>R&eacute;sultats du 25/08/2014 au 31/08/2014</h2> -->
+				<h1>Derniers r&eacute;sultats</h1>
+				<ul>
+				<?php if (!empty($listeDernier)) { ?>
+				<?php foreach($listeDernier as $dernier) { ?>
+
+					<li>
+				    	<small class="date"><?php echo date_format(new DateTime($dernier->getJour()), 'd/m/Y'); ?> : <?php echo $dernier->getLibelleCompetition() ?></small>
+				    	<p><?php echo $dernier->getEquipeDom(); ?> - <?php echo $dernier->getEquipeExt(); ?> : <?php echo $dernier->getScoreDom(); ?> - <?php echo $dernier->getScoreExt(); ?></p>
+				    </li>
+				<?php } } ?>
+				</ul>
+				<h1>Prochains matchs</h1>
+				<ul>
+				<?php if (!empty($listeProchain)) { ?>
+				<?php foreach($listeProchain as $prochain) { ?>
+
+					<li>
+				    	<small class="date"><?php echo date_format(new DateTime($prochain->getJour()), 'd/m/Y'); ?> : <?php echo $prochain->getLibelleCompetition(); ?></small>
+				    	<p><?php echo $prochain->getEquipeDom(); ?> - <?php echo $prochain->getEquipeExt(); ?></p>
+				    </li>
+				<?php } } ?>
+				</ul>
+			</div>
+			<div id="content">
+				<div class="cl">&nbsp;</div>
+
+				<!-- Articles plus anciens -->
+				<?php if (count($listeArticles) > 5) {
+							for ($i=5; $i<count($listeArticles); $i++) {
+								$article = $listeArticles[$i];
+						?>
+				<div class="grey-box <?php if ($i % 3 == 1) echo "last"; ?> ">
+					<h3><a class="lienArticle" id="<?php echo $article->getId(); ?>" href="#"><?php echo $article->getTitre(); ?></a>
+					<?php if ($user != null) {?>
+					<img id="<?php echo $article->getId(); ?>" class="modifArticle" style="cursor: pointer; width: 10px; height: 10px;vertical-align: middle;" alt="modifier l'article" src="images/modify16.png">
+					<?php } ?>
+					</h3>
+					<a href="#">
+						<?php if ($article->getPhoto() != "" && file_exists($article->getPhoto())) { ?>
+							<img src="<?php echo $article->getPhoto(); ?>" width="205px" height="101px" alt="" />
+						<?php } else if ($article->getVideo() != "" && file_exists($article->getVideo())) { ?>
+						 <video width="205px" height="101px" controls>
+							  <source src="videos/test.mp4" type="video/mp4">
+							  <source src="<?php echo $article->getVideo(); ?>" type="video/ogg">
+								Your browser does not support the video tag.
+						 </video> 
+						<?php }?>
+					</a>
+					<p>
+						<span><?php if (strlen($article->getTexte()) > 110)
+										echo substr($article->getTexte(), 0, 110)." ...";
+									else
+										echo $article->getTexte(); ?></span>
+						<a href="#" id="<?php echo $article->getId(); ?>" class="lienArticle button">Lire la suite</a>
+					 </p>
+				</div>
+				<?php } } ?>
+
+
+				<!--
+				<div class="grey-box">
+					<h3><a href="#">Montée en PHR</a></h3>
+					<a href="#"><img src="css/images/monteePHR.jpg" width="205px" height="101px" alt="" /></a>
+					<p>
+						<span>Les séniors A retrouvent niveau Promotion d'Honneur Régionale après une très belle saison.</span>
+						<a href="#" class="button">Lire la suite</a>
+					 </p>
+				</div>
+				<div class="grey-box">
+					<h3><a href="#">Séniors B</a></h3>
+					<a href="#"><img src="" width="205px" height="101px" alt="" /></a>
+					<p>
+						<span>Les séniors B montent en 2ème division de district.</span>
+						<a href="#" class="button">Lire la suite</a>
+					 </p>
+				</div>
+				<div class="grey-box last">
+					<h3><a href="#">Coupe de Moselle</a></h3>
+					<a href="#"><img src="" width="205px" height="101px" alt="" /></a>
+					<p>
+						<span>Les séniors A finaliste de la coupe de Moselle 2014. L'équipe B s'est quant à elle inclinée en 1/2 finale de la coupe des équipes réserves.</span>
+						<a href="#" class="button">Lire la suite</a>
+					 </p>
+				</div>
+				<div class="grey-box">
+					<h3><a href="#">Tournoi à Besançon pour les U13</a></h3>
+					<a href="#"><img src="" width="205px" height="101px" alt="" /></a>
+					<p>
+						<span>Les jeunes U13 du club en tournoi à Besançon pendant le xeek end de la Pentecote.</span>
+						<a href="#" class="button">Lire la suite</a>
+					 </p>
+				</div>
+				<div class="grey-box last">
+					<h3><a href="#">Tournoi du FC Woippy 2005.</a></h3>
+					<a href="#"><img src="css/images/benjamins2005_1annee.jpg" width="205px" height="101px" alt="" /></a>
+					<p>
+						<span>Les benjamins 1ère année ont remporté le tournoi organisé par le FC Woippy au stade du Patis.<br/><br/></span>
+						<a href="#" class="button">Lire la suite</a>
+					 </p>
+				</div> -->
+
+
+				<!-- VIDEOS ->
+				<div class="cl">&nbsp;</div>
+				<div class="video-box">
+					<div class="cl">&nbsp;</div>
+					<h2 class="left">Vidéos</h2>
+					<a href="#" class="button">Plus...</a>
+					<div class="cl">&nbsp;</div>
+					<div class="video-item-box">
+						<a href="#" class="left"><img src="css/images/marly.jpg" width="85px" height="47px" alt="" /></a>
+						<p>Marly - AS St Julien</p>
+						<a href="http://www.dailymotion.com/video/x783w7_marly-as-saint-julien-les-metz_sport" target="new" class="watch-now">Voir la vidéo</a>
+						<!- <video width="180" height="101" controls  poster="http://www.dailymotion.com/video/x783w7_marly-as-saint-julien-les-metz_sport">
+						    <source src="http://www.dailymotion.com/video/x783w7_marly-as-saint-julien-les-metz_sport" type="video/mp4">
+						    <source src="http://www.dailymotion.com/video/x783w7_marly-as-saint-julien-les-metz_sport" type="video/ogg">
+						    <source src="http://www.dailymotion.com/video/x783w7_marly-as-saint-julien-les-metz_sport" type="video/webm">
+						    Your browser does not support the video tag or the file format of this video. <a href="http://www.supportduweb.com/">http://www.supportduweb.com/</a>
+						</video>
+						 ->
+					</div>
+					<div class="video-item-box second">
+						<a href="#" class="left"><img src="css/images/DLP.jpg" width="85px" height="47px" alt="" /></a>
+						<p>Devant Les Ponts - AS St Julien, les tirs aux buts</p>
+						<a href="http://www.dailymotion.com/video/x7hxcy_devant-les-ponts-saint-julien-les-m_sport" target="new" class="watch-now">Voir la vidéo</a>
+					</div>
+					<div class="video-item-box">
+						<a href="#" class="left"><img src="css/images/faitplay.jpg" width="85px" height="47px" alt="" /></a>
+						<p>Journée du fairplay</p>
+						<a href="http://www.dailymotion.com/video/x784g5_esprit-sportif_sport" target="new" class="watch-now">Voir la vidéo</a>
+					</div>
+					<div class="video-item-box second">
+						<a href="#" class="left"><img src="css/images/footA5.jpg" width="85px" height="47px" alt="" /></a>
+						<p>Tournoi foot à 5</p>
+						<a href="http://www.dailymotion.com/video/x7zkgy_foot-a-5-organise-par-l-as-saint-ju_sport" target="new" class="watch-now">Voir la vidéo</a>
+					</div>
+					<div class="cl">&nbsp;</div>
+				</div>
+				<!- FIN VIDEOS -->
+
+				<!-- <div class="cl">&nbsp;</div>
+				<div >
+				<script type="text/javascript" src="http://services.supportduweb.com/comments/9724.js"></script>
+				</div>
+				 -->
+			</div>
+			<div class="cl">&nbsp;</div>
+		</div>
+	</div>
+	<!-- End Main -->
+
+	<!-- Bandeau sponsors -->
+	<?php
+	  include("bandeau_sponsors.php");
+	?>
+	<!-- End bandeau sponsors -->
+
+	<!-- Footer -->
+	<?php
+	  include("footer.php");
+	?>
+	<!-- End Footer -->
+
+	<div id="dialogArticle" style="display: none;">
+	
+		<div class="popup-featured-side"><div class="popup-featured-side-item"><div class="cl"></div>
+	    <a class="left" href="#"><img id="imageArticlePopup" width="350px" height="280px" alt="" src=""></img></a>
+	    <p id="texteArticlePopup"></p>
+	    <div class="cl"></div>
+		</div>
+		</div>
+	
+	
+	</div>
+
+</body>
+</html>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="css/slick.css" type="text/css" media="all"/>
+<link rel="stylesheet" href="css/jquery-ui.css" type="text/css" media="all"/>
+
+	<script async type="text/javascript" src="js/jquery/jquery.js"></script>
+	<script async type="text/javascript" src="js/jquery/jquery-ui.js"></script>
+	<script async type="text/javascript" src="js/slick.min.js"></script>
+	<script async type="text/javascript" src="js/scripts.js"></script>
+	<script async type="text/javascript">
+		$(document).ready(function(){
+
+			$(".lienArticle").click(function(){
+				$.ajax({ // fonction permettant de faire de l'ajax
+				   type: "POST", // methode de transmission des données au fichier php
+				   url: "AfficherPopupArticle.php", // url du fichier php
+				   data: {id : $(this).attr("id"), mode : "popup"}, // données à transmettre
+				   dataType: 'json', // JSON
+				   success: function(article){ // si l'appel a bien fonctionné
+					   $("#imageArticlePopup").prop("src", article.photo);
+					   $("#texteArticlePopup").html(article.texte);
+					   
+					   $("#dialogArticle").dialog({
+				  			height: 425,
+				  			width: 705,
+				  			modal: true,
+				  			title: article.titre,
+				  			buttons: {
+				  				Fermer: function() {
+				  					$(this).dialog( "close" );
+				  				}
+				  			}
+				  		});
+						
+				   },
+				   error: function(){
+					   // on affiche un message d'erreur dans le span prévu à cet effet
+					   
+				   }
+				});
+			});
+			
+			$(".modifArticle").click(function(){
+				$idArticle = $(this).prop('id');
+				document.location = "RechercherArticle.php?id="+$idArticle;
+			});
+		});
+	</script>
+<?php
+ob_end_flush();
+?>
