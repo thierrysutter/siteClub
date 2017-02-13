@@ -1,0 +1,118 @@
+.CSSTableGenerator {
+    margin: 3px;
+    margin-top: 30px;
+    padding: 0;
+    width: 99%;
+    border: 1px solid #000;
+    -moz-border-radius-bottomleft: 14px;
+    -webkit-border-bottom-left-radius: 14px;
+    border-bottom-left-radius: 14px;
+    -moz-border-radius-bottomright: 14px;
+    -webkit-border-bottom-right-radius: 14px;
+    border-bottom-right-radius: 14px;
+    -moz-border-radius-topright: 14px;
+    -webkit-border-top-right-radius: 14px;
+    border-top-right-radius: 14px;
+    -moz-border-radius-topleft: 14px;
+    -webkit-border-top-left-radius: 14px;
+    border-top-left-radius: 14px
+}
+.CSSTableGenerator table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0
+}
+.CSSTableGenerator tr:last-child td:last-child {
+    -moz-border-radius-bottomright: 14px;
+    -webkit-border-bottom-right-radius: 14px;
+    border-bottom-right-radius: 14px
+}
+.CSSTableGenerator table tr:first-child th:first-child {
+    -moz-border-radius-topleft: 14px;
+    -webkit-border-top-left-radius: 14px;
+    border-top-left-radius: 14px
+}
+.CSSTableGenerator table tr:first-child th:last-child {
+    -moz-border-radius-topright: 14px;
+    -webkit-border-top-right-radius: 14px;
+    border-top-right-radius: 14px
+}
+.CSSTableGenerator tr:last-child td:first-child {
+    -moz-border-radius-bottomleft: 14px;
+    -webkit-border-bottom-left-radius: 14px;
+    border-bottom-left-radius: 14px
+}
+.CSSTableGenerator tr:hover td {
+    background-color: #fff
+}
+.CSSTableGenerator td {
+    vertical-align: middle;
+    background-color: #e5e5e5;
+    border: 1px solid #000;
+    border-width: 0 1px 1px 0;
+    text-align: left;
+    padding: 7px;
+    font-size: 10px;
+    font-family: Arial;
+    font-weight: 400;
+    color: #000
+}
+.CSSTableGenerator th {
+    vertical-align: middle;
+    background-color: #e5e5e5;
+    border: 1px solid #000;
+    border-width: 0 1px 1px 0;
+    text-align: left;
+    padding: 7px;
+    font-size: 10px;
+    font-family: Arial;
+    font-weight: 400;
+    color: #000
+}
+.CSSTableGenerator tr.centre td {
+    text-align: center!important
+}
+.CSSTableGenerator tr:last-child td {
+    border-width: 0 1px 0 0
+}
+.CSSTableGenerator tr th:last-child {
+    border-width: 0 0 1px
+}
+.CSSTableGenerator tr td:last-child {
+    border-width: 0 0 1px
+}
+.CSSTableGenerator tr:last-child td:last-child {
+    border-width: 0
+}
+.CSSTableGenerator tr:first-child th {
+    background: -o-linear-gradient(bottom, #4c4c4c 5%, #000 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #4c4c4c), color-stop(1, #000));
+    background: -moz-linear-gradient(center top, #4c4c4c 5%, #000 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#4c4c4c", endColorstr="#000000");
+    background: -o-linear-gradient(top, #4c4c4c, 000000);
+    background-color: #4c4c4c;
+    border: 0 solid #000;
+    text-align: center;
+    border-width: 0 0 1px 1px;
+    font-size: 14px;
+    font-family: Arial;
+    font-weight: 700;
+    color: #fff
+}
+.CSSTableGenerator tr:first-child:hover th {
+    background: -o-linear-gradient(bottom, #4c4c4c 5%, #000 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #4c4c4c), color-stop(1, #000));
+    background: -moz-linear-gradient(center top, #4c4c4c 5%, #000 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#4c4c4c", endColorstr="#000000");
+    background: -o-linear-gradient(top, #4c4c4c, 000000);
+    background-color: #4c4c4c
+}
+.CSSTableGenerator tr:first-child th:first-child {
+    border-width: 0 0 1px
+}
+.CSSTableGenerator tr:first-child th:last-child {
+    border-width: 0 0 1px 1px
+}

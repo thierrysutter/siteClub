@@ -1,0 +1,55 @@
+#filtre {
+    margin: 1em 0;
+    padding-top: 0
+}
+#filtre fieldset {
+    margin: 0;
+    padding: 0;
+    border: none;
+    float: left;
+    display: inline;
+    width: 180px;
+    margin-left: 15px
+}
+#filtre legend {
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 10px
+}
+#filtre p,
+#filtre span {
+    margin: .5em 0
+}
+#filtre label {
+    display: block
+}
+#filtre input,
+#filtre select,
+#filtre textarea {
+    width: 172px;
+    border: 1px solid #ddd;
+    background: #fff url(../images/form1/form_input.gif) repeat-x;
+    padding: 3px
+}
+#filtre select {
+    width: 180px
+}
+#filtre textarea {
+    height: 200px;
+    overflow: auto
+}
+#filtre p.submit {
+    margin-top: 20px
+}
+#filtre button {
+    width: 180px;
+    height: 37px;
+    line-height: 37px;
+    border: none;
+    cursor: pointer;
+    text-align: center
+}
+#filtre .datepicker {
+    width: 100px
+}
