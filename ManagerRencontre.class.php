@@ -80,14 +80,18 @@ class ManagerRencontre
   }
 
   public function trouverRencontres($debut, $fin, $categorie, $equipe, $lieu) {
-  	// Retourne la liste des rencontres entre $debut et $fin.
-  	// Le résultat sera un tableau d'instances de Rencontre.
 
   	$rencontres = array();
   	$sql = "";
-  	$sql = "SELECT rencontre.id, rencontre.competition, competition.libelle as libelleCompetition, categorie.libelle as libelleCategorie, rencontre.jour, rencontre.equipe_dom as equipeDom, rencontre.equipe_ext as equipeExt, rencontre.score_dom as scoreDom, rencontre.score_ext as scoreExt, rencontre.statut, rencontre.heure_rdv as heureRDV, rencontre.lieu_rdv as lieuRDV, rencontre.commentaire_rdv as commentaireRDV, rencontre.heure_match as heureMatch, compte_rendu.texte as compteRendu, equipe.libelle as libelleEquipe FROM rencontre inner join competition on (rencontre.competition=competition.id) inner join categorie on (competition.categorie=categorie.id) inner join equipe on (competition.equipe=equipe.id)  left outer join compte_rendu on (compte_rendu.rencontre=rencontre.id) WHERE rencontre.jour between '".$debut."' and '".$fin."'  ";
-
-
+  	$sql = "SELECT rencontre.id, rencontre.competition, competition.libelle as libelleCompetition, categorie.libelle as libelleCategorie, ";
+  	$sql .= "rencontre.jour, rencontre.equipe_dom as equipeDom, rencontre.equipe_ext as equipeExt, rencontre.score_dom as scoreDom, rencontre.score_ext as scoreExt, ";
+  	$sql .= "rencontre.statut, rencontre.heure_rdv as heureRDV, rencontre.lieu_rdv as lieuRDV, rencontre.commentaire_rdv as commentaireRDV, rencontre.heure_match as heureMatch, ";
+  	$sql .= "compte_rendu.texte as compteRendu, equipe.libelle as libelleEquipe ";
+  	$sql .= "FROM rencontre inner join competition on (rencontre.competition=competition.id) ";
+  	$sql .= "inner join categorie on (competition.categorie=categorie.id) ";
+  	$sql .= "inner join equipe on (competition.equipe=equipe.id) ";
+  	$sql .= "left outer join compte_rendu on (compte_rendu.rencontre=rencontre.id) ";
+  	$sql .= "WHERE rencontre.jour between '".$debut."' and '".$fin."'  ";
 
   	if (isset($categorie) && $categorie!="-1")
   		$sql.="AND competition.categorie='".$categorie."' " ;
@@ -100,8 +104,8 @@ class ManagerRencontre
   	else if (isset($lieu) && strtoupper($lieu)=="EXTERIEUR")
   		$sql.="AND rencontre.equipe_ext='ST JULIEN' " ;
 
-  	$sql.=" ORDER BY rencontre.jour";
-
+  	$sql.=" ORDER BY rencontre.jour ";
+echo $sql;
   	$q = $this->_db->query($sql);
 
   	//$q->execute();
@@ -115,9 +119,6 @@ class ManagerRencontre
   }
 
   public function getDernier($categorie) {
-  	// Retourne la liste des menus.
-  	// Le résultat sera un tableau d'instances de Sponsor.
-
   	$rencontres = array();
   	$sql = "SELECT rencontre.id, rencontre.competition, competition.libelle as libelleCompetition, rencontre.jour, rencontre.equipe_dom as equipeDom, rencontre.equipe_ext as equipeExt, rencontre.score_dom as scoreDom, rencontre.score_ext as scoreExt, rencontre.statut, rencontre.heure_rdv as heureRDV, rencontre.lieu_rdv as lieuRDV, rencontre.commentaire_rdv as commentaireRDV, rencontre.heure_match as heureMatch, compte_rendu.texte as compteRendu, competition.categorie, categorie.libelle as libelleCategorie, equipe.libelle as equipe ";
   	$sql .= "FROM rencontre left outer join compte_rendu on (compte_rendu.rencontre=rencontre.id), competition, equipe, categorie, (select max(jour) as jour, competition from rencontre where statut=1 group by competition) tmp ";
@@ -163,32 +164,24 @@ class ManagerRencontre
   	return $rencontres;
   }
 
-  /*public function getDernierParCategorie($categorie) {
-  	// Retourne la liste des menus.
-  	// Le résultat sera un tableau d'instances de Sponsor.
-
+  public function getDernierParEquipe($equipe) {
   	$rencontres = array();
+  	$sql = "SELECT rencontre.id, rencontre.competition, competition.libelle as libelleCompetition, rencontre.jour, rencontre.equipe_dom as equipeDom, ";
+  	$sql .= "rencontre.equipe_ext as equipeExt, rencontre.score_dom as scoreDom, rencontre.score_ext as scoreExt, rencontre.statut, rencontre.heure_rdv as heureRDV, ";
+  	$sql .= "rencontre.lieu_rdv as lieuRDV, rencontre.commentaire_rdv as commentaireRDV, rencontre.heure_match as heureMatch, compte_rendu.texte as compteRendu, ";
+  	$sql .= "competition.categorie, categorie.libelle as libelleCategorie, equipe.libelle as equipe ";
+  	$sql .= "FROM rencontre left outer join compte_rendu on (compte_rendu.rencontre=rencontre.id), "; 
+  	$sql .= "competition, equipe, categorie, ";
+  	$sql .= "(select max(jour) as jour, competition from rencontre where statut=1 group by competition) tmp ";
+  	$sql .= "WHERE tmp.jour=rencontre.jour and tmp.competition=rencontre.competition and rencontre.competition=competition.id ";
+  	$sql .= "and competition.actif=1 and competition.equipe=equipe.id and competition.categorie=categorie.id ";
+  	$sql .= "AND rencontre.jour > now() - INTERVAL 360 DAY " ;
+  	if (isset($equipe) && $equipe != -1)
+  		$sql.="AND equipe.id = '".$equipe."' " ;
 
-  	$q = $this->_db->query("SELECT rencontre.id, rencontre.competition, competition.libelle as libelleCompetition, rencontre.jour, rencontre.equipe_dom as equipeDom, rencontre.equipe_ext as equipeExt, rencontre.score_dom as scoreDom, rencontre.score_ext as scoreExt, rencontre.statut, compte_rendu.texte as compteRendu, competition.categorie, categorie.libelle as libelleCategorie FROM rencontre left outer join compte_rendu on (compte_rendu.rencontre=rencontre.id), competition inner join categorie on (competition.categorie=categorie.id) , (select max(id) as id, competition from rencontre where statut=1 group by competition) tmp WHERE tmp.id=rencontre.id and tmp.competition=rencontre.competition and rencontre.competition=competition.id and categorie.id=".$categorie." ORDER BY jour, competition");
-  	//$q->execute();
+  	$sql .= "ORDER BY jour, competition.categorie, competition";
 
-  	while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
-  	{
-  		$rencontres[] = new BoRencontre($donnees);
-  	}
-
-  	return $rencontres;
-  }*/
-
-  /*public function getProchainParCategorie($categorie) {
-  	// Retourne la liste des menus.
-  	// Le résultat sera un tableau d'instances de Sponsor.
-
-  	$rencontres = array();
-  	$sql = "SELECT rencontre.id, rencontre.competition, competition.libelle as libelleCompetition, rencontre.jour, rencontre.equipe_dom as equipeDom, rencontre.equipe_ext as equipeExt, rencontre.score_dom as scoreDom, rencontre.score_ext as scoreExt, rencontre.statut, compte_rendu.texte as compteRendu FROM rencontre left outer join compte_rendu on (compte_rendu.rencontre=rencontre.id), competition inner join categorie on (competition.categorie=categorie.id), (select min(id) as id, competition from rencontre where statut=0 group by competition) tmp WHERE tmp.id=rencontre.id and tmp.competition=rencontre.competition and rencontre.competition=competition.id and categorie.id=".$categorie." ORDER BY jour, competition";
-  	//echo $sql;
   	$q = $this->_db->query($sql);
-  	//$q->execute();
 
   	while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
   	{
@@ -196,7 +189,27 @@ class ManagerRencontre
   	}
 
   	return $rencontres;
-  }*/
+  }
+
+  public function getProchainParEquipe($equipe) {
+  	$rencontres = array();
+	$sql = "SELECT rencontre.id, rencontre.competition, competition.libelle as libelleCompetition, rencontre.jour, rencontre.equipe_dom as equipeDom, rencontre.equipe_ext as equipeExt, rencontre.score_dom as scoreDom, rencontre.score_ext as scoreExt, rencontre.statut, rencontre.heure_rdv as heureRDV, rencontre.lieu_rdv as lieuRDV, rencontre.commentaire_rdv as commentaireRDV, rencontre.heure_match as heureMatch, compte_rendu.texte as compteRendu, competition.categorie, categorie.libelle as libelleCategorie, equipe.libelle as equipe  FROM rencontre left outer join compte_rendu on (compte_rendu.rencontre=rencontre.id), competition, equipe, categorie, (select min(jour) as jour, competition from rencontre where statut=0 group by competition) tmp ";
+	$sql .= "WHERE tmp.jour=rencontre.jour and tmp.competition=rencontre.competition and rencontre.competition=competition.id and competition.actif=1 and competition.equipe=equipe.id and competition.categorie=categorie.id ";
+	$sql.="AND rencontre.jour < now() + INTERVAL 360 DAY " ;
+	if (isset($equipe) && $equipe != -1)
+  		$sql.="AND equipe.id = '".$equipe."' " ;
+
+	$sql .= "ORDER BY jour, competition.categorie, competition";
+
+	$q = $this->_db->query($sql);
+
+  	while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+  	{
+  		$rencontres[] = new BoRencontre($donnees);
+  	}
+
+  	return $rencontres;
+  }
 
   public function updateResultatRencontre($idRencontre, $scoreDom, $scoreExt, $login) {
     // Prépare une requête de type UPDATE.

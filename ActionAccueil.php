@@ -49,6 +49,7 @@ try {
 	$_SESSION['listeDernier']=$listeDernier;
 	$_SESSION['listeProchain']=$listeProchain;
 
+	echo "".$listeDernier; 
 	header("Location: accueil.php");
 
 } catch (PDOException $error) { // Le catch est chargé d’intercepter une éventuelle erreur

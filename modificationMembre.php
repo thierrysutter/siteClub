@@ -25,12 +25,51 @@ require_once("config/config.php");
 	<!--[if lte IE 6]><link rel="stylesheet" href="css/ie6.css" type="text/css" media="all" /><![endif]-->
 	<link rel="stylesheet" href="css/contact.css" type="text/css" media="all" />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+	<link rel="stylesheet" href="css/bootstrap4.css" type="text/css">
 
 	<script type="text/javascript" src="js/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="js/jquery/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="js/jquery/jquery.ui.datepicker-fr.min.js"></script>
 	<script type="text/javascript" src="js/slick.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+	
+	<!-- bootstrap 4.x is supported. You can also use the bootstrap css 3.3.x versions -->
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.4/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css">
+  <!-- if using RTL (Right-To-Left) orientation, load the RTL CSS file after fileinput.css by uncommenting below -->
+  <!-- link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.4/css/fileinput-rtl.min.css" media="all" rel="stylesheet" type="text/css" /-->
+  <!-- optionally uncomment line below if using a theme or icon set like font awesome (note that default icons used are glyphicons and `fa` theme can override it) -->
+  <!-- link https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css media="all" rel="stylesheet" type="text/css" /-->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <!-- piexif.min.js is only needed for restoring exif data in resized images and when you 
+      wish to resize images before upload. This must be loaded before fileinput.min.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.4/js/plugins/piexif.min.js" type="text/javascript"></script>
+  <!-- sortable.min.js is only needed if you wish to sort / rearrange files in initial preview. 
+      This must be loaded before fileinput.min.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.4/js/plugins/sortable.min.js" type="text/javascript"></script>
+  <!-- purify.min.js is only needed if you wish to purify HTML content in your preview for 
+      HTML files. This must be loaded before fileinput.min.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.4/js/plugins/purify.min.js" type="text/javascript"></script>
+  <!-- popper.min.js below is needed if you use bootstrap 4.x. You can also use the bootstrap js 
+     3.3.x versions without popper.min.js. -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+  <!-- bootstrap.min.js below is needed if you wish to zoom and preview file content in a detail modal
+      dialog. bootstrap 4.x is supported. You can also use the bootstrap js 3.3.x versions. -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" type="text/javascript"></script>
+  <!-- the main fileinput plugin file -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.4/js/fileinput.min.js"></script>
+  <!-- optionally uncomment line below for loading your theme assets for a theme like Font Awesome (`fa`) -->
+  <!-- script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.4/themes/fa/theme.min.js"></script -->
+  <!-- optionally if you need translation for your language then include  locale file as mentioned below -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.4/js/locales/fr.js"></script>
+  
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$( ".datepicker" ).datepicker( {
@@ -116,13 +155,7 @@ require_once("config/config.php");
 		});
 	</script>
 </head>
-<body>
-	<!-- Header -->
-	<?php
-	  include("head.php");
-	?>
-	<!-- End Header -->
-
+<body class="w-75 mx-auto bg-light">
 	<!-- Navigation Haut-->
 	<?php
 	
@@ -147,158 +180,172 @@ require_once("config/config.php");
 	$listePostes = $_SESSION['listePostes'];
 	$membre = $_SESSION['membre'];
 	?>
+	<?php
+	  include("head.php");
+	?>
 	<!-- End Navigation -->
-
-	<!-- Heading -->
-	<div id="heading">
-		<div class="shell">
-			<div id="heading-cnt">
-
-				<!-- Sub nav -->
-				<div id="side-nav">
-				<ul>
-					<li><div style="text-align: center;"><img id="visuPhoto" src="<?php echo ($membre->getPhoto() != null && $membre->getPhoto() != '' ? $membre->getPhoto() : 'images/silhouette.jpeg');?>" style="width: 150px; height: 200px; cursor: pointer;vertical-align: middle;" title="Cliquez pour ajouter une photo" /></div></li>
-					<li><div id="aide" style="text-align: center; font-style: italic; display:<?php echo ($membre->getPhoto() != null && $membre->getPhoto() != '' ? '' : 'none');?>;">Cliquez pour modifier la photo</div></li>
-				</ul>
-				</div>
-				<!-- End Sub nav -->
-				<div style="display:<?php echo ($membre->getPhoto() != null && $membre->getPhoto() != '' ? '' : 'none');?>;"><img id="annulImage" src="images/annul16.png" style="cursor: pointer;width: 12px; height: 12px;" title="Supprimer l'image"></div>
-				<!-- Widget -->
-				<div id="heading-box">
-					<div id="heading-box-cnt">
-						<div class="cl">&nbsp;</div>
-						<!-- Main Slide Item -->
-						<div class="featured-main-joueur">
-							<form id="formRetour" action="ActionMembre.php" method="post">
-								<input type="hidden" name="methode" id="methode" value="retour"/>
-								<!-- Récup des filtres précédents -->
-								<input type="hidden" name="filtreCategorie" id="filtreCategorie" value="<?php echo $_GET['filtreCategorie'];?>"/>
-								<input type="hidden" name="filtreFonction" id="filtreFonction" value="<?php echo $_GET['filtreFonction'];?>"/>
-								<input type="hidden" name="filtrePoste" id="filtrePoste" value="<?php echo $_GET['filtrePoste'];?>"/>
-								<input type="hidden" name="filtreNom" id="filtreNom" value="<?php echo ($_GET['filtreNom']!='' ? $_GET['filtreNom'] : '');?>"/>
-								
-							</form>
-							
-							<form id="form1" action="EnregistrerMembre.php" method="post" enctype="multipart/form-data">
-								<input type="hidden" name="methode" id="methode" value="modif"/>
-								<input type="hidden" name="id" id="id" value="<?php echo $membre->getId();?>"/>
-								<input type="hidden" name="fonction" id="fonction" value="<?php echo $membre->getFonction();?>"/>
-								<input type="hidden" name="filtreCategorie" id="filtreCategorie" value="<?php echo $_GET['filtreCategorie'];?>"/>
-								<input type="hidden" name="filtreFonction" id="filtreFonction" value="<?php echo $_GET['filtreFonction'];?>"/>
-								<input type="hidden" name="filtrePoste" id="filtrePoste" value="<?php echo $_GET['filtrePoste'];?>"/>
-								<input type="hidden" name="filtreNom" id="filtreNom" value="<?php echo ($_GET['filtreNom']!='' ? $_GET['filtreNom'] : '');?>"/>
-								<input type="file" class="file" name="photo" id="photo" accept="image/*" style="display: none;"/>
-								<fieldset><legend>Modification d'un membre du club</legend>
-								<p class="first" id="container" >
-									<label for="nom">Nom</label>
-									<input type="text" name="nom" id="nom" value="<?php echo $membre->getNom();?>"/>
-								</p>
-								<p id="container" >
-									<label for="prenom">Prénom</label>
-									<input type="text" name="prenom" id="prenom" value="<?php echo $membre->getPrenom();?>"/>
-								</p>
-								<p id="container" >
-									<label for="categorie">Catégorie</label>
-									<select name="categorie" id="categorie">
-									<option label="" value=""></option>
-									<?php foreach($listeCategories as $categorie) {?>
-									<option label="" value="<?php echo $categorie->getId();?>"  <?php echo ($categorie->getId() == $membre->getCategorie() ? "selected" : "") ; ?>><?php echo $categorie->getLibelle(); ?></option>
-									<?php } ?>
-									</select>
-								</p>
-								<?php 
-								if ($membre->getFonction() != 12) {?>
-								<p id="container" >
-									<label for="fonction">Fonction</label>
-									<select name="fonction" id="fonction">
-									<option label="" value=""></option>
-									<?php foreach($listeFonctions as $fonction) {?>
-									<option label="" value="<?php echo $fonction->getId();?>" <?php echo ($fonction->getId() == $membre->getFonction() ? "selected" : "") ; ?>><?php echo $fonction->getLibelle(); ?></option>
-									<?php } ?>
-									</select>
-								</p>
-								<?php } ?>
-								<?php 
-								if ($membre->getFonction() == 12) {?>
-								<p id="container" >
-									<label for="poste">Poste</label>
-									<select name="poste" id="poste">
-									<option label="" value=""></option>
-									<?php foreach($listePostes as $poste) {?>
-									<option label="" value="<?php echo $poste->getId();?>" <?php echo (($poste->getId() == $membre->getPoste()) ? "selected" : "") ; ?>><?php echo $poste->getLibelle(); ?></option>
-									<?php } ?>
-									</select>
-								</p>
-								<?php } ?>
-								<p id="container" >
-									<label for="dateNaissance">Date de naissance</label>
-									<input type="text" class="datepicker" name="dateNaissance" id="dateNaissance" value="<?php echo date_format(new DateTime($membre->getDateNaissance()), 'd/m/Y');?>"/>
-								</p>
-								
-								<p id="container" >
-									<label for="dateNaissance"><img src="images/tri_plus48.png" id="parcours" name="parcours" style="cursor: pointer; width: 16px; height: 16px; vertical-align: middle;"/>Clubs précédents</label>
-								</p>
-								
-								</fieldset>
-								<fieldset>
-								<p id="container" >
-									<label for="email">Email</label>
-									<input type="text" name="email" id="email" value="<?php echo $membre->getEmail();?>"/>
-								</p>
-								<p id="container" >
-									<label for="numLicence">N° licence</label>
-									<input type="text" name="numLicence" id="numLicence" value="<?php echo $membre->getNumeroLicence();?>"/>
-								</p>
-								<?php if ($membre->getFonction() == 12) {?>
-								<p id="container" >
-									<label for="taille">Taille</label>
-									<input type="text" name="taille" id="taille" value="<?php echo $membre->getTaille()>0 ? $membre->getTaille() : "";?>"/>
-								</p>
-								<p id="container" >
-									<label for="poids">Poids</label>
-									<input type="text" name="poids" id="poids" value="<?php echo $membre->getPoids()>0 ? $membre->getPoids() : "";?>"/>
-								</p>
-								<p id="container" >
-									<label for="meilleurPied">Meilleur pied</label>
-									<input type="text" name="meilleurPied" id="meilleurPied" value="<?php echo $membre->getMeilleurPied();?>"/>
-								</p>
-								<?php } ?>
-								</fieldset>
-								<!-- <p class="submit"><button type="submit" id="submit" value="Enregistrer">Enregistrer</button></p>
-								<p class="submit"><button type="reset" id="reset" value="Annuler">Annuler</button></p>-->
-								<p class="" style="float: right; padding: 0; margin: 0 26px 0 25px; width: 314px;">
-									<button type="submit" style="width: 107px; height:25px; line-height:25px; " value="Enregistrer">Enregistrer</button>
-									<button type="reset" id="reset" style="width: 107px; height:25px; line-height:25px; " value="Annuler">Annuler</button>
-								</p>
-								
-							</form>
-						</div>
-						<!-- End Main Slide Item -->
-
-						<div class="cl">&nbsp;</div>
-
-
+	
+	<div class="my-3">
+	    <div class="container">
+	      <div class="row">
+	        <div class="col-md-12 col-12 col-sm-12 col-lg-12 col-xl-12">
+	        	<form id="formRetour" action="ActionMembre.php" method="post">
+					<input type="hidden" name="methode" id="methode" value="retour"/>
+					<!-- Récup des filtres précédents -->
+					<input type="hidden" name="filtreCategorie" id="filtreCategorie" value="<?php echo $_GET['filtreCategorie'];?>"/>
+					<input type="hidden" name="filtreFonction" id="filtreFonction" value="<?php echo $_GET['filtreFonction'];?>"/>
+					<input type="hidden" name="filtrePoste" id="filtrePoste" value="<?php echo $_GET['filtrePoste'];?>"/>
+					<input type="hidden" name="filtreNom" id="filtreNom" value="<?php echo ($_GET['filtreNom']!='' ? $_GET['filtreNom'] : '');?>"/>
+				</form>
+				
+				
+				<form id="" action="EnregistrerMembre.php" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="methode" id="methode" value="modif"/>
+					<input type="hidden" name="id" id="id" value="<?php echo $membre->getId();?>"/>
+					<input type="hidden" name="fonction" id="fonction" value="<?php echo $membre->getFonction();?>"/>
+					<input type="hidden" name="filtreCategorie" id="filtreCategorie" value="<?php echo $_GET['filtreCategorie'];?>"/>
+					<input type="hidden" name="filtreFonction" id="filtreFonction" value="<?php echo $_GET['filtreFonction'];?>"/>
+					<input type="hidden" name="filtrePoste" id="filtrePoste" value="<?php echo $_GET['filtrePoste'];?>"/>
+					<input type="hidden" name="filtreNom" id="filtreNom" value="<?php echo ($_GET['filtreNom']!='' ? $_GET['filtreNom'] : '');?>"/>
+					<!--<input type="file" class="file" name="photo" id="photo" accept="image/*" style="display: none;"/>-->
+	        		<h3 class="mx-5 pb-3">Modifier un licencié</h3>
+	        		
+					<div class="form-group row mx-5">
+				        <div class="col-sm-12 text-center">
+				        	<img id="visuPhoto" src="<?php echo ($membre->getPhoto() != null && $membre->getPhoto() != '' ? $membre->getPhoto() : 'images/silhouette.jpeg');?>" style="width: 150px; height: 200px; cursor: pointer;vertical-align: middle;" title="Cliquez pour ajouter une photo"/>
+				        </div>
+				        <div class="col-sm-12 text-center">
+				        	<div id="aide" style="text-align: center; font-style: italic; display:<?php echo ($membre->getPhoto() != null && $membre->getPhoto() != '' ? '' : 'none');?>;">Cliquez pour modifier la photo</div>
+				        </div>
+				        <div class="col-sm-12 text-center">
+				        	<div style="display:<?php echo ($membre->getPhoto() != null && $membre->getPhoto() != '' ? '' : 'none');?>;"><img id="annulImage" src="images/annul16.png" style="cursor: pointer;width: 12px; height: 12px;" title="Supprimer l'image"></div>
+				        </div>
 					</div>
-				</div>
-
-				<!-- End Widget -->
-			</div>
-		</div>
+			        
+			        <div class="form-group row mx-5">
+			        	<label class="col-sm-1 col-form-label" for="nom">Nom</label>
+			        	<div class="col-sm-11">
+			        		<input class="form-control w-100 form-control-md" type="text" name="nom" id="nom" value="<?php echo $membre->getNom();?>" required/>
+			        	</div>
+			        </div>
+			        
+			        <div class="form-group row mx-5">
+			        	<label class="col-sm-1 col-form-label" for="prenom">Prénom</label>
+			        	<div class="col-sm-11">
+			        		<input class="form-control w-100 form-control-md" type="text" name="prenom" id="prenom" value="<?php echo $membre->getPrenom();?>" required/>
+			        	</div>
+			        </div>
+	        		
+	        		<div class="form-group row mx-5">
+	        			<label class="col-sm-1 col-form-label" for="categorie">Catégorie</label>
+	        			<div class="col-sm-11">
+			              <select class="form-control w-100 form-control-md" name="categorie" id="categorie" required>
+			              	<option label="Sélectionnez une catégorie" value=""/>
+							<?php foreach($listeCategories as $categorie) {?>
+							<option value="<?php echo $categorie->getId();?>" <?php echo ($categorie->getId() == $membre->getCategorie() ? "selected" : "") ; ?>><?php echo $categorie->getLibelle(); ?></option>
+							<?php } ?>
+						  </select>
+			            </div>
+			        </div>
+	        		
+	        		<?php 
+					if ($membre->getFonction() != 12) {?>
+	        		<div class="form-group row mx-5">
+	        			<label class="col-sm-1 col-form-label" for="fonction">Fonction</label>
+	        			<div class="col-sm-11">
+			              <select class="form-control w-100 form-control-md" name="fonction" id="fonction" required>
+			              	<option label="Sélectionnez une fonction" value=""/>
+							<?php foreach($listeFonctions as $fonction) {?>
+							<option value="<?php echo $fonction->getId();?>" <?php echo ($fonction->getId() == $membre->getFonction() ? "selected" : "") ; ?>><?php echo $fonction->getLibelle(); ?></option>
+							<?php } ?>
+						  </select>
+			            </div>
+			        </div>
+	        		<?php } ?>
+	        		
+	        		<?php 
+					if ($membre->getFonction() == 12) {?>
+	        		<div class="form-group row mx-5">
+	        			<label class="col-sm-1 col-form-label" for="poste">Poste</label>
+	        			<div class="col-sm-11">
+			              <select class="form-control w-100 form-control-md" name="poste" id="poste" required>
+			              	<option label="Sélectionnez un poste" value=""/>
+							<?php foreach($listePostes as $poste) {?>
+							<option value="<?php echo $poste->getId();?>" <?php echo (($poste->getId() == $membre->getPoste()) ? "selected" : "") ; ?>><?php echo $poste->getLibelle(); ?></option>
+							<?php } ?>
+						  </select>
+			            </div>
+			        </div>
+	        		<?php } ?>
+					
+			        <div class="form-group row mx-5">
+			        	<label class="col-sm-1 col-form-label" for="dateNaissance">Date de naissance</label>
+			        	<div class="col-sm-3">
+			        		<input class="form-control w-100 form-control-md datepicker" type="text" name="dateNaissance" id="dateNaissance" value="<?php echo date_format(new DateTime($membre->getDateNaissance()), 'd/m/Y');?>" required/>
+			        	</div>
+			        </div>
+			        
+			        <div class="form-group row mx-5">
+			        	<label class="col-sm-1 col-form-label" for="email">Email</label>
+			        	<div class="col-sm-11">
+			        		<input class="form-control w-100 form-control-md" type="email" name="email" id="email" value="<?php echo $membre->getEmail();?>"/>
+			        	</div>
+			        </div>
+			        
+			        <div class="form-group row mx-5">
+			        	<label class="col-sm-1 col-form-label" for="numLicence">N° licence</label>
+			        	<div class="col-sm-11">
+			        		<input class="form-control w-100 form-control-md" type="text" name="numLicence" id="numLicence" value="<?php echo $membre->getNumeroLicence();?>"/>
+			        	</div>
+			        </div>
+			        
+			        <div class="form-group row mx-5">
+			        	<label class="col-sm-1 col-form-label" for="taille">Taille</label>
+			        	<div class="col-sm-11">
+			        		<input class="form-control w-100 form-control-md" type="text" name="taille" id="taille" value="<?php echo $membre->getTaille()>0 ? $membre->getTaille() : "";?>"/>
+			        	</div>
+			        </div>
+			        
+			        <div class="form-group row mx-5">
+			        	<label class="col-sm-1 col-form-label" for="poids">Poids</label>
+			        	<div class="col-sm-11">
+			        		<input class="form-control w-100 form-control-md" type="text" name="poids" id="poids" value="<?php echo $membre->getPoids()>0 ? $membre->getPoids() : "";?>"/>
+			        	</div>
+			        </div>
+			        
+			        <div class="form-group row mx-5">
+			        	<label class="col-sm-1 col-form-label" for="meilleurPied">Meilleur pied</label>
+			        	<div class="col-sm-11">
+			        		<input class="form-control w-100 form-control-md" type="text" name="meilleurPied" id="meilleurPied" value="<?php echo $membre->getMeilleurPied();?>"/>
+			        	</div>
+			        </div>
+			        
+			        <div class="form-group row mx-5">
+				        <label for="parcours">
+				        	<img src="images/tri_plus48.png" id="parcours" name="parcours" style="cursor: pointer; width: 16px; height: 16px; vertical-align: middle;"/>Clubs précédents
+				        </label>
+					</div>
+			        
+			        <!-- 
+			        <div class="form-group row mx-5">
+			        	<label class="col-sm-1 col-form-label" for="photo">Fichier photo</label>
+			        	<div class="col-sm-11">
+			        		<input id="photo" name="photo" class="file" type="file" accept="image/*">
+			        	</div>
+			        </div>
+			        -->
+			        
+					<div class="form-group row mx-5">
+		              <div class="col-sm-12 text-right">
+		                <button type="submit" class="btn btn-primary btn-lg active" value="Enregistrer">Enregistrer</button>
+		                <button type="reset" id="reset" class="btn btn-primary btn-lg active" value="Annuler">Annuler</button>
+		              </div>
+		            </div>
+				</form>
+	        </div>
+	      </div>
+	    </div>
 	</div>
-	<!-- End Heading -->
-
-	<!-- Main -->
-	<div id="main">
-		<div class="shell">
-			<div id="sidebar">
-
-			</div>
-			<div id="content">
-
-			</div>
-		</div>
-	</div>
-	<!-- End Main -->
 
 	<!-- Bandeau sponsors -->
 	<?php
@@ -313,10 +360,7 @@ require_once("config/config.php");
 	<!-- End Footer -->
 
 	<div id="dialogParcours" style="display: none;">
-		
-			    <p id="texteParcours"></p>
-
-		</div>
+		<p id="texteParcours"></p>
 	</div>
 
 </body>

@@ -25,14 +25,14 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 	// (1) Code PHP pour traiter l'envoi de l'email
 	
 	$nombreErreur = 0; // Variable qui compte le nombre d'erreur
-	// Dï¿½finit toutes les erreurs possibles
+	// Définit toutes les erreurs possibles
 	if (!isset($_POST['nom'])) {
 		$nombreErreur++;
-		$erreur8 = '<p>Il y a un problï¿½me avec la variable "nom".</p>';
+		$erreur8 = '<p>Il y a un problème avec la variable "nom".</p>';
 	} else {
 		if (empty($_POST['nom'])) {
 			$nombreErreur++;
-			$erreur9 = '<p>Vous avez oubliï¿½ de renseigner votre nom.</p>';
+			$erreur9 = '<p>Vous avez oublié de renseigner votre nom.</p>';
 		}
 	}
 	
@@ -62,23 +62,23 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 		}
 	}
 	
-	if (!isset($_POST['objet'])) {
-		$nombreErreur++;
-		$erreur12 = '<p>Il y a un problï¿½me avec la variable "objet".</p>';
-	} else {
-		if (empty($_POST['objet'])) {
-			$nombreErreur++;
-			$erreur13 = '<p>Vous avez oubliï¿½ de renseigner un objet.</p>';
-		}
-	}
+// 	if (!isset($_POST['objet'])) {
+// 		$nombreErreur++;
+// 		$erreur12 = '<p>Il y a un problï¿½me avec la variable "objet".</p>';
+// 	} else {
+// 		if (empty($_POST['objet'])) {
+// 			$nombreErreur++;
+// 			$erreur13 = '<p>Vous avez oubliï¿½ de renseigner un objet.</p>';
+// 		}
+// 	}
 	
 	if (!isset($_POST['message'])) {
 		$nombreErreur++;
-		$erreur4 = '<p>Il y a un problï¿½me avec la variable "message".</p>';
+		$erreur4 = '<p>Il y a un problème avec la variable "message".</p>';
 	} else {
 		if (empty($_POST['message'])) {
 			$nombreErreur++;
-			$erreur5 = '<p>Vous avez oubliï¿½ de donner un message.</p>';
+			$erreur5 = '<p>Vous avez oublié de donner un message.</p>';
 		}
 	} // (3) Ici, il sera possible d'ajouter plus tard un code pour vï¿½rifier un captcha anti-spam.
 	
@@ -121,11 +121,11 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 	}
 	
 	
-	$civilite = htmlentities($_POST['civilite']); // htmlentities() convertit des caractï¿½res "spï¿½ciaux" en ï¿½quivalent HTML
+	//$civilite = htmlentities($_POST['civilite']); // htmlentities() convertit des caractï¿½res "spï¿½ciaux" en ï¿½quivalent HTML
 	$nom = htmlentities($_POST['nom']);
 	$prenom = htmlentities($_POST['prenom']);
 	$email = htmlentities($_POST['email']);
-	$objet = htmlentities($_POST['objet']);
+	//$objet = htmlentities($_POST['objet']);
 	$message = htmlentities($_POST['message']);
 	//$destinataire = htmlentities($_POST['destinataire']);
 	$destinataire = $adm_email;
@@ -141,10 +141,10 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 		if ($destinataire == null) {
 			$destinataire = 'sutter.thierry@gmail.com'; // Adresse email du webmaster (ï¿½ personnaliser)
 		}
-		
+
 		//$sujet = 'Titre du message'; // Titre de l'email
 		$contenu = '<html><head><title>Titre du message</title></head><body>';
-		$contenu .= '<p>Bonjour, vous avez reï¿½u un message de'.$prenom.' '.$nom.'</p>';
+		$contenu .= '<p>Bonjour, vous avez reçu un message de'.$prenom.' '.$nom.'</p>';
 		$contenu .= '<p><strong>Email</strong>: '.$email.'</p>';
 		$contenu .= '<p><strong>Message</strong>:<br/><br/>'.$message.'</p>';
 		$contenu .= '</body></html>'; // Contenu du message de l'email (en XHTML)
@@ -159,15 +159,18 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 		
 		
 		// Envoyer l'email
+		if ($objet== null) {
+			$objet = "Formulaire de contact";
+		}
 		mail($destinataire, $objet, $contenu, $headers); // Fonction principale qui envoi l'email
 		
 		// (2) Fin du code pour traiter l'envoi de l'email
 		
-		$messageOK="<h2>Message envoyï¿½ !</h2>";
+		$messageOK="<h2>Message envoyé !</h2>";
 		$_SESSION['messageOK'] = $messageOK;
 	} else { // S'il y a un moins une erreur
 		$messageKO = '<div style="border:1px solid #ff0000; padding:5px;">';
-		$messageKO = $messageKO.'<p style="color:#ff0000;">Dï¿½solï¿½, il y a eu '.$nombreErreur.' erreur(s). Voici le dï¿½tail des erreurs:</p>';
+		$messageKO = $messageKO.'<p style="color:#ff0000;">Désolé, il y a eu '.$nombreErreur.' erreur(s). Voici le détail des erreurs:</p>';
 		if (isset($erreur8)) $messageKO = $messageKO.'<p>'.$erreur8.'</p>';
 		if (isset($erreur9)) $messageKO = $messageKO.'<p>'.$erreur9.'</p>';
 		if (isset($erreur10)) $messageKO = $messageKO.'<p>'.$erreur10.'</p>';
@@ -187,16 +190,16 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 		
 		$_SESSION['nom'] = $nom;
 		$_SESSION['prenom'] = $prenom;
-		$_SESSION['civilite'] = $civilite;
+		//$_SESSION['civilite'] = $civilite;
 		$_SESSION['email'] = $email;
-		$_SESSION['objet'] = $objet;
+		//$_SESSION['objet'] = $objet;
 		$_SESSION['message'] = $message;
 		$_SESSION['messageKO'] = $messageKO;
 	}
 	$_SESSION['retour']=1;
 	
 	if ($origine != "contact") {
-		echo "Message envoye !";
+		echo "Message envoyé !";
 	} else {
 		header("Location: contact.php");
 	}

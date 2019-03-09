@@ -16,15 +16,24 @@ try {
 if (!empty($listeSponsors)) {
 ?>
 
-
-<div id="sponsor">
-	<div style="font-size: 18px; padding-bottom: 5px;">NOS PARTENAIRES</div>
-	<div class="shell autoplay">
-		<?php foreach($listeSponsors as $sponsor) { 
-		?>
-		<div onclick="window.open('<?php echo $sponsor->getURL(); ?>')"><img src="images/sponsor/vignette/<?php echo $sponsor->getVignette(); ?>" id="<?php echo $sponsor->getNom(); ?>" class="vignetteSponsor" alt="<?php echo $sponsor->getNom(); ?>" title="<?php echo $sponsor->getNom(); ?>" width="50px" height="50px" /></div>
-		<?php } ?>
+	<div class="py-5 bg-dark">
+	    <div class="container-fluid">
+	      <div class="row">
+	        <div class="col-md-12">
+	          <h1 class="text-center mb-5 text-white">Nos partenaires</h1>
+	        </div>
+	      </div>
+	      <div class="row">
+	      <?php for ($i=6; $i<12; $i++) { 
+	      	$sponsor = $listeSponsors[$i];
+	      ?>
+	        <div class="p-0 col-md-2 col-6 text-center">
+	          <a href="<?php echo $sponsor->getURL(); ?>" target="_blank">
+	            <img src="images/sponsor/<?php echo $sponsor->getVignette(); ?>" class="img-fluid" style="text-align: center; width: 150px; height: 150px;" > </a>
+	        </div>
+	      <?php } ?>
+	      </div>
+	    </div>
 	</div>
-</div>
 
 <?php } ?>

@@ -32,7 +32,6 @@
 		</script>
 	</head>
 	<body>
-		<?php include_once("analyticstracking.php"); ?>
 		<!-- Header -->
 		<?php
 		  include("head.php");

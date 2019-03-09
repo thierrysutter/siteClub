@@ -13,7 +13,10 @@ require_once("config/config.php");
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 
-	<!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> -->
+	<meta charset="ISO-8859-1">
+	<meta http-equiv="Cache-Control" content="max-age=600" />
+	<meta http-equiv="Expires" content="Thu, 31 Dec 2015 23:59:59 GMT" />
+	<meta name=viewport content="width=device-width, initial-scale=1">
 	<meta name="keywords" content="mots-clés" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
@@ -24,11 +27,18 @@ require_once("config/config.php");
 	<!--[if lte IE 6]><link rel="stylesheet" href="css/ie6.css" type="text/css" media="all" /><![endif]-->
 	<link rel="stylesheet" href="css/login.css" type="text/css" media="all" />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+	<link rel="stylesheet" href="css/bootstrap4.css" type="text/css">
+
 	<script type="text/javascript" src="js/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="js/jquery/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="js/jquery/jquery.ui.datepicker-fr.min.js"></script>
 	<script type="text/javascript" src="js/slick.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+	
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$("#submit").click( function() {	// à la soumission du formulaire
@@ -92,87 +102,75 @@ require_once("config/config.php");
 		}
 	</script>
 </head>
-<body>
-	
+<body class="w-75 mx-auto bg-light">
+	<!-- Navigation Haut-->
 	<?php
-	  /* Header */
-	  include("head.php");
-	  /* End Header */
-	  
-	  session_start();
-	  if (isset($_SESSION['session_started'])) {
+	session_start();
+	$user = null;
+	if (isset($_SESSION['session_started'])) {
 	  	$user = $_SESSION['user'];
 	  	if (!empty($user)) {
 	  		/* Navigation Haut */
 	  		include("menuAdmin.php");
 	  		/* End Navigation */
 	  	} else {
-	  		header("Location: ActionAccueil.php");
+	  		//header("Location: ActionAccueil.php");
+  			header("Location: ActionAccueil.php");
 	  	}
 	  } else {
-	  	header("Location: ActionAccueil.php");
+	  	//header("Location: ActionAccueil.php");
+  		header("Location: ActionAccueil.php");
 	  }
 	?>
-
-	<!-- Heading -->
-	<div id="heading">
-		<div class="shell">
-			<div id="heading-cnt">
-
-				<!-- Sub nav -->
-				<div id="side-nav">
-				<?php if ($user->getPhoto() != "") {?>
-				<ul><li><div style="text-align: center;"><img id="visuPhoto" style="width: 150px; height: 200px; cursor: pointer;vertical-align: middle;" src="<?php echo $user->getPhoto(); ?>" /></div></li></ul>
-				<?php } ?>
-				</div>
-				<!-- End Sub nav -->
-
-				<!-- Widget -->
-				<div id="heading-box">
-					<div id="heading-box-cnt">
-						<div class="cl">&nbsp;</div>
-						<div id="messageConnexion" style="text-align: center; height: 5px; color: red; font-size: 14px; font-weight: bold; ">Pour plus de sécurité et obtenir l'accès à l'espace membre, merci de mettre à jour votre mot de passe.</div>
-						<div id="message" style="text-align: center; height: 5px; "></div><!-- div qui contiendra le message de retour -->
-						<!-- Main Slide Item -->
-						<div class="featured-main-joueur">
-							<div id="container">
-						        <form name="connexionForm" id="connexionForm" method="POST" action="#">
-						        	<input type="hidden" name="login" id="login" value="<?php echo $user->getLogin();?>"/>
-						            <label for="ancienMdp">Ancien mot de passe</label>
-									<input type="password" name="ancienMdp" id="ancienMdp" value="" required/>
-						            <label for="nouveauMdp">Nouveau mot de passe</label>
-									<input type="password" name="nouveauMdp" id="nouveauMdp" value="" required/>
-									<label for="confirmMdp">Confirmer le mot de passe</label>
-									<input type="password" name="confirmMdp" id="confirmMdp" value="" required/>
-						            <div id="lower">
-						            	<input type="submit" id="submit" value="Enregistrer">
-						            </div><!--/ lower-->
-						        </form>
-						    </div><!--/ container-->
-						</div>
-						<!-- End Main Slide Item -->
-						<div class="cl">&nbsp;</div>
-					</div>
-				</div>
-
-				<!-- End Widget -->
-			</div>
-		</div>
+	<?php include("head.php"); ?>
+	<!-- End Navigation -->
+		
+	<div class="my-3">
+	    <div class="container">
+	      
+	      <div class="row my-4">
+	      	<div class="col-md-12 col-12 col-sm-12 col-lg-12 col-xl-12">
+				<div id="messageConnexion" style="text-align: center; height: 5px; color: red; font-size: 14px; font-weight: bold; ">Pour plus de sécurité et obtenir l'accès à l'espace membre, merci de mettre à jour votre mot de passe.</div>
+				<div id="message" style="text-align: center; height: 5px; "></div>
+	      	</div>
+	      </div>
+	    
+	      <div class="row">
+	        <div class="col-md-12 col-12 col-sm-12 col-lg-12 col-xl-12">
+	          <form action="#" method="post" name="connexionForm" id="connexionForm" >
+	          	<input type="hidden" name="login" id="login" value="<?php echo $user->getLogin();?>"/>
+	            	            
+	            <div class="form-group row mx-5">
+	              <label for="ancienMdp" class="col-sm-2 col-form-label">Ancien mot de passe</label>
+	              <div class="col-sm-9">
+	              	<input type="password" class="form-control w-100 form-control-md" name="ancienMdp" id="ancienMdp" value="" required/>
+	              </div>
+	            </div>
+	            	            
+	            <div class="form-group row mx-5">
+	              <label for="nouveauMdp" class="col-sm-2 col-form-label">Nouveau mot de passe</label>
+	              <div class="col-sm-9">
+	              	<input type="password" class="form-control w-100 form-control-md" name="nouveauMdp" id="nouveauMdp" value="" required/>
+	              </div>
+	            </div>
+	            	            
+	            <div class="form-group row mx-5">
+	              <label for="confirmMdp" class="col-sm-2 col-form-label">Confirmer le mot de passe</label>
+	              <div class="col-sm-9">
+	              	<input type="password" class="form-control w-100 form-control-md" name="confirmMdp" id="confirmMdp" value="" required/>
+	              </div>
+	            </div>
+	            
+	            <div class="form-group row mx-5">
+	              <div class="col-sm-12 text-center">
+	                <button type="submit" id="submit" class="btn btn-primary btn-lg active" >Enregistrer</button>
+	              </div>
+	            </div>
+	          </form>
+	        </div>
+	      </div>
+	    </div>
 	</div>
-	<!-- End Heading -->
-
-	<!-- Main -->
-	<div id="main">
-		<div class="shell">
-			<div id="sidebar">
-
-			</div>
-			<div id="content">
-
-			</div>
-		</div>
-	</div>
-	<!-- End Main -->
 
 	<!-- Bandeau sponsors -->
 	<?php

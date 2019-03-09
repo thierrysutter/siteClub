@@ -53,11 +53,14 @@ try {
 		$_SESSION['listeTypeCompetitions'] = $managerTypeCompetition->getList();*/
 		
 		if ($user->isPwdUsageUnique() || $user->isExpire()) {
-			echo "0";
+			//echo "0";
+			header("Location: ActionChangementMotDePasse.php");
 		} else if ($user->isVerrouille()) {
-			echo "1";
+			//echo "1";
+			header("Location: ActionAccueil.php");
 		} else {
-			echo "2";
+			//echo "2";
+			header("Location: ActionProfil.php");
 		}
 	} else {
 		$logger->log('erreur', 'erreurs', "Erreur lors de l'authentification de ".$login.".", Logger::GRAN_MONTH);

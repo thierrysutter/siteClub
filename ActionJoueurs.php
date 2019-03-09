@@ -22,7 +22,9 @@ $listeMilieux = array();
 $listeAttaquants = array();
 $listeEquipes = array();
 $categorie = 9; // seniors
-
+$equipeA = 1; // seniors A
+$equipeB = 2; // seniors B
+$equipeC = 19; // seniors C
 try {
 	// connexion avec la base de données
 	$connexionBdd = new Connexion($db_host, $db_login, $db_password, $db_name);
@@ -31,9 +33,28 @@ try {
 	$listeEquipes = $managerEquipe->trouverEquipesParCategorie($categorie);
 
 	$managerRencontre = new ManagerRencontre($connexionBdd->getPDO());
-	$listeDernier =$managerRencontre->getDernier($categorie);
-	$listeProchain =$managerRencontre->getProchain($categorie);
+	$listeDernier = $managerRencontre->getDernier($categorie);
+	$listeProchain = $managerRencontre->getProchain($categorie);
+	
+	$listeDernierA = $managerRencontre->getDernierParEquipe($equipeA);
+	$listeProchainA = $managerRencontre->getProchainParEquipe($equipeA);
+	$listeDernierB = $managerRencontre->getDernierParEquipe($equipeB);
+	$listeProchainB = $managerRencontre->getProchainParEquipe($equipeB);
+	$listeDernierC = $managerRencontre->getDernierParEquipe($equipeC);
+	$listeProchainC = $managerRencontre->getProchainParEquipe($equipeC);
 
+	$_SESSION['listeEquipes']=$listeEquipes;
+	$_SESSION['listeDernier']=$listeDernier;
+	$_SESSION['listeProchain']=$listeProchain;
+	
+	$_SESSION['listeDernierA']=$listeDernierA;
+	$_SESSION['listeProchainA']=$listeProchainA;
+	$_SESSION['listeDernierB']=$listeDernierB;
+	$_SESSION['listeProchainB']=$listeProchainB;
+	$_SESSION['listeDernierC']=$listeDernierC;
+	$_SESSION['listeProchainC']=$listeProchainC;
+
+	/*
 	$managerStaff = new ManagerStaff($connexionBdd->getPDO());
 	$listeStaffs = $managerStaff->getList($categorie);
 
@@ -43,16 +64,12 @@ try {
 	$listeMilieux = $managerJoueur->getListMilieux($categorie);
 	$listeAttaquants = $managerJoueur->getListAttaquants($categorie);
 
-	$_SESSION['listeEquipes']=$listeEquipes;
-	$_SESSION['listeDernier']=$listeDernier;
-	$_SESSION['listeProchain']=$listeProchain;
-
 	$_SESSION['listeStaffs']=$listeStaffs;
 	$_SESSION['listeGardiens']=$listeGardiens;
 	$_SESSION['listeDefenseurs']=$listeDefenseurs;
 	$_SESSION['listeMilieux']=$listeMilieux;
 	$_SESSION['listeAttaquants']=$listeAttaquants;
-
+*/
 	header("Location: joueurs&staffs.php");
 
 } catch (PDOException $error) { // Le catch est chargé d’intercepter une éventuelle erreur

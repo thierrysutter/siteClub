@@ -24,19 +24,26 @@ require_once("config/config.php");
 	<!--[if lte IE 6]><link rel="stylesheet" href="css/ie6.css" type="text/css" media="all" /><![endif]-->
 	<link rel="stylesheet" href="css/contact.css" type="text/css" media="all" />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+	<link rel="stylesheet" href="css/bootstrap4.css" type="text/css">
 
 	<script type="text/javascript" src="js/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="js/jquery/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="js/jquery/jquery.ui.datepicker-fr.min.js"></script>
 	<script type="text/javascript" src="js/slick.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
+	
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+	
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$( ".datepicker" ).datepicker( {
 				showOn: "button",
 				buttonImage: "images/calendar16.png",
 				buttonImageOnly: true,
-				dateFormat: 'dd/mm/yy'
+				dateFormat: 'dd/mm/yyyy'
 			});
 
 			$(".ui-datepicker-trigger").each(function() {
@@ -49,42 +56,17 @@ require_once("config/config.php");
 	  					$(this).parent().find(".datepicker").blur();
 	  					}
 	  		);
-
 			
-			/*$("#visuPhoto").click(function(){
-				$("#photo").click();
-			});
-
-			$("#photo").change(function(){
-				// une fois le fichier choisi, afficher la photo dans son cadre pour visu
-				if (document.getElementById("photo").files[0] != null && document.getElementById("photo").files[0] != "undefined") {
-			        $("#annulImage").css("display","");
-			        var oFReader = new FileReader();
-			        oFReader.readAsDataURL(document.getElementById("photo").files[0]);
-
-			        oFReader.onload = function (oFREvent) {
-			            document.getElementById("visuPhoto").src = oFREvent.target.result;
-			        };
-		        } else {
-		        	$("#annulImage").css("display","none");
-		        	document.getElementById("visuPhoto").src = "";
-			    }
-			});*/
+			$("#reset").click(function(){
+	  			document.location="ActionUtilisateur.php";
+		  	});
 		});
 	</script>
 </head>
-<body>
-	<!-- Header -->
-	<?php
-	  include("head.php");
-	?>
-	<!-- End Header -->
-
+<body class="w-75 mx-auto bg-light">
 	<!-- Navigation Haut-->
 	<?php
-	
 	session_start();
-	
 	$user = null;
 	if (isset($_SESSION['session_started'])) {
 		$user = $_SESSION['user'];
@@ -101,109 +83,110 @@ require_once("config/config.php");
   		header("Location: Deconnexion.php");
 	}
 	$utilisateur = $_SESSION['utilisateur'];
-	
 	?>
+	<?php include("head.php"); ?>
 	<!-- End Navigation -->
-
-	<!-- Heading -->
-	<div id="heading">
-		<div class="shell">
-			<div id="heading-cnt">
-
-				<!-- Sub nav -->
-				<div id="side-nav">
-				<ul><li><div style="text-align: center;"><img id="visuPhoto" src="<?php echo $utilisateur->getPhoto();?>" style="width: 150px; height: 200px; cursor: pointer;vertical-align: middle;" /></div></li></ul>
-				</div>
-				<!-- End Sub nav -->
-
-				<!-- Widget -->
-				<div id="heading-box">
-					<div id="heading-box-cnt">
-						<div class="cl">&nbsp;</div>
-						<!-- Main Slide Item -->
-						<div class="featured-main-joueur">
-							<form id="form1" action="EnregistrerUtilisateur.php" method="post" enctype="multipart/form-data">
-								<input type="hidden" name="methode" id="methode" value="modif"/>
-								<input type="hidden" name="ancienLogin" id="ancienLogin"value="<?php echo $utilisateur->getLogin();?>"/>
-								<fieldset><legend>Modification d'un utilisateur</legend>
-									<p class="first" id="container" >
-										<label for="login">Login</label>
-										<input type="text" name="login" id="login"value="<?php echo $utilisateur->getLogin();?>"/>
-									</p>
-									<p id="container" >
-										<label for="email">Email</label>
-										<input type="text" name="email" id="email" value="<?php echo $utilisateur->getEmail();?>"/>
-									</p>
-									<p id="container" >
-										<label for="nom">Nom</label>
-										<input type="text" name="nom" id="nom" value="<?php echo $utilisateur->getNom();?>"/>
-									</p>
-									<p id="container" >
-										<label for="prenom">Prenom</label>
-										<input type="text" name="prenom" id="prenom" value="<?php echo $utilisateur->getPrenom();?>"/>
-									</p>
-									<p id="container" >
-										<label for="dateNaissance">Date de naissance</label>
-										<input type="text" class="datepicker" name="dateNaissance" id="dateNaissance" value="<?php echo date_format(new DateTime($utilisateur->getDateNaissance()), 'd/m/Y');?>"/>
-									</p>
-									
-									<p id="container" >
-										Super Admin<input type="checkbox" class="checkbox" name="superAdmin" id="superAdmin" value="1" <?php echo ($utilisateur->isSuperAdmin() ? "checked" : "");?>  />
-									</p>
-								</fieldset>
-								<fieldset>
-									<p id="container" >
-										<label for="adresse">Adresse</label>
-										<input type="text" name="adresse" id="adresse" value="<?php echo $utilisateur->getAdresse();?>"/>
-										<label for="codePostal">Code postal</label>
-										<input type="text" name="codePostal" id="codePostal" value="<?php echo $utilisateur->getCodePostal();?>"/>
-										<label for="ville">Ville</label>
-										<input type="text" name="ville" id="ville" value="<?php echo $utilisateur->getVille();?>"/>
-									</p>
-									<p id="container" >
-										<label for="telFixe">Tel fixe</label>
-										<input type="text" name="telFixe" id="telFixe" value="<?php echo $utilisateur->getTelFixe();?>"/>
-									</p>
-									<p id="container" >
-										<label for="telPortable">Tel portable</label>
-										<input type="text" name="telPortable" id="telPortable" value="<?php echo $utilisateur->getTelPortable();?>"/>
-									</p>
-									<!-- <p id="container" >
-										<label for="photo">Fichier photo</label>
-										<input type="file" class="file" name="photo" id="photo" accept="image/*" />
-									</p>-->
-								</fieldset>
-								
-								<p class="submit"><button type="submit">Enregistrer</button></p>								
-								
-							</form>
-						</div>
-						<!-- End Main Slide Item -->
-
-						<div class="cl">&nbsp;</div>
-
-
-					</div>
-				</div>
-
-				<!-- End Widget -->
-			</div>
-		</div>
+	
+	<div class="my-3">
+	    <div class="container">
+	      <div class="row">
+	        <div class="col-md-12 col-12 col-sm-12 col-lg-12 col-xl-12">
+	        	<form id="" action="EnregistrerUtilisateur.php" method="post" enctype="multipart/form-data">
+	        		<input type="hidden" name="methode" id="methode" value="modif"/>
+	        		<input type="hidden" name="ancienLogin" id="ancienLogin"value="<?php echo $utilisateur->getLogin();?>"/>
+	        		<h3 class="mx-5 pb-3">Modifier un utilisateur</h3>
+	        		<div class="form-group row mx-5">
+				        <div class="col-sm-12 text-center">
+				        	<img id="visuPhoto" src="<?php echo $utilisateur->getPhoto();?>" style="width: 150px; height: 200px; cursor: pointer;vertical-align: middle;" />
+				        </div>
+					</div>					
+								        
+			        <div class="form-group row mx-5">
+			        	<label class="col-sm-1 col-form-label" for="login">Login</label>
+			        	<div class="col-sm-11">
+			        		<input class="form-control w-100 form-control-md" type="text" name="login" id="login" value="<?php echo $utilisateur->getLogin();?>" required/>
+			        	</div>
+			        </div>
+			        <div class="form-group row mx-5">
+			        	<label class="col-sm-1 col-form-label" for="email">Email</label>
+			        	<div class="col-sm-11">
+			        		<input class="form-control w-100 form-control-md" type="email" name="email" id="email" value="<?php echo $utilisateur->getEmail();?>" required/>
+			        	</div>
+			        </div>
+			        <div class="form-group row mx-5">
+			        	<label class="col-sm-1 col-form-label" for="nom">Nom</label>
+			        	<div class="col-sm-11">
+			        		<input class="form-control w-100 form-control-md" type="text" name="nom" id="nom" value="<?php echo $utilisateur->getNom();?>" required/>
+			        	</div>
+			        </div>
+			        <div class="form-group row mx-5">
+			        	<label class="col-sm-1 col-form-label" for="prenom">Prénom</label>
+			        	<div class="col-sm-11">
+			        		<input class="form-control w-100 form-control-md" type="text" name="prenom" id="prenom" value="<?php echo $utilisateur->getPrenom();?>" required/>
+			        	</div>
+			        </div>
+			        <div class="form-group row mx-5">
+			        	<label class="col-sm-1 col-form-label" for="dateNaissance">Date de naissance</label>
+			        	<div class="col-sm-3">
+			        		<input class="form-control w-100 form-control-md datepicker" type="text" name="dateNaissance" id="dateNaissance" value="<?php echo date_format(new DateTime($utilisateur->getDateNaissance()), 'd/m/Y');?>" required/>
+			        	</div>
+			        </div>
+			        <div class="form-group row mx-5">
+			        	<label class="col-sm-1 col-form-label" for="superAdmin">Super admin</label>
+			        	<div class="col-sm-1">
+			        		<input class="form-control w-100 form-control-md" type="checkbox" name="superAdmin" id="superAdmin" value="1" <?php echo ($utilisateur->isSuperAdmin() ? "checked" : "");?>/>
+			        	</div>
+			        </div>
+	        		
+			        <div class="form-group row mx-5">
+			        	<label class="col-sm-1 col-form-label" for="adresse">Adresse</label>
+			        	<div class="col-sm-11">
+			        		<input class="form-control w-100 form-control-md" type="text" name="adresse" id="adresse" value="<?php echo $utilisateur->getAdresse();?>" required/>
+			        	</div>
+			        </div>
+			        <div class="form-group row mx-5">
+			        	<label class="col-sm-1 col-form-label" for="codePostal">Code postal</label>
+			        	<div class="col-sm-2">
+			        		<input class="form-control w-100 form-control-md" type="text" name="codePostal" id="codePostal" value="<?php echo $utilisateur->getCodePostal();?>" required/>
+			        	</div>
+			        </div>
+			        <div class="form-group row mx-5">
+			        	<label class="col-sm-1 col-form-label" for="ville">Ville</label>
+			        	<div class="col-sm-11">
+			        		<input class="form-control w-100 form-control-md" type="text" name="ville" id="ville" value="<?php echo $utilisateur->getVille();?>" required/>
+			        	</div>
+			        </div>
+			        <div class="form-group row mx-5">
+			        	<label class="col-sm-1 col-form-label" for="telFixe">Tel fixe</label>
+			        	<div class="col-sm-3">
+			        		<input class="form-control w-100 form-control-md" type="text" name="telFixe" id="telFixe" value="<?php echo $utilisateur->getTelFixe();?>" required/>
+			        	</div>
+			        </div>
+			        <div class="form-group row mx-5">
+			        	<label class="col-sm-1 col-form-label" for="telPortable">Tel portable</label>
+			        	<div class="col-sm-3">
+			        		<input class="form-control w-100 form-control-md" type="text" name="telPortable" id="telPortable" value="<?php echo $utilisateur->getTelPortable();?>" required/>
+			        	</div>
+			        </div>
+			        <!-- 
+			        <div class="form-group row mx-5">
+			        	<label class="col-sm-1 col-form-label" for="photo">Fichier photo</label>
+			        	<div class="col-sm-11">
+			        		<input id="photo" name="photo" class="file" type="file" accept="image/*">
+			        	</div>
+			        </div>
+			         -->
+			        <div class="form-group row mx-5">
+		              <div class="col-sm-12 text-right">
+		                <button type="submit" class="btn btn-primary btn-lg active" value="Enregistrer">Enregistrer</button>
+		                <button type="reset" id="reset" class="btn btn-primary btn-lg active" value="Annuler">Annuler</button>
+		              </div>
+		            </div>
+	        	</form>
+	        </div>
+	      </div>
+	    </div>
 	</div>
-	<!-- End Heading -->
-
-	<!-- Main -->
-	<div id="main">
-		<div class="shell">
-			<div id="sidebar">
-
-			</div>
-			<div id="content">
-
-			</div>
-		</div>
-	</div>
-	<!-- End Main -->
 
 	<!-- Bandeau sponsors -->
 	<?php
@@ -216,8 +199,6 @@ require_once("config/config.php");
 	  include("footer.php");
 	?>
 	<!-- End Footer -->
-
-
 </body>
 </html>
 <?php

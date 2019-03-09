@@ -1,43 +1,55 @@
-<div id="main">
-		<div class="shell">
-			<div class="cl">&nbsp;</div>
-			<div id="sidebar"></div>
-			<div id="content">
-				<div class="featured-main-bas">
-					<div class="cl">&nbsp;</div>
-					<h1><a href="#">Organigramme</a></h1>
+<div class="py-5 text-center bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Le comité</h1>
+        </div>
+      </div>
+      <div class="row">
+      <?php
+		$managerStaff = new ManagerStaff($connexionBdd->getPDO());
+		$listeStaffs = $managerStaff->trouverTous();
+	
+		if (!empty($listeStaffs))
+		{
+			foreach($listeStaffs as $staff)
+			{
+	  ?>
+      	<input type="hidden" id="nom_<?php echo $staff->getId();?>" name="nom_<?php echo $staff->getId();?>" value="<?php echo $staff->getNom();?>" />
+	  	<input type="hidden" id="prenom_<?php echo $staff->getId();?>" name="prenom_<?php echo $staff->getId();?>" value="<?php echo $staff->getPrenom();?>" />
+	  	<input type="hidden" id="dateNaissance_<?php echo $staff->getId();?>" name="dateNaissance_<?php echo $staff->getId();?>" value="<?php echo date_format(new DateTime($staff->getDateNaissance()), 'd/m/Y');?>" />
+	  	<input type="hidden" id="fonction_<?php echo $staff->getId();?>" name="fonction_<?php echo $staff->getId();?>" value="<?php echo $staff->getLibelleFonction();?>" />
+	  	<input type="hidden" id="numLicence<?php echo $staff->getId();?>" name="numLicence<?php echo $staff->getId();?>" value="<?php echo $staff->getNumeroLicence();?>" />
+	  	<input type="hidden" id="email_<?php echo $staff->getId();?>" name="email_<?php echo $staff->getId();?>" value="<?php echo $staff->getEmail();?>" />
+	  	<input type="hidden" id="video_<?php echo $staff->getId();?>" name="video_<?php echo $staff->getId();?>" value="<?php echo $staff->getVideo();?>" />
+	  	<input type="hidden" id="typeVideo_<?php echo $staff->getId();?>" name="typeVideo_<?php echo $staff->getId();?>" value="<?php echo pathinfo($staff->getVideo(),PATHINFO_EXTENSION);?>" />
+	  
+        <div class="col-md-4 p-4">
+        <?php 
+	        if ($staff->getPhoto() != null && $staff->getPhoto() != "" && $staff->getPhoto() != "images/photo/" && file_exists($staff->getPhoto())) {
+				echo "<img class=\"img-fluid d-block img-thumbnail mx-auto w-50\" id=\"".$staff->getId()."\" src=\"".$staff->getPhoto()."\" style=\"width:250px;height:200px;\"/>";
+			} else {
+				echo "<img class=\"img-fluid d-block img-thumbnail mx-auto\" id=\"".$staff->getId()."\" src=\"images/silhouette.jpeg\" />";
+			}
+		?>
+          <p>
+          	<b><?php echo "<a href=\"#\">".$staff->getNom()." ".$staff->getPrenom()."</a>";?></b>
+            <br><?php echo "<span>".$staff->getLibelleFonction()."</span>"; ?>
+          </p>
+          <!-- <p class="my-0"><i>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</i></p> -->
+        </div>
+      <?php 
+      		}
+		}
+	  ?>
+      </div>
+    </div>
+</div>
 
-						<?php
-						$managerStaff = new ManagerStaff($connexionBdd->getPDO());
-						$listeStaffs = $managerStaff->trouverTous();
+				
 
-						if (!empty($listeStaffs)) {
-							foreach($listeStaffs as $staff) {
-								echo "<div class=\"organigramme\">";
-								?>
-								<input type="hidden" id="nom_<?php echo $staff->getId();?>" name="nom_<?php echo $staff->getId();?>" value="<?php echo $staff->getNom();?>" />
-								<input type="hidden" id="prenom_<?php echo $staff->getId();?>" name="prenom_<?php echo $staff->getId();?>" value="<?php echo $staff->getPrenom();?>" />
-								<input type="hidden" id="dateNaissance_<?php echo $staff->getId();?>" name="dateNaissance_<?php echo $staff->getId();?>" value="<?php echo date_format(new DateTime($staff->getDateNaissance()), 'd/m/Y');?>" />
-								<input type="hidden" id="fonction_<?php echo $staff->getId();?>" name="fonction_<?php echo $staff->getId();?>" value="<?php echo $staff->getLibelleFonction();?>" />
-								<input type="hidden" id="numLicence<?php echo $staff->getId();?>" name="numLicence<?php echo $staff->getId();?>" value="<?php echo $staff->getNumeroLicence();?>" />
-								<input type="hidden" id="email_<?php echo $staff->getId();?>" name="email_<?php echo $staff->getId();?>" value="<?php echo $staff->getEmail();?>" />
-								<input type="hidden" id="video_<?php echo $staff->getId();?>" name="video_<?php echo $staff->getId();?>" value="<?php echo $staff->getVideo();?>" />
-								<input type="hidden" id="typeVideo_<?php echo $staff->getId();?>" name="typeVideo_<?php echo $staff->getId();?>" value="<?php echo pathinfo($staff->getVideo(),PATHINFO_EXTENSION);?>" />
-								<?php 
-								echo "<h3><a href=\"#\">".$staff->getNom()." ".$staff->getPrenom()."</a></h3>";
-								echo "<p><span>".$staff->getLibelleFonction()."</span></p>";
-								if ($staff->getPhoto() != null && $staff->getPhoto() != "" && $staff->getPhoto() != "images/photo/" && file_exists($staff->getPhoto())) {
-									echo "<img class=\"vignette\" id=\"".$staff->getId()."\" src=\"".$staff->getPhoto()."\" width=\"55px\" height=\"65px\" alt=\"\" />";
-								} else {
-									echo "<img class=\"vignette\" id=\"".$staff->getId()."\" src=\"images/silhouette.jpeg\" width=\"55px\" height=\"65px\" alt=\"\" />";
-								}
-								echo "</div>";
-							}
-						} ?>
 
-						<!-- <img alt="email" src="images/mail216.png" style="vertical-align: middle;"/> -->
-
-				</div>
+				<?php /*
 				<div class="featured-side-bas">
 					<div id="detail" class="featured-main-bas-item" style="float: right;">
 						<img id="detailPhoto" src="<?php echo ($listeStaffs[0]->getPhoto() != '' && $listeStaffs[0]->getPhoto() != 'images/photo/' && (file_exists($listeStaffs[0]->getPhoto())) ? $listeStaffs[0]->getPhoto() : 'images/silhouette.jpeg'); ?>" width="130px" height="160px" alt="" />
@@ -67,20 +79,19 @@
 						<div class="cl">&nbsp;</div>
 					</div>
 				</div>
-			</div>
-			<div class="cl">&nbsp;</div>
-		</div>
-	</div>
+				*/ ?>
 
 
 
 
 
 
+<?php /*
 <div id="videoDialog" style="text-align: center; vertical-align: middle;">
 <video id="lecteurVideoPopup" width="550px" height="325px" controls><source id="detailVideoPopup" src=""/></video>
 </div>
-
+*/ ?>
+<?php /* 
 	<div id="emailDialog">
 		<form id="form1" action="EnvoyerMessage.php" method="post">
 			<div id="erreurFiltre"></div><!-- div qui contiendra les éventuels messages d'erreur -->
@@ -135,3 +146,4 @@
 
 		</form>
 	</div>
+	*/ ?>

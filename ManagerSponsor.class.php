@@ -17,7 +17,7 @@ class ManagerSponsor
   {
 	//echo "Ajout d'un nouveau sponsor<br>";
     // Préparation de la requête d'insertion.
-    $sql = "INSERT INTO sponsor (NOM, URL, ADRESSE, CP, VILLE, TEL, FAX, EMAIL, VIGNETTE, AUTEUR_MAJ, DERNIERE_MAJ) VALUES ('".$nom."', '".$url."', '".strtoupper($adresse)."', '".strtoupper($codePostal)."', '".strtoupper($ville)."', '".$tel."', '".$fax."', '".$email."', '".$vignette."', '".strtoupper($login)."', now())";
+    $sql = "INSERT INTO sponsor (NOM, URL, ADRESSE, CP, VILLE, TEL, FAX, EMAIL, VIGNETTE, AUTEUR_MAJ, DERNIERE_MAJ, ACTIF) VALUES ('".$nom."', '".$url."', '".strtoupper($adresse)."', '".strtoupper($codePostal)."', '".strtoupper($ville)."', '".$tel."', '".$fax."', '".$email."', '".$vignette."', '".strtoupper($login)."', now(), 1)";
     echo $sql;
     $q = $this->_db->query($sql);
   }
@@ -25,7 +25,7 @@ class ManagerSponsor
   public function count()
   {
     // Exécute une requête COUNT() et retourne le nombre de résultats retourné.
-	return $this->_db->query('SELECT COUNT(*) FROM sponsor')->fetchColumn();
+	return $this->_db->query('SELECT COUNT(*) FROM sponsor WHERE ACTIF = 1')->fetchColumn();
   }
 
   public function supprimerSponsor($idSponsor)
@@ -91,7 +91,7 @@ class ManagerSponsor
 
 	$sponsors = array();
 
-    $q = $this->_db->query("SELECT id, nom, url, vignette, adresse, cp, ville, tel, fax, email, description, message FROM sponsor where vignette is not null and vignette <> '' ORDER BY nom");
+    $q = $this->_db->query("SELECT id, nom, url, vignette, adresse, cp, ville, tel, fax, email, description, message FROM sponsor where ACTIF = 1 AND vignette is not null and vignette <> '' ORDER BY nom");
     //$q->execute();
 
     while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
@@ -104,7 +104,7 @@ class ManagerSponsor
 
   public function majSponsor($id, $nom, $url, $adresse, $codePostal, $ville, $tel, $fax, $email, $photo, $ogin) {
   	// Exécute une requête de type DELETE.
-  	$sql = "UPDATE sponsor set nom='".$nom."', url='".$url."', adresse='".strtoupper($adresse)."', cp='".strtoupper($codePostal)."', ville='".strtoupper($ville)."', tel='".$tel."', fax='".$fax."', email='".$email."', vignette='".($photo != '' ? $photo : 'NULL')."', auteur_maj='".strtoupper($login)."' WHERE id = ".$id;
+  	$sql = "UPDATE sponsor set nom='".$nom."', url='".$url."', adresse='".strtoupper($adresse)."', cp='".strtoupper($codePostal)."', ville='".strtoupper($ville)."', tel='".$tel."', fax='".$fax."', email='".$email."', /*vignette='".($photo != null && $photo != '' ? $photo : 'NULL')."',*/ auteur_maj='".strtoupper($login)."' WHERE id = ".$id;
   	echo $sql;
   	$this->_db->query($sql);
   }

@@ -16,7 +16,10 @@ session_start();
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 
-	<!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> -->
+	<meta charset="ISO-8859-1">
+	<meta http-equiv="Cache-Control" content="max-age=600" />
+	<meta http-equiv="Expires" content="Thu, 31 Dec 2015 23:59:59 GMT" />
+	<meta name=viewport content="width=device-width, initial-scale=1">
 	<meta name="keywords" content="mots-clés" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
@@ -29,12 +32,18 @@ session_start();
 	<link rel="stylesheet" href="css/filtre.css" type="text/css" media="all" />
 	<link rel="stylesheet" href="css/tableau.css" type="text/css" media="all"/>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+	<link rel="stylesheet" href="css/bootstrap4.css" type="text/css">
+
 	<script type="text/javascript" src="js/jquery/jquery-1.9.1.js"></script>
 	<script type="text/javascript" src="js/jquery/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="js/jquery/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" src="js/jquery/jquery.ui.datepicker-fr.min.js"></script>
 	<script type="text/javascript" src="js/slick.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 	<script type="text/javascript">
 
 
@@ -135,174 +144,122 @@ session_start();
 		}
 	</script>
 </head>
-<body>
-
-<!-- Header -->
-	<?php
-	  include("head.php");
-	?>
-	<!-- End Header -->
-
+<body class="w-75 mx-auto bg-light">
 	<!-- Navigation Haut-->
 	<?php
+	session_start();
 	$user = null;
 	$listeProchainesRencontres = array();
-
+	
 	if (isset($_SESSION['session_started'])) {
-		$user = $_SESSION['user'];
-		if (!empty($user)) {
-			/* Navigation Haut */
-			include("menuAdmin.php");
-			/* End Navigation */
-		} else {
-			//header("Location: ActionAccueil.php");
-			header("Location: Deconnexion.php");
-		}
-	} else {
-		//header("Location: ActionAccueil.php");
-		header("Location: Deconnexion.php");
-	}
-
-	if (isset($_SESSION['listeProchainesRencontres'])) {
-		$listeProchainesRencontres = $_SESSION['listeProchainesRencontres'];
-	}
-	$listeCategories = $_SESSION['listeCategories'];
-	?>
+	  	$user = $_SESSION['user'];
+	  	if (!empty($user)) {
+	  		/* Navigation Haut */
+	  		include("menuAdmin.php");
+	  		//include("menuHaut.php");
+	  		/* End Navigation */
+	  	} else {
+	  		//header("Location: ActionAccueil.php");
+  			header("Location: Deconnexion.php");
+	  	}
+	  } else {
+	  	//header("Location: ActionAccueil.php");
+  		header("Location: Deconnexion.php");
+	  }
+	  	  
+	  if (isset($_SESSION['listeProchainesRencontres'])) {
+	  	$listeProchainesRencontres = $_SESSION['listeProchainesRencontres'];
+	  }
+	  $listeCategories = $_SESSION['listeCategories'];
+	  ?>
+	<?php include("head.php"); ?>
 	<!-- End Navigation -->
 
-	<!-- Heading -->
-	<div id="heading">
-		<div class="shell">
-			<div id="heading-cnt">
-
-				<!-- Sub nav -->
-				<div id="side-nav">
-				<?php if ($user->isSuperAdmin()) { ?>
-					<ul>
-						<li><div>
-						<form id="filtre" name="filtre" action="ActionResultat.php" method="post">
-						<input type="hidden" name="methode" id="methode" value="filtre"/>
-						<fieldset><legend>Affiner la recherche</legend>
-						<p class="first" id="filtreCategorie" >
-							<label for="categorie">Catégorie</label>
-							<select name="categorie" id="categorie">
-							<option label="" value="-1"  <?php echo ($_SESSION['filtreCategorie'] == -1 ? "selected" : "") ;?>>Toutes</option>
-							<?php foreach($listeCategories as $categorie) {?>
-							<option label="" value="<?php echo $categorie->getId();?>" <?php echo ($_SESSION['filtreCategorie'] == $categorie->getId() ? "selected" : "") ;?>><?php echo $categorie->getLibelle(); ?></option>
-							<?php } ?>
-							</select>
-						</p>
-
-						<p class="submit"><button type="submit"  class="bouton">Rechercher</button></p>
-						</fieldset>
-
-						</form>
-						</div></li>
-					</ul>
-					<?php } ?>
-				</div>
-				<!-- End Sub nav -->
-
-				<!-- Widget -->
-				<div id="heading-box">
-					<div id="heading-box-cnt">
-						<div class="cl">&nbsp;</div>
-						<div id="message" style="text-align: center; height: 5px; "></div><!-- div qui contiendra le message de retour -->
-
-
-						<!-- Main Slide Item -->
-						<div class="featured-main-joueur">
-
-							<form id="formRes" name="formRes" action="EnregistrerResultats.php" method="post">
-							<input type="hidden" name="methode" id="methode" value="modif"/>
-
-							<div class="CSSTableGenerator" style="text-align: center; max-height: 235px;overflow: auto;">
-								<table id="tableATrier" style="">
-								<thead>
-									<tr>
-										<th style="width:10%;">Jour<br><img src="images/sort-asc.png" style="border: 0;"/><img src="images/sort-desc.png" style="border: 0;"/></th>
-										<th style="width:10%;">Catégorie<br><img src="images/sort-asc.png" style="border: 0;"/><img src="images/sort-desc.png" style="border: 0;"/></th>
-										<th style="width:30%;">Compétition<br><img src="images/sort-asc.png" style="border: 0;"/><img src="images/sort-desc.png" style="border: 0;"/></th>
-										<!--<th>Adversaire</th>-->
-										<th style="width:30%;">Rencontre<br><img src="images/sort-asc.png" style="border: 0;"/><img src="images/sort-desc.png" style="border: 0;"/></th>
-										<th style="width:15%;">Score</th>
-										<th style="width:5%;">CR</th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php foreach($listeProchainesRencontres as $prochain) { ?>
-									<tr class="centre">
-										<td><?php echo date_format(new DateTime($prochain->getJour()), 'd/m/Y');?></td>
-										<td><?php echo $prochain->getLibelleCategorie();?></td>
-										<td><?php echo $prochain->getLibelleCompetition();?></td>
-										<!--<td><?php echo ($prochain->getEquipeDom() == "ST JULIEN" ? $prochain->getEquipeExt() : $prochain->getEquipeDom());?></td>-->
-
-										<td><?php echo $prochain->getEquipeDom(); ?> - <?php echo $prochain->getEquipeExt(); ?></td>
-
-										<td>
-											<input type="hidden" id="idRencontre_<?php echo $prochain->getId(); ?>" name="idRencontre" value="<?php echo $prochain->getId(); ?>" size="10"/>
-											<input type="text" id="scoreDom_<?php echo $prochain->getId(); ?>" name="scoreDom_<?php echo $prochain->getId(); ?>" size="2"/> - <input type="text" id="scoreExt_<?php echo $prochain->getId(); ?>" name="scoreExt_<?php echo $prochain->getId(); ?>" size="2"/>
-										</td>
-										<td>
-											<img class="cr" id="cr_<?php echo $prochain->getId();?>" src="images/compteRendu20.png" title="Saisir le compte rendu du match" style="border: 0; cursor: pointer;" />
-										</td>
-									</tr>
-									<?php } ?>
-								</tbody>
-								</table>
-							</div>
-							<p class="submit"><button type="submit" class="bouton" id="submit">Enregistrer</button></p>
-							</form>
-
-
-
-						<?php /*
-							if (!empty($listeProchainesRencontres)) { ?>
-							<form id="formRes" name="formRes" action="EnregistrerResultats.php" method="post">
-								<input type="hidden" name="methode" id="methode" value="modif"/>
-								<fieldset><legend>Saisie des résultats</legend>
-									<?php foreach($listeProchainesRencontres as $prochain) { ?>
-									<p id="container" >
-										<label for="scoreDom_<?php echo $prochain->getId(); ?>" style="font-weight: bold;"><?php echo date_format(new DateTime($prochain->getJour()), 'd/m/Y'); ?> - <?php echo $prochain->getLibelleCompetition(); ?></label>
-										<div style="margin-left: 10px;">
-											<?php echo $prochain->getEquipeDom(); ?> - <?php echo $prochain->getEquipeExt(); ?>
-											<input type="hidden" id="idRencontre_<?php echo $prochain->getId(); ?>" name="idRencontre" value="<?php echo $prochain->getId(); ?>" size="10"/>
-											<input type="text" id="scoreDom_<?php echo $prochain->getId(); ?>" name="scoreDom_<?php echo $prochain->getId(); ?>" size="2"/> - <input type="text" id="scoreExt_<?php echo $prochain->getId(); ?>" name="scoreExt_<?php echo $prochain->getId(); ?>" size="2"/>
-										</div>
-									</p>
-									<?php } ?>
-
-								</fieldset>
-								<p class="submit"><button type="submit" class="bouton" id="submit">Enregistrer</button></p>
-
-						<?php } */ ?>
-						</div>
-						<!-- End Main Slide Item -->
-
-						<div class="cl">&nbsp;</div>
-
-
-					</div>
-				</div>
-
-				<!-- End Widget -->
-			</div>
-		</div>
+	<div class="my-3">
+	    <div class="container">
+	      <div class="row">
+	        <div class="col-md-12 col-12 col-sm-12 col-lg-12 col-xl-12">
+	          <form action="ActionResultat.php" method="post" name="filtre">
+	          	<input type="hidden" name="methode" id="methode" value="filtre"/>
+	            <h3 class="mx-5 pb-3">Affiner la recherche</h3>
+	            
+	            <div class="form-group row mx-5">
+	              <label for="categorie" class="col-sm-1 col-form-label">Catégorie</label>
+	              <div class="col-sm-11">
+		              <select class="form-control w-100 form-control-md" id="categorie" name="categorie">
+			              <option label="Toutes" value="-1"  <?php echo ($_SESSION['filtreCategorie'] == -1 ? "selected" : "") ;?>>Toutes</option>
+						  <?php foreach($listeCategories as $categorie) {?>
+						  <option label="" value="<?php echo $categorie->getId();?>" <?php echo ($_SESSION['filtreCategorie'] == $categorie->getId() ? "selected" : "") ;?>><?php echo $categorie->getLibelle(); ?></option>
+						  <?php } ?>
+		              </select>
+	              </div>
+	            </div>
+	            
+	            <div class="form-group row mx-5">
+	              <div class="col-sm-12 text-right">
+	                <button type="submit" class="btn btn-primary btn-lg active" >Rechercher</button>
+	              </div>
+	            </div>
+	          </form>
+	        </div>
+	      </div>
+	    </div>
 	</div>
-	<!-- End Heading -->
-
-	<!-- Main -->
-	<div id="main">
-		<div class="shell">
-			<div id="sidebar">
-
-			</div>
-			<div id="content">
-
-			</div>
-		</div>
+	
+	<div class="py-3">
+	    <div class="container">
+	      <div class="row">
+		      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+	    		<div id="message" style="text-align: center; height: 5px; "></div><!-- div qui contiendra le message de retour -->
+	    	  </div>
+		  </div>
+	      <form id="formRes" name="formRes" action="EnregistrerResultats.php" method="post">
+			  <input type="hidden" name="methode" id="methode" value="modif"/>
+			  <div class="row">
+			      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+			        <table class="table table-bordered table-striped table-hover table-responsive" id="tableATrier">
+			          <thead class="thead-inverse">
+			            <tr>
+			              <th>Jour</th>
+			              <th>Catégorie</th>
+			              <th>Compétition</th>
+			              <th>Rencontre</th>
+			              <th>Score</th>
+			              <th>CR</th>
+			            </tr>
+			          </thead>
+			          <tbody>
+			          	<?php foreach($listeProchainesRencontres as $prochain) { ?>
+			            <tr>
+			              <td><?php echo date_format(new DateTime($prochain->getJour()), 'd/m/Y');?></td>
+							<td><?php echo $prochain->getLibelleCategorie();?></td>
+							<td><?php echo $prochain->getLibelleCompetition();?></td>
+							<!--<td><?php echo ($prochain->getEquipeDom() == "ST JULIEN" ? $prochain->getEquipeExt() : $prochain->getEquipeDom());?></td>-->
+	
+							<td><?php echo $prochain->getEquipeDom(); ?> - <?php echo $prochain->getEquipeExt(); ?></td>
+	
+							<td>
+								<input type="hidden" id="idRencontre_<?php echo $prochain->getId(); ?>" name="idRencontre" value="<?php echo $prochain->getId(); ?>" size="10"/>
+								<input type="text" id="scoreDom_<?php echo $prochain->getId(); ?>" name="scoreDom_<?php echo $prochain->getId(); ?>" size="2"/> - <input type="text" id="scoreExt_<?php echo $prochain->getId(); ?>" name="scoreExt_<?php echo $prochain->getId(); ?>" size="2"/>
+							</td>
+							<td>
+								<img class="cr" id="cr_<?php echo $prochain->getId();?>" src="images/compteRendu20.png" title="Saisir le compte rendu du match" style="border: 0; cursor: pointer;" />
+							</td>
+			            </tr>
+			            <?php } ?>
+			          </tbody>
+			        </table>
+			      </div>
+		      </div>
+		      
+		      <div class="row text-center py-4">
+			      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+ 			      	<button type="submit" id="submit" class="btn btn-success btn-lg active">Enregistrer</button>
+			      </div>
+		      </div>
+	      </form>
+	    </div>
 	</div>
-	<!-- End Main -->
 
 <!-- Bandeau sponsors -->
 	<?php

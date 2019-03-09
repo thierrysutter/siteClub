@@ -5,7 +5,10 @@ ob_start();
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta charset="iso-8859-15" />
+	<meta charset="ISO-8859-1">
+	<meta http-equiv="Cache-Control" content="max-age=600" />
+	<meta http-equiv="Expires" content="Thu, 31 Dec 2015 23:59:59 GMT" />
+	<meta name=viewport content="width=device-width, initial-scale=1">
 	<meta name="keywords" content="mots-clés" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
@@ -15,6 +18,10 @@ ob_start();
 	<link rel="stylesheet" href="css/contact.css" type="text/css" media="all" />
 	<link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css" media="all"/>
 	<!--[if lte IE 6]><link rel="stylesheet" href="css/ie6.css" type="text/css" media="all" /><![endif]-->
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+	<!-- <link rel="stylesheet" href="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-beta.1.css" type="text/css">-->
+	<link rel="stylesheet" href="css/bootstrap4.css" type="text/css">
 
 	<script type="text/javascript" src="js/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="js/jquery/jquery-ui.min.js"></script>
@@ -40,11 +47,16 @@ ob_start();
 		});
 	</script>	
 	<script src='https://www.google.com/recaptcha/api.js'></script>
+	
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+	
 </head>
-<body>
+<body class="w-75 mx-auto bg-light">
 	<!-- Header -->
 	<?php
-	  include("head.php");
+	  //include("head.php");
 	?>
 	<!-- End Header -->
 
@@ -53,123 +65,90 @@ ob_start();
 	  include("menuHaut.php");
 	?>
 	<!-- End Navigation -->
-
-	<!-- Heading -->
-	<div id="heading">
-		<div class="shell">
-			<div id="heading-cnt">
-
-				<!-- Sub nav ->
-				<div id="side-nav">
-					<ul>
-					    <li><div class="link"><a href="ActionAccueil.php">Accueil</a></div></li>
-					</ul>
-				</div>
-				<!-- End Sub nav -->
-
-				<!-- Widget -->
-				<div id="heading-box">
-					<div id="heading-box-cnt">
-						<div class="cl">&nbsp;</div>
-
-
-						<div class="featured-main-joueur">
-						<div id="message">
-							<?php
-							if (isset($_SESSION['retour'])) {
-								if (isset($_SESSION['messageOK'])) {
-									echo "<h4>Votre message a bien été envoyé ! Nous vous répondrons dans les plus bref délais.</h4><br>";
-									echo $_SESSION['messageOK'];
-								}
-								if (isset($_SESSION['messageKO'])) {
-									$civilite = $_SESSION['civilite'];
-									$nom = $_SESSION['nom'];
-									$prenom = $_SESSION['prenom'];
-									$email = $_SESSION['email'];
-									$objet = $_SESSION['objet'];
-									$message = $_SESSION['message'];
-									echo "Une erreur est intervenue pendant l'envoi de votre message. Merci de vérifier tous les champs du formulaire.";
-								}
-							} else {
-								//unset($_SESSION['messageOK']);
-								//unset($_SESSION['messageKO']);
-							}
-							unset($_SESSION['retour']);
-							?>
-						</div>
-							<form id="form1" action="EnvoyerMessage.php" method="post">
-								<input type="hidden" name="origine" name="origine" value="contact"/>
-								<fieldset><legend>Formulaire de contact</legend>
-									<p class="first">
-										<label for="civilite">Civilité</label>
-										<!-- <input type="text" name="civilite" id="civilite" size="30" />-->
-										<select name="civilite" id="civilite" >
-										  <option value="M" <?php if (isset($_SESSION['messageKO']) && $civilite == "M") { echo "selected"; } ?>>Mr</option>
-										  <option value="MME" <?php if (isset($_SESSION['messageKO']) && $civilite == "MME") { echo "selected"; } ?>>Mme</option>
-										</select>
-									</p>
-									<p>
-										<label for="name">Nom</label>
-										<input type="text" name="nom" id="nom" size="30" <?php if (isset($_SESSION['messageKO'])) { echo "value='$nom'"; } ?>/>
-									</p>
-									<p>
-										<label for="prenom">Prénom</label>
-										<input type="text" name="prenom" id="prenom" size="30"<?php if (isset($_SESSION['messageKO'])) { echo "value='$prenom'"; } ?> />
-									</p>
-									<p>
-										<label for="email">Email</label>
-										<input type="text" name="email" id="email" size="30" <?php if (isset($_SESSION['messageKO'])) { echo "value='$email'"; } ?>/>
-									</p>
-									<p>
-										<label for="objet">Objet</label>
-										<!--<input type="text" name="objet" id="objet" size="30" />-->
-										<select name="objet" id="objet" >
-										  <option value="Question" <?php if (isset($_SESSION['messageKO']) && objet == "Question") { echo "selected"; } ?>>Question</option>
-										  <option value="Inscription" <?php if (isset($_SESSION['messageKO']) && $objet == "Inscription") { echo "selected"; } ?>>Inscription</option>
-										  <option value="Match amical" <?php if (isset($_SESSION['messageKO']) && $objet == "Match amical") { echo "selected"; } ?>>Match amical</option>
-										  <option value="Partenariat" <?php if (isset($_SESSION['messageKO']) && $objet == "Partenariat") { echo "selected"; } ?>>Partenariat</option>
-										</select>
-									</p>
-									
-									<p><div class="g-recaptcha" data-sitekey="6LeDJikTAAAAAKF_QM6eq4rkUFHVHyem88svQtUc"></div></p>
-									
-								</fieldset>
-								<fieldset>
-									<p>
-										<label for="message">Message</label>
-										<textarea name="message" id="message" cols="30" rows="15"><?php if (isset($_SESSION['messageKO'])) { echo "$message"; } ?></textarea>
-									</p>
-								</fieldset>
-
-								<p class="submit"><button type="submit">Envoyer</button></p>
-
-							</form>
-
-						</div>
-						<div class="featured-main-joueur-bas">
-
-						</div>
-					</div>
-				</div>
-				<!-- End Widget -->
-
-			</div>
-		</div>
+	
+  	<!-- Header -->
+	<?php
+	  include("head.php");
+	?>
+	
+	
+	
+	<div class="">
+	  <div class="container">
+	    <?php
+		if (isset($_SESSION['retour'])) {
+		if (isset($_SESSION['messageOK'])) {
+		?>
+	  	<div class="row" id="divOK">
+	  	  <div class="col-md-12">
+	  	  	<div class="alert alert-success" role="alert">
+	    	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	    	  	<span aria-hidden="true">×</span>
+	    	  </button>
+	    	  <h4 class="alert-heading">Votre message a bien été envoyé !</h4>
+	    	  <p class="mb-0">Nous vous répondrons dans les plus bref délais.</p>
+	    	</div>
+	      </div>
+	    </div>
+	  	<?php
+		}
+		if (isset($_SESSION['messageKO'])) {
+			$civilite = $_SESSION['civilite'];
+			$nom = $_SESSION['nom'];
+			$prenom = $_SESSION['prenom'];
+			$email = $_SESSION['email'];
+			$objet = $_SESSION['objet'];
+			$message = $_SESSION['message'];
+		?>
+		<div class="row" id="divErreur">
+	      <div class="col-md-12">
+	      	<div class="alert alert-danger" role="alert">
+	      	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	      	  	<span aria-hidden="true">×</span>
+	      	  </button>
+	      	  <h4 class="alert-heading">Votre message n'a pas été envoyé !</h4>
+	    	  <p class="mb-0">Une erreur est intervenue pendant l'envoi de votre message. Merci de vérifier tous les champs du formulaire. Si le problème persiste, vous pouvez nous contactez au 03 87 37 04 34.</p>
+	      	</div>
+	      </div>
+	    </div>
+	    <?php
+		}
+		} else {
+		//unset($_SESSION['messageOK']);
+		//unset($_SESSION['messageKO']);
+		}
+		unset($_SESSION['retour']);
+		?>
+	  </div>
 	</div>
-	<!-- End Heading -->
-
-	<!-- Main -->
-	<div id="main">
-		<div class="shell">
-			<div id="sidebar">
-
-			</div>
-			<div id="content">
-
-			</div>
-		</div>
+  
+	<div class="py-5 my-5 text-center text-white opaque-overlay" style="background-image: url(&quot;css/images/heading.jpg&quot;);">
+	    <div class="container">
+	      <div class="row">
+	        <div class="col-md-12">
+	          <h1 class="text-gray-dark">Contactez nous</h1>
+	          <p class="lead mb-4">Complétez tous les champs et envoyer votre message</p>
+	          <form class="text-left" action="EnvoyerMessage.php" method="post" id="form">
+	          	<input type="hidden" id="origine" name="origine" value="contact"/>
+	            <div class="form-group row">
+	              <div class="col-md-4"> <label for="nom">Nom</label>
+	                <input type="text" required id="nom" name="nom" class="form-control" placeholder="Votre nom" <?php if (isset($_SESSION['messageKO'])) { echo "value='$nom'"; } ?>> </div>
+	              <div class="col-md-4"> <label for="prenom">Prénom</label>
+	                <input type="text" required class="form-control" id="prenom" name="prenom" placeholder="Votre prénom" <?php if (isset($_SESSION['messageKO'])) { echo "value='$prenom'"; } ?> > </div>
+	              <div class="col-md-4"> <label for="email">Email</label>
+	                <input type="email" required class="form-control" id="email" name="email" placeholder="Votre email" <?php if (isset($_SESSION['messageKO'])) { echo "value='$email'"; } ?> > </div>
+	            </div>
+	            <div class="form-group row">
+	              <div class="col-md-12"> <label for="message">Message</label> <textarea class="form-control" id="message" name="message" rows="8" placeholder="Votre message"><?php if (isset($_SESSION['messageKO'])) { echo "$message"; } ?></textarea>
+	                <button type="submit" class="btn btn-primary mt-4 btn-block">Envoyer</button>
+	              </div>
+	            </div>
+	          </form>
+	          <!-- <p><div class="g-recaptcha" data-sitekey="6LeDJikTAAAAAKF_QM6eq4rkUFHVHyem88svQtUc"></div></p> -->
+	        </div>
+	      </div>
+	    </div>
 	</div>
-	<!-- End Main -->
 
 	<!-- Bandeau sponsors -->
 	<?php

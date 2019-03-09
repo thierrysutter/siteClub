@@ -4,7 +4,10 @@ ob_start();
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta charset="iso-8859-15" />
+	<meta charset="ISO-8859-1">
+	<meta http-equiv="Cache-Control" content="max-age=600" />
+	<meta http-equiv="Expires" content="Thu, 31 Dec 2015 23:59:59 GMT" />
+	<meta name=viewport content="width=device-width, initial-scale=1">
 	<meta name="keywords" content="mots-clés" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
@@ -16,13 +19,17 @@ ob_start();
 	<link rel="stylesheet" href="css/tableau.css" type="text/css" media="all"/>
 	<link rel="stylesheet" href="css/filtre.css" type="text/css" media="all" />
 	
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+	<!-- <link rel="stylesheet" href="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-beta.1.css" type="text/css">-->
+	<link rel="stylesheet" href="css/bootstrap4.css" type="text/css">
 
 	<script type="text/javascript" src="js/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="js/jquery/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="js/jquery/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" src="js/jquery/jquery.ui.datepicker-fr.min.js"></script>
 	<script type="text/javascript" src="js/slick.js"></script>
-	<script type="text/javascript" src="js/scripts.js"></script>
+	<!-- <script type="text/javascript" src="js/scripts.js"></script> -->
+	
 	<script type="text/javascript">
 		$(document).ready(function(){
 			/* méthode tri pour les colonnes contenant des dates */
@@ -88,19 +95,27 @@ ob_start();
 
 			$( ".datepicker" ).datepicker( {
 				showOn: "button",
-				buttonImage: "images/calendar16.png",
-				buttonImageOnly: true
+			    buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+			    buttonImageOnly: true,
+				dateFormat: "dd/mm/yy",
+				setDate: new Date()
 			});
 
+			$(".ui-datepicker-trigger").css({
+                position: "absolute",
+                marginLeft: "370px",
+                marginTop: "-25px",
+            });
+        
 			$(".ui-datepicker-trigger").each(function() {
 	  			$(this).attr("alt","Calendrier");
-	  			$(this).attr("title","");
+	  			$(this).attr("title","Calendrier");
 	  		});
 
 	  		$("img.ui-datepicker-trigger").click(
-	  				function(){
-	  					$(this).parent().find(".datepicker").blur();
-	  					}
+  				function(){
+  					$(this).parent().find(".datepicker").blur();
+  				}
 	  		);
 
 			$("#lienAgenda").addClass("active");
@@ -131,155 +146,174 @@ ob_start();
 		});
 	</script>
 </head>
-<body>
-	<!-- Header -->
-	<?php
-	  include("head.php");
-	?>
-	<!-- End Header -->
-
+<body class="w-75 mx-auto bg-light">
 	<!-- Navigation Haut-->
 	<?php
 	  include("menuHaut.php");
 	?>
 	<!-- End Navigation -->
-<?php
+	<!-- Header -->
+	<?php
+	  include("head.php");
+	?>
+  	
+	<?php	
+	session_start();
+	$debut = $_SESSION['debut'];
+	$fin = $_SESSION['fin'];
+	$categorie = $_SESSION['categorieSelectionnee'];
+	$equipe = $_SESSION['equipeSelectionnee'];
+	
+	$listeCategories = $_SESSION['listeCategories'];
+	$listeEquipes = $_SESSION['listeEquipes'];
+	$listeRencontres = $_SESSION['listeRencontres'];
+	?>
 
-session_start();
-$debut = $_SESSION['debut'];
-$fin = $_SESSION['fin'];
-$listeCategories = $_SESSION['listeCategories'];
-$listeEquipes = $_SESSION['listeEquipes'];
-$listeRencontres = $_SESSION['listeRencontres'];
-?>
-	<!-- Heading -->
-	<div id="heading">
-		<div class="shell">
-			<div id="heading-cnt">
-
-				<!-- Sub nav -->
-				<div id="side-nav">
-					
-					<ul>
-						<li><div>
-						<form id="filtre" name="filtre" action="ActionAgenda.php" method="post">
-						<input type="hidden" name="methode" id="methode" value="filtre"/>
-						<fieldset><legend>Affiner la recherche</legend>
-						
-						<p class="first" id="container" >
-							<label for="debut">Du</label>
-							<input type="text" class="datepicker" id="debut" name="debut" size="8" maxlength="10" value="<?php echo $debut; ?>"/>
-							<label for="fin">Au</label>
-							<input type="text" class="datepicker" id="fin" name="fin" size="8" maxlength="10" value="<?php echo $fin; ?>"/>
-						</p>
-						
-						<p class="first" id="container" >
-							<label for="categorie">Catégorie</label>
-							<select name="categorie" id="categorie">
-							<option label="Toutes" value="-1"  <?php echo ($_SESSION['categorieSelectionnee'] == -1 ? "selected" : "") ;?>>Toutes</option>
-							<?php foreach($listeCategories as $categorie) {?>
-							<option label="" value="<?php echo $categorie->getId();?>" <?php echo ($_SESSION['categorieSelectionnee'] == $categorie->getId() ? "selected" : "") ;?>><?php echo $categorie->getLibelle(); ?></option>
-							<?php } ?>
-							</select>
-						</p>
-						
-						<p class="first" id="container" >
-                            <label for="equipe">Equipe</label>
-                            <select name="equipe" id="equipe">
-                            <option label="Toutes" value="-1"  <?php echo ($_SESSION['equipeSelectionnee'] == -1 ? "selected" : "") ;?>>Toutes</option>
-                            <?php foreach($listeEquipes as $equipe) {?>
-                            <option label="" value="<?php echo $equipe->getId();?>" <?php echo ($_SESSION['equipeSelectionnee'] == $equipe->getId() ? "selected" : "") ;?>><?php echo $equipe->getLibelle(); ?></option>
-                            <?php } ?>
-                            </select>
-                        </p>
-
-						<p class="first" id="container" >
-							<label for="lieu">Lieu</label>
-							<select name="lieu" id="lieu">
-								<option value="tous" label="Tous" <?php echo ($_SESSION['lieuSelectionne'] == "tous" ? "selected" : "") ;?>/>
-								<option value="domicile" label="Domicile" <?php echo ($_SESSION['lieuSelectionne'] == "domicile" ? "selected" : "") ;?>/>
-								<option value="exterieur" label="Exterieur" <?php echo ($_SESSION['lieuSelectionne'] == "exterieur" ? "selected" : "") ;?>/>
-							</select>
-						</p>
-
-						<p class="submit"><button type="submit" class="bouton">Rechercher</button></p>
-						</fieldset>
-
-						</form>
-
-
-						</div></li>
-					</ul>
-
-					
-				</div>
-				<!-- End Sub nav -->
-
-				<!-- Widget -->
-				<div id="heading-box">
-					<div id="heading-box-cnt">
-						<div class="cl">&nbsp;</div>
-
-						<div class="featured-main-joueur-bas" style="height: 280px; overflow: auto;">
-							<div class="CSSTableGenerator" >
-								<table id="tableATrier">
-									<thead>
-										<tr>
-											<th>Date<br><img src="images/sort-asc.png" style="border: 0;"/><img src="images/sort-desc.png" style="border: 0;"/></th>
-											<th >Categorie</th>
-											<th >Equipe</th>
-											<th>Comp&eacute;tition</th>
-											<th>Adversaire</th>
-											<th>Lieu</th>
-											<th>Score</th>
-											<th>Liens</th>
-										</tr>
-									</thead>
-									<?php foreach($listeRencontres as $rencontre) { ?>
-									
-									<tr class="centre">
-										<td><?php echo date_format(new DateTime($rencontre->getJour()), 'd/m/Y');?></td>
-										<td><?php echo $rencontre->getLibelleCategorie();?></td>
-										<td><?php echo $rencontre->getLibelleEquipe();?></td>
-										<td><?php echo $rencontre->getLibelleCompetition();?></td>
-										<td><?php echo ($rencontre->getEquipeDom() == "ST JULIEN" ? $rencontre->getEquipeExt() : $rencontre->getEquipeDom());?></td>
-										<td><?php echo ($rencontre->getEquipeDom() == "ST JULIEN" ? "Domicile" : "Extérieur");?></td>
-										<td><?php echo $rencontre->getStatut()>0 ? $rencontre->getScoreDom()." - ".$rencontre->getScoreExt() : "";?></td>
-										<td>
-											<?php if ($rencontre->getStatut()>0) { ?>
-											<img class="cr" id="cr_<?php echo $rencontre->getId();?>" src="images/compteRendu16.png" style="border: 0;cursor: pointer;" title="Compte rendu"/>
-											<?php } ?>
-										</td>
-									</tr>
-									
-									<?php } ?>
-								</table>
-							</div>
-
-						</div>
-
-						<div class="cl">&nbsp;</div>
-					</div>
-				</div>
-				<!-- End Widget -->
-
-			</div>
-		</div>
+	<div class="my-3">
+	    <div class="container">
+	      <div class="row">
+	        <div class="col-md-12 col-12 col-sm-12 col-lg-12 col-xl-12">
+	          <form action="ActionAgenda.php" method="post" name="filtre">
+	          	<input type="hidden" name="methode" id="methode" value="filtre"/>
+	            <h3 class="mx-5 pb-3">Agenda</h3>
+	            <div class="form-group row mx-5"> <label for="inputCategorie" class="col-sm-1 col-form-label">Catégorie</label>
+	              <div class="col-sm-5">
+		              <select class="form-control w-100 form-control-md" id="inputCategorie" name="categorie">
+			              <option selected="selected" value="-1">Toutes les catégories</option>
+			              <option value="9" <?php echo ($categorie == 9 ? "selected='selected'" : "");?>>Séniors</option>
+			              <option value="6" <?php echo ($categorie == 6 ? "selected='selected'" : "");?>>U17</option>
+			              <option value="5" <?php echo ($categorie == 5 ? "selected='selected'" : "");?>>U15</option>
+			              <option value="4" <?php echo ($categorie == 4 ? "selected='selected'" : "");?>>U13</option>
+			              <option value="3" <?php echo ($categorie == 3 ? "selected='selected'" : "");?>>U11</option>
+			              <option value="2" <?php echo ($categorie == 2 ? "selected='selected'" : "");?>>U9</option>
+			              <option value="1" <?php echo ($categorie == 1 ? "selected='selected'" : "");?>>U7</option>
+		              </select>
+	              </div> <label for="inputEquipe" class="col-sm-1 col-form-label">Equipe</label>
+	              <div class="col-sm-5">
+		              <select class="form-control w-100 form-control-md" id="inputEquipe" name="equipe">
+			              <option selected="selected" value="-1">Toutes les équipes</option>
+			              <option value="1" <?php echo ($equipe == 1 ? "selected='selected'" : "");?>>Séniors A</option>
+			              <option value="2" <?php echo ($equipe== 2 ? "selected='selected'" : "");?>>Séniors B</option>
+			              <option value="19" <?php echo ($equipe== 19 ? "selected='selected'" : "");?>>Séniors C</option>
+			              <option value="20" <?php echo ($equipe== 20 ? "selected='selected'" : "");?>>U17</option>
+			              <option value="3" <?php echo ($equipe== 3 ? "selected='selected'" : "");?>>U15</option>
+			              <option value="4" <?php echo ($equipe== 4 ? "selected='selected'" : "");?>>U13</option>
+			              <option value="14" <?php echo ($equipe== 14 ? "selected='selected'" : "");?>>U11</option>
+			              <option value="18" <?php echo ($equipe== 18 ? "selected='selected'" : "");?>>U9</option>
+			              <option value="10" <?php echo ($equipe== 10 ? "selected='selected'" : "");?>>U7</option>
+		              </select>
+	              </div>
+	            </div>
+	            <div class="form-group row mx-5">
+	              <label class="col-form-label col-sm-1" for="inputDate1">Du</label>
+	              <div class="col-sm-5">
+	                <input type="text" id="debut" class="datepicker form-control w-100 form-control-md" id="inputDate1" name="debut" value="<?php echo $debut; ?>">
+	              </div>
+	              <label class="col-form-label col-sm-1" for="inputDate2">Au</label>
+	              <div class="col-sm-5">
+	                <input type="text" id="fin" class="datepicker form-control w-100 form-control-md" id="inputDate2" name="fin" value="<?php echo $fin; ?>">
+	              </div>
+	            </div>
+	            <div class="form-group row mx-5">
+	              <div class="col-sm-12 text-right">
+	                <button type="submit" class="btn btn-primary btn-lg active" data-toggle="">Rechercher</button>
+	              </div>
+	            </div>
+	          </form>
+	        </div>
+	      </div>
+	    </div>
 	</div>
-	<!-- End Heading -->
 
-	<!-- Main -->
-	<div id="main">
-		<div class="shell">
-			<div id="sidebar">
-
-			</div>
-			<div id="content">
-
-			</div>
-		</div>
+	<div class="my-3">
+	    <div class="container">
+	      <!--
+	      <div class="row">
+	        <div class="p-0 mx-auto col-md-4">
+	          <div class="card my-1 card-primary">
+	            <div class="card-block p-5 card-primary">
+	              <h1 class="text-center">24 Sept. 2017</h1>
+	              <h3>&nbsp;</h3>
+	              <hr>
+	              <p><i class="fa d-inline fa-clock-o"></i>&nbsp;SENIOR C - Coupe des réserves
+	                <br> <b>AUGNY C - ST JULIEN : 3 - 10</b></p>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="p-1 mx-auto col-md-4">
+	          <div class="card my-1 card-primary">
+	            <div class="card-block p-5 card-primary">
+	              <h1 class="text-center">30 Sept. 2017</h1>
+	              <h3>&nbsp;</h3>
+	              <hr>
+	              <p><i class="fa d-inline fa-clock-o"></i>&nbsp;SENIOR A - Régional 4 Groupe A
+	                <br> <b>ST JULIEN - ES VILLERUPT THIL B</b></p>
+	              <hr>
+	              <p><i class="fa d-inline fa-clock-o"></i>&nbsp;U17 - Moselle Groupe E
+	                <br> <b>ES LIXING LANING - ST JULIEN</b></p>
+	              <hr>
+	              <p><i class="fa d-inline fa-clock-o"></i>&nbsp;U13 - Promotion Groupe F
+	                <br> <b>ST JULIEN - FC WOIPPY</b></p>
+	              <hr>
+	              <p><i class="fa d-inline fa-clock-o"></i>&nbsp;U15 - Moselle Groupe F
+	                <br> <b>ST JULIEN - FC METZ FEMININES</b></p>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="p-0 mx-auto col-md-4">
+	          <div class="card my-1 card-primary">
+	            <div class="card-block p-5 text-center card-primary">
+	              <h1>01 Oct. 2017</h1>
+	              <h3>&nbsp;</h3>
+	              <hr>
+	              <p><i class="mx-auto fa d-inline fa-clock-o"></i>&nbsp;SENIOR B - 2D Groupe D
+	                <br> <b>ST JULIEN - ES MAIZIERES</b></p>
+	              <hr>
+	              <p><i class="mx-auto fa d-inline fa-clock-o"></i>&nbsp;SENIOR C - 3D Groupe I
+	                <br> <b>AUGNY B - ST JULIEN</b></p>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	      -->
+	      <div class="col-md-12">
+	        <table class="table table-bordered table-striped table-hover table-responsive">
+	          <thead class="thead-inverse">
+	            <tr>
+	              <th>#</th>
+	              <th>Date</th>
+	              <th>Catégorie</th>
+	              <th>Equipe</th>
+	              <th>Compétition</th>
+	              <th>Adversaire</th>
+	              <th>Lieu</th>
+	              <th>Score</th>
+	              <th>Action</th>
+	            </tr>
+	          </thead>
+	          <tbody>
+	          	<?php foreach($listeRencontres as $rencontre) { ?>
+	            <tr>
+	              <th scope="row">&nbsp;</th>
+	              <td><?php echo date_format(new DateTime($rencontre->getJour()), 'd/m/Y');?></td>
+	              <td><?php echo $rencontre->getLibelleCategorie();?></td>
+				  <td><?php echo $rencontre->getLibelleEquipe();?></td>
+				  <td><?php echo $rencontre->getLibelleCompetition();?></td>
+				  <td><?php echo ($rencontre->getEquipeDom() == "ST JULIEN" ? $rencontre->getEquipeExt() : $rencontre->getEquipeDom());?></td>
+				  <td><?php echo ($rencontre->getEquipeDom() == "ST JULIEN" ? "Domicile" : "Extérieur");?></td>
+				  <td><?php echo $rencontre->getStatut()>0 ? $rencontre->getScoreDom()." - ".$rencontre->getScoreExt() : "";?></td>
+				  <td>
+					<?php if ($rencontre->getStatut()>0) { ?>
+					<img class="cr" id="cr_<?php echo $rencontre->getId();?>" src="images/compteRendu16.png" style="border: 0;cursor: pointer;" title="Compte rendu"/>
+					<?php } ?>
+				  </td>
+	            </tr>
+	            <?php } ?>
+	          </tbody>
+	        </table>
+	      </div>
+	    </div>
 	</div>
-	<!-- End Main -->
 
 	<!-- Bandeau sponsors -->
 	<?php
@@ -292,7 +326,6 @@ $listeRencontres = $_SESSION['listeRencontres'];
 	  include("footer.php");
 	?>
 	<!-- End Footer -->
-
 
 </body>
 </html>

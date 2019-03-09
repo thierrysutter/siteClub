@@ -48,13 +48,14 @@ try {
 			exit('Erreur : le répertoire cible ne peut-être créé ! Vérifiez que vous diposiez des droits suffisants pour le faire ou créez le manuellement !');
 		}
 	}
-
+	
+	
 	if(!empty($_POST)) {
 		$_SESSION['messageKO']="";
 		$_SESSION['messageOK']="";
 		unset($_SESSION['messageKO']);
 		unset($_SESSION['messageOK']);
-		
+		echo $_POST['login'];
 		$login = $_POST['login'];
 		$email = $_POST['email'];
 		$nom = $_POST['nom'];
@@ -71,7 +72,8 @@ try {
 		$telPortable = $_POST['telPortable'];
 		$superAdmin = "";
 		//$superAdmin = $_POST['superAdmin'];
-
+		
+		
 		$connexionBdd = new Connexion($db_host, $db_login, $db_password, $db_name);
 		$managerUtilisateur = new ManagerUtilisateur($connexionBdd->getPDO());
 
@@ -82,7 +84,8 @@ try {
 		$_SESSION['user'] = $managerUtilisateur->get($login);
 		$_SESSION['messageOK'] = "<span id=\"message\" style=\"color: green; font-weight: bold; text-align: center;\">Donn&eacute;es sauvegard&eacute;es</span>";
 		
-		//echo "<span id=\"message\" style=\"color: green; font-weight: bold; text-align: center;\">Donn&eacute;es sauvegard&eacute;es</span>";
+		
+		echo "<span id=\"message\" style=\"color: green; font-weight: bold; text-align: center;\">Donn&eacute;es sauvegard&eacute;es</span>";
 	}
 
 	header("Location: profil.php");

@@ -34,7 +34,7 @@ try {
 	define('TARGET_VIGNETTE', 'images/article/vignette/'); // Repertoire cible vignette
 	define('TARGET_MOYEN', 'images/article/moyen/'); // Repertoire cible vignette
 	define('TARGET_TMP', 'images/article/tmp/'); // Repertoire cible
-	define('MAX_SIZE', 100000); // Taille max en octets du fichier
+	define('MAX_SIZE', 200000); // Taille max en octets du fichier
 	define('WIDTH_MAX', 800); // Largeur max de l'image en pixels
 	define('HEIGHT_MAX', 800); // Hauteur max de l'image en pixels
 	// Tableaux de donnees
@@ -66,6 +66,75 @@ try {
 		$texte = $_POST['texte'];
 
 		if ($methode == "create") {
+			if(isset($_FILES['imageUpload']["type"]))
+			{
+				$max_size = 1000 * 1024; // 500 KB
+				$destination_directory = TARGET_TMP;
+				$validextensions = array("jpeg", "jpg", "png");
+				
+				$listeTypeFichier = $_FILES["imageUpload"]["type"];
+				$listeNomFichier = $_FILES["imageUpload"]["name"];
+				$listeErreurFichier = $_FILES["imageUpload"]["error"];
+				$listeTailleFichier = $_FILES["imageUpload"]["size"];
+				$listeTmpFichier = $_FILES["imageUpload"]["tmp_name"];
+								
+				$nbFichiers = count($listeTypeFichier);
+				
+				for($i = 0 ; $i < $nbFichiers ; $i++)
+				{
+					$typeFichier = $listeTypeFichier[$i];
+					$nomFichier = $listeNomFichier[$i];
+					$erreurFichier = $listeErreurFichier[$i];
+					$tailleFichier = $listeTailleFichier[$i];
+					$extensionFichier = end(explode(".", $nomFichier));
+					$tmpFichier = $listeTmpFichier[$i];
+					
+					// On vérifie à nouveau le format de l'image et sa taille 
+					if ( (($typeFichier == "image/png") ||
+							($typeFichier == "image/jpg") ||
+							($typeFichier == "image/jpeg")
+							) /*&& in_array($extensionFichier, $validextensions)*/ )
+					{
+						if ( $tailleFichier < ($max_size) )
+						{
+							if ( $erreurFichier > 0 )
+							{
+								echo "<div class=\"alert alert-danger\" role=\"alert\">Error: <strong>" . $erreurFichier . "</strong></div>";
+							}
+							else
+							{
+								if ( file_exists($destination_directory . $nomFichier) )
+								{
+									echo "<div class=\"alert alert-danger\" role=\"alert\">Error: File <strong>" . $nomFichier . "</strong> already exists.</div>";
+								}
+								else
+								{
+									$sourcePath = $tmpFichier;
+									$targetPath = $destination_directory . $nomFichier;
+									move_uploaded_file($sourcePath, $targetPath);
+									echo "<div class=\"alert alert-success\" role=\"alert\">";
+									echo "<p>Image téléchargée avec succes</p>";
+									echo "<p>Nom du fichier: <a href=\"". $targetPath . "\"><strong>" . $targetPath . "</strong></a></p>";
+									echo "<p>Type: <strong>" . $typeFichier . "</strong></p>";
+									echo "<p>Taille: <strong>" . round($tailleFichier/1024, 2) . " kB</strong></p>";
+									echo "<p>Fichier temporaire: <strong>" . $sourcePath. "</strong></p>";
+									echo "</div>";
+								}
+							}
+						}
+						else
+						{
+							echo "<div class=\"alert alert-danger\" role=\"alert\">La taille de l'image est " . round($tailleFichier/1024, 2) . " KB, taille maximum autorisée " . round($max_size/1024, 2) . " KB</div>";
+						}
+					}
+					else
+					{
+						echo "<div class=\"alert alert-danger\" role=\"alert\">Format d'image invalide. Formats autorisés : JPG, JPEG, PNG.</div>";
+					}
+				}
+			}
+			
+			
 			/*
 			$photo = $_FILES['photo']['name'];
 			// On verifie si le champ est rempli
@@ -127,6 +196,7 @@ try {
 			// on termine en vidant le dossier tmp
 			$listePhotos = array();
 			$nb_fichier = 0;
+				
 			if($dossier = opendir(TARGET_TMP)) {
 				while(false !== ($fichier = readdir($dossier))) {
 					if($fichier != '.' && $fichier != '..' && $fichier != 'index.php') {
@@ -134,31 +204,87 @@ try {
 						$nb_fichier++; // On incrémente le compteur de 1
 						$listePhotos[] = $fichier;
 
-						// on déplace le fichier
-						//deplacement du fichier
 						$temp = TARGET_TMP.$fichier;
+						// on déplace le fichier dans le dossier cible
 						$dest = TARGET.$fichier;
 						$data = copy($temp,$dest);
-						$dest_moyen = TARGET_MOYEN.$fichier;
-						$data = copy($temp,$dest_moyen);
-						$dest_vignette = TARGET_VIGNETTE.$fichier;
-						$data = rename($temp,$dest_vignette);
-
+						
+						$extensionFic = end(explode(".", $fichier));
+						list($width, $height) = getimagesize($temp);
+						
+						$percent = 0.5;
+						$percent2 = 0.2;
+						$newwidth = $width * $percent;
+						$newheight = $height * $percent;
+						$newwidth2 = $width * $percent2;
+						$newheight2 = $height * $percent2;
+						
+						if ($extensionFic == "jpg" || $extensionFic == "jpeg")
+						{
+							// Chargement
+							$source = imagecreatefromjpeg($temp) or die ("Erreur2");
+							$destM = imagecreatetruecolor($newwidth, $newheight) or die ("Erreur");
+							/*imagealphablending($destM, false);
+							imagesavealpha($destM, true);
+							$background = imagecolorallocate($destM, 255, 0, 255);
+							imagefill($destM, 0, 0, $background);
+							imagecolortransparent($destM, $background);*/
+							
+							// Redimensionnement
+							imagecopyresampled($destM, $source, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+							
+							// Affichage
+							imagejpeg($destM, TARGET_MOYEN.$fichier, 100);
+							
+							$destV = imagecreatetruecolor($newwidth2, $newheight2) or die ("Erreur");
+							// Redimensionnement
+							imagecopyresampled($destV, $source, 0, 0, 0, 0, $newwidth2, $newheight2, $width, $height);
+							// Affichage
+							imagejpeg($destV, TARGET_VIGNETTE.$fichier, 100);
+						}
+						else if ($extensionFic == "png")
+						{
+							// Chargement
+							$source = imagecreatefrompng($temp) or die ("Erreur2");
+							
+							$destM = imagecreatetruecolor($newwidth, $newheight) or die ("Erreur");
+							/*imagealphablending($destM, false);
+							 imagesavealpha($destM, true);
+							 $background = imagecolorallocate($destM, 255, 0, 255);
+							 imagefill($destM, 0, 0, $background);
+							 imagecolortransparent($destM, $background);*/
+							// Redimensionnement
+							imagecopyresampled($destM, $source, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+							// Affichage
+							imagepng($destM, TARGET_MOYEN.$fichier, 100);
+							
+							$destV = imagecreatetruecolor($newwidth2, $newheight2) or die ("Erreur");
+							// Redimensionnement
+							imagecopyresampled($destV, $source, 0, 0, 0, 0, $newwidth2, $newheight2, $width, $height);
+							// Affichage
+							imagepng($destV, TARGET_VIGNETTE.$fichier, 100);
+						}
+						ImageDestroy($source);
+						unlink($temp);
 					}
 				} // On termine la boucle
 				closedir($dossier);
- 			} else
+ 			} else {
 				echo 'Le dossier n\' a pas pu être ouvert';
-
+ 			}
+ 			
+			
+ 			
+ 			$connexionBdd = new Connexion($db_host, $db_login, $db_password, $db_name);
+ 			$managerArticle = new ManagerArticle($connexionBdd->getPDO());
 			if ($nb_fichier > 0) {
 				// insertion de l'article en base
-				$connexionBdd = new Connexion($db_host, $db_login, $db_password, $db_name);
-				$managerArticle = new ManagerArticle($connexionBdd->getPDO());
-				//$managerArticle->ajouterArticle(addslashes($titre), addslashes($texte), $_FILES['photo']['name'], $user->getLogin());
-				//$managerArticle->ajouterArticle(($titre), ($texte), $_FILES['photo']['name'], $user->getLogin());
 				$managerArticle->ajouterArticle($titre, addslashes($texte), $listePhotos, strtoupper($user->getLogin()));
 			}
-
+			else {
+				echo "aucun fichier trouvé";
+				$managerArticle->ajouterArticleSansPhoto($titre, addslashes($texte), strtoupper($user->getLogin()));
+			}
 		} else if ($methode == "modif") {
 			$id = $_POST['id'];
 			$connexionBdd = new Connexion($db_host, $db_login, $db_password, $db_name);

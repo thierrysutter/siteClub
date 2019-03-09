@@ -13,7 +13,10 @@ require_once("config/config.php");
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 
-	<!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> -->
+	<meta charset="ISO-8859-1">
+	<meta http-equiv="Cache-Control" content="max-age=600" />
+	<meta http-equiv="Expires" content="Thu, 31 Dec 2015 23:59:59 GMT" />
+	<meta name=viewport content="width=device-width, initial-scale=1">
 	<meta name="keywords" content="mots-clés" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
@@ -25,12 +28,19 @@ require_once("config/config.php");
 	<link rel="stylesheet" href="css/tableau.css" type="text/css" media="all"/>
 	<link rel="stylesheet" href="css/contact.css" type="text/css" media="all" />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+	<link rel="stylesheet" href="css/bootstrap4.css" type="text/css">
+
 	<script type="text/javascript" src="js/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="js/jquery/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="js/jquery/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" src="js/jquery/jquery.ui.datepicker-fr.min.js"></script>
 	<script type="text/javascript" src="js/slick.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+	
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('#tableATrier').dataTable({
@@ -104,119 +114,77 @@ require_once("config/config.php");
 		});
 	</script>
 </head>
-<body>
-	<!-- Header -->
-	<?php
-	  include("head.php");
-	?>
-	<!-- End Header -->
-
+<body class="w-75 mx-auto bg-light">
 	<!-- Navigation Haut-->
 	<?php
-
 	session_start();
-
-	$listeUtilisateurs = $_SESSION['listeUtilisateurs'];
 	$user = null;
 	if (isset($_SESSION['session_started'])) {
-		$user = $_SESSION['user'];
+	  	$user = $_SESSION['user'];
 	  	if (!empty($user)) {
 	  		/* Navigation Haut */
 	  		include("menuAdmin.php");
+	  		//include("menuHaut.php");
 	  		/* End Navigation */
 	  	} else {
 	  		//header("Location: ActionAccueil.php");
   			header("Location: Deconnexion.php");
 	  	}
-	} else {
-		//header("Location: ActionAccueil.php");
+	  } else {
+	  	//header("Location: ActionAccueil.php");
   		header("Location: Deconnexion.php");
-	}
+	  }
+	  
+	  $listeUtilisateurs = $_SESSION['listeUtilisateurs'];
 	?>
-	<!-- End Navigation -->
-
-	<!-- Heading -->
-	<div id="heading">
-		<div class="shell">
-			<div id="heading-cnt">
-
-				<!-- Sub nav -->
-				<div id="side-nav">
-					<!-- <ul>
-						<li><div class="link"><a href="ChangementMotDePasse.php">Modifier mot de passe</a></div></li>
-					</ul>-->
-				</div>
-				<!-- End Sub nav -->
-
-				<!-- Widget -->
-				<div id="heading-box">
-					<div id="heading-box-cnt">
-						<div class="cl">&nbsp;</div>
-						<!-- Main Slide Item -->
-						<div class="featured-main-joueur">
-							<div class="CSSTableGenerator" style="text-align: center; max-height: 235px; overflow: auto;">
-								<table id="tableATrier">
-									<thead>
-									<tr>
-										<th>Nom<br><img src="images/sort-asc.png" style="border: 0;"/><img src="images/sort-desc.png" style="border: 0;"/></th>
-										<th >Email<br><img src="images/sort-asc.png" style="border: 0;"/><img src="images/sort-desc.png" style="border: 0;"/></th>
-										<th>Expire le<br><img src="images/sort-asc.png" style="border: 0;"/><img src="images/sort-desc.png" style="border: 0;"/></th>
-										<th>Dernière connexion<br><img src="images/sort-asc.png" style="border: 0;"/><img src="images/sort-desc.png" style="border: 0;"/></th>
-										<th>Liens</th>
-									</tr>
-									</thead>
-									<?php foreach($listeUtilisateurs as $utilisateur) { ?>
-									<tr class="centre">
-										<td><?php echo $utilisateur->getPrenom()." ".$utilisateur->getNom();?></td>
-										<td class="email" style="cursor: pointer; text-decoration: underline;" title="Cliquer pour envoyer un mail"><?php echo $utilisateur->getEmail();?></td>
-										<td><?php echo date_format(new DateTime($utilisateur->getDateExpiration()), 'd/m/Y');?></td>
-										<td><?php echo date_format(new DateTime($utilisateur->getDateDerniereConnexion()), 'd/m/Y H:i:s');?></td>
-										<td>
-											<!-- <img id="mail_<?php echo $utilisateur->getLogin();?>" src="images/mail16.png" style="border: 0;cursor: pointer;"/> -->
-											<img class="fiche" id="fiche_<?php echo $utilisateur->getLogin();?>" src="images/modify16.png" style="border: 0;cursor: pointer;" title="Modifier"/>
-											<?php if ($utilisateur->getActif() == 0) {?>
-											<img class="activation" id="activ_<?php echo $utilisateur->getLogin();?>" src="images/valid16.png" style="border: 0;cursor: pointer;" title="Activer"/>
-											<?php } else {?>
-											<img class="annulation" id="annul_<?php echo $utilisateur->getLogin();?>" src="images/annul16.png" style="border: 0;cursor: pointer;" title="Annuler"/>
-											<?php } ?>
-											<img class="suppression" id="suppr_<?php echo $utilisateur->getLogin();?>" src="images/trash16.png" style="border: 0;cursor: pointer;" title="Supprimer"/>
-											<!-- <img class="reinit" id="reinit_<?php echo $utilisateur->getLogin();?>" src="images/cadenas16.png" style="width: 16px; height: 16px;border: 0;cursor: pointer;" title="Reinitialiser le mdp"/> -->
-										</td>
-									</tr>
-									<?php } ?>
-								</table>
-							</div>
-						</div>
-
-						<div class="featured-main-joueur-bas" style="padding-top: 4px;text-align: center;width: 100%; height: 280px;">
-							<input type="text" id="ajoutUtilisateur" class="bouton" value="Ajouter un utilisateur"/>
-						</div>
-						<!-- End Main Slide Item -->
-
-						<div class="cl">&nbsp;</div>
-
-
-					</div>
-				</div>
-
-				<!-- End Widget -->
-			</div>
-		</div>
+	<?php include("head.php"); ?>
+	
+	<div class="py-3">
+	    <div class="container">
+	      <div class="row">
+		      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+		        <table class="table table-bordered table-striped table-hover table-responsive">
+		          <thead class="thead-inverse">
+		            <tr>
+		              <th>Prénom Nom</th>
+		              <th>Email</th>
+		              <th>Mdp expire le</th>
+		              <th>Dernière connexion le</th>
+		              <th>Action</th>
+		            </tr>
+		          </thead>
+		          <tbody>
+		          	<?php foreach($listeUtilisateurs as $utilisateur) { ?>
+		            <tr>
+		              <td><?php echo $utilisateur->getPrenom()." ".$utilisateur->getNom();?></td>
+		              <td class="email" style="cursor: pointer; text-decoration: underline;" title="Cliquer pour envoyer un mail"><?php echo $utilisateur->getEmail();?></td>
+					  <td><?php echo date_format(new DateTime($utilisateur->getDateExpiration()), 'd/m/Y');?></td>
+					  <td><?php echo date_format(new DateTime($utilisateur->getDateDerniereConnexion()), 'd/m/Y H:i:s');?></td>
+					  <td>
+						<!-- <img id="mail_<?php echo $utilisateur->getLogin();?>" src="images/mail16.png" style="border: 0;cursor: pointer;"/> -->
+						<img class="fiche" id="fiche_<?php echo $utilisateur->getLogin();?>" src="images/modify16.png" style="border: 0;cursor: pointer;" title="Modifier"/>
+						<?php if ($utilisateur->getActif() == 0) {?>
+						<img class="activation" id="activ_<?php echo $utilisateur->getLogin();?>" src="images/valid16.png" style="border: 0;cursor: pointer;" title="Activer"/>
+						<?php } else {?>
+						<img class="annulation" id="annul_<?php echo $utilisateur->getLogin();?>" src="images/annul16.png" style="border: 0;cursor: pointer;" title="Annuler"/>
+						<?php } ?>
+						<img class="suppression" id="suppr_<?php echo $utilisateur->getLogin();?>" src="images/trash16.png" style="border: 0;cursor: pointer;" title="Supprimer"/>
+						<!-- <img class="reinit" id="reinit_<?php echo $utilisateur->getLogin();?>" src="images/cadenas16.png" style="width: 16px; height: 16px;border: 0;cursor: pointer;" title="Reinitialiser le mdp"/> -->
+					  </td>
+		            </tr>
+		            <?php } ?>
+		          </tbody>
+		        </table>
+		      </div>
+	      </div>
+	      
+	      <div class="row text-center">
+		      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+		      	<input type="button" id="ajoutUtilisateur" class="btn btn-success btn-lg active" value="Ajouter un utilisateur"/>
+		      </div>
+	      </div>
+	    </div>
 	</div>
-	<!-- End Heading -->
-
-	<!-- Main -->
-	<div id="main">
-		<div class="shell">
-			<div id="sidebar">
-
-			</div>
-			<div id="content">
-
-			</div>
-		</div>
-	</div>
-	<!-- End Main -->
 
 	<!-- Bandeau sponsors -->
 	<?php

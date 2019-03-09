@@ -17,7 +17,9 @@ $listeSponsors = array();
 
 	<link href="css/caroussel3D.css" rel="stylesheet">
     
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+	<!-- <link rel="stylesheet" href="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-beta.1.css" type="text/css">-->
+	<link rel="stylesheet" href="css/bootstrap4.css" type="text/css">
     
 	<script type="text/javascript" src="js/jquery/jquery.min.js" ></script>
 	<script type="text/javascript" src="js/slick.js" ></script>
@@ -93,8 +95,13 @@ $listeSponsors = array();
 			});
 		});
 	</script>
+	
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+	
 </head>
-<body>
+<body class="w-75 mx-auto bg-light">
 	<!-- Header -->
 	<?php
 	  include("head.php");
@@ -106,6 +113,8 @@ $listeSponsors = array();
 	  include("menuHaut.php");
 	?>
 	<!-- End Navigation -->
+  	
+  	
 <?php
 try {
 	session_start();
@@ -117,125 +126,160 @@ try {
 	die ("Erreur : ".$error->getMessage()."<br />");
 }
 ?>
-	<!-- Heading -->
-	<div id="heading">
-		<div class="shell">
-			<div id="heading-cnt">
-
-				<!-- Sub nav ->
-				<div id="side-nav">
-					<ul>
-					    <li><div class="link"><a href="ActionAccueil.php">Accueil</a></div></li>
-					</ul>
-				</div>
-				<!-- End Sub nav -->
-
-				<!-- Widget -->
-				<div id="heading-box">
-					<div id="heading-box-cnt">
-						<div class="cl">&nbsp;</div>
-						
-						
-						<div style="margin-bottom: 10px;">
-						Votre aide est pour beaucoup dans notre réussite et nous tenons à vous témoigner toute la reconnaissance de notre club pour votre aide. <br>
-						Si vous aussi, vous souhaitez nous apporter votre aide (financière, matérielle, etc ...), n'hésitez pas à prendre contact avec nous <img alt="" src="images/form_email.gif" width="16px" height="16px"  style="vertical-align: middle; cursor: pointer;" onclick="window.open('contact.php', '_self')"/><br>
-						</div>
-						
-						<?php
-						if (!empty($listeSponsors)) {
-						?>
-						<input type="hidden" id="panel-count" value="<?php echo count($listeSponsors);?>"/>
-						<?php foreach($listeSponsors as $sponsor) { ?>
-						  <input type="hidden" id="nomSponsor_<?php echo $sponsor->getId(); ?>" name="nomSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getNom(); ?>" />
-						  <input type="hidden" id="urlSponsor_<?php echo $sponsor->getId(); ?>" name="urlSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getURL(); ?>" />
-						  <input type="hidden" id="adresseSponsor_<?php echo $sponsor->getId(); ?>" name="adresseSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getAdresse(); ?>" />
-						  <input type="hidden" id="cpSponsor_<?php echo $sponsor->getId(); ?>" name="cpSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getCP(); ?>" />
-						  <input type="hidden" id="villeSponsor_<?php echo $sponsor->getId(); ?>" name="villeSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getVille(); ?>" />
-						  <input type="hidden" id="telSponsor_<?php echo $sponsor->getId(); ?>" name="telSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getTel(); ?>" />
-						  <input type="hidden" id="faxSponsor_<?php echo $sponsor->getId(); ?>" name="faxSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getFax(); ?>" />
-						  <input type="hidden" id="emailSponsor_<?php echo $sponsor->getId(); ?>" name="emailSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getEmail(); ?>" />
-						  <input type="hidden" id="descriptionSponsor_<?php echo $sponsor->getId(); ?>" name="descriptionSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getDescription(); ?>" />
-						  <input type="hidden" id="messageSponsor_<?php echo $sponsor->getId(); ?>" name="messageSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getMessage(); ?>" />
-						  <input type="hidden" id="logoSponsor_<?php echo $sponsor->getId(); ?>" name="logoSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getVignette(); ?>" />
-						<?php } ?>
-						<div class="containerCaroussel">
-							<div id="carousel3D">
-							
-							<?php foreach($listeSponsors as $sponsor) { ?>
-							  <img class="vignette" id="<?php echo $sponsor->getId();?>" src="images/sponsor/moyen/<?php echo $sponsor->getVignette(); ?>" width="80px" height="80px" />
-							  
-							<?php } ?>
-							</div>
-						</div>
-						<div id="options">
-						    <p id="navigation3D">
-						      <button id="previous" data-increment="-1" class="bouton" role="button" style="width: 120px;">Précédent</button>
-						      <button id="next" data-increment="1" class="bouton" role="button" style="width: 120px;">Suivant</button>
-						    </p>
-						</div>
-						
-						<?php } ?>
-						
-						<div class="cl">&nbsp;</div>
-					</div>
-				</div>
-				<!-- End Widget -->
+	
+	<div class="py-5 bg-light">
+	    <div class="container">
+	      <div class="row text-center">
+	        <div class="col-md-12">
+	          <h1 class="mb-4">Merci à tous nos partenaires !</h1>
+	          <div class="row text-left mt-5">
+	            
+	            <!-- On boucle 6 fois -->
+	            <?php
+	            if (!empty($listeSponsors))
+	            { 
+	              for ($i=0; $i<6; $i++)
+	              {
+	            	$sponsor = $listeSponsors[$i];
+			    	
+					?>
+					<input type="hidden" id="nomSponsor_<?php echo $sponsor->getId(); ?>" name="nomSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getNom(); ?>" />
+					<input type="hidden" id="urlSponsor_<?php echo $sponsor->getId(); ?>" name="urlSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getURL(); ?>" />
+					<input type="hidden" id="adresseSponsor_<?php echo $sponsor->getId(); ?>" name="adresseSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getAdresse(); ?>" />
+					<input type="hidden" id="cpSponsor_<?php echo $sponsor->getId(); ?>" name="cpSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getCP(); ?>" />
+					<input type="hidden" id="villeSponsor_<?php echo $sponsor->getId(); ?>" name="villeSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getVille(); ?>" />
+					<input type="hidden" id="telSponsor_<?php echo $sponsor->getId(); ?>" name="telSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getTel(); ?>" />
+					<input type="hidden" id="faxSponsor_<?php echo $sponsor->getId(); ?>" name="faxSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getFax(); ?>" />
+					<input type="hidden" id="emailSponsor_<?php echo $sponsor->getId(); ?>" name="emailSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getEmail(); ?>" />
+					<input type="hidden" id="descriptionSponsor_<?php echo $sponsor->getId(); ?>" name="descriptionSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getDescription(); ?>" />
+					<input type="hidden" id="messageSponsor_<?php echo $sponsor->getId(); ?>" name="messageSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getMessage(); ?>" />
+					<input type="hidden" id="logoSponsor_<?php echo $sponsor->getId(); ?>" name="logoSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getVignette(); ?>" />
+					
+					<div class="col-md-4 my-3">
+		              <div class="row mb-3">
+		                <div class="text-center col-5">
+		                  <i class="d-block mx-auto fa fa-3x">
+		                  	<img id="c_img" class="img-fluid d-block pi-draggable" src="images/sponsor/moyen/<?php echo $sponsor->getVignette(); ?>" draggable="true"/>
+		                  </i>
+		                </div>
+		                <div class="align-self-center col-7">
+		                  <h5 class=""><b><?php echo $sponsor->getNom(); ?></b></h5>
+		                </div>
+		              </div>
+		              <p>
+		              <?php
+		                if (strlen($sponsor->getDescription()) > 250)
+		              		echo substr($sponsor->getDescription(), 0, 250)." ...";
+						else
+							echo $sponsor->getDescription();
+					  ?>
+					  </p>
+		              <a href="<?php echo $sponsor->getURL(); ?>" target="_blank">Site web</a>
+		            </div>
+					<?php 
+			      }
+	            }
+				?>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	</div>
+	
+	<div class="py-5">
+	    <div class="container">
+	    
+	    <!-- On boucle 6 fois -->
+	    <?php
+        if (!empty($listeSponsors))
+        { 
+          for ($i=6; $i<10; $i++)
+          {
+        	$sponsor = $listeSponsors[$i];
+		?>
+		  <input type="hidden" id="nomSponsor_<?php echo $sponsor->getId(); ?>" name="nomSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getNom(); ?>" />
+		  <input type="hidden" id="urlSponsor_<?php echo $sponsor->getId(); ?>" name="urlSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getURL(); ?>" />
+		  <input type="hidden" id="adresseSponsor_<?php echo $sponsor->getId(); ?>" name="adresseSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getAdresse(); ?>" />
+		  <input type="hidden" id="cpSponsor_<?php echo $sponsor->getId(); ?>" name="cpSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getCP(); ?>" />
+		  <input type="hidden" id="villeSponsor_<?php echo $sponsor->getId(); ?>" name="villeSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getVille(); ?>" />
+		  <input type="hidden" id="telSponsor_<?php echo $sponsor->getId(); ?>" name="telSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getTel(); ?>" />
+		  <input type="hidden" id="faxSponsor_<?php echo $sponsor->getId(); ?>" name="faxSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getFax(); ?>" />
+		  <input type="hidden" id="emailSponsor_<?php echo $sponsor->getId(); ?>" name="emailSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getEmail(); ?>" />
+		  <input type="hidden" id="descriptionSponsor_<?php echo $sponsor->getId(); ?>" name="descriptionSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getDescription(); ?>" />
+		  <input type="hidden" id="messageSponsor_<?php echo $sponsor->getId(); ?>" name="messageSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getMessage(); ?>" />
+		  <input type="hidden" id="logoSponsor_<?php echo $sponsor->getId(); ?>" name="logoSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getVignette(); ?>" />
+	      
+	      <?php
+	      if ($i % 2 == 0)
+	      {
+	      	echo "<div class=\"row mb-5\">";
+	      	echo "<div class=\"col-md-9 align-self-center\">";
+	      	echo "<h2 class=\"\">";echo $sponsor->getNom();echo "</h2>";
+	      	echo "<p class=\"\">";echo $sponsor->getDescription();echo "</p>";
+	      	echo "<a href=\"".$sponsor->getURL()."\" target=\"_blank\">";echo $sponsor->getURL();echo "</a>";
+	      	echo "</div>";
+	      	echo "<div class=\"col-md-3 align-self-center\">";
+	      	echo "<img class=\"img-fluid d-block w-50\" src=\"images\/sponsor\/moyen\/".$sponsor->getVignette()."\">";
+	      	echo "</div>";
+	      	echo "</div>";
+	      }
+	      else
+	      {
+	      	echo "<div class=\"row\">";
+	      	echo "<div class=\"col-md-3\">";
+	      	echo "<img class=\"img-fluid d-block w-50\" src=\"images\/sponsor\/moyen\/".$sponsor->getVignette()."\">";
+	      	echo "</div>";
+	      	echo "<div class=\"col-md-9 align-self-center\">";
+	      	echo "<h2 class=\"\">";echo $sponsor->getNom();echo "</h2>";
+	      	echo "<p class=\"\">";echo $sponsor->getDescription();echo "</p>";
+	      	echo "<a href=\"".$sponsor->getURL()."\" target=\"_blank\">";echo $sponsor->getURL();echo "</a>";
+	      	echo "</div>";
+	      	echo "</div>";
+	      }
+	      ?>
+	    <?php 
+		  }
+        }
+		?>	      
+	    </div>
+	</div>
+	
+	<div class="py-5">
+	    <div class="container">
+			<div class="row">
+				<!-- On boucle 6 fois -->
+			    <?php
+		        if (!empty($listeSponsors))
+		        { 
+		          for ($i=10; $i < count($listeSponsors); $i++)
+		          {
+		        	$sponsor = $listeSponsors[$i];
+				?>
+				  <input type="hidden" id="nomSponsor_<?php echo $sponsor->getId(); ?>" name="nomSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getNom(); ?>" />
+				  <input type="hidden" id="urlSponsor_<?php echo $sponsor->getId(); ?>" name="urlSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getURL(); ?>" />
+				  <input type="hidden" id="adresseSponsor_<?php echo $sponsor->getId(); ?>" name="adresseSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getAdresse(); ?>" />
+				  <input type="hidden" id="cpSponsor_<?php echo $sponsor->getId(); ?>" name="cpSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getCP(); ?>" />
+				  <input type="hidden" id="villeSponsor_<?php echo $sponsor->getId(); ?>" name="villeSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getVille(); ?>" />
+				  <input type="hidden" id="telSponsor_<?php echo $sponsor->getId(); ?>" name="telSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getTel(); ?>" />
+				  <input type="hidden" id="faxSponsor_<?php echo $sponsor->getId(); ?>" name="faxSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getFax(); ?>" />
+				  <input type="hidden" id="emailSponsor_<?php echo $sponsor->getId(); ?>" name="emailSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getEmail(); ?>" />
+				  <input type="hidden" id="descriptionSponsor_<?php echo $sponsor->getId(); ?>" name="descriptionSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getDescription(); ?>" />
+				  <input type="hidden" id="messageSponsor_<?php echo $sponsor->getId(); ?>" name="messageSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getMessage(); ?>" />
+				  <input type="hidden" id="logoSponsor_<?php echo $sponsor->getId(); ?>" name="logoSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getVignette(); ?>" />
+			      
+			      <div class="p-2 col-md-2 col-6">
+			      	<a href="<?php echo $sponsor->getURL(); ?>">
+			      	  <img src="images/sponsor/moyen/<?php echo $sponsor->getVignette(); ?>" class="img-fluid mx-auto img-thumbnail" width="150" height="150">
+			      	</a>
+			      </div>
+				<?php 
+				  }
+		        }
+				?>
 			</div>
 		</div>
 	</div>
-	<!-- End Heading -->
-
-	<!-- Main -->
-	<div id="main">
-		<div class="shell">
-			<div class="cl">&nbsp;</div>
-			<div id="sidebar">
-
-			</div>
-			<div id="content">
-				<div class="sponsor-main-bas">
-					<img id="detailPhoto" src="images/sponsor/<?php echo $listeSponsors[0]->getVignette(); ?>" style="max-width: 260px; max-height: 260px; cursor:pointer;" alt=""/>
-				</div>
-				<div class="sponsor-side-bas">
-					<div id="detail" class="staff sponsor-main-bas-item">
-						<div class="cl">&nbsp;</div>
-						<h4><a id="detailURL" href="<?php echo $listeSponsors[0]->getURL(); ?>" target="_new"><?php echo $listeSponsors[0]->getNom(); ?></a></h4>
-						<div id="adresse"><?php echo $listeSponsors[0]->getAdresse(); ?></div>
-						<div id="cpville"><?php echo $listeSponsors[0]->getCP()." ".$listeSponsors[0]->getVille(); ?></div>
-						<div id="tel">Tél: <?php echo $listeSponsors[0]->getTel(); ?></div>
-						<div id="fax">Fax: <?php echo $listeSponsors[0]->getFax(); ?></div>
-						<div id="email">Email: <?php echo $listeSponsors[0]->getEmail(); ?></div>
-							<!--<span style="text-decoration: underline; cursor: pointer;" onclick="window.open('http://kinepolis.fr/splash?destination=cinemas/kinepolis-st-julien-les-metz')">Site web</span>-->
-						<div id="description" style="margin-top: 10px;"><!-- Description: --><?php echo $listeSponsors[0]->getDescription(); ?></div>
-
-						<div id="message" style="margin-top: 10px;"><?php echo $listeSponsors[0]->getMessage(); ?></div>
-						<!--
-						<div>
-							<div class="cl">&nbsp;</div>
-							<h4>Description</h4>
-							<div id="description">
-							bla bla bla
-							</div>
-							<div class="cl">&nbsp;</div>
-						</div>
-						<div>
-							<div class="cl">&nbsp;</div>
-							<h4>Message</h4>
-							<div id="message">
-							bla bla bla
-							</div>
-							<div class="cl">&nbsp;</div>
-						</div>
-						-->
-					</div>
-				</div>
-			</div>
-			<div class="cl">&nbsp;</div>
-		</div>
-	</div>
-
-	<!-- End Main -->
-
+	
 	<!-- Footer -->
 	<?php
 	  include("footer.php");

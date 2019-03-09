@@ -15,7 +15,10 @@ $cat = null;
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta charset="iso-8859-15" />
+	<meta charset="ISO-8859-1">
+	<meta http-equiv="Cache-Control" content="max-age=600" />
+	<meta http-equiv="Expires" content="Thu, 31 Dec 2015 23:59:59 GMT" />
+	<meta name=viewport content="width=device-width, initial-scale=1">
 	<meta name="keywords" content="mots-clés" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
@@ -25,9 +28,17 @@ $cat = null;
 	<link rel="stylesheet" href="css/tableau.css" type="text/css" media="all"/>
 	<!--[if lte IE 6]><link rel="stylesheet" href="css/ie6.css" type="text/css" media="all" /><![endif]-->
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+	<!-- <link rel="stylesheet" href="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-beta.1.css" type="text/css">-->
+	<link rel="stylesheet" href="css/bootstrap4.css" type="text/css">
+
 	<script type="text/javascript" src="js/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="js/slick.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
+	
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
 
@@ -124,18 +135,17 @@ $cat = null;
 		});
 	</script>
 </head>
-<body>
-	<!-- Header -->
-	<?php
-	  include("head.php");
-	?>
-	<!-- End Header -->
-
+<body class="w-75 mx-auto bg-light">
 	<!-- Navigation Haut-->
 	<?php
 	  include("menuHaut.php");
 	?>
 	<!-- End Navigation -->
+	
+	<!-- Header -->
+	<?php
+	  include("head.php");
+	?>
 <?php
 try {
 	session_start();
@@ -153,6 +163,9 @@ try {
 		$listeStaffs = $_SESSION['listeStaffs'];
 	if (isset($_SESSION['listeJoueurs']))
 		$listeJoueurs = $_SESSION['listeJoueurs'];
+	
+	
+	
 	/*if (isset($_SESSION['listeGardiens']))
 		$listeGardiens = $_SESSION['listeGardiens'];
 	if (isset($_SESSION['listeDefenseurs']))
@@ -168,204 +181,189 @@ try {
 }
 ?>
 
-	<!-- Heading -->
-	<div id="heading">
-		<div class="shell">
-			<div id="heading-cnt">
-
-				<!-- Sub nav -->
-				<div id="side-nav">
-					<form id="form1" name="form1" action="ActionEcoleDeFoot.php" method="post">
-						<input type="hidden" name="categorie" id="categorie" value="<?php echo $categorie;?>" />
-					</form>
-					<ul>
-					    <!--<li class=""><div class="link"><a href="joueursstaffs.php">Effectifs</a></div></li>-->
-						<li id="lienU7" class="active"><div class="link"><a href="#">U7</a></div></li>
-						<li id="lienU9"><div class="link"><a href="#">U9</a></div></li>
-					    <li id="lienU11"><div class="link"><a href="#">U11</a></div></li>
-					    <li id="lienU13"><div class="link"><a href="#">U13</a></div></li>
-					    <li id="lienU15"><div class="link"><a href="#">U15</a></div></li>
-					    <li id="lienU17"><div class="link"><a href="#">U17</a></div></li>
-					</ul>
-				</div>
-				<!-- End Sub nav -->
-
-				<div id="heading-box">
-					<div id="heading-box-cnt">
-						<div class="cl">&nbsp;</div>
-
-						<!-- Main Slide Item -->
-						<div class="featured-main">
-							<a href="#"><img src="./images/article/repriseJeunes2014.jpg" width="438px" height="310px" alt="" /></a>
-							<div class="featured-main-details">
-								<!--<div class="featured-main-details-cnt">
-									<h4><a href="#">Reprise section jeunes</a></h4>
-									<p>Les jeunes joueurs de l'école de foot (U6 à U13) ont repris le chemin des entrainements depuis la fin du mois d'août.</p>
-								</div>-->
-							</div>
-						</div>
-						<!-- End Main Slide Item -->
-
-						<div class="featured-side">
-
-							<!-- Slide Item 1 -->
-							<div class="featured-side-item">
-								<div class="cl">&nbsp;</div>
-								<!--<a href="#" class="left"><img src="css/images/travaux_stade.jpg" width="60px" height="60px" alt="" /></a>-->
-								<h4><a href="#">Infos catégorie</a></h4>
-								<?php
-								try {
-									if ($cat != null) {
-										echo "<p>Joueurs né(e)s en ".$cat->getAnneeDebut()." et ".$cat->getAnneeFin()."</p>";
-									}
-								} catch (PDOException $error) { //Le catch est chargé dintercepter une éventuelle erreur
-									echo "N° : ".$error->getCode()."<br />";
-									die ("Erreur : ".$error->getMessage()."<br />");
-								}
-								?>
-								<div class="cl">&nbsp;</div>
-							</div>
-							<div class="featured-side-item">
-								<div class="cl">&nbsp;</div>
-								<h4><a href="#">Entrainements</a></h4>
-								<?php
-								try {
-									$listeEntrainements = $cat->getEntrainements();
-									
-									if (!empty($listeEntrainements)) {
-										foreach($listeEntrainements as $entrainement) {
-											echo "<p>".$entrainement->getJour()." à ".$entrainement->getHeureDebut()." / ".$entrainement->getLieu()."</p>";
-										}
-									}
-								} catch (PDOException $error) { //Le catch est chargé dintercepter une éventuelle erreur
-									echo "N° : ".$error->getCode()."<br />";
-									die ("Erreur : ".$error->getMessage()."<br />");
-								}
-								?>
-								<div class="cl">&nbsp;</div>
-							</div>
-							<!-- End Slide Item 1 -->
-
-							<!-- Slide Item 2 -->
-							<div class="featured-side-item">
-								<div class="cl">&nbsp;</div>
-								<!--<a href="#" class="left"><img src="css/images/featured-side-2.jpg" width="60px" height="60px" alt="" /></a>-->
-								<h4><a href="#">Educateurs</a></h4>
-								<?php
-								try {
-									if (!empty($listeStaffs)) {
-										foreach($listeStaffs as $staff) {
-											echo "<p>".$staff->getNom()." ".$staff->getPrenom()."</p>";
-										}
-									}
-								} catch (PDOException $error) { //Le catch est chargé dintercepter une éventuelle erreur
-									echo "N° : ".$error->getCode()."<br />";
-									die ("Erreur : ".$error->getMessage()."<br />");
-								}
-								?>
-								<div class="cl">&nbsp;</div>
-							</div>
-							<!-- End Slide Item 2 -->
-
-							<div class="featured-side-item">
-								<div class="cl">&nbsp;</div>
-								<h4><a href="#">Derniers résultats</a></h4>
-								<?php if (!empty($listeDernier)) {
-									foreach ($listeDernier as $dernier) {
-										echo "<p>".date_format(new DateTime($dernier->getJour()), 'd/m/Y').": ".$dernier->getEquipeDom()." - ".$dernier->getEquipeExt()." : ".$dernier->getScoreDom()." - ".$dernier->getScoreExt()."&nbsp;".($dernier->getCompteRendu()!=null && $dernier->getCompteRendu()!="" ? "<img class=\"CR\" id=\"".$dernier->getId()."\" src=\"images/compteRendu16.png\" style=\"vertical-align: middle;\" />" : "")."</p>";
-									}
-								}?>
-
-								<div class="cl">&nbsp;</div>
-							</div>
-
-							<div class="featured-side-item">
-								<div class="cl">&nbsp;</div>
-								<h4><a href="#">Prochaines rencontres</a></h4>
-								<?php if (!empty($listeProchain)) {
-									foreach ($listeProchain as $prochain) {
-										echo "<p>".date_format(new DateTime($prochain->getJour()), 'd/m/Y').": ".$prochain->getEquipeDom()." - ".$prochain->getEquipeExt()."</p>";
-									}
-								}?>
-								<div class="cl">&nbsp;</div>
-							</div>
-
-							<div class="featured-side-item">
-								<div class="cl">&nbsp;</div>
-								<h4><a href="#">Classements</a></h4>
-								<?php if (!empty($listeEquipes)) {
-										foreach ($listeEquipes as $equipe) {
-											echo "<p style=\"cursor: pointer;\" onclick=\"window.open('".$equipe->getLienClassement()."','_new')\">".$equipe->getLibelle()."</p>";
-										}
-									}?>
-								<div class="cl">&nbsp;</div>
-							</div>
-
-						</div>
-						<div class="cl">&nbsp;</div>
-					</div>
-				</div>
-				<!-- End Widget -->
-
-			</div>
-		</div>
+	<div class="py-0">
+	    <div class="container">
+	      <div class="row mx-auto">
+	        <div class="col-md-12 ">
+	          <ul class="nav nav-pills nav-justified" role="tablist">
+	            <li class="nav-item">
+	              <a data-toggle="pill" href="#u7" class="active nav-link" role="tab"> <i class="fa fa-bars"></i>&nbsp;U6-U7</a>
+	            </li>
+	            <li class="nav-item">
+	              <a data-toggle="pill" href="#u9" class="nav-link" role="tab"><i class="fa fa-bars"></i>&nbsp;U8-U9</a>
+	            </li>
+	            <li class="nav-item">
+	              <a data-toggle="pill" href="#u11" class="nav-link" role="tab"><i class="fa fa-bars"></i>&nbsp;U10-U11</a>
+	            </li>
+	            <li class="nav-item">
+	              <a data-toggle="pill" href="#u13" class="nav-link" role="tab"><i class="fa fa-bars"></i>&nbsp;U12-U13</a>
+	            </li>
+	            <li class="nav-item">
+	              <a data-toggle="pill" href="#u15" class="nav-link" role="tab"><i class="fa fa-bars"></i>&nbsp;U14-U15</a>
+	            </li>
+	            <li class="nav-item">
+	              <a data-toggle="pill" href="#u17" class="nav-link" role="tab"><i class="fa fa-bars"></i>&nbsp;U16-U17</a>
+	            </li>
+	          </ul>
+	        </div>
+	      </div>
+	    </div>
 	</div>
-	<!-- End Heading -->
-
-	<!-- Main -->
-	<div id="main">
-		<div class="shell">
-			<div class="cl">&nbsp;</div>
-			<div id="sidebar">
-
-			</div>
-			<div id="content">
-				<div class="featured-main-bas">
-					<div id="gardiens" class="effectif featured-main-bas-item">
-						<div class="cl">&nbsp;</div>
-						<h4><a href="#">Effectif</a></h4>
-
-						<?php
-						if (!empty($listeJoueurs)) {
-							foreach($listeJoueurs as $joueur) {
-						?>
-						<div class="joueur ">
-							
-							<?php if ($joueur->getPhoto() != null && $joueur->getPhoto() != "" && $joueur->getPhoto() != "images/photo/" && file_exists($joueur->getPhoto())) { ?>
-							<img class="vignette" id="<?php echo $joueur->getId(); ?>" src="<?php echo $joueur->getPhoto();?>" width="55px" height="65px" alt="" />
-							<?php } else {?>
-							<img class="vignette" id="<?php echo $joueur->getId(); ?>" src="images/silhouette.jpeg" width="55px" height="65px" alt="" title="<?php echo $joueur->getPhoto(); ?>"/>
-							<?php } 
-							echo $joueur->getNom()." ".$joueur->getPrenom(); ?>
-							<input type="hidden" id="nom_<?php echo $joueur->getId(); ?>" name="nom_<?php echo $joueur->getId(); ?>" value="<?php echo $joueur->getNom(); ?>" />
-							<input type="hidden" id="prenom_<?php echo $joueur->getId(); ?>" name="prenom_<?php echo $joueur->getId(); ?>" value="<?php echo $joueur->getPrenom(); ?>" />
-							<input type="hidden" id="dateNaissance_<?php echo $joueur->getId(); ?>" name="dateNaissance_<?php echo $joueur->getId(); ?>" value="<?php echo date_format(new DateTime($joueur->getDateNaissance()), 'd/m/Y'); ?>" />
-							<input type="hidden" id="poste_<?php echo $joueur->getId(); ?>" name="poste_<?php echo $joueur->getId(); ?>" value="<?php echo $joueur->getLibellePoste(); ?>" />
-							<input type="hidden" id="numLicence_<?php echo $joueur->getId(); ?>" name="numLicence_<?php echo $joueur->getId(); ?>" value="<?php echo $joueur->getNumeroLicence(); ?>" />
-						</div>
-						<?php } } ?>
-					</div>
+	<div class="py-2">
+	    <div class="container">
+		  <div class="row">
+  			<div class="col-sm-12">
+				<div class="tab-content">
+				  <div id="u7" class="tab-pane fade show active" role="tabpanel">
+				    <div class="py-5">
+					    <div class="container">
+					      <div class="row">
+					        <div class="col-md-3">
+					          <img class="img-fluid d-block mb-4 w-100 img-thumbnail" src="images/equipe/u6.jpg"> </div>
+					        <div class="col-md-9">
+					          <h3 class="text-primary pt-3">Categorie U6/U7</h3>
+					          <p class="">Joueurs et joueuses né(e)s en 2010 et 2011 </p>
+					          <h5 class="text-primary pt-3">Entrainements </h5>
+					          <p style="font-size: 14px; padding-top: 0px;">
+								Tous les mercredis à 14:30:00 au Stade de Grimont
+							  </p>
+							  <h5 class="text-primary pt-3">Educateurs </h5>
+					          <p style="font-size: 14px; padding-top: 0px;">
+								Cindy THIRION
+							  </p>
+					        </div>
+					      </div>
+					    </div>
+					  </div>
+				  </div>
+				  <div id="u9" class="tab-pane fade" role="tabpanel">
+				    <div class="py-5">
+					    <div class="container">
+					      <div class="row">
+					        <div class="col-md-3">
+					          <img class="img-fluid d-block mb-4 w-100 img-thumbnail" src="images/equipe/u8.jpg"> </div>
+					        <div class="col-md-9">
+					          <h3 class="text-primary pt-3">Categorie U8/U9</h3>
+					          <p class="">Joueurs et joueuses né(e)s en 2008 et 2009 </p>
+					          <h5 class="text-primary pt-3">Entrainements </h5>
+					          <p style="font-size: 14px; padding-top: 0px;">
+								Tous les mercredis à 15:30:00 au Stade de Grimont<br/>
+								Tous les vendredis à 16:30:00 au Stade de Grimont<br/>
+							  </p>
+							  <h5 class="text-primary pt-3">Educateurs </h5>
+					          <p style="font-size: 14px; padding-top: 0px;">
+								Virginie DASILVA<br/>
+								Laurent SUTTER
+							  </p>
+					        </div>
+					      </div>
+					    </div>
+					  </div>
+				  </div>
+				  <div id="u11" class="tab-pane fade" role="tabpanel">
+				  	<div class="py-5">
+					    <div class="container">
+					      <div class="row">
+					        <div class="col-md-3">
+					          <img class="img-fluid d-block mb-4 w-100 img-thumbnail" src="images/article/repriseJeunes2014.jpg"> </div>
+					        <div class="col-md-9">
+					          <h3 class="text-primary pt-3">Categorie U10/U11</h3>
+					          <p class="">Joueurs et joueuses né(e)s en 2006 et 2007 </p>
+					          <h5 class="text-primary pt-3">Entrainements </h5>
+					          <p style="font-size: 14px; padding-top: 0px;">
+								Tous les mercredis à 15:30:00 au Stade de Grimont<br/>
+								Tous les vendredis à 16:30:00 au Stade de Grimont<br/>
+							  </p>
+							  <h5 class="text-primary pt-3">Educateurs </h5>
+					          <p style="font-size: 14px; padding-top: 0px;">
+								Franck DASILVA<br/>
+								Frederic WESOLEK
+							  </p>
+					        </div>
+					      </div>
+					    </div>
+					  </div>
+				  </div>
+				  <div id="u13" class="tab-pane fade" role="tabpanel">
+				    <div class="py-5">
+					    <div class="container">
+					      <div class="row">
+					        <div class="col-md-3">
+					          <img class="img-fluid d-block mb-4 w-100 img-thumbnail" src="images/equipe/u13.jpg"> </div>
+					        <div class="col-md-9">
+					          <h3 class="text-primary pt-3">Categorie U12/U13</h3>
+					          <p class="">Joueurs et joueuses né(e)s en 2004 et 2005 </p>
+					          <h5 class="text-primary pt-3">Entrainements </h5>
+					          <p style="font-size: 14px; padding-top: 0px;">
+								Tous les mercredis à 17:30:00 au Stade de Grimont<br/>
+								Tous les vendredis à 18:00:00 au Stade de Grimont<br/>
+							  </p>
+							  <h5 class="text-primary pt-3">Educateurs </h5>
+					          <p style="font-size: 14px; padding-top: 0px;">
+								Laurent SUTTER
+							  </p>
+					        </div>
+					      </div>
+					    </div>
+					  </div>
+				  </div>
+				  <div id="u15" class="tab-pane fade" role="tabpanel">
+				    <div class="py-5">
+					    <div class="container">
+					      <div class="row">
+					        <div class="col-md-3">
+					          <img class="img-fluid d-block mb-4 w-100 img-thumbnail" src="images/article/repriseJeunes2014.jpg"> </div>
+					        <div class="col-md-9">
+					          <h3 class="text-primary pt-3">Categorie U14/U15</h3>
+					          <p class="">Joueurs et joueuses né(e)s en 2002 et 2003 </p>
+					          <h5 class="text-primary pt-3">Entrainements </h5>
+					          <p style="font-size: 14px; padding-top: 0px;">
+								Tous les mercredis à 18:00:00 au Stade de Grimont
+								Tous les vendredis à 18:00:00 au Stade de Grimont
+							  </p>
+							  <h5 class="text-primary pt-3">Educateurs </h5>
+					          <p style="font-size: 14px; padding-top: 0px;">
+								Franco GASTRINI<br/>
+								Eric PETOT
+							  </p>
+					        </div>
+					      </div>
+					    </div>
+					  </div>
+				  </div>
+				  <div id="u17" class="tab-pane fade" role="tabpanel">
+				    <div class="py-5">
+					    <div class="container">
+					      <div class="row">
+					        <div class="col-md-3">
+					          <img class="img-fluid d-block mb-4 w-100 img-thumbnail" src="images/article/repriseJeunes2014.jpg"> </div>
+					        <div class="col-md-9">
+					          <h3 class="text-primary pt-3">Categorie U16/U17</h3>
+					          <p class="">Joueurs et joueuses né(e)s en 2000 et 2001 </p>
+					          <h5 class="text-primary pt-3">Entrainements </h5>
+					          <p style="font-size: 14px; padding-top: 0px;">
+								Tous les mardis à 18:00:00 au Stade de Grimont
+								Tous les jeudis à 18:30:00 au Stade de Grimont
+							  </p>
+							  <h5 class="text-primary pt-3">Educateurs </h5>
+					          <p style="font-size: 14px; padding-top: 0px;">
+								Jean Claude DARGENTELLE
+							  </p>
+					        </div>
+					      </div>
+					    </div>
+					  </div>
+				  </div>
 				</div>
-				<div class="featured-side-bas">
-					<img id="detailPhoto" src="images/silhouette.jpeg" width="160px" height="160px" alt="" />
-					<div id="detail" class="featured-main-bas-item">
-						<div class="cl">&nbsp;</div>
-						<h4><a><div id="identiteDetail"></div></a></h4>
-						<p><div id="ageDetail"></div></p>
-						<p><div id="tailleDetail"></div></p>
-						<p><div id="piedDetail"></div></p>
-						<p><div id="fonctionDetail"></div></p>
-						<p><div id="posteDetail"></div></p>
-						<p><div id="parcoursDetail"></div></p>
-						<div class="cl">&nbsp;</div>
-					</div>
-				</div>
+  			</div>
 			</div>
-			<div class="cl">&nbsp;</div>
-		</div>
-	</div>
+  		</div>
+  	</div>
 
-	<!-- End Main -->
+	
+	
+	
+
 
 	<!-- Bandeau sponsors -->
 	<?php

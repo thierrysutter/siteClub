@@ -13,7 +13,10 @@ require_once("config/config.php");
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 
-	<!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> -->
+	<meta charset="ISO-8859-1">
+	<meta http-equiv="Cache-Control" content="max-age=600" />
+	<meta http-equiv="Expires" content="Thu, 31 Dec 2015 23:59:59 GMT" />
+	<meta name=viewport content="width=device-width, initial-scale=1">
 	<meta name="keywords" content="mots-clés" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
@@ -25,12 +28,18 @@ require_once("config/config.php");
 	<link rel="stylesheet" href="css/tableau.css" type="text/css" media="all"/>
 	<link rel="stylesheet" href="css/filtre.css" type="text/css" media="all" />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+	<link rel="stylesheet" href="css/bootstrap4.css" type="text/css">
+
 	<script type="text/javascript" src="js/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="js/jquery/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="js/jquery/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" src="js/jquery/jquery.ui.datepicker-fr.min.js"></script>
 	<script type="text/javascript" src="js/slick.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('#tableATrier').dataTable({
@@ -65,147 +74,99 @@ require_once("config/config.php");
 		});
 	</script>
 </head>
-<body>
-	<!-- Header -->
-	<?php
-	  include("head.php");
-	?>
-	<!-- End Header -->
-
+<body class="w-75 mx-auto bg-light">
 	<!-- Navigation Haut-->
 	<?php
-
 	session_start();
-
 	$user = null;
 	if (isset($_SESSION['session_started'])) {
-		$user = $_SESSION['user'];
+	  	$user = $_SESSION['user'];
 	  	if (!empty($user)) {
 	  		/* Navigation Haut */
 	  		include("menuAdmin.php");
+	  		//include("menuHaut.php");
 	  		/* End Navigation */
 	  	} else {
 	  		//header("Location: ActionAccueil.php");
   			header("Location: Deconnexion.php");
 	  	}
-	} else {
-		//header("Location: ActionAccueil.php");
+	  } else {
+	  	//header("Location: ActionAccueil.php");
   		header("Location: Deconnexion.php");
-	}
-
-	$listeEquipes = $_SESSION['listeEquipes'];
-	$listeCategories = $_SESSION['listeCategories'];
-	?>
+	  }
+	  	  
+	  $listeEquipes = $_SESSION['listeEquipes'];
+	  $listeCategories = $_SESSION['listeCategories'];
+	  ?>
+	<?php include("head.php"); ?>
 	<!-- End Navigation -->
 
-	<!-- Heading -->
-	<div id="heading">
-		<div class="shell">
-			<div id="heading-cnt">
-
-				<!-- Sub nav -->
-				<div id="side-nav">
-					<ul>
-						<li><div>
-
-						<form id="filtre" name="filtre" action="ActionEquipe.php" method="post">
-						<input type="hidden" name="methode" id="methode" value="filtre"/>
-						<fieldset><legend>Affiner la recherche</legend>
-						<p class="first" id="container" >
-							<label for="categorie">Catégorie</label>
-							<select name="categorie" id="categorie">
-							<option label="Toutes" value="-1"  <?php echo ($_SESSION['categorieSelectionnee'] == -1 ? "selected" : "") ;?>>Toutes</option>
-							<?php foreach($listeCategories as $categorie) {?>
-							<option label="" value="<?php echo $categorie->getId();?>" <?php echo ($_SESSION['categorieSelectionnee'] == $categorie->getId() ? "selected" : "") ;?>><?php echo $categorie->getLibelle(); ?></option>
-							<?php } ?>
-							</select>
-						</p>
-						<p class="submit"><button type="submit" class="bouton">Rechercher</button></p>
-						</fieldset>
-
-						</form>
-
-
-						</div></li>
-					</ul>
-
-
-
-					<!-- <div style="width: 100px;">
-					<form id="formFiltre" name="formFiltre" action="ActionEquipe" method="post">
-						<input type="hidden" name="methode" id="methode" value="filtre"/>
-						<fieldset><legend>Profil de l'utilisateur</legend>
-						<p class="first" id="container" >
-							<label for="categorie">Libelle</label>
-							<select name="categorie" id="categorie">
-							<?php foreach($listeCategories as $categorie) {?>
-							<option label="<?php echo $categorie->getLibelle(); ?>" value="<?php echo $categorie->getId();?>"/>
-							<?php } ?>
-							</select>
-						</p>
-					</form>
-					</div>-->
-				</div>
-				<!-- End Sub nav -->
-
-				<!-- Widget -->
-				<div id="heading-box">
-					<div id="heading-box-cnt">
-						<div class="cl">&nbsp;</div>
-						<!-- Main Slide Item -->
-						<div class="featured-main-joueur" ">
-							<div class="CSSTableGenerator" style="text-align: center; max-height: 235px; overflow: auto;">
-								<table id="tableATrier">
-									<thead>
-									<tr>
-										<th>Catégorie<br><img src="images/sort-asc.png" style="border: 0;"/><img src="images/sort-desc.png" style="border: 0;"/></th>
-										<th >Libelle<br><img src="images/sort-asc.png" style="border: 0;"/><img src="images/sort-desc.png" style="border: 0;"/></th>
-										<th>Liens</th>
-									</tr>
-									</thead>
-									<?php foreach($listeEquipes as $equipe) { ?>
-									<tr class="centre">
-										<td><?php echo $equipe->getLibelleCategorie();?></td>
-										<td><?php echo $equipe->getLibelle();?></td>
-										<td>
-											<img class="fiche" id="fiche_<?php echo $equipe->getId();?>" src="images/modify16.png" style="border: 0;cursor: pointer;" title="Modifier"/>
-											<img class="suppression" id="suppr_<?php echo $equipe->getId();?>" src="images/trash16.png" style="border: 0;cursor: pointer;" title="Supprimer"/>
-										</td>
-									</tr>
-									<?php } ?>
-								</table>
-							</div>
-						</div>
-
-						<div class="featured-main-joueur-bas" style="padding-top: 4px;text-align: center;width: 100%; height: 280px;">
-							<button class="bouton" id="ajoutEquipe" type="submit">Ajouter une équipe</button>
-						</div>
-						<!-- End Main Slide Item -->
-
-						<div class="cl">&nbsp;</div>
-
-
-					</div>
-				</div>
-
-				<!-- End Widget -->
-			</div>
-		</div>
+	<div class="my-3">
+	    <div class="container">
+	      <div class="row">
+	        <div class="col-md-12 col-12 col-sm-12 col-lg-12 col-xl-12">
+	          <form action="ActionEquipe.php" method="post" name="filtre">
+	          	<input type="hidden" name="methode" id="methode" value="filtre"/>
+	            <h3 class="mx-5 pb-3">Affiner la recherche</h3>
+	            
+	            <div class="form-group row mx-5">
+	              <label for="categorie" class="col-sm-1 col-form-label">Catégorie</label>
+	              <div class="col-sm-11">
+		              <select class="form-control w-100 form-control-md" id="categorie" name="categorie">
+			              <option label="Toutes" value="-1"  <?php echo ($_SESSION['categorieSelectionnee'] == -1 ? "selected" : "") ;?>>Toutes</option>
+						  <?php foreach($listeCategories as $categorie) {?>
+						  <option label="" value="<?php echo $categorie->getId();?>" <?php echo ($_SESSION['categorieSelectionnee'] == $categorie->getId() ? "selected" : "") ;?>><?php echo $categorie->getLibelle(); ?></option>
+						  <?php } ?>
+		              </select>
+	              </div>
+	            </div>
+	            
+	            <div class="form-group row mx-5">
+	              <div class="col-sm-12 text-right">
+	                <button type="submit" class="btn btn-primary btn-lg active" >Rechercher</button>
+	              </div>
+	            </div>
+	          </form>
+	        </div>
+	      </div>
+	    </div>
 	</div>
-	<!-- End Heading -->
-
-	<!-- Main -->
-	<div id="main">
-		<div class="shell">
-			<div id="sidebar">
-
-			</div>
-			<div id="content">
-
-			</div>
-		</div>
+	
+	<div class="py-3">
+	    <div class="container">
+	      <div class="row">
+		      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+		        <table class="table table-bordered table-striped table-hover table-responsive" id="tableATrier">
+		          <thead class="thead-inverse">
+		            <tr>
+		              <th>Catégorie</th>
+		              <th>Libellé</th>
+		              <th>Action</th>
+		            </tr>
+		          </thead>
+		          <tbody>
+		          	<?php foreach($listeEquipes as $equipe) { ?>
+		            <tr>
+		              <td><?php echo $equipe->getLibelleCategorie();?></td>
+					  <td><?php echo $equipe->getLibelle();?></td>
+					  <td>
+						<img class="fiche" id="fiche_<?php echo $equipe->getId();?>" src="images/modify16.png" style="border: 0;cursor: pointer;" title="Modifier"/>
+						<img class="suppression" id="suppr_<?php echo $equipe->getId();?>" src="images/trash16.png" style="border: 0;cursor: pointer;" title="Supprimer"/>
+					  </td>
+		            </tr>
+		            <?php } ?>
+		          </tbody>
+		        </table>
+		      </div>
+	      </div>
+	      
+	      <div class="row text-center py-4">
+		      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+		      	<input type="button" id="ajoutEquipe" class="btn btn-success btn-lg active" value="Ajouter une équipe"/>
+		      </div>
+	      </div>
+	    </div>
 	</div>
-	<!-- End Main -->
 
 	<!-- Bandeau sponsors -->
 	<?php

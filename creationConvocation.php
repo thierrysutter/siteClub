@@ -26,10 +26,16 @@ require_once("config/config.php");
 	<!--[if lte IE 6]><link rel="stylesheet" href="css/ie6.css" type="text/css" media="all" /><![endif]-->
 	<link rel="stylesheet" href="css/contact.css" type="text/css" media="all" />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+	<link rel="stylesheet" href="css/bootstrap4.css" type="text/css">
+	
 	<link href="css/caroussel3D.css" rel="stylesheet">
     <script type="text/javascript" src="js/jquery/jquery.min.js" ></script>
 	<script type="text/javascript" src="js/util.js"></script>
 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+	
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$("#reset").click(function(){
@@ -59,13 +65,7 @@ require_once("config/config.php");
 		});
 	</script>
 </head>
-<body>
-	<!-- Header -->
-	<?php
-	  include("head.php");
-	?>
-	<!-- End Header -->
-
+<body class="w-75 mx-auto bg-light">
 	<!-- Navigation Haut-->
 	<?php
 	session_start();
@@ -94,105 +94,94 @@ require_once("config/config.php");
 	$listeJoueursCategorie = $_SESSION['listeJoueursCategorie'];
 	
 	?>
+	<?php
+	  include("head.php");
+	?>
 	<!-- End Navigation -->
-
-	<!-- Heading -->
-	<div id="heading">
-		<div class="shell">
-			<div id="heading-cnt">
-
-				<!-- Sub nav -->
-				<div id="side-nav" style="width: 225px;">
-					<ul style="width: 225px;padding-left: 5px">
-						<li style="width: 225px;">
-							<div>
-								<?php 
-									echo $convocation->getRencontre()->getLibellecompetition()."<br>";
-									echo date_format(new DateTime($convocation->getRencontre()->getJour()), 'd/m/Y')."<br>";
-									echo $convocation->getRencontre()->getEquipeDom()."-".$convocation->getRencontre()->getEquipeExt();
-								?>
-							</div>
-						</li>
-					</ul>
-				</div>
-				<!-- End Sub nav -->
-
-				<!-- Widget -->
-				<div id="heading-box">
-					<div id="heading-box-cnt">
-						<div class="cl">&nbsp;</div>
-						<form id="formRetour" action="ActionRencontre.php" method="post">
-							<input type="hidden" name="methode" id="methode" value="retour"/>
-							<!-- Récup des filtres précédents -->
-							<input type="hidden" name="categorie" id="categorie" value="<?php echo $categorieSelectionnee; ?>"/>
-							<input type="hidden" name="debut" id="debut" value="<?php echo $debut; ?>"/>
-							<input type="hidden" name="fin" id="fin" value="<?php echo $fin; ?>"/>
-						</form>
+	
+	<div class="my-3">
+	    <div class="container">
+	      <div class="row">
+	        <div class="col-md-12 col-12 col-sm-12 col-lg-12 col-xl-12">
+	        	<form id="formRetour" action="ActionRencontre.php" method="post">
+					<input type="hidden" name="methode" id="methode" value="retour"/>
+					<!-- Récup des filtres précédents -->
+					<input type="hidden" name="categorie" id="categorie" value="<?php echo $categorieSelectionnee; ?>"/>
+					<input type="hidden" name="debut" id="debut" value="<?php echo $debut; ?>"/>
+					<input type="hidden" name="fin" id="fin" value="<?php echo $fin; ?>"/>
+				</form>
 						
-						<form id="form1" action="EnregistrerConvocation.php" method="post">
-						<div class="featured-main-joueur" ">
-							<fieldset><legend></legend>
-							<p class="first" id="container" >
-								<?php 
-								//echo $convocation->getRencontre()->getLibellecompetition()." - ".date_format(new DateTime($convocation->getRencontre()->getJour()), 'd/m/Y')."<br>";
-								//echo $convocation->getRencontre()->getEquipeDom()."-".$convocation->getRencontre()->getEquipeExt()."<br>";
-								?>
-								<input type="hidden" name="methode" id="methode" value="create"/>
-								<input type="hidden" name="finSaisie" id="finSaisie" value="0"/>
-								<input type="hidden" name="categorie" id="categorie" value="<?php echo $categorieSelectionnee; ?>"/>
-								<input type="hidden" name="debut" id="debut" value="<?php echo $debut; ?>"/>
-								<input type="hidden" name="fin" id="fin" value="<?php echo $fin; ?>"/>
-								<input type="hidden" name="rencontre" id="rencontre" value="<?php echo $convocation->getRencontre()->getId(); ?>" />
-							</p>
-							<p id="container" ><label for="heureRDV" style="">Heure du rendez-vous</label><input type="time" name="heureRDV" id="heureRDV" style="width: auto;" value="<?php echo ($convocation->getRencontre()->getHeureRDV()!='' ? $convocation->getRencontre()->getHeureRDV() : ''); ?>"/></p>
-							<p id="container" ><label for="lieuRDV" style="">Lieu du rendez-vous</label><input type="text" name="lieuRDV" id="lieuRDV" size="10" style="width: 250px;" value="<?php echo ($convocation->getRencontre()->getLieuRDV()!='' ? $convocation->getRencontre()->getLieuRDV() : ''); ?>"/></p>
-							<p id="container" ><label for="commentaireRDV" style="">Commentaires</label><textarea name="commentaireRDV" id="commentaireRDV" cols="10" rows="10" style="width: 250px; height: 100px;"><?php echo (($convocation->getRencontre()->getCommentaireRDV()!='' && !is_null($convocation->getRencontre()->getCommentaireRDV())) ? $convocation->getRencontre()->getCommentaireRDV() : ''); ?></textarea></p>
-							</fieldset>
-							
-							<fieldset>
-								<p id="container" >
-								<label for="nomJoueur1" style="">Sélectionnez les joueurs<br>(maintenez CTRL enfoncé pour sélectionner plusieurs joueurs)</label>
-								<select name="nomJoueur[]" id="nomJoueur" style="width: 314px;height: 200px;" multiple>
-									<?php foreach($listeJoueursCategorie as $joueurCat) { 
-										$selected = in_array( $joueurCat->getId(), $convocation->getListeJoueurs() ) ? ' selected' : '';
-										?>
-										<option value="<?php echo $joueurCat->getId();?>" <?php echo $selected;?> ><?php echo $joueurCat->getNom()." ".$joueurCat->getPrenom(); ?></option>
-									<?php } ?>
-								</select>
-								</p>
-							</fieldset>
-							</div>
-							<div class="featured-main-joueur-bas" style="padding-top: 10px;text-align: center;width: 100%; height: 280px;">
-								<div class="bouton" id="enregistrer" type="" style="width: auto; height:25px; line-height:25px; " value="Enregistrer">Enregistrer et continuer la saisie</div>
-								<div class="bouton" id="terminer" type="" style="width: auto; height:25px; line-height:25px; " value="Terminer">Terminer la saisie</div>
-								<div class="bouton" id="reset" type="" style="width: auto; height:25px; line-height:25px; " value="Annuler">Annuler</div>
-							</div>
-							</form>
-						
-						<div class="cl">&nbsp;</div>
+	        	<form id="" action="EnregistrerConvocation.php" method="post">
+	        		<input type="hidden" name="methode" id="methode" value="create"/>
+					<input type="hidden" name="finSaisie" id="finSaisie" value="0"/>
+					<input type="hidden" name="categorie" id="categorie" value="<?php echo $categorieSelectionnee; ?>"/>
+					<input type="hidden" name="debut" id="debut" value="<?php echo $debut; ?>"/>
+					<input type="hidden" name="fin" id="fin" value="<?php echo $fin; ?>"/>
+					<input type="hidden" name="rencontre" id="rencontre" value="<?php echo $convocation->getRencontre()->getId(); ?>" />
+	        		<h3 class="mx-5 pb-3">Convocations</h3>
+			        
+			        <div class="form-group row mx-5">
+			        	<div class="col-sm-12">
+						<?php 
+							echo "<b>Compétition</b> : ".$convocation->getRencontre()->getLibellecompetition()."<br>";
+							echo "<b>Date</b> : ".date_format(new DateTime($convocation->getRencontre()->getJour()), 'd/m/Y')."<br>";
+							echo "<b>Match</b> : ".$convocation->getRencontre()->getEquipeDom()."-".$convocation->getRencontre()->getEquipeExt();
+						?>
+						</div>
 					</div>
-				</div>
-				<!-- End Widget -->
-			</div>
-		</div>
+							
+			        <div class="form-group row mx-5">
+			        	<label class="col-sm-2 col-form-label" for="heureRDV">Heure du RDV</label>
+			        	<div class="col-sm-2">
+			        		<input class="form-control w-100 form-control-md" type="time" id="heureRDV" name="heureRDV" value="<?php echo ($convocation->getRencontre()->getHeureRDV()!='' ? $convocation->getRencontre()->getHeureRDV() : ''); ?>" required/>
+			        	</div>
+			        </div>
+			        
+			        <div class="form-group row mx-5">
+			        	<label class="col-sm-2 col-form-label" for="lieuRDV">Lieu du RDV</label>
+			        	<div class="col-sm-10">
+			        		<input class="form-control w-100 form-control-md" type="text" id="lieuRDV" name="lieuRDV" value="<?php echo ($convocation->getRencontre()->getLieuRDV()!='' ? $convocation->getRencontre()->getLieuRDV() : ''); ?>" required/>
+			        	</div>
+			        </div>
+			        
+			        <div class="form-group row mx-5">
+			        	<label class="col-sm-2 col-form-label" for="commentaireRDV">Commentaire</label>
+			        	<div class="col-sm-10">
+			        		<textarea name="commentaireRDV" id="commentaireRDV" cols="10" rows="10" style="width: 100%; height: 100px;"><?php echo (($convocation->getRencontre()->getCommentaireRDV()!='' && !is_null($convocation->getRencontre()->getCommentaireRDV())) ? $convocation->getRencontre()->getCommentaireRDV() : ''); ?></textarea>
+			        	</div>
+			        </div>
+	        		
+	        		<div class="form-group row mx-5">
+	        			<label class="col-sm-2 col-form-label" for="nomJoueur1">Sélectionnez les joueurs<br>(maintenez CTRL enfoncé pour sélectionner plusieurs joueurs)</label>
+	        			<div class="col-sm-10">
+			              <select class="form-control w-100 form-control-md" name="nomJoueur[]" id="nomJoueur" multiple style="height: 200px;">
+							<?php foreach($listeJoueursCategorie as $joueurCat) { 
+								$selected = in_array( $joueurCat->getId(), $convocation->getListeJoueurs() ) ? ' selected' : '';
+								?>
+								<option value="<?php echo $joueurCat->getId();?>" <?php echo $selected;?> ><?php echo $joueurCat->getNom()." ".$joueurCat->getPrenom(); ?></option>
+							<?php } ?>
+						  </select>
+			            </div>
+			        </div>
+					
+					<div class="form-group row mx-5">
+		              <div class="col-sm-12 text-right">
+		                <button id="enregistrer" class="btn btn-primary btn-lg active" style="width: auto;" value="Enregistrer et continuer la saisie">Enregistrer et continuer la saisie</button>
+		                <button id="terminer" class="btn btn-primary btn-lg active" style="width: auto;" value="Terminer">Terminer la saisie</button>
+		                <button id="reset" class="btn btn-primary btn-lg active" style="width: auto;" value="Annuler">Annuler</button>
+		              </div>
+		            </div>
+	        	</form>
+	        </div>
+	      </div>
+	    </div>
 	</div>
-	<!-- End Heading -->
 
-	<!-- Main -->
-	<div id="main">
-		<div class="shell">
-			<div class="cl">&nbsp;</div>
-			<div id="sidebar">
-
-			</div>
-			<div id="content">
-
-			</div>
-			<div class="cl">&nbsp;</div>
-		</div>
-	</div>
-
-	<!-- End Main -->
+	<!-- Bandeau sponsors -->
+	<?php
+	  include("bandeau_sponsors.php");
+	?>
+	<!-- End bandeau sponsors -->
 
 	<!-- Footer -->
 	<?php

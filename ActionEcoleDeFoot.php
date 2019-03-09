@@ -27,12 +27,12 @@ require_once("config/config.php");
 
 try {
 	$connexionBdd = new Connexion($db_host, $db_login, $db_password, $db_name);
-	
+	/*
 	$categorie = 1; // u7 par défaut
 	if (isset($_POST['categorie'])) {
 		$categorie = $_POST['categorie'];
 	}
-	
+	/*
 	$managerCategorie = new ManagerCategorie($connexionBdd->getPDO());
 	$cat = $managerCategorie->trouverCategorieParId($categorie);
 	
@@ -41,7 +41,7 @@ try {
 	
 	$managerEquipe = new ManagerEquipe($connexionBdd->getPDO());
 	$listeEquipes = $managerEquipe->trouverEquipesParCategorie($categorie);
-		
+	
 	$managerRencontre = new ManagerRencontre($connexionBdd->getPDO());
 	$listeDernier =$managerRencontre->getDernier($categorie);
 	$listeProchain =$managerRencontre->getProchain($categorie);
@@ -56,7 +56,7 @@ try {
 	$_SESSION['listeDernier']=$listeDernier;
 	$_SESSION['listeProchain']=$listeProchain;
 	$_SESSION['listeJoueurs']=$listeJoueurs;
-	
+	*/
 	header("Location: ecoledefoot.php");
 	
 } catch (PDOException $error) { // Le catch est chargé d’intercepter une éventuelle erreur

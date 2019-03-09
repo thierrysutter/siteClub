@@ -10,20 +10,6 @@ if (isset($_SESSION['session_started'])) {
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-	<!-- Google Analytics Content Experiment code ->
-<script>function utmx_section(){}function utmx(){}(function(){var
-k='97619152-0',d=document,l=d.location,c=d.cookie;
-if(l.search.indexOf('utm_expid='+k)>0)return;
-function f(n){if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.
-indexOf(';',i);return escape(c.substring(i+n.length+1,j<0?c.
-length:j))}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;d.write(
-'<sc'+'ript src="'+'http'+(l.protocol=='https:'?'s://ssl':
-'://www')+'.google-analytics.com/ga_exp.js?'+'utmxkey='+k+
-'&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='+new Date().
-valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
-'" type="text/javascript" charset="utf-8"><\/sc'+'ript>')})();
-</script><script>utmx('url','A/B');</script>
-<-- End of Google Analytics Content Experiment code -->
 	<title></title>
 	<META HTTP-EQUIV="Expires" CONTENT="Jeu, 31 Dec 2015 23:59:59 GMT" >
 	<meta name="Description" content="Phrases pertinentes" />
@@ -37,140 +23,6 @@ valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
 	<link href='http://fonts.googleapis.com/css?family=Amaranth' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="css/fondu.css" type="text/css" media="all" />
 
-	<!--<style type="text/css">
-	body {
-		background-color: #000;
-		text-align: right;
-		font-family: "Amaranth", "Lucida Grande", Tahoma, Arial, sans-serif;
-	}
-
-	.anim {
-		margin: 20px auto;
-		text-align: center;
-	}
-
-	.logo{
-		width:1%;
-		height:1%;
-		opacity:0.3;
-		/*border:2px solid black;*/
-	}
-
-	@keyframes zoomInPhoto{
-		0% {width:1%; height:1%; opacity:0.3;}
-		/*50% {width:50%; height:50%; opacity:0.7}
-		100% {width:70%; height:70%; opacity:1;}*/
-		50% {width:10%; height:10%; opacity:0.6}
-		100% {width:20%; height:20%; opacity:1}
-	}
-
-	@-moz-keyframes zoomInPhoto{
-		0% {width:1%; height:1%; opacity:0.3;}
-		/*50% {width:50%; height:50%; opacity:0.7}
-		100% {width:70%; height:70%; opacity:1;}*/
-		50% {width:10%; height:10%; opacity:0.6}
-		100% {width:20%; height:20%; opacity:1}
-	}
-
-	@-webkit-keyframes zoomInPhoto{
-		0% {width:1%; height:1%; opacity:0.3;}
-		/*50% {width:50%; height:50%; opacity:0.7}
-		100% {width:70%; height:70%; opacity:1;}*/
-		50% {width:10%; height:10%; opacity:0.6}
-		100% {width:20%; height:20%; opacity:1}
-	}
-
-	@-o-keyframes zoomInPhoto{
-		0% {width:1%; height:1%; opacity:0.3;}
-		/*50% {width:50%; height:50%; opacity:0.7}
-		100% {width:70%; height:70%; opacity:1;}*/
-		50% {width:10%; height:10%; opacity:0.6}
-		100% {width:20%; height:20%; opacity:1}
-	}
-	/*enlever :hover pour que ça se fasse automatiquement*/
-	.logo{
-		animation: zoomInPhoto 4s 1 linear;
-		-moz-animation: zoomInPhoto 4s 1 linear;
-		-webkit-animation: zoomInPhoto 4s 1 linear;
-		-o-animation: zoomInPhoto 4s 1 linear;
-		width:20%;
-		height:20%;
-		opacity:1;
-		cursor:pointer;
-
-	}
-
-	@-webkit-keyframes effetsTexte {
-		from { opacity:0.1; color: #000;}
-	    50%  { opacity:0.5; color: #888;}
-	    to   { opacity:1.0; color: #fff;}
-	}
-	@-moz-keyframes effetsTexte {
-		from { opacity:0.1; color: #000;}
-	    50%  { opacity:0.5; color: #888;}
-	    to   { opacity:1.0; color: #fff;}
-	}
-	@-ms-keyframes effetsTexte {
-		from { opacity:0.1; color: #000;}
-	    50%  { opacity:0.5; color: #888;}
-	    to   { opacity:1.0; color: #fff;}
-	}
-	@-o-keyframes effetsTexte {
-		from { opacity:0.1; color: #000;}
-	    50%  { opacity:0.5; color: #888;}
-	    to   { opacity:1.0; color: #fff;}
-	}
-	@keyframes effetsTexte {
-		from { opacity:0.1; color: #000;}
-	    50%  { opacity:0.5; color: #888;}
-	    to   { opacity:1.0; color: #fff;}
-	}
-	p.titre {
-		/*font-size: 2em;*/
-		font-size: 40px;
-		font-weight: bold;
-		color: #000;
-		opacity:0.1;
-	}
-	p.titre {
-		-webkit-animation: effetsTexte 4s linear 0.5s;
-		-moz-animation: effetsTexte 4s linear 0.5s;
-		-ms-animation: effetsTexte 4s linear 0.5s;
-		-o-animation: effetsTexte 4s linear 0.5s;
-		animation: effetsTexte 4s linear 0.5s;
-		-webkit-animation-fill-mode: forwards;
-        -moz-animation-fill-mode: forwards;
-        -ms-animation-fill-mode: forwards;
-        -o-animation-fill-mode: forwards;
-        animation-fill-mode: forwards;
-
-	}
-
-	p.info {
-		font-size: 30px;
-		font-weight: normal;
-	}
-	p.info {
-		-webkit-animation: effetsTexte 1s linear 4s;
-		-moz-animation: effetsTexte 1s linear 4s;
-		-ms-animation: effetsTexte 1s linear 4s;
-		-o-animation: effetsTexte 1s linear 4s;
-		animation: effetsTexte 1s linear 4s;
-		-webkit-animation-fill-mode: forwards;
-        -moz-animation-fill-mode: forwards;
-        -ms-animation-fill-mode: forwards;
-        -o-animation-fill-mode: forwards;
-        animation-fill-mode: forwards;
-
-	}
-
-	a {
-		text-decoration: none;
-		color: #fff;
-		font-size: 18px;
-	}
-	</style>-->
-
 </head>
 <body>
 
@@ -179,10 +31,34 @@ valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
 
 <div class="anim">
 <p class="titre">Site officiel de l'Association Sportive de Saint-Julien-lès-Metz</p>
-<img class="logo" src="images/logo.svg" alt="" onerror="this.removeAttribute('onerror'); this.src='images/logo.png'" onclick="document.location='ActionAccueil.php'" />
+<img class="logo" src="images/ASSJLMVERT.png" alt="" onerror="this.removeAttribute('onerror'); this.src='images/ASSJLMBLANC.png'" onclick="document.location='ActionAccueil.php'" />
 <p class="info">Cliquez sur l'image pour accéder au site</p>
 </div>
 
+<script>
+(function(w,d,s,i,n){w[n]=w[n]||{q:[],init:function(o){w[n].initOpts=o;},ready:function(c){w[n].q.push(c);}};
+setTimeout(function(j,k){if(!d.getElementById(i)){k=d.getElementsByTagName(s)[0];j=d.createElement(s);j.id=i;
+j.src="https://cdn.by.wonderpush.com/sdk/1.1/wonderpush-loader.min.js";k.parentNode.insertBefore(j,k);}},0);
+}(window,document,"script","wonderpush-jssdk-loader","WonderPush"));
+
+WonderPush.init({
+    webKey: "75693edf678f57c0e05bcfa5eb80c65a1888c7ff7977f99eec1a7461b97237aa",
+    optInOptions: {
+        // Vous pouvez modifier ou traduire les chaînes suivantes :
+        externalBoxMessage: "Nous aimerions vous envoyer des notifications",
+        externalBoxExampleTitle: "Notification exemple",
+        externalBoxExampleMessage: "Ceci est un exemple de notification",
+        externalBoxDisclaimer: "Vous pouvez vous désinscrire à n'importe quel moment.",
+        externalBoxProcessingMessage: "Inscription en cours...",
+        externalBoxSuccessMessage: "Merci de vous être inscrit !",
+        externalBoxFailureMessage: "Désolé, un problème est survenu.",
+        externalBoxTooLongHint: "Mauvaise connexion ou navigation privée ?",
+        externalBoxCloseHint: "Fermer",
+        modalBoxMessage: "Recevez désormais nos news en temps réel.<br/>Vous pouvez vous désinscrire à n'importe quel moment.",
+        modalBoxButton: "J'ai compris !"
+    }
+});
+</script>
 </body>
 </html>
 <?php

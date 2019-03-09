@@ -1,20 +1,20 @@
 <?php
-					$dir_nom = 'images/installation/'; // dossier listé (pour lister le répertoir courant : $dir_nom = '.'  --> ('point')
-					$dir = opendir($dir_nom) or die('Erreur de listage : le répertoire n\'existe pas'); // on ouvre le contenu du dossier courant
-					$fichier= array(); // on déclare le tableau contenant le nom des fichiers
-					$dossier= array(); // on déclare le tableau contenant le nom des dossiers
-					
-					while($element = readdir($dir)) {
-						if($element != '.' && $element != '..') {
-							if (!is_dir($dir_nom.'/'.$element)) {
-								$fichier[] = $element;
-							} else {
-								$dossier[] = $element;
-							}
-						}
-					}
-					
-					closedir($dir);
+	$dir_nom = 'images/installation/'; // dossier listé (pour lister le répertoir courant : $dir_nom = '.'  --> ('point')
+	$dir = opendir($dir_nom) or die('Erreur de listage : le répertoire n\'existe pas'); // on ouvre le contenu du dossier courant
+	$fichier= array(); // on déclare le tableau contenant le nom des fichiers
+	$dossier= array(); // on déclare le tableau contenant le nom des dossiers
+	
+	while($element = readdir($dir)) {
+		if($element != '.' && $element != '..') {
+			if (!is_dir($dir_nom.'/'.$element)) {
+				$fichier[] = $element;
+			} else {
+				$dossier[] = $element;
+			}
+		}
+	}
+	
+	closedir($dir);
 ?>
 
 <link rel="stylesheet" href="css/blueimp-gallery.css">
@@ -33,65 +33,45 @@
 	});
 </script>
 
-<div id="main">
-	<div class="shell">
-		<div class="cl">&nbsp;</div>
-		<div id="sidebar">
-			<!-- vide -->
-			<?php
-/*					if(!empty($dossier)) {
-						sort($dossier); // pour le tri croissant, rsort() pour le tri décroissant
-						//echo "Liste des dossiers accessibles dans '$dir_nom' : \n\n";
-						echo "\t\t<ul>\n";
-							foreach($dossier as $lien){
-								echo "\t\t\t<li><img src=\"images/tri_plus48.png\" style=\"width:20px;height:20px;vertical-align: middle;margin-right: 4px;\" /><a href=\"$dir_nom/$lien \">$lien</a></li>\n";
-							}
-						echo "\t\t</ul>";
+<div id="content mx-auto">
+	<!-- The Gallery as lightbox dialog, should be a child element of the document body -->
+	<div id="blueimp-gallery" class="blueimp-gallery">
+	    <div class="slides"></div>
+	    <h3 class="title"></h3>
+	    <a class="prev">‹</a>
+	    <a class="next">›</a>
+	    <a class="close">×</a>
+	    <a class="play-pause"></a>
+	    <ol class="indicator"></ol>
+	</div>
+	
+	<div id="links">
+		<div class="py-5 text-center bg-light">
+		    <div class="container">
+		      <div class="row">
+		        <div class="col-md-12">
+		          <h6 class="mb-4 text-dark">Cliquez sur une photo pour agrandir</h6>
+		        </div>
+		      </div>
+		      <div class="row">
+		      <?php
+				if(!empty($fichier)){
+					sort($fichier);// pour le tri croissant, rsort() pour le tri décroissant
+					foreach($fichier as $lien) {
+						?>
+						<div class="col-md-3 col-6 p-1">
+						<?php 
+						//echo "<a href=\"$dir_nom/$lien\" title=\"1\"><img src=\"$dir_nom/$lien\" alt=\"1\" style=\"width: 120px; height: 120px;\"></a> ";
+						echo "<a href=\"$dir_nom/$lien\" title=\"$lien\"><img src=\"$dir_nom/$lien\" title=\"$lien\" class=\"d-block img-fluid\" ></a>";
+						?>
+						</div>
+						<?php 
 					}
-	*/		?>
-			
-			Cliquez sur une photo pour agrandir
-		</div>
-
-		<div id="content">
-			<div class="cl">&nbsp;</div>
-			<!-- The Gallery as lightbox dialog, should be a child element of the document body -->
-			<div id="blueimp-gallery" class="blueimp-gallery">
-			    <div class="slides"></div>
-			    <h3 class="title"></h3>
-			    <a class="prev">‹</a>
-			    <a class="next">›</a>
-			    <a class="close">×</a>
-			    <a class="play-pause"></a>
-			    <ol class="indicator"></ol>
-			</div>
-			
-			<div id="links">
-				<!-- parcourir le répertoire images/installation -->
-				<?php
-			/*		if(!empty($dossier)) {
-						sort($dossier); // pour le tri croissant, rsort() pour le tri décroissant
-						//echo "Liste des dossiers accessibles dans '$dir_nom' : \n\n";
-						//echo "\t\t<ul>\n";
-							foreach($dossier as $lien){
-								//echo "\t\t\t<li><a href=\"$dir_nom/$lien \">$lien</a></li>\n";
-								//echo "<a href=\"$dir_nom/$lien\" title=\"1\"><img src=\"images/dossier.png\" alt=\"1\" style=\"width: 120px; height: 120px;\">$lien</a>";
-								
-								echo "<a href=\"\" style=\"background: url(images/dossier.png) no-repeat 0 0; width: 120px; height: 120px;\">$lien</a>";
-							}
-						//echo "\t\t</ul>";
-					}
-			*/		
-					if(!empty($fichier)){
-						sort($fichier);// pour le tri croissant, rsort() pour le tri décroissant
-						foreach($fichier as $lien) {
-							echo "<a href=\"$dir_nom/$lien\" title=\"1\"><img src=\"$dir_nom/$lien\" alt=\"1\" style=\"width: 120px; height: 120px;\"></a> ";
-						}
-					 }
-					?>
-			</div>
-			<div class="cl">&nbsp;</div>
-		</div>
-		<div class="cl">&nbsp;</div>
+				 }
+			  ?>
+		      </div>
+		      
+		    </div>
+		  </div>
 	</div>
 </div>

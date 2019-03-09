@@ -14,6 +14,83 @@ $listeEvenements = array();
 	<link rel="stylesheet" href="css/slick.css" type="text/css" media="all"/>
 	<link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css" media="all"/>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+	<!-- <link rel="stylesheet" href="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-beta.1.css" type="text/css">-->
+	<link rel="stylesheet" href="css/bootstrap4.css" type="text/css">
+	
+	
+</head>
+<body class="w-75 mx-auto bg-light">
+	<!-- Header -->
+	<?php
+	  //include("head.php");
+	?>
+	<!-- End Header -->
+
+	<!-- Navigation Haut-->
+	<?php
+	  include("menuHaut.php");
+	?>
+	<!-- End Navigation -->
+	
+	<!-- Header -->
+	<?php
+	  include("head.php");
+	?>
+
+<?php
+try {
+	session_start();
+	if (isset($_SESSION['listeEvenements']))
+		$listeEvenements = $_SESSION['listeEvenements'];
+} catch (PDOException $error) { //Le catch est chargé d’intercepter une éventuelle erreur
+	echo "N° : ".$error->getCode()."<br />";
+	die ("Erreur : ".$error->getMessage()."<br />");
+}
+?>
+
+	<div class="py-5">
+	    <div class="container">
+	    <!-- On boucle 6 fois -->
+	    <?php
+		    if (!empty($listeEvenements))
+	        {
+	          foreach($listeEvenements as $evenement)
+	          {
+		      	echo "<div class=\"row mb-5\">";
+		      	echo "<div class=\"col-md-9 align-self-center\">";
+		      	echo "<h2 class=\"\">";echo $evenement->getTitre();echo "</h2>";
+		      	echo "<p class=\"\">";echo $evenement->getTexte();echo "</p>";
+		      	//echo "<a href=\"".$sponsor->getURL()."\" target=\"_blank\">";echo $sponsor->getURL();echo "</a>";
+		      	echo "</div>";
+		      	echo "<div class=\"col-md-3 align-self-center\">";
+		      	echo "<img class=\"img-fluid d-block w-75\" src=\"".$evenement->getPhoto()."\">";
+		      	echo "</div>";
+		      	echo "</div>";
+			  }
+	        }
+			?>	      
+	    </div>
+	</div>
+
+	<!-- Bandeau sponsors -->
+	<?php
+	//include("bandeau_sponsors.php");
+	?>
+	<!-- End bandeau sponsors -->
+
+	<!-- Footer -->
+	<?php
+	  include("footer.php");
+	?>
+	<!-- End Footer -->
+	<div id="dialogPhoto" style="display: none;">
+		<div class="popup-featured-side" style="text-align: center;">
+			<div class="popup-featured-side-item">
+	    		<a class="left" href="#"><img id="imageArticlePopup" style="width: 100%; height: 100%;" alt="" src=""></img></a>
+			</div>
+		</div>
+	</div>
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -52,125 +129,9 @@ $listeEvenements = array();
 	  		});
 		});
 	</script>
-</head>
-<body>
-	<!-- Header -->
-	<?php
-	  include("head.php");
-	?>
-	<!-- End Header -->
-
-	<!-- Navigation Haut-->
-	<?php
-	  include("menuHaut.php");
-	?>
-	<!-- End Navigation -->
-<?php
-try {
-	session_start();
-	if (isset($_SESSION['listeEvenements']))
-		$listeEvenements = $_SESSION['listeEvenements'];
-} catch (PDOException $error) { //Le catch est chargé d’intercepter une éventuelle erreur
-	echo "N° : ".$error->getCode()."<br />";
-	die ("Erreur : ".$error->getMessage()."<br />");
-}
-?>
-	<!-- Heading -->
-	<div id="heading">
-		<div class="shell">
-			<div id="heading-cnt">
-
-				<!-- Sub nav -->
-				<div id="side-nav">
-					<ul>
-						<?php
-							
-						    if (!empty($listeEvenements)) {
-							foreach($listeEvenements as $evenement) {
-								echo "<li class=\"entete\" id=\"".$evenement->getId()."\"><div class=\"link\"><a href=\"#\" id=\"\">".$evenement->getTitre()."</a></div></li>";
-								echo "<input type=\"hidden\" name=\"photo_".$evenement->getId()."\" id=\"photo_".$evenement->getId()."\" value=\"".$evenement->getPhoto()."\"/>";
-								echo "<input type=\"hidden\" name=\"texte_".$evenement->getId()."\" id=\"texte_".$evenement->getId()."\" value=\"".$evenement->getTexte()."\"/>";
-								echo "<input type=\"hidden\" name=\"document_".$evenement->getId()."\" id=\"document_".$evenement->getId()."\" value=\"document/".$evenement->getDocument()."\"/>";
-								
-							}
-						}?>
-					</ul>
-				</div>
-				<!-- End Sub nav -->
-
-				<!-- Widget -->
-				<div id="heading-box">
-					<div id="heading-box-cnt">
-					<?php if (!empty($listeEvenements)) {
-					}?>
-						<div class="cl">&nbsp;</div>
-						<div class="featured-main-evt" id="detailPhoto">
-							<img id="detailPhoto" src="<?php echo $listeEvenements[0]->getPhoto();?>" width="219px" height="310px" style="text-align: center;"/>
-						</div>
-						<div class="featured-side-evt" id="detailTexte"><?php echo $listeEvenements[0]->getTexte();?></div>
-						<div class="featured-side-evt"><span style="text-decoration: underline; cursor: pointer;"><a id="detailDocument" href="document/<?php echo $listeEvenements[0]->getDocument();?>" target="new"><?php echo $listeEvenements[0]->getDocument();?></a></span>.</div>
-					</div>
-				</div>
-				<!-- End Widget -->
-
-			</div>
-		</div>
-	</div>
-	<!-- End Heading -->
-
-	<!-- Main -->
-	<div id="main">
-		<div class="shell">
-			<div id="sidebar">
-
-			</div>
-			<div id="content">
-				<!-- 
-				<div class="featured-main-bas-evt" id="galeriePhoto">
-					<div class="cl">&nbsp;</div>
-					<div class="evenement"><img class="vignette" id="" src="images/evenement/1/vignette/coupes.jpg" width="100%" height="100%"/></div>
-					<div class="evenement"><img class="vignette" id="" src="images/evenement/1/vignette/coupes2.jpg" width="100%" height="100%"/></div>
-					<div class="evenement"><img class="vignette" id="" src="images/evenement/1/vignette/coupes3.jpg" width="100%" height="100%"/></div>
-					<div class="evenement"><img class="vignette" id="" src="images/evenement/1/vignette/apmu13.jpg" width="100%" height="100%"/></div>
-					<div class="evenement"><img class="vignette" id="" src="images/evenement/1/vignette/assjCartier.jpg" width="100%" height="100%"/></div>
-					<div class="evenement"><img class="vignette" id="" src="images/evenement/1/vignette/assjChoplin.jpg" width="100%" height="100%"/></div>
-					<div class="evenement"><img class="vignette" id="" src="images/evenement/1/vignette/buvetteExt.jpg" width="100%" height="100%"/></div>
-					<div class="evenement"><img class="vignette" id="" src="images/evenement/1/vignette/cartierChoplin.jpg" width="100%" height="100%"/></div>
-					<div class="evenement"><img class="vignette" id="" src="images/evenement/1/vignette/chalonschampagne.jpg" width="100%" height="100%"/></div>
-					<div class="evenement"><img class="vignette" id="" src="images/evenement/1/vignette/choplin.jpg" width="100%" height="100%"/></div>
-					<div class="evenement"><img class="vignette" id="" src="images/evenement/1/vignette/escaudain.jpg" width="100%" height="100%"/></div>
-					<div class="evenement"><img class="vignette" id="" src="images/evenement/1/vignette/etzellaEttelbruck.jpg" width="100%" height="100%"/></div>
-					<div class="evenement"><img class="vignette" id="" src="images/evenement/1/vignette/forbachu11.jpg" width="100%" height="100%"/></div>
-					<div class="evenement"><img class="vignette" id="" src="images/evenement/1/vignette/jarvilleu11.jpg" width="100%" height="100%"/></div>
-					<div class="evenement"><img class="vignette" id="" src="images/evenement/1/vignette/templiersCartier.jpg" width="100%" height="100%"/></div>
-					<div class="evenement"><img class="vignette" id="" src="images/evenement/1/vignette/villerssemeuse.jpg" width="100%" height="100%"/></div>
-					<div class="cl">&nbsp;</div>
-				</div>-->
-				 
-			</div>
-		</div>
-	</div>
-	<!-- End Main -->
-
-	<!-- Bandeau sponsors -->
-	<?php
-	include("bandeau_sponsors.php");
-	?>
-	<!-- End bandeau sponsors -->
-
-	<!-- Footer -->
-	<?php
-	  include("footer.php");
-	?>
-	<!-- End Footer -->
-	<div id="dialogPhoto" style="display: none;">
-		<div class="popup-featured-side" style="text-align: center;">
-			<div class="popup-featured-side-item">
-	    		<a class="left" href="#"><img id="imageArticlePopup" style="width: 100%; height: 100%;" alt="" src=""></img></a>
-			</div>
-		</div>
-	</div>
-	
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 	
 	<script type="text/javascript" src="js/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="js/jquery/jquery-ui.min.js" ></script>

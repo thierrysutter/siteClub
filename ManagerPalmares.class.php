@@ -46,7 +46,7 @@ class ManagerPalmares
 
 	$palmares = array();
 
-    $q = $this->_db->query("SELECT id, annee, texte FROM palmares ORDER BY annee asc");
+    $q = $this->_db->query("SELECT id, annee, texte FROM palmares ORDER BY annee desc");
     //$q->execute();
 
     while ($donnees = $q->fetch(PDO::FETCH_ASSOC))

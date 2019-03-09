@@ -51,6 +51,13 @@ class ManagerArticle
   	}
 
   }
+  
+  public function ajouterArticleSansPhoto($titre, $texte, $login) {
+  	//echo "Ajout d'un nouveau article<br>";
+  	// Préparation de la requête d'insertion.
+  	$sql = "INSERT INTO article (TITRE, TEXTE, STATUT, DATE_PARUTION, AUTEUR, DERNIERE_MAJ) VALUES ('".$titre."', '".$texte."', '1', now(), '".strtoupper($login)."', now())";
+  	$q = $this->_db->query($sql);
+  }
 
   public function count()
   {

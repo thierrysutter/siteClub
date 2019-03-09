@@ -17,15 +17,12 @@ try {
 
 	$connexionBdd = new Connexion($db_host, $db_login, $db_password, $db_name);
 
-
-
     if (isset($_SESSION['listeCategories'])) {
         $listeCategories = $_SESSION['listeCategories'];
     } else {
         $managerCategorie = new ManagerCategorie($connexionBdd->getPDO());
         $_SESSION['listeCategories'] = $managerCategorie->getList();
     }
-
 	
 	$categorie = -1;
 	$equipe = -1;
@@ -33,31 +30,39 @@ try {
 	$fin = "";
 	$lieu = "";
 	if (isset($_POST['methode'])) {
-		if (isset($_POST['debut'])) {
+		if (isset($_POST['debut']) && $_POST['debut'] != "") {
 			$debut = $_POST['debut'];
 		} else {
 			$debut = trouver_date(date('W'), date('Y'), 1);
 		}
+		list($jour,$mois,$annee) = explode("/",substr($debut,0,10));
+		$debut = $annee."-".$mois."-".$jour;
 		
-		if (isset($_POST['fin'])) {
+		if (isset($_POST['fin']) && $_POST['fin'] != "") {
 			$fin = $_POST['fin'];
 		} else {
 			$fin = trouver_date(date('W'), date('Y'), 7);
 		}
+		list($jour,$mois,$annee) = explode("/",substr($fin,0,10));
+		$fin = $annee."-".$mois."-".$jour;
 		
 		$categorie = $_POST['categorie'];
 		$equipe = $_POST['equipe'];
 		$lieu = $_POST[lieu];
 	} else {
 		$debut = trouver_date(date('W'), date('Y'), 1);
+		list($jour,$mois,$annee) = explode("/",substr($debut,0,10));
+		$debut = $annee."-".$mois."-".$jour;
 		$fin = trouver_date(date('W'), date('Y'), 7);
+		list($jour,$mois,$annee) = explode("/",substr($fin,0,10));
+		$fin = $annee."-".$mois."-".$jour;
 	}
 	
-	list($jour,$mois,$annee) = explode("/",substr($debut,0,10));
-	$debut = $annee."-".$mois."-".$jour;
+	/*list($jour,$mois,$annee) = explode("/",substr($debut,0,10));
+	$debut = $annee."-".$mois."-".$jour;*/
 	
-	list($jour,$mois,$annee) = explode("/",substr($fin,0,10));
-	$fin = $annee."-".$mois."-".$jour;
+	/*list($jour,$mois,$annee) = explode("/",substr($fin,0,10));
+	$fin = $annee."-".$mois."-".$jour;*/
 	
 	// liste des équipes
 	$managerEquipe = new ManagerEquipe($connexionBdd->getPDO());
@@ -65,6 +70,11 @@ try {
 	
 	$listeEquipes = null;
 	$listeRencontres = null;
+	
+	echo "catégorie = ".$categorie."<br><br>";
+	echo "équipe = ".$equipe."<br><br>";
+	echo "début = ".$debut."<br><br>";
+	echo "fin = ".$fin."<br><br>";
 	
 	if ($categorie > 0) {
 		if ($equipe > 0) {
@@ -81,10 +91,10 @@ try {
 	
 	list($annee,$mois,$jour) = explode("-",substr($debut,0,10));
 	$debut = $jour."/".$mois."/".$annee;
-	
+
 	list($annee,$mois,$jour) = explode("-",substr($fin,0,10));
 	$fin = $jour."/".$mois."/".$annee;
-
+		
 	$_SESSION['debut'] = $debut;
 	$_SESSION['fin'] = $fin;
 	$_SESSION['categorieSelectionnee'] = $categorie;
