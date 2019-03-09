@@ -2004,8 +2004,9 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
     order: 12; } }
 
 .img-fluid {
-  max-width: 100%;
-  height: auto; }
+  /*max-width: 100%;*/
+  max-height: 150px; 
+}
 
 .img-thumbnail {
   padding: 0.25rem;
