@@ -1,0 +1,53 @@
+# Pour faire parser les fichiers .php par PHP5
+AddType application/x-httpd-php5 .php
+
+# Pour faire parser les fichiers .php3 par PHP5
+AddType application/x-httpd-php5 .php3
+
+AddType video/ogg  .ogv
+AddType video/mp4  .mp4
+AddType video/webm .webm
+
+<filesMatch ".(jpg|jpeg|png|gif|ico|txt|css|js)$">
+Header set Cache-Control "max-age=2592000, public"
+</filesMatch>
+
+<IfModule mod_rewrite.c>
+	#Options +FollowSymlinks
+	#RewriteEngine on
+	
+	#RewriteCond %{REQUEST_FILENAME}/maintenance/maintenance.enable -f
+	#RewriteRule .* /www/maintenance/maintenance.php [L]
+
+### RewriteCond /recette/maintenance/maintenance.php -f
+### RewriteCond /recette/maintenance/maintenance.enable -f
+
+### RewriteCond %{REQUEST_URI} !/maintenance.php$
+### RewriteCond %{REQUEST_URI} !^/static/.*$
+### RewriteCond %{REQUEST_URI} !^/media/.*$
+### RewriteRule .* maintenance/maintenance.php [R=302,L]
+
+### RewriteCond /maintenance/teaser.php -f
+### RewriteCond /maintenance/teaser.enable -f
+
+### RewriteCond %{REQUEST_URI} !/teaser.php$
+### RewriteCond %{REQUEST_URI} !^/static/.*$
+### RewriteCond %{REQUEST_URI} !^/media/.*$
+### RewriteRule .* /maintenance/teaser.php [R=302,L]
+ 
+</IfModule> 
+
+###ErrorDocument 403 /www/erreur/403.php
+###ErrorDocument 404 /www/erreur/404.php
+###ErrorDocument 500 /www/erreur/500.php
+###ErrorDocument 503 /www/erreur/503.php
+
+### DirectoryIndex index.php index.html /maintenance/maintenance.php
+
+### <IfModule mod_headers.c>
+###   <FilesMatch "\.(js|css|xml|gz|html|php)$">
+###     Header append Vary: Accept-Encoding
+###   </FilesMatch>
+### </IfModule>
+
+### SetOutputFilter DEFLATE
