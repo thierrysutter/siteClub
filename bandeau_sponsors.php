@@ -15,80 +15,72 @@ try {
 
 if (!empty($listeSponsors)) {
 ?>
-	<div class="py-5 bg-dark">
-	    <div class="container-fluid">
-	      <div class="row">
-	        <div class="col-md-12">
-	          <h1 class="text-center mb-5 text-white">Nos partenaires</h1>
-	          <div class="row ">
-		      <?php for ($i=6; $i<12; $i++) { 
-		      	$sponsor = $listeSponsors[$i];
+	<link rel="stylesheet" type="text/css" href="css/slick.css"/>
+
+	<div class="py-2 bg-dark ">
+		<div class="container-fluid">
+			<div class="row">
+		        <div class="col-md-12">
+		      		<h2 class="text-center mb-5 text-white">Nos partenaires</h2>
+		      	</div>
+	      	</div>
+			<div class="row carouselSlick">
+			  <?php foreach($listeSponsors as $sponsor) { 
 		      ?>
-		        <div class="p-5 col-md-4 col-6 text-center">
-		          <a href="<?php echo $sponsor->getURL(); ?>" target="_blank">
-		            <img src="images/sponsor/vignette/<?php echo $sponsor->getVignette(); ?>" class="img-fluid" style="text-align: center; max-width: 450px; max-height: 150px;" > </a>
-		            </div>
+		      <div class="col-xs-12 col-sm-12 col-md-6" style="margin:0 0 0 200px;">
+			      <a href="<?php echo $sponsor->getURL(); ?>" target="_blank">
+			      	<img class="img-fluid" src="images/sponsor/vignette/<?php echo $sponsor->getVignette(); ?>" style="background-color: white; ">
+			      </a>
+		      </div>
 		      <?php } ?>
-			    </div>
+				
 			</div>
 		</div>
-		</div>
 	</div>
-
-	<?php /*<div class="py-5 bg-dark">
-		<div class="container-fluid text-center ">
-		    <h2 class="text-center mb-5 text-white">Nos partenaires</h2>
-		    <div class="row mx-auto my-auto">
-		        <div id="recipeCarousel" class="carousel slide " data-ride="carousel">
-		            <div class="carousel-inner" role="listbox">
-		            <?php 
-		            $i=0;
-		            	foreach($listeSponsors as $sponsor)	{
-		            	?>
-		            	<div class="carousel-item <?php echo $i==0 ? 'active' : '';?>">
-		                    <img class="d-block col-4 img-fluid" src="images/sponsor/vignette/<?php echo $sponsor->getVignette(); ?>" style="flex: 0 !important;">
-		                </div>
-		            <?php
-		            $i++;
-		            } ?> 
-		            </div>
-		            <a class="carousel-control-prev" href="#recipeCarousel" role="button" data-slide="prev">
-		                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-		                <span class="sr-only">Précédent</span>
-		            </a>
-		            <a class="carousel-control-next" href="#recipeCarousel" role="button" data-slide="next">
-		                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-		                <span class="sr-only">Suivant</span>
-		            </a>
-		        </div>
-		    </div>
-		</div>
-	</div>
-	*/?>
 	
+	<script type="text/javascript" src="js/slick.min.js"></script>
 	<script>
-	$('#recipeCarousel').carousel({
-		  interval: 2500
-		})
-
-		$('.carousel .carousel-item').each(function(){
-		    var next = $(this).next();
-		    if (!next.length) {
-		    next = $(this).siblings(':first');
-		    }
-		    next.children(':first-child').clone().appendTo($(this));
-		    
-		    for (var i=0;i<4;i++) {
-		        next=next.next();
-		        if (!next.length) {
-		        	next = $(this).siblings(':first');
-		      	}
-		        
-		        next.children(':first-child').clone().appendTo($(this));
-		      }
+		$(document).ready(function(){
+		  $('.carouselSlick').slick({
+			  arrows: false,
+	          //centerMode: true,
+			  //centerPadding: '40px',
+			  variableWidth: true,
+			  infinite: true,
+			  slidesToShow: 2,
+			  slidesToScroll: 1,
+			  autoplay: true,
+			  autoplaySpeed: 3000,
+			  responsive: [
+			    {
+			      breakpoint: 1024,
+			      settings: {
+			    	  slidesToShow: 2,
+			          slidesToScroll: 1,
+			          infinite: true,
+			          //dots: true
+			      }
+			    },
+			    {
+			      breakpoint: 768,
+			      settings: {
+				      slidesToShow: 1,
+			          slidesToScroll: 1
+			      }
+			    },
+			    {
+			      breakpoint: 480,
+			      settings: {
+				      slidesToShow: 1,
+			          slidesToScroll: 1
+			      }
+			    }
+			    // You can unslick at a given breakpoint now by adding:
+			    // settings: "unslick"
+			    // instead of a settings object
+			  ]
+		  });
 		});
-
-	
 	</script>
 
 <?php } ?>
