@@ -7,7 +7,7 @@ $listeSponsors = array();
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta charset="iso-8859-15" />
-	<meta name="keywords" content="mots-clés" />
+	<meta name="keywords" content="mots-cls" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
 	<title>AS SAINT JULIEN LES METZ</title>
@@ -121,8 +121,8 @@ try {
 	if (isset($_SESSION['listeSponsors']))
 		$listeSponsors = $_SESSION['listeSponsors'];
 
-} catch (PDOException $error) { //Le catch est chargé dintercepter une éventuelle erreur
-	echo "N° : ".$error->getCode()."<br />";
+} catch (PDOException $error) { //Le catch est charg dintercepter une ventuelle erreur
+	echo "N : ".$error->getCode()."<br />";
 	die ("Erreur : ".$error->getMessage()."<br />");
 }
 ?>
@@ -155,16 +155,16 @@ try {
 					<input type="hidden" id="messageSponsor_<?php echo $sponsor->getId(); ?>" name="messageSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getMessage(); ?>" />
 					<input type="hidden" id="logoSponsor_<?php echo $sponsor->getId(); ?>" name="logoSponsor_<?php echo $sponsor->getId(); ?>" value="<?php echo $sponsor->getVignette(); ?>" />
 					
-					<div class="col-md-4 my-3">
+					<div class="col-md-6 my-3">
 		              <div class="row mb-3">
-		                <div class="text-center col-5">
+		                <div class="text-center col-12">
 		                  <i class="d-block mx-auto fa fa-3x">
 		                  	<img id="c_img" class="img-fluid d-block pi-draggable" src="images/sponsor/moyen/<?php echo $sponsor->getVignette(); ?>" draggable="true"/>
 		                  </i>
 		                </div>
-		                <div class="align-self-center col-7">
+		                <!--<div class="align-self-center col-12">
 		                  <h5 class=""><b><?php echo $sponsor->getNom(); ?></b></h5>
-		                </div>
+		                </div>-->
 		              </div>
 		              <p>
 		              <?php

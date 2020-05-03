@@ -53,9 +53,9 @@
 	        	$("#texteArticlePopup").html("");
 			  	// Load demo images from flickr:
 			    $.ajax({
-			        type: "POST", // methode de transmission des données au fichier php
+			        type: "POST", // methode de transmission des donnï¿½es au fichier php
 				   	url: "AfficherPopupArticle2.php", // url du fichier php
-				   	data: {id : $(this).attr("id").split('_')[1], mode : "popup"}, // données à transmettre
+				   	data: {id : $(this).attr("id").split('_')[1], mode : "popup"}, // donnï¿½es ï¿½ transmettre
 				   	dataType: 'json' // JSON
 			    }).success(function (result) {
 			    	$('.single-item').slick('removeSlide', 0, 999, true);
@@ -83,11 +83,11 @@
 
 			$(".cr").click(function(){
 				$.ajax({ // fonction permettant de faire de l'ajax
-				   type: "POST", // methode de transmission des données au fichier php
+				   type: "POST", // methode de transmission des donnï¿½es au fichier php
 				   url: "AfficherPopupCompteRendu.php", // url du fichier php
-				   data: {id : $(this).prop('id').split('_')[1], mode : "popup"}, // données à transmettre
+				   data: {id : $(this).prop('id').split('_')[1], mode : "popup"}, // donnï¿½es ï¿½ transmettre
 				   dataType: 'json', // JSON
-				   success: function(compteRendu){ // si l'appel a bien fonctionné
+				   success: function(compteRendu){ // si l'appel a bien fonctionnï¿½
 					   //$("#imageArticlePopup").prop("src", "images/article/"+article.photo);
 					   $("#texteCompteRenduPopup").html(compteRendu.texte);
 
@@ -105,7 +105,7 @@
 
 				   },
 				   error: function(){
-					   // on affiche un message d'erreur dans le span prévu à cet effet
+					   // on affiche un message d'erreur dans le span prï¿½vu ï¿½ cet effet
 
 				   }
 				});
@@ -169,6 +169,37 @@
 		$user = $_SESSION['user'];
 	}
 	?>
+
+	<div class="py-5 bg-light text-center">
+	    <div class="container">
+	    
+	      
+	      <div class="row">
+	        <div class="col-12">
+				<div id="ytplayer"></div>
+
+				<script>
+				// Load the IFrame Player API code asynchronously.
+				var tag = document.createElement('script');
+				tag.src = "https://www.youtube.com/player_api";
+				var firstScriptTag = document.getElementsByTagName('script')[0];
+				firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+				// Replace the 'ytplayer' element with an <iframe> and
+				// YouTube player after the API code downloads.
+				var player;
+				function onYouTubePlayerAPIReady() {
+					player = new YT.Player('ytplayer', {
+						height: '360',
+						width: '640',
+						videoId: '5z1AndtkkRo',
+					});
+				}
+				</script>
+			</div>
+		  </div>
+		</div>
+	</div>
 	
 	<div class="text-center text-white opaque-overlay bg-dark py-0">
 	    <div class="container">
@@ -303,7 +334,7 @@ j.src="https://cdn.by.wonderpush.com/sdk/1.1/wonderpush-loader.min.js";k.parentN
 WonderPush.init({
     webKey: "75693edf678f57c0e05bcfa5eb80c65a1888c7ff7977f99eec1a7461b97237aa",
     optInOptions: {
-        // Vous pouvez modifier ou traduire les chaînes suivantes :
+        // Vous pouvez modifier ou traduire les chaines suivantes :
         externalBoxMessage: "Nous aimerions vous envoyer des notifications",
         externalBoxExampleTitle: "Notification exemple",
         externalBoxExampleMessage: "Ceci est un exemple de notification",
