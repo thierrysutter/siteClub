@@ -1,13 +1,13 @@
 <?php 
 
 function chargerClasse($classe) {
-	require $classe . '.class.php'; // On inclut la classe correspondante au paramËtre passÈ.
+	require $classe . '.class.php'; // On inclut la classe correspondante au paramÔøΩtre passÔøΩ.
 }
 
-spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelÈe dËs qu'on instanciera une classe non dÈclarÈe.
+spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelÔøΩe dÔøΩs qu'on instanciera une classe non dÔøΩclarÔøΩe.
 
 $logger = new Logger('logs/');
-$logger->log('info', 'infos', "EntrÈe dans ActionContact.php", Logger::GRAN_MONTH);
+$logger->log('info', 'infos', "Entr√©e dans ActionContact.php", Logger::GRAN_MONTH);
 
 ob_start();
 session_start();
