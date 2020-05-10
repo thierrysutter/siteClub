@@ -29,27 +29,24 @@
 	    
 		tarteaucitron.init({
 			"hashtag": "#tarteaucitron", /* Ouverture automatique du panel avec le hashtag */
-			"highPrivacy": false, /* désactiver le consentement implicite (en naviguant) ? */
-			"orientation": "top", /* le bandeau doit être en haut (top) ou en bas (bottom) ? */
-			"adblocker": false, /* Afficher un message si un adblocker est détecté */
-			"showAlertSmall": true, /* afficher le petit bandeau en bas à droite ? */
-			"cookieslist": true, /* Afficher la liste des cookies installés ? */
+			"highPrivacy": false, /* dï¿½sactiver le consentement implicite (en naviguant) ? */
+			"orientation": "top", /* le bandeau doit ï¿½tre en haut (top) ou en bas (bottom) ? */
+			"adblocker": false, /* Afficher un message si un adblocker est dï¿½tectï¿½ */
+			"showAlertSmall": true, /* afficher le petit bandeau en bas ï¿½ droite ? */
+			"cookieslist": true, /* Afficher la liste des cookies installï¿½s ? */
 			"removeCredit": false /* supprimer le lien vers la source ? */
 		});
 	</script>
 
-<div class="text-center gradient-overlay w-100 py-1 h-25 my-5 " style="background-image: url(&quot;https://img4.hostingpics.net/pics/270625heading.jpg&quot;);">
+<div class="text-center gradient-overlay w-100 py-1 h-25 my-5 d-none d-xl-block" style=" background-image: url(&quot;https://img4.hostingpics.net/pics/270625heading.jpg&quot;);">
     <div class="container py-3">
-      <div class="row">
+      <div class="row ">
       	<div class="col-md-1">
           <img alt="" src="images/ASSJLMBLANC.png" style="width: 180px; height: 180px; padding: 10px;"/>
         </div>
         <div class="col-md-11 text-white">
           <h1 class="display-3 mb-1 py-5 ">AS Saint Julien Les Metz</h1>
         </div>
-      	<!-- <div class="col-md-1 ">
-          <img alt="" src="images/ASSJLMVERT.png" style="width: 180px; height: 180px; padding: 10px;"/>
-        </div> -->
       </div>
     </div>
 </div>
