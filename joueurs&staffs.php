@@ -26,7 +26,7 @@ $categorie = 9; // senior
 	<meta http-equiv="Cache-Control" content="max-age=600" />
 	<meta http-equiv="Expires" content="Thu, 31 Dec 2015 23:59:59 GMT" />
 	<meta name=viewport content="width=device-width, initial-scale=1">
-	<meta name="keywords" content="mots-clÃ©s" />
+	<meta name="keywords" content="mots-clés" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
 	<title>AS SAINT JULIEN LES METZ</title>
@@ -154,7 +154,7 @@ try {
 	if (isset($_SESSION['listeProchainC']))
 		$listeProchainC = $_SESSION['listeProchainC'];
 	
-} catch (PDOException $error) { //Le catch est chargÃ© d'intercepter une Ã©ventuelle erreur
+} catch (PDOException $error) { //Le catch est chargé d'intercepter une éventuelle erreur
 	echo "NÂ° : ".$error->getCode()."<br />";
 	die ("Erreur : ".$error->getMessage()."<br />");
 }
@@ -178,7 +178,7 @@ try {
 	              			<a data-toggle="pill" href="#equipeD" class="nav-link" role="tab"><i class="fa "></i>&nbsp;Equipe D</a>
 	            		</li>
 	            		<li class="nav-item">
-	              			<a data-toggle="pill" href="#equipeFem" class="nav-link" role="tab"><i class="fa "></i>&nbsp;Equipe FÃ©minines</a>
+	              			<a data-toggle="pill" href="#equipeFem" class="nav-link" role="tab"><i class="fa "></i>&nbsp;Equipe Féminines</a>
 	            		</li>
 	          		</ul>
 	        	</div>
@@ -190,7 +190,7 @@ try {
 				    		<div class="my-4">
 					    		<div class="container">
 					      			<div class="row text-center my-3">
-					      				<div class="col-md-12"><h3>RÃ©gionale 2 - Groupe </h3></div>
+					      				<div class="col-md-12"><h3>Régionale 2 - Groupe </h3></div>
 					      			</div>
 					      			<div class="row">
 						        		<div class="col-md-6">
@@ -221,7 +221,7 @@ try {
 				    		<div class="my-4">
 					    		<div class="container">
 					      			<div class="row text-center my-3">
-					      				<div class="col-md-12"><h3>DeuxiÃ¨me division - Groupe </h3></div>
+					      				<div class="col-md-12"><h3>Deuxième division - Groupe </h3></div>
 					      			</div>
 					      			<div class="row ">
 					        			<div class="col-md-6 ">
@@ -252,7 +252,7 @@ try {
 							<div class="my-4">
 								<div class="container">
 									<div class="row text-center my-3">
-										<div class="col-md-12"><h3>TroisiÃ¨me division - Groupe </h3></div>
+										<div class="col-md-12"><h3>Troisième division - Groupe </h3></div>
 									</div>
 									<div class="row">
 										<div class="col-md-6">
@@ -283,7 +283,7 @@ try {
 							<div class="my-4">
 								<div class="container">
 									<div class="row text-center my-3">
-										<div class="col-md-12"><h3>QuatriÃ¨me division - Groupe </h3></div>
+										<div class="col-md-12"><h3>Quatrième division - Groupe </h3></div>
 									</div>
 									<div class="row">
 										<div class="col-md-6">
@@ -386,7 +386,7 @@ try {
 
 					<div id="defenseurs" class="effectif featured-main-bas-item">
 						<div class="cl">&nbsp;</div>
-						<h4><a href="#">DÃ©fenseurs</a></h4>
+						<h4><a href="#">Défenseurs</a></h4>
 
 						<?php
 
