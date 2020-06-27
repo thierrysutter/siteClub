@@ -6,7 +6,7 @@ $listeEvenements = array();
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta charset="ISO-8859-1">
-	<meta name="keywords" content="mots-clés" />
+	<meta name="keywords" content="mots-clï¿½s" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
 	<title>AS SAINT JULIEN LES METZ</title>
@@ -43,8 +43,8 @@ try {
 	session_start();
 	if (isset($_SESSION['listeEvenements']))
 		$listeEvenements = $_SESSION['listeEvenements'];
-} catch (PDOException $error) { //Le catch est chargé d’intercepter une éventuelle erreur
-	echo "N° : ".$error->getCode()."<br />";
+} catch (PDOException $error) { //Le catch est chargï¿½ dï¿½intercepter une ï¿½ventuelle erreur
+	echo "Nï¿½ : ".$error->getCode()."<br />";
 	die ("Erreur : ".$error->getMessage()."<br />");
 }
 ?>
@@ -68,7 +68,15 @@ try {
 		      	echo "</div>";
 		      	echo "</div>";
 			  }
-	        }
+			}
+			else
+			{
+				echo "<div class=\"row mb-5\">";
+				  echo "<div class=\"col-md-9 align-self-center\">";
+				  echo "<h2 class=\"\">Aucun evenement</h2>";
+				  echo "</div>";
+		      	echo "</div>";
+			}
 			?>	      
 	    </div>
 	</div>

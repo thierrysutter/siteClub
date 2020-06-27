@@ -26,7 +26,7 @@ $categorie = 9; // senior
 	<meta http-equiv="Cache-Control" content="max-age=600" />
 	<meta http-equiv="Expires" content="Thu, 31 Dec 2015 23:59:59 GMT" />
 	<meta name=viewport content="width=device-width, initial-scale=1">
-	<meta name="keywords" content="mots-clés" />
+	<meta name="keywords" content="mots-clÃ©s" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
 	<title>AS SAINT JULIEN LES METZ</title>
@@ -154,141 +154,168 @@ try {
 	if (isset($_SESSION['listeProchainC']))
 		$listeProchainC = $_SESSION['listeProchainC'];
 	
-} catch (PDOException $error) { //Le catch est chargé d’intercepter une éventuelle erreur
-	echo "N° : ".$error->getCode()."<br />";
+} catch (PDOException $error) { //Le catch est chargÃ© d'intercepter une Ã©ventuelle erreur
+	echo "NÂ° : ".$error->getCode()."<br />";
 	die ("Erreur : ".$error->getMessage()."<br />");
 }
 ?>
 
 	<div class="py-0">
 	    <div class="container">
-	      <div class="row mx-auto">
-	        <div class="col-md-12 ">
-	          <ul class="nav nav-pills nav-justified" role="tablist">
-	            <li class="nav-item">
-	              <a data-toggle="pill" href="#equipeA" class="active nav-link" role="tab"> <i class="fa "></i>&nbsp;Equipe A</a>
-	            </li>
-	            <li class="nav-item">
-	              <a data-toggle="pill" href="#equipeB" class="nav-link" role="tab"><i class="fa "></i>&nbsp;Equipe B</a>
-	            </li>
-	            <li class="nav-item">
-	              <a data-toggle="pill" href="#equipeC" class="nav-link" role="tab"><i class="fa "></i>&nbsp;Equipe C</a>
-	            </li>
-	          </ul>
-	        </div>
-	      </div>
-	      <div class="row mx-auto">
-		      <div class="col-md-12 ">
-				<div class="tab-content">
-				  <div id="equipeA" class="tab-pane fade show active" role="tabpanel">
-				    <div class="my-4">
-					    <div class="container">
-					      <div class="row text-center my-3">
-					      	<div class="col-md-12"><h3>Régionale 4 - Groupe A</h3></div>
-					      </div>
-					      <div class="row">
-					        <div class="col-md-6">
-					          <h4 class="text-center">Dernier match</h4>
-					          <p>
-					          	<?php if (!empty($listeDernierA)) {
-					          		foreach ($listeDernierA as $dernier) {
-					          			echo "<p>".date_format(new DateTime($dernier->getJour()), 'd/m/Y').": ".$dernier->getEquipeDom()." - ".$dernier->getEquipeExt()." : ".$dernier->getScoreDom()." - ".$dernier->getScoreExt()."&nbsp;".($dernier->getCompteRendu()!=null && $dernier->getCompteRendu()!="" ? "<img class=\"CR\" id=\"".$dernier->getId()."\" src=\"images/compteRendu16.png\" style=\"vertical-align: middle;\" />" : "")."</p>";
-									}
-								}?>
-									
-								<?php 
-								/*if (!empty($listeProchainA)) {
-									foreach ($listeProchainA as $prochain) {
-										echo "<p>".date_format(new DateTime($prochain->getJour()), 'd/m/Y').": ".$prochain->getEquipeDom()." - ".$prochain->getEquipeExt()."</p>";
-									}
-								}*/
-								?>
-							  </p>
-					        </div>
-					        <div class="col-md-6">
-					          <h4 class="text-center">Prochain match</h4>
-					          <p><?php if (!empty($listeProchainA)) {
-										foreach ($listeProchainA as $prochain) {
-											echo "<p>".date_format(new DateTime($prochain->getJour()), 'd/m/Y').": ".$prochain->getEquipeDom()." - ".$prochain->getEquipeExt()."</p>";
-										}
-									}?></p>
-					        </div>
-					      </div>
-					    </div>
-					  </div>
-				  </div>
-				  <div id="equipeB" class="tab-pane fade" role="tabpanel">
-				    <div class="my-4">
-					    <div class="container">
-					      <div class="row text-center my-3">
-					      	<div class="col-md-12"><h3>Deuxième division - Groupe D</h3></div>
-					      </div>
-					      <div class="row ">
-					        <div class="col-md-6 ">
-					          <h4 class="text-center">Dernier match</h4>
-					          <p><?php if (!empty($listeDernierB)) {
-										foreach ($listeDernierB as $dernier) {
-											echo "<p>".date_format(new DateTime($dernier->getJour()), 'd/m/Y').": ".$dernier->getEquipeDom()." - ".$dernier->getEquipeExt()." : ".$dernier->getScoreDom()." - ".$dernier->getScoreExt()."&nbsp;".($dernier->getCompteRendu()!=null && $dernier->getCompteRendu()!="" ? "<img class=\"CR\" id=\"".$dernier->getId()."\" src=\"images/compteRendu16.png\" style=\"vertical-align: middle;\" />" : "")."</p>";
-										}
-									}?></p>
-					        </div>
-					        <div class="col-md-6">
-					          <h4 class="text-center">Prochain match</h4>
-					          <p><?php if (!empty($listeProchainB)) {
-										foreach ($listeProchainB as $prochain) {
-											echo "<p>".date_format(new DateTime($prochain->getJour()), 'd/m/Y').": ".$prochain->getEquipeDom()." - ".$prochain->getEquipeExt()." </p>";
-										}
-									}?></p>
-					        </div>
-					      </div>
-					      <!--<div class="row">
-					        <div class="col-md-3">
-					          <img class="img-fluid d-block mb-4 w-100 img-thumbnail" src="images/dessin.png"> </div>
-					        <div class="col-md-9">
-					          <h3 class="text-primary pt-3">Deuxième division - Groupe D</h3>
-					          <p><?php if (!empty($listeEquipes)) {
-										foreach ($listeEquipes as $equipe) {
-											echo "<p style=\"cursor: pointer;\" onclick=\"window.open('".$equipe->getLienClassement()."','_new')\">".$equipe->getLibelle()."</p>";
-										}
-									}?>
-							  </p>
-					        </div>
-					      </div>-->
-					    </div>
-					  </div>
-				  </div>
-				  <div id="equipeC" class="tab-pane fade" role="tabpanel">
-				  	<div class="my-4">
-					    <div class="container">
-					      <div class="row text-center my-3">
-					      	<div class="col-md-12"><h3>Troisième division - Groupe I</h3></div>
-					      </div>
-					      <div class="row">
-					        <div class="col-md-6">
-					          <h4 class="text-center">Dernier match</h4>
-					          <p><?php if (!empty($listeDernierC)) {
-										foreach ($listeDernierC as $dernier) {
-											echo "<p>".date_format(new DateTime($dernier->getJour()), 'd/m/Y').": ".$dernier->getEquipeDom()." - ".$dernier->getEquipeExt()." : ".$dernier->getScoreDom()." - ".$dernier->getScoreExt()."&nbsp;".($dernier->getCompteRendu()!=null && $dernier->getCompteRendu()!="" ? "<img class=\"CR\" id=\"".$dernier->getId()."\" src=\"images/compteRendu16.png\" style=\"vertical-align: middle;\" />" : "")."</p>";
-										}
-									}?></p>
-					        </div>
-					        <div class="col-md-6">
-					          <h4 class="text-center">Prochain match</h4>
-					          <p><?php if (!empty($listeProchainC)) {
-										foreach ($listeProchainC as $prochain) {
-											echo "<p>".date_format(new DateTime($prochain->getJour()), 'd/m/Y').": ".$prochain->getEquipeDom()." - ".$prochain->getEquipeExt()." </p>";
-										}
-									}?></p>
-					        </div>
-					      </div>
-					    </div>
-					  </div>
-				  </div>
+	      	<div class="row mx-auto">
+	        	<div class="col-md-12 ">
+	          		<ul class="nav nav-pills nav-justified" role="tablist">
+	            		<li class="nav-item">
+	              			<a data-toggle="pill" href="#equipeA" class="active nav-link" role="tab"> <i class="fa "></i>&nbsp;Equipe A</a>
+	            		</li>
+	            		<li class="nav-item">
+	              			<a data-toggle="pill" href="#equipeB" class="nav-link" role="tab"><i class="fa "></i>&nbsp;Equipe B</a>
+	            		</li>
+	            		<li class="nav-item">
+	              			<a data-toggle="pill" href="#equipeC" class="nav-link" role="tab"><i class="fa "></i>&nbsp;Equipe C</a>
+	            		</li>
+	            		<li class="nav-item">
+	              			<a data-toggle="pill" href="#equipeD" class="nav-link" role="tab"><i class="fa "></i>&nbsp;Equipe D</a>
+	            		</li>
+	            		<li class="nav-item">
+	              			<a data-toggle="pill" href="#equipeFem" class="nav-link" role="tab"><i class="fa "></i>&nbsp;Equipe FÃ©minines</a>
+	            		</li>
+	          		</ul>
+	        	</div>
+	      	</div>
+	      	<div class="row mx-auto">
+		      	<div class="col-md-12 ">
+					<div class="tab-content">
+				  		<div id="equipeA" class="tab-pane fade show active" role="tabpanel">
+				    		<div class="my-4">
+					    		<div class="container">
+					      			<div class="row text-center my-3">
+					      				<div class="col-md-12"><h3>RÃ©gionale 2 - Groupe </h3></div>
+					      			</div>
+					      			<div class="row">
+						        		<div class="col-md-6">
+					          				<h4 class="text-center">Dernier match</h4>
+					          				<p>
+												<?php if (!empty($listeDernierA)) {
+												foreach ($listeDernierA as $dernier) {
+												echo "<p>".date_format(new DateTime($dernier->getJour()), 'd/m/Y').": ".$dernier->getEquipeDom()." - ".$dernier->getEquipeExt()." : ".$dernier->getScoreDom()." - ".$dernier->getScoreExt()."&nbsp;".($dernier->getCompteRendu()!=null && $dernier->getCompteRendu()!="" ? "<img class=\"CR\" id=\"".$dernier->getId()."\" src=\"images/compteRendu16.png\" style=\"vertical-align: middle;\" />" : "")."</p>";
+												}
+												}?>
+							  				</p>
+					        			</div>
+					        			<div class="col-md-6">
+					          				<h4 class="text-center">Prochain match</h4>
+					          				<p>
+											  	<?php if (!empty($listeProchainA)) {
+												foreach ($listeProchainA as $prochain) {
+												echo "<p>".date_format(new DateTime($prochain->getJour()), 'd/m/Y').": ".$prochain->getEquipeDom()." - ".$prochain->getEquipeExt()."</p>";
+												}
+												}?>
+											</p>
+					        			</div>
+					      			</div>
+					    		</div>
+					  		</div>
+				  		</div>
+				  		<div id="equipeB" class="tab-pane fade" role="tabpanel">
+				    		<div class="my-4">
+					    		<div class="container">
+					      			<div class="row text-center my-3">
+					      				<div class="col-md-12"><h3>DeuxiÃ¨me division - Groupe </h3></div>
+					      			</div>
+					      			<div class="row ">
+					        			<div class="col-md-6 ">
+					          				<h4 class="text-center">Dernier match</h4>
+					          				<p>
+											  	<?php if (!empty($listeDernierB)) {
+												foreach ($listeDernierB as $dernier) {
+												echo "<p>".date_format(new DateTime($dernier->getJour()), 'd/m/Y').": ".$dernier->getEquipeDom()." - ".$dernier->getEquipeExt()." : ".$dernier->getScoreDom()." - ".$dernier->getScoreExt()."&nbsp;".($dernier->getCompteRendu()!=null && $dernier->getCompteRendu()!="" ? "<img class=\"CR\" id=\"".$dernier->getId()."\" src=\"images/compteRendu16.png\" style=\"vertical-align: middle;\" />" : "")."</p>";
+												}
+												}?>
+											</p>
+					        			</div>
+					        			<div class="col-md-6">
+					          				<h4 class="text-center">Prochain match</h4>
+					          				<p>
+												<?php if (!empty($listeProchainB)) {
+												foreach ($listeProchainB as $prochain) {
+												echo "<p>".date_format(new DateTime($prochain->getJour()), 'd/m/Y').": ".$prochain->getEquipeDom()." - ".$prochain->getEquipeExt()." </p>";
+												}
+												}?>
+											</p>
+					        			</div>
+					      			</div>
+					    		</div>
+					  		</div>
+				  		</div>
+						<div id="equipeC" class="tab-pane fade" role="tabpanel">
+							<div class="my-4">
+								<div class="container">
+									<div class="row text-center my-3">
+										<div class="col-md-12"><h3>TroisiÃ¨me division - Groupe </h3></div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<h4 class="text-center">Dernier match</h4>
+											<p>
+												<?php if (!empty($listeDernierC)) {
+												foreach ($listeDernierC as $dernier) {
+													echo "<p>".date_format(new DateTime($dernier->getJour()), 'd/m/Y').": ".$dernier->getEquipeDom()." - ".$dernier->getEquipeExt()." : ".$dernier->getScoreDom()." - ".$dernier->getScoreExt()."&nbsp;".($dernier->getCompteRendu()!=null && $dernier->getCompteRendu()!="" ? "<img class=\"CR\" id=\"".$dernier->getId()."\" src=\"images/compteRendu16.png\" style=\"vertical-align: middle;\" />" : "")."</p>";
+												}
+												}?>
+											</p>
+										</div>
+										<div class="col-md-6">
+											<h4 class="text-center">Prochain match</h4>
+											<p>
+												<?php if (!empty($listeProchainC)) {
+												foreach ($listeProchainC as $prochain) {
+													echo "<p>".date_format(new DateTime($prochain->getJour()), 'd/m/Y').": ".$prochain->getEquipeDom()." - ".$prochain->getEquipeExt()." </p>";
+												}
+												}?>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="equipeD" class="tab-pane fade" role="tabpanel">
+							<div class="my-4">
+								<div class="container">
+									<div class="row text-center my-3">
+										<div class="col-md-12"><h3>QuatriÃ¨me division - Groupe </h3></div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<h4 class="text-center">Dernier match</h4>
+											<p>
+												<?php if (!empty($listeDernierD)) {
+												foreach ($listeDernierD as $dernier) {
+													echo "<p>".date_format(new DateTime($dernier->getJour()), 'd/m/Y').": ".$dernier->getEquipeDom()." - ".$dernier->getEquipeExt()." : ".$dernier->getScoreDom()." - ".$dernier->getScoreExt()."&nbsp;".($dernier->getCompteRendu()!=null && $dernier->getCompteRendu()!="" ? "<img class=\"CR\" id=\"".$dernier->getId()."\" src=\"images/compteRendu16.png\" style=\"vertical-align: middle;\" />" : "")."</p>";
+												}
+												}?>
+											</p>
+										</div>
+										<div class="col-md-6">
+											<h4 class="text-center">Prochain match</h4>
+											<p>
+												<?php if (!empty($listeProchainD)) {
+												foreach ($listeProchainD as $prochain) {
+													echo "<p>".date_format(new DateTime($prochain->getJour()), 'd/m/Y').": ".$prochain->getEquipeDom()." - ".$prochain->getEquipeExt()." </p>";
+												}
+												}?>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-	  		  </div>
-		  </div>
-  		</div>
-  	</div>
+			</div>
+		</div>
+	</div>
+
 
 	<!-- Main 
 	<div id="main">
@@ -359,7 +386,7 @@ try {
 
 					<div id="defenseurs" class="effectif featured-main-bas-item">
 						<div class="cl">&nbsp;</div>
-						<h4><a href="#">Défenseurs</a></h4>
+						<h4><a href="#">DÃ©fenseurs</a></h4>
 
 						<?php
 
