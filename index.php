@@ -27,12 +27,12 @@ if (isset($_SESSION['session_started'])) {
 <body>
 
 <?php include_once("analyticstracking.php"); ?>
-<a href="ActionAccueil.php">AccÃ©der directement au site</a>
+<a href="ActionAccueil.php">Accéder directement au site</a>
 
 <div class="anim">
-<p class="titre">Site officiel de l'Association Sportive de Saint-Julien-lÃ¨s-Metz</p>
+<p class="titre">Site officiel de l'Association Sportive de Saint-Julien-lès-Metz</p>
 <img class="logo" src="images/ASSJLMVERT.png" style="background-color: white;" alt="" onerror="this.removeAttribute('onerror'); this.src='images/ASSJLMBLANC.png'" onclick="document.location='ActionAccueil.php'" />
-<p class="info">Cliquez sur l'image pour accÃ©der au site</p>
+<p class="info">Cliquez sur l'image pour accéder au site</p>
 </div>
 </body>
 </html>
