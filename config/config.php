@@ -5,17 +5,18 @@
 
 
 /* PROD */
+/*
  $db_host="tsutter.assaintjulienlesmetz.com"; //Adresse du serveur
  $db_login="tsutter"; //Login sur la bdd
  $db_password="lxyr4kb5"; //Mot de passe de la bdd
  $db_name="tsutter"; //Nom de la bdd � utiliser
- 
-/* TEST local 
+ */
+/* TEST local */
 $db_host="localhost"; // Host name
 $db_login="root"; // Mysql username
 $db_password=""; // Mysql password
 $db_name="tsutter"; // Database name
-*/
+
 //Administration:
 $adm_login=""; //Votre login administrateur
 $adm_pass=""; //Votre mot de passe administrateur

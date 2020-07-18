@@ -19,7 +19,7 @@ $cat = null;
 	<meta http-equiv="Cache-Control" content="max-age=600" />
 	<meta http-equiv="Expires" content="Thu, 31 Dec 2015 23:59:59 GMT" />
 	<meta name=viewport content="width=device-width, initial-scale=1">
-	<meta name="keywords" content="mots-clés" />
+	<meta name="keywords" content="mots-clï¿½s" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
 	<title>AS SAINT JULIEN LES METZ</title>
@@ -43,43 +43,17 @@ $cat = null;
 		$(document).ready(function(){
 
 			$idCategorie = $("#categorie").val(); 
-			$("#lienU7").removeClass("active");
-			$("#lienU9").removeClass("active");
-			$("#lienU11").removeClass("active");
+			
 			$("#lienU13").removeClass("active");
 			$("#lienU15").removeClass("active");
 			$("#lienU17").removeClass("active");
-			if ($idCategorie == 1)
-				$("#lienU7").addClass("active");
-			else if ($idCategorie == 2)
-				$("#lienU9").addClass("active");
-			else if ($idCategorie == 3)
-				$("#lienU11").addClass("active");
-			else if ($idCategorie == 4)
+			if ($idCategorie == 4)
 				$("#lienU13").addClass("active");
 			else if ($idCategorie == 5)
 				$("#lienU15").addClass("active");
 			else if ($idCategorie == 6)
 				$("#lienU17").addClass("active");
 			
-			$("#lienU7").click(function(e) {
-				$("#categorie").val(1);
-				$("#form1").submit();
-				return false;
-			});
-
-			$("#lienU9").click(function(e) {
-				$("#categorie").val(2);
-				$("#form1").submit();
-				return false;
-			});
-
-			$("#lienU11").click(function(e) {
-				$("#categorie").val(3);
-				$("#form1").submit();
-				return false;
-			});
-
 			$("#lienU13").click(function(e) {
 				$("#categorie").val(4);
 				$("#form1").submit();
@@ -175,8 +149,8 @@ try {
 	if (isset($_SESSION['listeAttaquants']))
 		$listeAttaquants = $_SESSION['listeAttaquants'];*/
 	
-} catch (PDOException $error) { //Le catch est chargé d’intercepter une éventuelle erreur
-	echo "N° : ".$error->getCode()."<br />";
+} catch (PDOException $error) { //Le catch est chargï¿½ dï¿½intercepter une ï¿½ventuelle erreur
+	echo "Nï¿½ : ".$error->getCode()."<br />";
 	die ("Erreur : ".$error->getMessage()."<br />");
 }
 ?>
@@ -186,15 +160,6 @@ try {
 	      <div class="row mx-auto">
 	        <div class="col-md-12 ">
 	          <ul class="nav nav-pills nav-justified" role="tablist">
-	            <li class="nav-item">
-	              <a data-toggle="pill" href="#u7" class="active nav-link" role="tab"> <i class="fa fa-bars"></i>&nbsp;U6-U7</a>
-	            </li>
-	            <li class="nav-item">
-	              <a data-toggle="pill" href="#u9" class="nav-link" role="tab"><i class="fa fa-bars"></i>&nbsp;U8-U9</a>
-	            </li>
-	            <li class="nav-item">
-	              <a data-toggle="pill" href="#u11" class="nav-link" role="tab"><i class="fa fa-bars"></i>&nbsp;U10-U11</a>
-	            </li>
 	            <li class="nav-item">
 	              <a data-toggle="pill" href="#u13" class="nav-link" role="tab"><i class="fa fa-bars"></i>&nbsp;U12-U13</a>
 	            </li>
@@ -214,76 +179,6 @@ try {
 		  <div class="row">
   			<div class="col-sm-12">
 				<div class="tab-content">
-				  <div id="u7" class="tab-pane fade show active" role="tabpanel">
-				    <div class="py-5">
-					    <div class="container">
-					      <div class="row">
-					        <div class="col-md-3">
-					          <img class="img-fluid d-block mb-4 w-100 img-thumbnail" src="images/equipe/u6.jpg"> </div>
-					        <div class="col-md-9">
-					          <h3 class="text-primary pt-3">Categorie U6/U7</h3>
-					          <p class="">Joueurs et joueuses né(e)s en 2010 et 2011 </p>
-					          <h5 class="text-primary pt-3">Entrainements </h5>
-					          <p style="font-size: 14px; padding-top: 0px;">
-								Tous les mercredis à 14:30:00 au Stade de Grimont
-							  </p>
-							  <h5 class="text-primary pt-3">Educateurs </h5>
-					          <p style="font-size: 14px; padding-top: 0px;">
-								Cindy THIRION
-							  </p>
-					        </div>
-					      </div>
-					    </div>
-					  </div>
-				  </div>
-				  <div id="u9" class="tab-pane fade" role="tabpanel">
-				    <div class="py-5">
-					    <div class="container">
-					      <div class="row">
-					        <div class="col-md-3">
-					          <img class="img-fluid d-block mb-4 w-100 img-thumbnail" src="images/equipe/u8.jpg"> </div>
-					        <div class="col-md-9">
-					          <h3 class="text-primary pt-3">Categorie U8/U9</h3>
-					          <p class="">Joueurs et joueuses né(e)s en 2008 et 2009 </p>
-					          <h5 class="text-primary pt-3">Entrainements </h5>
-					          <p style="font-size: 14px; padding-top: 0px;">
-								Tous les mercredis à 15:30:00 au Stade de Grimont<br/>
-								Tous les vendredis à 16:30:00 au Stade de Grimont<br/>
-							  </p>
-							  <h5 class="text-primary pt-3">Educateurs </h5>
-					          <p style="font-size: 14px; padding-top: 0px;">
-								Virginie DASILVA<br/>
-								Laurent SUTTER
-							  </p>
-					        </div>
-					      </div>
-					    </div>
-					  </div>
-				  </div>
-				  <div id="u11" class="tab-pane fade" role="tabpanel">
-				  	<div class="py-5">
-					    <div class="container">
-					      <div class="row">
-					        <div class="col-md-3">
-					          <img class="img-fluid d-block mb-4 w-100 img-thumbnail" src="images/article/repriseJeunes2014.jpg"> </div>
-					        <div class="col-md-9">
-					          <h3 class="text-primary pt-3">Categorie U10/U11</h3>
-					          <p class="">Joueurs et joueuses né(e)s en 2006 et 2007 </p>
-					          <h5 class="text-primary pt-3">Entrainements </h5>
-					          <p style="font-size: 14px; padding-top: 0px;">
-								Tous les mercredis à 15:30:00 au Stade de Grimont<br/>
-								Tous les vendredis à 16:30:00 au Stade de Grimont<br/>
-							  </p>
-							  <h5 class="text-primary pt-3">Educateurs </h5>
-					          <p style="font-size: 14px; padding-top: 0px;">
-								Franck DASILVA<br/>
-								Frederic WESOLEK
-							  </p>
-					        </div>
-					      </div>
-					    </div>
-					  </div>
-				  </div>
 				  <div id="u13" class="tab-pane fade" role="tabpanel">
 				    <div class="py-5">
 					    <div class="container">
@@ -292,11 +187,11 @@ try {
 					          <img class="img-fluid d-block mb-4 w-100 img-thumbnail" src="images/equipe/u13.jpg"> </div>
 					        <div class="col-md-9">
 					          <h3 class="text-primary pt-3">Categorie U12/U13</h3>
-					          <p class="">Joueurs et joueuses né(e)s en 2004 et 2005 </p>
+					          <p class="">Joueurs et joueuses nï¿½(e)s en 2004 et 2005 </p>
 					          <h5 class="text-primary pt-3">Entrainements </h5>
 					          <p style="font-size: 14px; padding-top: 0px;">
-								Tous les mercredis à 17:30:00 au Stade de Grimont<br/>
-								Tous les vendredis à 18:00:00 au Stade de Grimont<br/>
+								Tous les mercredis ï¿½ 17:30:00 au Stade de Grimont<br/>
+								Tous les vendredis ï¿½ 18:00:00 au Stade de Grimont<br/>
 							  </p>
 							  <h5 class="text-primary pt-3">Educateurs </h5>
 					          <p style="font-size: 14px; padding-top: 0px;">
@@ -315,11 +210,11 @@ try {
 					          <img class="img-fluid d-block mb-4 w-100 img-thumbnail" src="images/article/repriseJeunes2014.jpg"> </div>
 					        <div class="col-md-9">
 					          <h3 class="text-primary pt-3">Categorie U14/U15</h3>
-					          <p class="">Joueurs et joueuses né(e)s en 2002 et 2003 </p>
+					          <p class="">Joueurs et joueuses nï¿½(e)s en 2002 et 2003 </p>
 					          <h5 class="text-primary pt-3">Entrainements </h5>
 					          <p style="font-size: 14px; padding-top: 0px;">
-								Tous les mercredis à 18:00:00 au Stade de Grimont
-								Tous les vendredis à 18:00:00 au Stade de Grimont
+								Tous les mercredis ï¿½ 18:00:00 au Stade de Grimont
+								Tous les vendredis ï¿½ 18:00:00 au Stade de Grimont
 							  </p>
 							  <h5 class="text-primary pt-3">Educateurs </h5>
 					          <p style="font-size: 14px; padding-top: 0px;">
@@ -339,11 +234,11 @@ try {
 					          <img class="img-fluid d-block mb-4 w-100 img-thumbnail" src="images/article/repriseJeunes2014.jpg"> </div>
 					        <div class="col-md-9">
 					          <h3 class="text-primary pt-3">Categorie U16/U17</h3>
-					          <p class="">Joueurs et joueuses né(e)s en 2000 et 2001 </p>
+					          <p class="">Joueurs et joueuses nï¿½(e)s en 2000 et 2001 </p>
 					          <h5 class="text-primary pt-3">Entrainements </h5>
 					          <p style="font-size: 14px; padding-top: 0px;">
-								Tous les mardis à 18:00:00 au Stade de Grimont
-								Tous les jeudis à 18:30:00 au Stade de Grimont
+								Tous les mardis ï¿½ 18:00:00 au Stade de Grimont
+								Tous les jeudis ï¿½ 18:30:00 au Stade de Grimont
 							  </p>
 							  <h5 class="text-primary pt-3">Educateurs </h5>
 					          <p style="font-size: 14px; padding-top: 0px;">

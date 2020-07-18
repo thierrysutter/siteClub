@@ -2,13 +2,13 @@
 $(document).ready( function () {
 	$("#user").click(function(){
 		$.ajax({ // fonction permettant de faire de l'ajax
-		   type: "POST", // methode de transmission des données au fichier php
+		   type: "POST", // methode de transmission des donnï¿½es au fichier php
 		   url: "Deconnexion.php", // url du fichier php
-		   success: function(msg){ // si l'appel a bien fonctionné
+		   success: function(msg){ // si l'appel a bien fonctionnï¿½
 				document.location = "ActionAccueil.php";
 		   }
 		});
-		return false; // permet de rester sur la même page à la soumission du formulaire
+		return false; // permet de rester sur la mï¿½me page ï¿½ la soumission du formulaire
 	});
 });
 </script>
@@ -17,36 +17,36 @@ $(document).ready( function () {
 
 <?php
 function chargerClasse($classe) {
-	require $classe . '.class.php'; // On inclut la classe correspondante au paramètre passé.
+	require $classe . '.class.php'; // On inclut la classe correspondante au paramï¿½tre passï¿½.
 }
 
-spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelée dès qu'on instanciera une classe non déclarée.
+spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelï¿½e dï¿½s qu'on instanciera une classe non dï¿½clarï¿½e.
 
 $logger = new Logger('logs/');
 
 ob_start();
 
-// récupération des éléments du menu en base
+// rï¿½cupï¿½ration des ï¿½lï¿½ments du menu en base
 require_once("config/config.php");
 
 $listeMenu = array();
 try {
-	// connexion avec la base de données
+	// connexion avec la base de donnï¿½es
 	$connexionBdd = new Connexion($db_host, $db_login, $db_password, $db_name);
 
 	$manager = new ManagerMenu($connexionBdd->getPDO());
 	
 	$listeMenu = $manager->getList();
 
-} catch (PDOException $error) { //Le catch est chargé d’intercepter une éventuelle erreur
-	echo "N° : ".$error->getCode()."<br />";
+} catch (PDOException $error) { //Le catch est chargï¿½ dï¿½intercepter une ï¿½ventuelle erreur
+	echo "Nï¿½ : ".$error->getCode()."<br />";
 	die ("Erreur : ".$error->getMessage()."<br />");
 }
 
 if (!empty($listeMenu)) {
 ?>
 
-<nav class="navbar navbar-expand-md fixed-top w-75 mx-auto navbar-dark bg-dark">
+<nav class="navbar navbar-expand-md fixed-top w-100 mx-auto navbar-dark bg-dark">
     <div class="container-fluid">
       
       <a class="navbar-brand" href="ActionAccueil.php"><img alt="" src="images/ASSJLMBLANC.png" style="width: 50px; height: 50px; padding: 4px;"/></a>
