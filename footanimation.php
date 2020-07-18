@@ -15,7 +15,7 @@ $cat = null;
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta charset="ISO-8859-1">
+	<meta charset="UTF-8">
 	<meta http-equiv="Cache-Control" content="max-age=600" />
 	<meta http-equiv="Expires" content="Thu, 31 Dec 2015 23:59:59 GMT" />
 	<meta name=viewport content="width=device-width, initial-scale=1">
@@ -186,14 +186,14 @@ try {
 					          <img class="img-fluid d-block mb-4 w-100 img-thumbnail" src="images/equipe/u6.jpg"> </div>
 					        <div class="col-md-9">
 					          <h3 class="text-primary pt-3">Categorie U6/U7</h3>
-					          <p class="">Joueurs et joueuses n�(e)s en 2010 et 2011 </p>
+					          <p class="">Joueurs et joueuses né.e.s en 2014 et 2015 </p>
 					          <h5 class="text-primary pt-3">Entrainements </h5>
 					          <p style="font-size: 14px; padding-top: 0px;">
-								Tous les mercredis � 14:30:00 au Stade de Grimont
+								Tous les mercredis à 14:30:00 au Stade de Grimont
 							  </p>
 							  <h5 class="text-primary pt-3">Educateurs </h5>
 					          <p style="font-size: 14px; padding-top: 0px;">
-								Cindy THIRION
+								
 							  </p>
 					        </div>
 					      </div>
@@ -208,16 +208,15 @@ try {
 					          <img class="img-fluid d-block mb-4 w-100 img-thumbnail" src="images/equipe/u8.jpg"> </div>
 					        <div class="col-md-9">
 					          <h3 class="text-primary pt-3">Categorie U8/U9</h3>
-					          <p class="">Joueurs et joueuses n�(e)s en 2008 et 2009 </p>
+					          <p class="">Joueurs et joueuses né.e.s en 2012 et 2013 </p>
 					          <h5 class="text-primary pt-3">Entrainements </h5>
 					          <p style="font-size: 14px; padding-top: 0px;">
-								Tous les mercredis � 15:30:00 au Stade de Grimont<br/>
-								Tous les vendredis � 16:30:00 au Stade de Grimont<br/>
+								Tous les mercredis à 15:30:00 au Stade de Grimont<br/>
+								Tous les vendredis à 16:30:00 au Stade de Grimont<br/>
 							  </p>
 							  <h5 class="text-primary pt-3">Educateurs </h5>
 					          <p style="font-size: 14px; padding-top: 0px;">
-								Virginie DASILVA<br/>
-								Laurent SUTTER
+								
 							  </p>
 					        </div>
 					      </div>
@@ -232,16 +231,15 @@ try {
 					          <img class="img-fluid d-block mb-4 w-100 img-thumbnail" src="images/article/repriseJeunes2014.jpg"> </div>
 					        <div class="col-md-9">
 					          <h3 class="text-primary pt-3">Categorie U10/U11</h3>
-					          <p class="">Joueurs et joueuses n�(e)s en 2006 et 2007 </p>
+					          <p class="">Joueurs et joueuses né.e.s en 2010 et 2011 </p>
 					          <h5 class="text-primary pt-3">Entrainements </h5>
 					          <p style="font-size: 14px; padding-top: 0px;">
-								Tous les mercredis � 15:30:00 au Stade de Grimont<br/>
-								Tous les vendredis � 16:30:00 au Stade de Grimont<br/>
+								Tous les mercredis à 15:30:00 au Stade de Grimont<br/>
+								Tous les vendredis à 16:30:00 au Stade de Grimont<br/>
 							  </p>
 							  <h5 class="text-primary pt-3">Educateurs </h5>
 					          <p style="font-size: 14px; padding-top: 0px;">
-								Franck DASILVA<br/>
-								Frederic WESOLEK
+								
 							  </p>
 					        </div>
 					      </div>
