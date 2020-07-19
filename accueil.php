@@ -3,9 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 
-	<meta charset="ISO-8859-1">
-	<meta http-equiv="Cache-Control" content="max-age=600" />
-	<meta http-equiv="Expires" content="Thu, 31 Dec 2015 23:59:59 GMT" />
+	<meta charset="iso-8859-1">
 	<meta name=viewport content="width=device-width, initial-scale=1">
 	<meta name="keywords" content="football, association, sport, article, moselle, lorraine, metz, france, fff, district, mosellan, saint julien les metz" />
     <meta name="description" content="page d'accueil du site officiel de l'AS Saint Julien Les Metz" />
@@ -207,7 +205,7 @@
 	      <!--<div class="row"><div class="col-md-12"><button onclick="myFacebookLogin()">Login with Facebook</button></div></div>-->
 	      <div class="row">
 	        <div class="col-md-6 p-4 col-12 col-sm-6 col-lg-6 col-xl-6 mx-auto">
-	          <h2 class="my-3">Résultats</h2>
+	          <h2 class="my-3">R&eacute;sultats</h2>
 	          <ul class="text-left">
 	          <?php if (!empty($listeDernier)) { ?>
 				<?php foreach($listeDernier as $dernier) { ?>
@@ -224,7 +222,7 @@
 				    ?>
 				</li>
 				<?php } } else {?>
-				<li class="">Aucuns résultats à afficher</li>
+				<li class="">Aucuns r&eacute;sultats &agrave; afficher</li>
 				<?php } ?>
 	          
 	          </ul>
@@ -247,11 +245,11 @@
 				    ?>
 				</li>
 				<?php } } else {?>
-				<li class="">Aucunes rencontres à afficher</li>
+				<li class="">Aucunes rencontres &agrave; afficher</li>
 				<?php } ?>
 	          </ul>
 	        </div>
-			<div id="wonderpush-subscription-switch" data-sentence="Recevoir nos dernières news par push web : " data-on="OUI" data-off="NON"></div>
+			<!-- <div id="wonderpush-subscription-switch" data-sentence="Recevoir nos derniï¿½res news par push web : " data-on="OUI" data-off="NON"></div> -->
 	      </div>
 	    </div>
 	</div>
@@ -338,13 +336,13 @@ WonderPush.init({
         externalBoxMessage: "Nous aimerions vous envoyer des notifications",
         externalBoxExampleTitle: "Notification exemple",
         externalBoxExampleMessage: "Ceci est un exemple de notification",
-        externalBoxDisclaimer: "Vous pouvez vous désinscrire à n'importe quel moment.",
+        externalBoxDisclaimer: "Vous pouvez vous dï¿½sinscrire ï¿½ n'importe quel moment.",
         externalBoxProcessingMessage: "Inscription en cours...",
-        externalBoxSuccessMessage: "Merci de vous être inscrit !",
-        externalBoxFailureMessage: "Désolé, un problème est survenu.",
-        externalBoxTooLongHint: "Mauvaise connexion ou navigation privée ?",
+        externalBoxSuccessMessage: "Merci de vous ï¿½tre inscrit !",
+        externalBoxFailureMessage: "Dï¿½solï¿½, un problï¿½me est survenu.",
+        externalBoxTooLongHint: "Mauvaise connexion ou navigation privï¿½e ?",
         externalBoxCloseHint: "Fermer",
-        modalBoxMessage: "Recevez désormais nos news en temps réel.<br/>Vous pouvez vous désinscrire à n'importe quel moment.",
+        modalBoxMessage: "Recevez dï¿½sormais nos news en temps rï¿½el.<br/>Vous pouvez vous dï¿½sinscrire ï¿½ n'importe quel moment.",
         modalBoxButton: "J'ai compris !"
     }
 });
