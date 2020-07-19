@@ -10,14 +10,12 @@ $listeMilieux = array();
 $listeAttaquants = array();
 $listeEquipes = array();
 $categorie2 = 4; // u7
-$cat = null;
+$cat2 = null;
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta charset="UTF-8">
-	<meta http-equiv="Cache-Control" content="max-age=600" />
-	<meta http-equiv="Expires" content="Thu, 31 Dec 2021 23:59:59 GMT" />
 	<meta name=viewport content="width=device-width, initial-scale=1">
 	<meta name="keywords" content="mots-clés" />
     <meta name="description" content="description" />

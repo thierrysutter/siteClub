@@ -22,11 +22,9 @@ $categorie = 9; // senior
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta charset="ISO-8859-1">
-	<meta http-equiv="Cache-Control" content="max-age=600" />
-	<meta http-equiv="Expires" content="Thu, 31 Dec 2015 23:59:59 GMT" />
+	<meta charset="UTF-8">
 	<meta name=viewport content="width=device-width, initial-scale=1">
-	<meta name="keywords" content="mots-clés" />
+	<meta name="keywords" content="mots-clï¿½s" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
 	<title>AS SAINT JULIEN LES METZ</title>
@@ -48,6 +46,54 @@ $categorie = 9; // senior
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
+
+			$("#equipeB").removeClass("active");
+			$("#equipeC").removeClass("active");
+			$("#equipeD").removeClass("active");
+			$("#equipeFem").removeClass("active");
+
+			$("#lienEquipeA").click(function(){
+				$("#equipeA").addClass("active");
+				$("#equipeB").removeClass("active");
+				$("#equipeC").removeClass("active");
+				$("#equipeD").removeClass("active");
+				$("#equipeFem").removeClass("active");
+			});
+
+$("#lienEquipeB").click(function(){
+	$("#equipeB").addClass("active");
+	$("#equipeA").removeClass("active");
+	$("#equipeC").removeClass("active");
+	$("#equipeD").removeClass("active");
+	$("#equipeFem").removeClass("active");
+});
+
+$("#lienEquipeC").click(function(){
+	$("#equipeC").addClass("active");
+	$("#equipeB").removeClass("active");
+	$("#equipeA").removeClass("active");
+	$("#equipeD").removeClass("active");
+	$("#equipeFem").removeClass("active");
+});
+
+$("#lienEquipeD").click(function(){
+	$("#equipeD").addClass("active");
+	$("#equipeB").removeClass("active");
+	$("#equipeC").removeClass("active");
+	$("#equipeA").removeClass("active");
+	$("#equipeFem").removeClass("active");
+});
+
+$("#lienEquipeFem").click(function(){
+	$("#equipeFem").addClass("active");
+	$("#equipeB").removeClass("active");
+	$("#equipeC").removeClass("active");
+	$("#equipeD").removeClass("active");
+	$("#equipeA").removeClass("active");
+});
+
+
+
 			$("#lienStaff").removeClass("active");
 			$("#lienEffectif").addClass("active");
 
@@ -58,6 +104,7 @@ $categorie = 9; // senior
 				$(".staff").toggle(true);
 				$(".effectif").toggle(false);
 			});
+
 			$("#lienEffectif").click(function(e) {
 				e.preventDefault();
 				$(".active").removeClass("active");
@@ -101,7 +148,6 @@ $categorie = 9; // senior
 				} else {
 					$("#posteDetail").html("");
 				}
-
 			});
 		});
 	</script>
@@ -138,23 +184,54 @@ try {
 	if (isset($_SESSION['listeAttaquants']))
 		$listeAttaquants = $_SESSION['listeAttaquants'];
 	
+	if (isset($_SESSION['competitionA']))
+		$competitionA = $_SESSION['competitionA'];
+	if (isset($_SESSION['groupeA']))
+		$groupeA = $_SESSION['groupeA'];
 	if (isset($_SESSION['listeDernierA']))
 		$listeDernierA = $_SESSION['listeDernierA'];
 	if (isset($_SESSION['listeProchainA']))
 		$listeProchainA = $_SESSION['listeProchainA'];
 		
+	if (isset($_SESSION['competitionB']))
+		$competitionB = $_SESSION['competitionB'];
+	if (isset($_SESSION['groupeB']))
+		$groupeB = $_SESSION['groupeB'];
 	if (isset($_SESSION['listeDernierB']))
 		$listeDernierB = $_SESSION['listeDernierB'];
 	if (isset($_SESSION['listeProchainB']))
 		$listeProchainB = $_SESSION['listeProchainB'];
 			
 				
+	if (isset($_SESSION['competitionC']))
+		$competitionC = $_SESSION['competitionC'];
+	if (isset($_SESSION['groupeC']))
+		$groupeC = $_SESSION['groupeC'];
 	if (isset($_SESSION['listeDernierC']))
 		$listeDernierC = $_SESSION['listeDernierC'];
 	if (isset($_SESSION['listeProchainC']))
 		$listeProchainC = $_SESSION['listeProchainC'];
 	
-} catch (PDOException $error) { //Le catch est chargé d'intercepter une éventuelle erreur
+				
+	if (isset($_SESSION['competitionD']))
+		$competitionD = $_SESSION['competitionD'];
+	if (isset($_SESSION['groupeD']))
+		$groupeD = $_SESSION['groupeD'];
+	if (isset($_SESSION['listeDernierD']))
+		$listeDernierD = $_SESSION['listeDernierD'];
+	if (isset($_SESSION['listeProchainD']))
+		$listeProchainD = $_SESSION['listeProchainD'];
+
+	if (isset($_SESSION['competitionFem']))
+		$competitionFem = $_SESSION['competitionFem'];
+	if (isset($_SESSION['groupeFem']))
+		$groupeFem = $_SESSION['groupeFem'];
+	if (isset($_SESSION['listeDernierFem']))
+		$listeDernierFem = $_SESSION['listeDernierFem'];
+	if (isset($_SESSION['listeProchainFem']))
+		$listeProchainFem = $_SESSION['listeProchainFem'];
+
+} catch (PDOException $error) { //Le catch est chargï¿½ d'intercepter une ï¿½ventuelle erreur
 	echo "NÂ° : ".$error->getCode()."<br />";
 	die ("Erreur : ".$error->getMessage()."<br />");
 }
@@ -165,20 +242,20 @@ try {
 	      	<div class="row mx-auto">
 	        	<div class="col-md-12 ">
 	          		<ul class="nav nav-pills nav-justified" role="tablist">
-	            		<li class="nav-item">
+	            		<li class="nav-item" id="lienEquipeA">
 	              			<a data-toggle="pill" href="#equipeA" class="active nav-link" role="tab"> <i class="fa "></i>&nbsp;Equipe A</a>
 	            		</li>
-	            		<li class="nav-item">
+	            		<li class="nav-item" id="lienEquipeB">
 	              			<a data-toggle="pill" href="#equipeB" class="nav-link" role="tab"><i class="fa "></i>&nbsp;Equipe B</a>
 	            		</li>
-	            		<li class="nav-item">
+	            		<li class="nav-item" id="lienEquipeC">
 	              			<a data-toggle="pill" href="#equipeC" class="nav-link" role="tab"><i class="fa "></i>&nbsp;Equipe C</a>
 	            		</li>
-	            		<li class="nav-item">
+	            		<li class="nav-item" id="lienEquipeD">
 	              			<a data-toggle="pill" href="#equipeD" class="nav-link" role="tab"><i class="fa "></i>&nbsp;Equipe D</a>
 	            		</li>
-	            		<li class="nav-item">
-	              			<a data-toggle="pill" href="#equipeFem" class="nav-link" role="tab"><i class="fa "></i>&nbsp;Equipe Féminines</a>
+	            		<li class="nav-item" id="lienEquipeFem">
+	              			<a data-toggle="pill" href="#equipeFem" class="nav-link" role="tab"><i class="fa "></i>&nbsp;Equipe FÃ©minines</a>
 	            		</li>
 	          		</ul>
 	        	</div>
@@ -190,8 +267,22 @@ try {
 				    		<div class="my-4">
 					    		<div class="container">
 					      			<div class="row text-center my-3">
-					      				<div class="col-md-12"><h3>Régionale 2 - Groupe </h3></div>
+					      				<div class="col-md-12"><h3><?php echo $competitionA->getLibelle(); ?> </h3></div>
 					      			</div>
+
+									<?php if (!empty($groupeA)) {?>
+									<div class="row">
+										<div class="col-md-12 text-center">
+											<?php
+											foreach ($groupeA as $groupe) {
+											echo "".$groupe->getEquipe()."<br/>";
+											} 
+											?>
+										</div>
+									</div>
+									<br/><br/>
+									<?php } ?>
+
 					      			<div class="row">
 						        		<div class="col-md-6">
 					          				<h4 class="text-center">Dernier match</h4>
@@ -217,12 +308,26 @@ try {
 					    		</div>
 					  		</div>
 				  		</div>
-				  		<div id="equipeB" class="tab-pane fade" role="tabpanel">
+				  		<div id="equipeB" class="tab-pane fade show active" role="tabpanel">
 				    		<div class="my-4">
 					    		<div class="container">
 					      			<div class="row text-center my-3">
-					      				<div class="col-md-12"><h3>Deuxième division - Groupe </h3></div>
+					      				<div class="col-md-12"><h3><?php echo $competitionB->getLibelle(); ?> </h3></div>
 					      			</div>
+
+									<?php if (!empty($groupeB)) {?>
+									<div class="row">
+										<div class="col-md-12 text-center">
+											<?php
+											foreach ($groupeB as $groupe) {
+											echo "".$groupe->getEquipe()."<br/>";
+											} 
+											?>
+										</div>
+									</div>
+									<br/><br/>
+									<?php } ?>
+
 					      			<div class="row ">
 					        			<div class="col-md-6 ">
 					          				<h4 class="text-center">Dernier match</h4>
@@ -248,12 +353,26 @@ try {
 					    		</div>
 					  		</div>
 				  		</div>
-						<div id="equipeC" class="tab-pane fade" role="tabpanel">
+						<div id="equipeC" class="tab-pane fade show active" role="tabpanel">
 							<div class="my-4">
 								<div class="container">
 									<div class="row text-center my-3">
-										<div class="col-md-12"><h3>Troisième division - Groupe </h3></div>
+										<div class="col-md-12"><h3><?php echo $competitionC->getLibelle(); ?> </h3></div>
 									</div>
+
+									<?php if (!empty($groupeC)) {?>
+									<div class="row">
+										<div class="col-md-12 text-center">
+											<?php
+											foreach ($groupeC as $groupe) {
+											echo "".$groupe->getEquipe()."<br/>";
+											} 
+											?>
+										</div>
+									</div>
+									<br/><br/>
+									<?php } ?>
+
 									<div class="row">
 										<div class="col-md-6">
 											<h4 class="text-center">Dernier match</h4>
@@ -279,12 +398,26 @@ try {
 								</div>
 							</div>
 						</div>
-						<div id="equipeD" class="tab-pane fade" role="tabpanel">
+						<div id="equipeD" class="tab-pane fade show active" role="tabpanel">
 							<div class="my-4">
 								<div class="container">
 									<div class="row text-center my-3">
-										<div class="col-md-12"><h3>Quatrième division - Groupe </h3></div>
+										<div class="col-md-12"><h3><?php echo $competitionD->getLibelle(); ?> </h3></div>
 									</div>
+
+									<?php if (!empty($groupeD)) {?>
+									<div class="row">
+										<div class="col-md-12 text-center">
+											<?php
+											foreach ($groupeD as $groupe) {
+											echo "".$groupe->getEquipe()."<br/>";
+											} 
+											?>
+										</div>
+									</div>
+									<br/><br/>
+									<?php } ?>
+
 									<div class="row">
 										<div class="col-md-6">
 											<h4 class="text-center">Dernier match</h4>
@@ -301,6 +434,52 @@ try {
 											<p>
 												<?php if (!empty($listeProchainD)) {
 												foreach ($listeProchainD as $prochain) {
+													echo "<p>".date_format(new DateTime($prochain->getJour()), 'd/m/Y').": ".$prochain->getEquipeDom()." - ".$prochain->getEquipeExt()." </p>";
+												}
+												}?>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div id="equipeFem" class="tab-pane fade show active" role="tabpanel">
+							<div class="my-4">
+								<div class="container">
+									<div class="row text-center my-3">
+										<div class="col-md-12"><h3><?php echo $competitionFem->getLibelle(); ?> </h3></div>
+									</div>
+
+									<?php if (!empty($groupeFem)) {?>
+									<div class="row">
+										<div class="col-md-12 text-center">
+											<?php
+											foreach ($groupeFem as $groupe) {
+											echo "".$groupe->getEquipe()."<br/>";
+											} 
+											?>
+										</div>
+									</div>
+									<br/><br/>
+									<?php } ?>
+
+									<div class="row">
+										<div class="col-md-6">
+											<h4 class="text-center">Dernier match</h4>
+											<p>
+												<?php if (!empty($listeDernierFem)) {
+												foreach ($listeDernierFem as $dernier) {
+													echo "<p>".date_format(new DateTime($dernier->getJour()), 'd/m/Y').": ".$dernier->getEquipeDom()." - ".$dernier->getEquipeExt()." : ".$dernier->getScoreDom()." - ".$dernier->getScoreExt()."&nbsp;".($dernier->getCompteRendu()!=null && $dernier->getCompteRendu()!="" ? "<img class=\"CR\" id=\"".$dernier->getId()."\" src=\"images/compteRendu16.png\" style=\"vertical-align: middle;\" />" : "")."</p>";
+												}
+												}?>
+											</p>
+										</div>
+										<div class="col-md-6">
+											<h4 class="text-center">Prochain match</h4>
+											<p>
+												<?php if (!empty($listeProchainFem)) {
+												foreach ($listeProchainFem as $prochain) {
 													echo "<p>".date_format(new DateTime($prochain->getJour()), 'd/m/Y').": ".$prochain->getEquipeDom()." - ".$prochain->getEquipeExt()." </p>";
 												}
 												}?>
@@ -386,7 +565,7 @@ try {
 
 					<div id="defenseurs" class="effectif featured-main-bas-item">
 						<div class="cl">&nbsp;</div>
-						<h4><a href="#">Défenseurs</a></h4>
+						<h4><a href="#">Dï¿½fenseurs</a></h4>
 
 						<?php
 

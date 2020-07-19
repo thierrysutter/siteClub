@@ -33,16 +33,16 @@ class ManagerCompetition {
   	 */
   	public function add($id, $libelle, $anneeDebut, $anneeFin, $login) {
 		//echo "Ajout d'un nouveau article<br>";
-	    // Préparation de la requête d'insertion.
+	    // Prï¿½paration de la requï¿½te d'insertion.
 	    $q = $this->_db->query("INSERT INTO categorie (ID, LIBELLE, ANNEE_DEBUT, ANNEE_FIN, AUTEUR_MAJ, DERNIERE_MAJ) VALUES ('".$id."','".$libelle."','".$anneeDebut."','".$anneeFin."','".strtoupper($login)."',now())");
 	    // Assignation des valeurs pour le nom du personnage.
 	    /*$q->bindValue(':login', $login);
 		$q->bindValue(':password', $password);
 		$q->bindValue(':email', $email);
-	    // Exécution de la requête.
+	    // Exï¿½cution de la requï¿½te.
 		$q->execute();*/
 
-		// Hydratation du article passé en paramètre avec assignation de son identifiant et des dégâts initiaux (= 0).
+		// Hydratation du article passï¿½ en paramï¿½tre avec assignation de son identifiant et des dï¿½gï¿½ts initiaux (= 0).
 	    /*$article->hydrate(array(
 	      'id' => $this->_db->lastInsertId(),
 	      'degats' => 0,
@@ -61,7 +61,7 @@ class ManagerCompetition {
   	 * @param string $login
   	 */
   	public function ajouterCompetition($libelle, $typeCompetition, $categorie, $division, $saison, $equipe, $actif, $login) {
-  		// Préparation de la requête d'insertion.
+  		// Prï¿½paration de la requï¿½te d'insertion.
   		$sql = "INSERT INTO competition (LIBELLE, TYPE_COMPETITION, CATEGORIE, DIVISION, SAISON, EQUIPE, ACTIF, AUTEUR_MAJ, DERNIERE_MAJ) ";
   		$sql .= "VALUES ('".strtoupper($libelle)."','".$typeCompetition."','".$categorie."','".$division."','".$saison."','".$equipe."','".$actif."','".strtoupper($login)."', now())";
 
@@ -81,7 +81,7 @@ class ManagerCompetition {
   	 * @param string $login
   	 */
   	public function majCompetition($id, $libelle, $typeCompetition, $categorie, $division, $saison, $equipe, $actif, $login) {
-	  	// Préparation de la requête d'insertion.
+	  	// Prï¿½paration de la requï¿½te d'insertion.
 	  	$sql = "UPDATE competition ";
 	  	$sql .= "SET LIBELLE='".strtoupper($libelle)."', ";
 	  	$sql .= "TYPE_COMPETITION='".$typeCompetition."', ";
@@ -102,7 +102,7 @@ class ManagerCompetition {
   	 * @param unknown $idCompetition
   	 */
   	public function supprimerCompetition($idCompetition) {
-	    // Exécute une requête de type DELETE.
+	    // Exï¿½cute une requï¿½te de type DELETE.
 		$this->_db->exec('DELETE FROM competition WHERE id = '.$idCompetition);
   	}
 
@@ -111,7 +111,7 @@ class ManagerCompetition {
   	 * @return string
   	 */
   	public function count() {
-	    // Exécute une requête COUNT() et retourne le nombre de résultats retourné.
+	    // Exï¿½cute une requï¿½te COUNT() et retourne le nombre de rï¿½sultats retournï¿½.
 		return $this->_db->query('SELECT COUNT(*) FROM competition')->fetchColumn();
   	}
 
@@ -121,10 +121,10 @@ class ManagerCompetition {
   	 * @return boolean
   	 */
   	public function exists($libelle) {
-		// Si le paramètre est un string, c'est qu'on a fourni un nom.
+		// Si le paramï¿½tre est un string, c'est qu'on a fourni un nom.
 		if (is_string($libelle)) // On veut voir si tel sponsor ayant pour nom $nom existe.
 	    {
-		  // On exécute alors une requête COUNT() avec une clause WHERE, et on retourne un boolean.
+		  // On exï¿½cute alors une requï¿½te COUNT() avec une clause WHERE, et on retourne un boolean.
 	      return (bool) $this->_db->query("SELECT COUNT(*) FROM competition WHERE libelle like '%".strtoupper($libelle)."%'")->fetchColumn();
 	    }
 	    return false;
@@ -136,10 +136,10 @@ class ManagerCompetition {
   	 * @return BoCompetition|NULL
   	 */
   	public function trouverCompetitionParId($id) {
-	  	// Si le paramètre est un entier, on veut récupérer le sponsor avec son nom.
+	  	// Si le paramï¿½tre est un entier, on veut rï¿½cupï¿½rer le sponsor avec son nom.
 	  	// Sinon on renvoie null
 	  	if ($id > 0) {
-	  		// Exécute une requête de type SELECT avec une clause WHERE, et retourne un objet Sponsor.
+	  		// Exï¿½cute une requï¿½te de type SELECT avec une clause WHERE, et retourne un objet Sponsor.
 
 	  		$sql = "SELECT comp.id, comp.libelle, comp.categorie, comp.division, comp.saison, comp.equipe, ";
 	  		$sql .= "cat.libelle as libelleCategorie, coalesce(divi.libelle, '') as libelleDivision, eq.libelle as libelleEquipe,  ";
@@ -168,10 +168,10 @@ class ManagerCompetition {
   	 * @return BoCompetition
   	 */
   	public function trouverCompetitionParCategorieEtEquipe($categorie, $equipe, $competition) {
-  	// Si le paramètre est un entier, on veut récupérer le sponsor avec son nom.
+  	// Si le paramï¿½tre est un entier, on veut rï¿½cupï¿½rer le sponsor avec son nom.
   	// Sinon on renvoie null
 
-  		// Exécute une requête de type SELECT avec une clause WHERE, et retourne un objet Sponsor.
+  		// Exï¿½cute une requï¿½te de type SELECT avec une clause WHERE, et retourne un objet Sponsor.
 
   		$sql = "SELECT comp.id, comp.libelle, comp.categorie, comp.division, comp.saison, comp.equipe, ";
   		$sql .= "cat.libelle as libelleCategorie, coalesce(divi.libelle, '') as libelleDivision, eq.libelle as libelleEquipe, s.libelle as libelleSaison  ";
@@ -197,7 +197,40 @@ class ManagerCompetition {
   		$competition = new BoCompetition($donnees);
 
   		return $competition;
-  	}
+	  }
+	  
+	  public function trouverCompetitionChampionnatParCategorieEtEquipe($categorie, $equipe, $competition) {
+		// Si le paramï¿½tre est un entier, on veut rï¿½cupï¿½rer le sponsor avec son nom.
+		// Sinon on renvoie null
+  
+			// Exï¿½cute une requï¿½te de type SELECT avec une clause WHERE, et retourne un objet Sponsor.
+  
+			$sql = "SELECT comp.id, comp.libelle, comp.categorie, comp.division, comp.saison, comp.equipe, ";
+			$sql .= "cat.libelle as libelleCategorie, coalesce(divi.libelle, '') as libelleDivision, eq.libelle as libelleEquipe, s.libelle as libelleSaison  ";
+			$sql .= "FROM competition comp ";
+		  $sql .= "INNER JOIN type_competition typComp ON (comp.type_competition=typComp.id) ";
+			$sql .= "INNER JOIN categorie cat ON (comp.categorie=cat.id) ";
+			$sql .= "INNER JOIN saison s ON (comp.saison=s.id and s.etat=1) ";
+			$sql .= "INNER JOIN equipe eq ON (comp.equipe=eq.id) ";
+			$sql .= "LEFT OUTER JOIN division divi ON (comp.division=divi.id) ";
+			$sql .= "WHERE comp.categorie = " . $categorie . " ";
+			$sql .= "AND comp.equipe = ".$equipe." ";
+			$sql .= "AND comp.actif = 1 ";
+			$sql .= "AND comp.division > 0 ";
+			
+			if ($competition!=null && $competition>0) {
+				$sql .= "AND comp.id = '" . $competition . "' ";
+			}
+  
+			$sql .= "ORDER BY comp.categorie, comp.equipe ";
+  
+			$q = $this->_db->query($sql);
+			$donnees = $q->fetch(PDO::FETCH_ASSOC);
+  
+			$competition = new BoCompetition($donnees);
+  
+			return $competition;
+		}
 
   	/**
   	 *
@@ -206,10 +239,10 @@ class ManagerCompetition {
   	 * @return multitype:BoCompetition
   	 */
   	public function trouverListeCompetitionParCategorieEtEquipe($categorie, $equipe) {
-	  	// Si le paramètre est un entier, on veut récupérer le sponsor avec son nom.
+	  	// Si le paramï¿½tre est un entier, on veut rï¿½cupï¿½rer le sponsor avec son nom.
 	  	// Sinon on renvoie null
 
-	  	// Exécute une requête de type SELECT avec une clause WHERE, et retourne un objet Sponsor.
+	  	// Exï¿½cute une requï¿½te de type SELECT avec une clause WHERE, et retourne un objet Sponsor.
 	  	$competitions = array();
 
 	  	$sql = "SELECT comp.id, comp.libelle, comp.categorie, comp.division, comp.saison, comp.equipe, ";
@@ -239,10 +272,10 @@ class ManagerCompetition {
   	 * @return multitype:BoCompetition
   	 */
   	public function trouverCompetitionParCategorie($categorie) {
-	  	// Si le paramètre est un entier, on veut récupérer le sponsor avec son nom.
+	  	// Si le paramï¿½tre est un entier, on veut rï¿½cupï¿½rer le sponsor avec son nom.
 	  	// Sinon on renvoie null
 
-	  	// Exécute une requête de type SELECT avec une clause WHERE, et retourne un objet Sponsor.
+	  	// Exï¿½cute une requï¿½te de type SELECT avec une clause WHERE, et retourne un objet Sponsor.
 	  	$competitions = array();
 
 	  	$sql = "SELECT comp.id, comp.libelle, comp.categorie, comp.division, comp.saison, comp.equipe, ";
@@ -271,7 +304,7 @@ class ManagerCompetition {
   	 */
   	public function getList() {
 	    // Retourne la liste des menus.
-	    // Le résultat sera un tableau d'instances de Sponsor.
+	    // Le rï¿½sultat sera un tableau d'instances de Sponsor.
 
 		$competitions = array();
 

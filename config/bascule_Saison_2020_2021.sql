@@ -24,7 +24,7 @@ INSERT INTO `competition` (`id`, `LIBELLE`, `TYPE_COMPETITION`, `CATEGORIE`, `DI
 (161, 'U13', 11, 4, 30, 7, 4, 1, 'TSUTTER', CURRENT_TIMESTAMP),
 (162, 'U15', 10, 5, 31, 7, 3, 1, 'TSUTTER', CURRENT_TIMESTAMP),
 (163, 'U17', 10, 6, 32, 7, 20, 1, 'TSUTTER', CURRENT_TIMESTAMP),
-(164, 'U18', 46, 11, 33, 7, 27, 1, 'TSUTTER', CURRENT_TIMESTAMP),
+(164, 'U18', 46, 11, 33, 7, 27, 1, 'TSUTTER', CURRENT_TIMESTAMP)
 ;
 
 -- on passe toutes les rencontres de la saison passée au statut "effectué"

@@ -1,13 +1,13 @@
 <?php
 
 function chargerClasse($classe) {
-	require $classe . '.class.php'; // On inclut la classe correspondante au paramètre passé.
+	require $classe . '.class.php'; // On inclut la classe correspondante au paramï¿½tre passï¿½.
 }
 
-spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelée dès qu'on instanciera une classe non déclarée.
+spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelï¿½e dï¿½s qu'on instanciera une classe non dï¿½clarï¿½e.
 
 $logger = new Logger('logs/');
-$logger->log('info', 'infos', "Entrée dans ActionJoueurs.php", Logger::GRAN_MONTH);
+$logger->log('info', 'infos', "Entrï¿½e dans ActionJoueurs.php", Logger::GRAN_MONTH);
 
 ob_start();
 session_start();
@@ -25,8 +25,13 @@ $categorie = 9; // seniors
 $equipeA = 1; // seniors A
 $equipeB = 2; // seniors B
 $equipeC = 19; // seniors C
+
+$equipeD = 26; // seniors C
+$equipeFem = 28; // seniors C
+
+
 try {
-	// connexion avec la base de données
+	// connexion avec la base de donnï¿½es
 	$connexionBdd = new Connexion($db_host, $db_login, $db_password, $db_name);
 
 	$managerEquipe = new ManagerEquipe($connexionBdd->getPDO());
@@ -36,23 +41,62 @@ try {
 	$listeDernier = $managerRencontre->getDernier($categorie);
 	$listeProchain = $managerRencontre->getProchain($categorie);
 	
+	$managerCompetition = new ManagerCompetition($connexionBdd->getPDO());
+	$managerGroupe = new ManagerGroupe($connexionBdd->getPDO());
+
 	$listeDernierA = $managerRencontre->getDernierParEquipe($equipeA);
 	$listeProchainA = $managerRencontre->getProchainParEquipe($equipeA);
+	$competitionA = $managerCompetition->trouverCompetitionChampionnatParCategorieEtEquipe($categorie, $equipeA, -1);
+	$groupeA = $managerGroupe->trouverGroupeParCompetition($competitionA->getId());
+	
 	$listeDernierB = $managerRencontre->getDernierParEquipe($equipeB);
 	$listeProchainB = $managerRencontre->getProchainParEquipe($equipeB);
+	$competitionB = $managerCompetition->trouverCompetitionChampionnatParCategorieEtEquipe($categorie, $equipeB, -1);
+	$groupeB = $managerGroupe->trouverGroupeParCompetition($competitionB->getId());
+	
 	$listeDernierC = $managerRencontre->getDernierParEquipe($equipeC);
 	$listeProchainC = $managerRencontre->getProchainParEquipe($equipeC);
+	$competitionC = $managerCompetition->trouverCompetitionChampionnatParCategorieEtEquipe($categorie, $equipeC, -1);
+	$groupeC = $managerGroupe->trouverGroupeParCompetition($competitionC->getId());
+	
+	$listeDernierD = $managerRencontre->getDernierParEquipe($equipeD);
+	$listeProchainD = $managerRencontre->getProchainParEquipe($equipeD);
+	$competitionD = $managerCompetition->trouverCompetitionChampionnatParCategorieEtEquipe($categorie, $equipeD, -1);
+	$groupeD = $managerGroupe->trouverGroupeParCompetition($competitionD->getId());
+	
+	$listeDernierFem = $managerRencontre->getDernierParEquipe($equipeFem);
+	$listeProchainFem = $managerRencontre->getProchainParEquipe($equipeFem);
+	$competitionFem = $managerCompetition->trouverCompetitionChampionnatParCategorieEtEquipe($categorie, $equipeFem, -1);
+	$groupeFem = $managerGroupe->trouverGroupeParCompetition($competitionFem->getId());
 
 	$_SESSION['listeEquipes']=$listeEquipes;
 	$_SESSION['listeDernier']=$listeDernier;
 	$_SESSION['listeProchain']=$listeProchain;
 	
+	$_SESSION['competitionA']=$competitionA;
+	$_SESSION['groupeA']=$groupeA;
 	$_SESSION['listeDernierA']=$listeDernierA;
 	$_SESSION['listeProchainA']=$listeProchainA;
+
+	$_SESSION['competitionB']=$competitionB;
+	$_SESSION['groupeB']=$groupeB;
 	$_SESSION['listeDernierB']=$listeDernierB;
 	$_SESSION['listeProchainB']=$listeProchainB;
+	
+	$_SESSION['competitionC']=$competitionC;
+	$_SESSION['groupeC']=$groupeC;
 	$_SESSION['listeDernierC']=$listeDernierC;
 	$_SESSION['listeProchainC']=$listeProchainC;
+	
+	$_SESSION['competitionD']=$competitionD;
+	$_SESSION['groupeD']=$groupeD;
+	$_SESSION['listeDernierD']=$listeDernierD;
+	$_SESSION['listeProchainD']=$listeProchainD;
+	
+	$_SESSION['competitionFem']=$competitionFem;
+	$_SESSION['groupeFem']=$groupeFem;
+	$_SESSION['listeDernierFem']=$listeDernierFem;
+	$_SESSION['listeProchainFem']=$listeProchainFem;
 
 	/*
 	$managerStaff = new ManagerStaff($connexionBdd->getPDO());
@@ -72,8 +116,8 @@ try {
 */
 	header("Location: joueurs&staffs.php");
 
-} catch (PDOException $error) { // Le catch est chargé d’intercepter une éventuelle erreur
-	echo "N° : ".$error->getCode()."<br />";
+} catch (PDOException $error) { // Le catch est chargï¿½ dï¿½intercepter une ï¿½ventuelle erreur
+	echo "Nï¿½ : ".$error->getCode()."<br />";
 	die ("Erreur : ".$error->getMessage()."<br />");
 }
 ob_end_flush();

@@ -5,10 +5,8 @@ ob_start();
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta charset="utf-8">
-	<meta http-equiv="Cache-Control" content="max-age=600" />
-	<meta http-equiv="Expires" content="Thu, 31 Dec 2015 23:59:59 GMT" />
 	<meta name=viewport content="width=device-width, initial-scale=1">
-	<meta name="keywords" content="mots-cl?s" />
+	<meta name="keywords" content="mots-clés" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
 	<title>AS SAINT JULIEN LES METZ</title>
@@ -68,7 +66,8 @@ ob_start();
 				<li class="nav-item">
 	              <a data-toggle="pill" href="#palmares" class="nav-link" role="tab"><i class="fa fa-history"></i>&nbsp;Palmarès</a>
 	            </li>
-	            <li class="nav-item">
+				-->
+	            <!-- <li class="nav-item">
 	              <a data-toggle="pill" href="#organigramme" class="nav-link" role="tab"><i class="fa fa-user"></i>&nbsp;Organigramme</a>
 	            </li>
 	            <li class="nav-item">
@@ -76,8 +75,8 @@ ob_start();
 	            </li>
 	            <li class="nav-item">
 	              <a data-toggle="pill" href="#installation" class="nav-link" role="tab"><i class="fa fa-photo"></i>&nbsp;Installations</a>
-	            </li>
-				-->
+	            </li> -->
+				
 	          </ul>
 	        </div>
 	      </div>
@@ -111,16 +110,17 @@ ob_start();
 					  </div>
 				  </div>
 				  <!-- <div id="palmares" class="tab-pane fade" role="tabpanel">
-				    <?php include("historique.php"); ?>
+				    <?php //include("historique.php"); ?>
 				  </div>
-				  <div id="organigramme" class="tab-pane fade" role="tabpanel">
-				  	<?php include("organigramme.php"); ?>
+				  -->
+				  <!-- <div id="organigramme" class="tab-pane fade" role="tabpanel">
+				  	<?php //include("organigramme.php"); ?>
 				  </div>
 				  <div id="reglement" class="tab-pane fade" role="tabpanel">
-				    <?php include("reglement.php"); ?>
+				    <?php //include("reglement.php"); ?>
 				  </div>
 				  <div id="installation" class="tab-pane fade" role="tabpanel">
-				    <?php include("stade.php"); ?>
+				    <?php //include("stade.php"); ?>
 				  </div> -->
 				</div>
 	  		  </div>
@@ -150,9 +150,6 @@ ob_start();
 
 	<script type="text/javascript">
 		$(document).ready(function(){
-
-			
-
 			$("#modif").click(function(){
 				$texte = $("#presentationClub").html();
 				$("#textePopup").val($texte);
