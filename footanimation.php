@@ -183,7 +183,7 @@ try {
 					    <div class="container">
 					      <div class="row">
 					        <div class="col-md-3">
-					          <img class="img-fluid d-block mb-4 w-100 img-thumbnail" src="images/equipe/u6.jpg"> </div>
+					          <img class="img-fluid d-block mb-4 w-50 img-thumbnail" src="images/ASSJLMVERT.jpg"> </div>
 					        <div class="col-md-9">
 					          <h3 class="text-primary pt-3">Categorie U6/U7</h3>
 					          <p class="">Joueurs et joueuses né.e.s en 2014 et 2015 </p>
@@ -205,7 +205,7 @@ try {
 					    <div class="container">
 					      <div class="row">
 					        <div class="col-md-3">
-					          <img class="img-fluid d-block mb-4 w-100 img-thumbnail" src="images/equipe/u8.jpg"> </div>
+					          <img class="img-fluid d-block mb-4 w-50 img-thumbnail" src="images/ASSJLMVERT.jpg"> </div>
 					        <div class="col-md-9">
 					          <h3 class="text-primary pt-3">Categorie U8/U9</h3>
 					          <p class="">Joueurs et joueuses né.e.s en 2012 et 2013 </p>
@@ -228,7 +228,7 @@ try {
 					    <div class="container">
 					      <div class="row">
 					        <div class="col-md-3">
-					          <img class="img-fluid d-block mb-4 w-100 img-thumbnail" src="images/article/repriseJeunes2014.jpg"> </div>
+					          <img class="img-fluid d-block mb-4 w-50 img-thumbnail" src="images/article/repriseJeunes2014.jpg"> </div>
 					        <div class="col-md-9">
 					          <h3 class="text-primary pt-3">Categorie U10/U11</h3>
 					          <p class="">Joueurs et joueuses né.e.s en 2010 et 2011 </p>

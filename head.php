@@ -38,7 +38,7 @@
 		});
 	</script>
 
-<div class="text-center gradient-overlay w-100 py-1 h-25 my-5 d-none d-xl-block" style=" background-image: url(&quot;https://img4.hostingpics.net/pics/270625heading.jpg&quot;);">
+<div class="text-center gradient-overlay w-100 py-1 h-25 my-5 d-none d-xl-block" >
     <div class="container py-3">
       <div class="row ">
       	<div class="col-md-1">

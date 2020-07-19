@@ -1,10 +1,10 @@
 <?php
 ob_start();
 function chargerClasse($classe) {
-	require $classe . '.class.php'; // On inclut la classe correspondante au paramètre passé.
+	require $classe . '.class.php'; // On inclut la classe correspondante au paramï¿½tre passï¿½.
 }
 
-spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelée dès qu'on instanciera une classe non déclarée.
+spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelï¿½e dï¿½s qu'on instanciera une classe non dï¿½clarï¿½e.
 
 $logger = new Logger('logs/');
 require_once("config/config.php");
@@ -17,7 +17,7 @@ require_once("config/config.php");
 	<meta http-equiv="Cache-Control" content="max-age=600" />
 	<meta http-equiv="Expires" content="Thu, 31 Dec 2015 23:59:59 GMT" />
 	<meta name=viewport content="width=device-width, initial-scale=1">
-	<meta name="keywords" content="mots-clés" />
+	<meta name="keywords" content="mots-clï¿½s" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
 	<title>AS SAINT JULIEN LES METZ</title>
@@ -94,7 +94,7 @@ require_once("config/config.php");
 	?>
 	<!-- End Navigation -->
 	
-	<div class="text-center gradient-overlay w-100 py-1 h-25 my-5" style="background-image: url(&quot;https://img4.hostingpics.net/pics/270625heading.jpg&quot;);">
+	<div class="text-center gradient-overlay w-100 py-1 h-25 my-5" >
 	    <div class="container py-1">
 	      <div class="row">
 	        <div class="col-md-12 text-white">
