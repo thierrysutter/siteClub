@@ -27,15 +27,18 @@ require_once("config/config.php");
 
 try {
 	$connexionBdd = new Connexion($db_host, $db_login, $db_password, $db_name);
-	/*
+	
 	$categorie = 1; // u7 par d�faut
 	if (isset($_POST['categorie'])) {
 		$categorie = $_POST['categorie'];
 	}
-	/*
+	
 	$managerCategorie = new ManagerCategorie($connexionBdd->getPDO());
 	$cat = $managerCategorie->trouverCategorieParId($categorie);
+	$_SESSION['categorie']=$categorie;
+	$_SESSION['cat']=$cat;
 	
+	/*
 	$managerStaff = new ManagerStaff($connexionBdd->getPDO());
 	$listeStaffs = $managerStaff->getList($categorie);
 	
@@ -49,8 +52,6 @@ try {
 	$managerJoueur = new ManagerJoueur($connexionBdd->getPDO());
 	$listeJoueurs = $managerJoueur->getList($categorie);
 	
-	$_SESSION['categorie']=$categorie;
-	$_SESSION['cat']=$cat;
 	$_SESSION['listeStaffs']=$listeStaffs;
 	$_SESSION['listeEquipes']=$listeEquipes;
 	$_SESSION['listeDernier']=$listeDernier;

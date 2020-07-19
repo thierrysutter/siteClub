@@ -9,17 +9,17 @@ $listeDefenseurs = array();
 $listeMilieux = array();
 $listeAttaquants = array();
 $listeEquipes = array();
-$categorie = 1; // u7
+$categorie2 = 4; // u7
 $cat = null;
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta charset="ISO-8859-1">
+	<meta charset="UTF-8">
 	<meta http-equiv="Cache-Control" content="max-age=600" />
-	<meta http-equiv="Expires" content="Thu, 31 Dec 2015 23:59:59 GMT" />
+	<meta http-equiv="Expires" content="Thu, 31 Dec 2021 23:59:59 GMT" />
 	<meta name=viewport content="width=device-width, initial-scale=1">
-	<meta name="keywords" content="mots-cl�s" />
+	<meta name="keywords" content="mots-clés" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
 	<title>AS SAINT JULIEN LES METZ</title>
@@ -42,32 +42,42 @@ $cat = null;
 	<script type="text/javascript">
 		$(document).ready(function(){
 
-			$idCategorie = $("#categorie").val(); 
+			$idCategorie = $("#categorie2").val(); 
 			
 			$("#lienU13").removeClass("active");
 			$("#lienU15").removeClass("active");
 			$("#lienU17").removeClass("active");
+			$("#lienU18").removeClass("active");
+			
 			if ($idCategorie == 4)
 				$("#lienU13").addClass("active");
 			else if ($idCategorie == 5)
 				$("#lienU15").addClass("active");
 			else if ($idCategorie == 6)
 				$("#lienU17").addClass("active");
+			else if ($idCategorie == 7)
+				$("#lienU18").addClass("active");
 			
 			$("#lienU13").click(function(e) {
-				$("#categorie").val(4);
+				$("#categorie2").val(4);
 				$("#form1").submit();
 				return false;
 			});
 
 			$("#lienU15").click(function(e) {
-				$("#categorie").val(5);
+				$("#categorie2").val(5);
 				$("#form1").submit();
 				return false;
 			});
 
 			$("#lienU17").click(function(e) {
-				$("#categorie").val(6);
+				$("#categorie2").val(6);
+				$("#form1").submit();
+				return false;
+			});
+
+			$("#lienU18").click(function(e) {
+				$("#categorie2").val(7);
 				$("#form1").submit();
 				return false;
 			});
@@ -123,10 +133,10 @@ $cat = null;
 <?php
 try {
 	session_start();
-	if (isset($_SESSION['categorie']))
-		$categorie = $_SESSION['categorie'];
-	if (isset($_SESSION['cat']))
-		$cat = $_SESSION['cat'];
+	if (isset($_SESSION['categorie2']))
+		$categorie2 = $_SESSION['categorie2'];
+	if (isset($_SESSION['cat2']))
+		$cat2 = $_SESSION['cat2'];
 	if (isset($_SESSION['listeEquipes']))
 		$listeEquipes = $_SESSION['listeEquipes'];
 	if (isset($_SESSION['listeDernier']))
@@ -161,13 +171,16 @@ try {
 	        <div class="col-md-12 ">
 	          <ul class="nav nav-pills nav-justified" role="tablist">
 	            <li class="nav-item">
-	              <a data-toggle="pill" href="#u13" class="nav-link" role="tab"><i class="fa fa-bars"></i>&nbsp;U12-U13</a>
+	              <a data-toggle="pill" href="#u13" class="active nav-link" role="tab"><i class="fa fa-bars"></i>&nbsp;U12-U13</a>
 	            </li>
 	            <li class="nav-item">
 	              <a data-toggle="pill" href="#u15" class="nav-link" role="tab"><i class="fa fa-bars"></i>&nbsp;U14-U15</a>
 	            </li>
 	            <li class="nav-item">
 	              <a data-toggle="pill" href="#u17" class="nav-link" role="tab"><i class="fa fa-bars"></i>&nbsp;U16-U17</a>
+	            </li>
+	            <li class="nav-item">
+	              <a data-toggle="pill" href="#u18" class="nav-link" role="tab"><i class="fa fa-bars"></i>&nbsp;U18</a>
 	            </li>
 	          </ul>
 	        </div>
@@ -179,23 +192,23 @@ try {
 		  <div class="row">
   			<div class="col-sm-12">
 				<div class="tab-content">
-				  <div id="u13" class="tab-pane fade" role="tabpanel">
+				  <div id="u13" class="tab-pane fade show active" role="tabpanel">
 				    <div class="py-5">
 					    <div class="container">
 					      <div class="row">
 					        <div class="col-md-3">
-					          <img class="img-fluid d-block mb-4 w-100 img-thumbnail" src="images/equipe/u13.jpg"> </div>
+					          <img class="img-fluid d-block mb-4 w-50 img-thumbnail" src="images/ASSJLMVERT.jpg"> </div>
 					        <div class="col-md-9">
 					          <h3 class="text-primary pt-3">Categorie U12/U13</h3>
-					          <p class="">Joueurs et joueuses n�(e)s en 2004 et 2005 </p>
+					          <p class="">Joueurs et joueuses né.e.s en 2008 et 2009 </p>
 					          <h5 class="text-primary pt-3">Entrainements </h5>
 					          <p style="font-size: 14px; padding-top: 0px;">
-								Tous les mercredis � 17:30:00 au Stade de Grimont<br/>
-								Tous les vendredis � 18:00:00 au Stade de Grimont<br/>
+								Tous les mercredis à 17:30:00 au Stade de Grimont<br/>
+								Tous les vendredis à 18:00:00 au Stade de Grimont<br/>
 							  </p>
 							  <h5 class="text-primary pt-3">Educateurs </h5>
 					          <p style="font-size: 14px; padding-top: 0px;">
-								Laurent SUTTER
+								
 							  </p>
 					        </div>
 					      </div>
@@ -207,14 +220,14 @@ try {
 					    <div class="container">
 					      <div class="row">
 					        <div class="col-md-3">
-					          <img class="img-fluid d-block mb-4 w-100 img-thumbnail" src="images/article/repriseJeunes2014.jpg"> </div>
+					          <img class="img-fluid d-block mb-4 w-50 img-thumbnail" src="images/ASSJLMVERT.jpg"> </div>
 					        <div class="col-md-9">
 					          <h3 class="text-primary pt-3">Categorie U14/U15</h3>
-					          <p class="">Joueurs et joueuses n�(e)s en 2002 et 2003 </p>
+					          <p class="">Joueurs et joueuses né.e.s en 2006 et 2007 </p>
 					          <h5 class="text-primary pt-3">Entrainements </h5>
 					          <p style="font-size: 14px; padding-top: 0px;">
-								Tous les mercredis � 18:00:00 au Stade de Grimont
-								Tous les vendredis � 18:00:00 au Stade de Grimont
+								Tous les mercredis à 18:00:00 au Stade de Grimont
+								Tous les vendredis à 18:00:00 au Stade de Grimont
 							  </p>
 							  <h5 class="text-primary pt-3">Educateurs </h5>
 					          <p style="font-size: 14px; padding-top: 0px;">
@@ -231,18 +244,40 @@ try {
 					    <div class="container">
 					      <div class="row">
 					        <div class="col-md-3">
-					          <img class="img-fluid d-block mb-4 w-100 img-thumbnail" src="images/article/repriseJeunes2014.jpg"> </div>
+					          <img class="img-fluid d-block mb-4 w-50 img-thumbnail" src="images/ASSJLMVERT.jpg"> </div>
 					        <div class="col-md-9">
 					          <h3 class="text-primary pt-3">Categorie U16/U17</h3>
-					          <p class="">Joueurs et joueuses n�(e)s en 2000 et 2001 </p>
+					          <p class="">Joueurs et joueuses né.e.s en 2004 et 2005 </p>
 					          <h5 class="text-primary pt-3">Entrainements </h5>
 					          <p style="font-size: 14px; padding-top: 0px;">
-								Tous les mardis � 18:00:00 au Stade de Grimont
-								Tous les jeudis � 18:30:00 au Stade de Grimont
+								Tous les mardis à 18:00:00 au Stade de Grimont
+								Tous les jeudis à 18:30:00 au Stade de Grimont
 							  </p>
 							  <h5 class="text-primary pt-3">Educateurs </h5>
 					          <p style="font-size: 14px; padding-top: 0px;">
-								Jean Claude DARGENTELLE
+								
+							  </p>
+					        </div>
+					      </div>
+					    </div>
+					  </div>
+				  </div>
+
+				  <div id="u18" class="tab-pane fade" role="tabpanel">
+				    <div class="py-5">
+					    <div class="container">
+					      <div class="row">
+					        <div class="col-md-3">
+					          <img class="img-fluid d-block mb-4 w-50 img-thumbnail" src="images/ASSJLMVERT.jpg"> </div>
+					        <div class="col-md-9">
+					          <h3 class="text-primary pt-3">Categorie U18</h3>
+					          <p class="">Joueurs et joueuses né.e.s en 2003</p>
+					          <h5 class="text-primary pt-3">Entrainements </h5>
+					          <p style="font-size: 14px; padding-top: 0px;">
+							  </p>
+							  <h5 class="text-primary pt-3">Educateurs </h5>
+					          <p style="font-size: 14px; padding-top: 0px;">
+								
 							  </p>
 					        </div>
 					      </div>
