@@ -126,7 +126,9 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 	$prenom = htmlentities($_POST['prenom']);
 	$email = htmlentities($_POST['email']);
 	//$objet = htmlentities($_POST['objet']);
-	$message = htmlentities(nl2br(strip_tags($_POST['message'])));
+	//$message = htmlentities(nl2br(strip_tags($_POST['message'])));
+	$message = htmlentities(($_POST['message']));
+	
 	
 	//$destinataire = htmlentities($_POST['destinataire']);
 	$destinataire = $adm_email;

@@ -5,11 +5,8 @@ ob_start();
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta charset="ISO-8859-1">
-	<meta http-equiv="Cache-Control" content="max-age=600" />
-	<meta http-equiv="Expires" content="Thu, 31 Dec 2015 23:59:59 GMT" />
 	<meta name=viewport content="width=device-width, initial-scale=1">
-	<meta name="keywords" content="mots-cl�s" />
+	<meta name="keywords" content="mots-cl�s" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
 	<title>AS SAINT JULIEN LES METZ</title>
@@ -83,10 +80,10 @@ ob_start();
 	  	  <div class="col-md-12">
 	  	  	<div class="alert alert-success" role="alert">
 	    	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-	    	  	<span aria-hidden="true">�</span>
+	    	  	<span aria-hidden="true">�</span>
 	    	  </button>
-	    	  <h4 class="alert-heading">Votre message a bien été envoyé !</h4>
-	    	  <p class="mb-0">Nous vous répondrons dans les plus bref délais.</p>
+	    	  <h4 class="alert-heading">Votre message a bien &eacute;t&eacute; envoy&eacute; !</h4>
+	    	  <p class="mb-0">Nous vous r&eacute;pondrons dans les plus bref d&eacute;lais.</p>
 	    	</div>
 	      </div>
 	    </div>
@@ -104,10 +101,10 @@ ob_start();
 	      <div class="col-md-12">
 	      	<div class="alert alert-danger" role="alert">
 	      	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-	      	  	<span aria-hidden="true">�</span>
+	      	  	<span aria-hidden="true">X</span>
 	      	  </button>
-	      	  <h4 class="alert-heading">Votre message n'a pas été envoyé !</h4>
-	    	  <p class="mb-0">Une erreur est intervenue pendant l'envoi de votre message. Merci de vérifier tous les champs du formulaire. Si le problème persiste, vous pouvez nous contactez au 03 87 37 04 34.</p>
+	      	  <h4 class="alert-heading">Votre message n'a pas &eacute;t&eacute; envoy&eacute; !</h4>
+	    	  <p class="mb-0">Une erreur est intervenue pendant l'envoi de votre message. Merci de v&eacute;rifier tous les champs du formulaire. Si le probl�me persiste, vous pouvez nous contactez au 03 87 37 04 34.</p>
 	      	</div>
 	      </div>
 	    </div>
@@ -127,14 +124,14 @@ ob_start();
 	      <div class="row">
 	        <div class="col-md-12">
 	          <h1 class="text-gray-dark">Contactez nous</h1>
-	          <p class="lead mb-4">Complétez tous les champs et envoyer votre message</p>
+	          <p class="lead mb-4">Compl&eacute;tez tous les champs et envoyer votre message</p>
 	          <form class="text-left" action="EnvoyerMessage.php" method="post" id="form">
 	          	<input type="hidden" id="origine" name="origine" value="contact"/>
 	            <div class="form-group row">
 	              <div class="col-md-4"> <label for="nom">Nom</label>
 	                <input type="text" required id="nom" name="nom" class="form-control" placeholder="Votre nom" <?php if (isset($_SESSION['messageKO'])) { echo "value='$nom'"; } ?>> </div>
-	              <div class="col-md-4"> <label for="prenom">Prénom</label>
-	                <input type="text" required class="form-control" id="prenom" name="prenom" placeholder="Votre pr�nom" <?php if (isset($_SESSION['messageKO'])) { echo "value='$prenom'"; } ?> > </div>
+	              <div class="col-md-4"> <label for="prenom">Pr&eacute;nom</label>
+	                <input type="text" required class="form-control" id="prenom" name="prenom" placeholder="Votre pr&eacute;nom" <?php if (isset($_SESSION['messageKO'])) { echo "value='$prenom'"; } ?> > </div>
 	              <div class="col-md-4"> <label for="email">Email</label>
 	                <input type="email" required class="form-control" id="email" name="email" placeholder="Votre email" <?php if (isset($_SESSION['messageKO'])) { echo "value='$email'"; } ?> > </div>
 	            </div>
