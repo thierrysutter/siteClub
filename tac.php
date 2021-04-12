@@ -72,7 +72,7 @@
 
 		(tarteaucitron.job = tarteaucitron.job || []).push('youtube');
 
-		tarteaucitron.user.googlemapsKey = 'AIzaSyDb0_pRscpiFejkiiXvodLqokkmgzSRxvM';
+		tarteaucitron.user.googlemapsKey = 'AIzaSyCzIzxokKJDogkJtmypHnLqCjoJ9NYrAQM';
         (tarteaucitron.job = tarteaucitron.job || []).push('googlemaps');
 
 	    
