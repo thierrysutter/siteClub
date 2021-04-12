@@ -56,7 +56,7 @@
 			    $.ajax({
 			        type: "POST", // methode de transmission des données au fichier php
 				   	url: "AfficherPopupArticle2.php", // url du fichier php
-				   	data: {id : $(this).attr("id").split('_')[1], mode : "popup"}, // données à transmettre
+				   	data: {id : $(this).attr("id").split('_')[1], mode : "popup"}, // données &agrave; transmettre
 				   	dataType: 'json' // JSON
 			    }).success(function (result) {
 			    	$('.single-item').slick('removeSlide', 0, 999, true);
@@ -86,7 +86,7 @@
 				$.ajax({ // fonction permettant de faire de l'ajax
 				   type: "POST", // methode de transmission des données au fichier php
 				   url: "AfficherPopupCompteRendu.php", // url du fichier php
-				   data: {id : $(this).prop('id').split('_')[1], mode : "popup"}, // données à transmettre
+				   data: {id : $(this).prop('id').split('_')[1], mode : "popup"}, // données &agrave; transmettre
 				   dataType: 'json', // JSON
 				   success: function(compteRendu){ // si l'appel a bien fonctionné
 					   //$("#imageArticlePopup").prop("src", "images/article/"+article.photo);
@@ -106,7 +106,7 @@
 
 				   },
 				   error: function(){
-					   // on affiche un message d'erreur dans le span prévu à cet effet
+					   // on affiche un message d'erreur dans le span prévu &agrave; cet effet
 
 				   }
 				});
@@ -175,16 +175,16 @@
 	    <div class="container">	    
 	    	<div class="row">
 	        	<div class="col-md-6 p-4 col-12 col-sm-6 col-lg-6 col-xl-6 mx-auto">
-				Suite aux annonces hier soir du  Président de la République, L'AS Saint Julien les Metz a le regret de vous informer de la suspension dès à present jusqu'à nouvel ordre de toutes ses activités.
-				Continuez à nous suivre notre page Facebook, nous vous informerons en temps réel ! <br/><br/>
+				Suite aux annonces hier soir du  Pr&eacute;sident de la R&eacute;publique, L'AS Saint Julien les Metz a le regret de vous informer de la suspension d&egrave;s &agrave; present jusqu'&agrave; nouvel ordre de toutes ses activit&eacute;s.
+				Continuez &agrave; nous suivre notre page Facebook, nous vous informerons en temps r&eacute;el ! <br/><br/>
 				Prenez soin de vous et de vos proches et surtout, restez chez vous ! <br/><br/>
 				#TousAntiCovid<br/><br/>
 				<a href="https://play.google.com/store/apps/details?id=fr.gouv.android.stopcovid" target="_blank"><img src="images/GooglePlay.jpg" alt="PlayStore" /></a>
 				<a href="https://apps.apple.com/fr/app/tousanticovid/id1511279125" target="_blank"><img src="images/AppStore.jpg" alt="AppStore" /></a>
 				<br/><br/>
-				Le comité de l'ASSJ.
+				Le comit&eacute; de l'ASSJ.
 				<br/><br/>
-				Retrouvez le communiqué de la FFF <a href="https://www.fff.fr/actualites/195365-covid-19-decision-de-la-fff-concernant-les-competitions?themePath=la-fff%2F&fbclid=IwAR0-XS6mXbNIBSBsv5tiYjSKw-szxmNxiVmxhjDDSElUi5sO_pV4skgkqzo" target="_blank">ici</a>
+				Retrouvez le communiqu&eacute; de la FFF <a href="https://www.fff.fr/actualites/195365-covid-19-decision-de-la-fff-concernant-les-competitions?themePath=la-fff%2F&fbclid=IwAR0-XS6mXbNIBSBsv5tiYjSKw-szxmNxiVmxhjDDSElUi5sO_pV4skgkqzo" target="_blank">ici</a>
 				</div>
 			</div>
 		</div>

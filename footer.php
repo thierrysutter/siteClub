@@ -8,7 +8,7 @@
           <p class="mb-5"> <strong>AS Saint Julien Les Metz</strong>
             <br>Boucle de la bergerie
             <br>57070 SAINT JULIEN LES METZ
-            <br> <abbr title="Phone">Tél.:</abbr> +33 3 87 37 04 34 </p>
+            <br> <abbr title="Phone">T&eacute;l.:</abbr> +33 3 87 37 04 34 </p>
           <div class="my-3 row">
             <div class="col-4">
               <a href="https://www.facebook.com/AsStJulien/" target="blank"><i class="fa fa-3x fa-facebook"></i></a>
