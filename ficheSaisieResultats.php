@@ -1,10 +1,10 @@
 <?php
 ob_start();
 function chargerClasse($classe) {
-	require $classe . '.class.php'; // On inclut la classe correspondante au paramètre passé.
+	require $classe . '.class.php'; // On inclut la classe correspondante au paramï¿½tre passï¿½.
 }
 
-spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelée dès qu'on instanciera une classe non déclarée.
+spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelï¿½e dï¿½s qu'on instanciera une classe non dï¿½clarï¿½e.
 
 $logger = new Logger('logs/');
 require_once("config/config.php");
@@ -12,9 +12,12 @@ require_once("config/config.php");
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+	<?php
+	  include("tac.php");
+	?>
 
 	<!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> -->
-	<meta name="keywords" content="mots-clés" />
+	<meta name="keywords" content="mots-clï¿½s" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
 	<title>AS SAINT JULIEN LES METZ</title>
@@ -79,7 +82,7 @@ require_once("config/config.php");
 								$listeProchainesRencontres = array();
 							
 								if (isset($_SESSION['session_started'])) {
-									// une session est ouverte, on récupère le login de l'utilisateur connecté
+									// une session est ouverte, on rï¿½cupï¿½re le login de l'utilisateur connectï¿½
 									if (isset($_SESSION['login'])) {
 										$login = $_SESSION['login'];
 									}

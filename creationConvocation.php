@@ -1,10 +1,10 @@
 <?php
 ob_start();
 function chargerClasse($classe) {
-	require $classe . '.class.php'; // On inclut la classe correspondante au paramètre passé.
+	require $classe . '.class.php'; // On inclut la classe correspondante au paramï¿œtre passï¿œ.
 }
 
-spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelée dès qu'on instanciera une classe non déclarée.
+spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelï¿œe dï¿œs qu'on instanciera une classe non dï¿œclarï¿œe.
 
 $logger = new Logger('logs/');
 require_once("config/config.php");
@@ -16,8 +16,11 @@ require_once("config/config.php");
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+	<?php
+	  include("tac.php");
+	?>
 	<meta charset="iso-8859-15" />
-	<meta name="keywords" content="mots-clés" />
+	<meta name="keywords" content="mots-clï¿œs" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
 	<title>AS SAINT JULIEN LES METZ</title>
@@ -105,7 +108,7 @@ require_once("config/config.php");
 	        <div class="col-md-12 col-12 col-sm-12 col-lg-12 col-xl-12">
 	        	<form id="formRetour" action="ActionRencontre.php" method="post">
 					<input type="hidden" name="methode" id="methode" value="retour"/>
-					<!-- Récup des filtres précédents -->
+					<!-- Rï¿œcup des filtres prï¿œcï¿œdents -->
 					<input type="hidden" name="categorie" id="categorie" value="<?php echo $categorieSelectionnee; ?>"/>
 					<input type="hidden" name="debut" id="debut" value="<?php echo $debut; ?>"/>
 					<input type="hidden" name="fin" id="fin" value="<?php echo $fin; ?>"/>
@@ -123,7 +126,7 @@ require_once("config/config.php");
 			        <div class="form-group row mx-5">
 			        	<div class="col-sm-12">
 						<?php 
-							echo "<b>Compétition</b> : ".$convocation->getRencontre()->getLibellecompetition()."<br>";
+							echo "<b>Compï¿œtition</b> : ".$convocation->getRencontre()->getLibellecompetition()."<br>";
 							echo "<b>Date</b> : ".date_format(new DateTime($convocation->getRencontre()->getJour()), 'd/m/Y')."<br>";
 							echo "<b>Match</b> : ".$convocation->getRencontre()->getEquipeDom()."-".$convocation->getRencontre()->getEquipeExt();
 						?>
@@ -152,7 +155,7 @@ require_once("config/config.php");
 			        </div>
 	        		
 	        		<div class="form-group row mx-5">
-	        			<label class="col-sm-2 col-form-label" for="nomJoueur1">Sélectionnez les joueurs<br>(maintenez CTRL enfoncé pour sélectionner plusieurs joueurs)</label>
+	        			<label class="col-sm-2 col-form-label" for="nomJoueur1">Sï¿œlectionnez les joueurs<br>(maintenez CTRL enfoncï¿œ pour sï¿œlectionner plusieurs joueurs)</label>
 	        			<div class="col-sm-10">
 			              <select class="form-control w-100 form-control-md" name="nomJoueur[]" id="nomJoueur" multiple style="height: 200px;">
 							<?php foreach($listeJoueursCategorie as $joueurCat) { 

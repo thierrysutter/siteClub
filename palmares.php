@@ -4,8 +4,11 @@ ob_start();
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+	<?php
+	  include("tac.php");
+	?>
 	<meta charset="iso-8859-15" />
-	<meta name="keywords" content="mots-clés" />
+	<meta name="keywords" content="mots-clï¿œs" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
 	<title>AS SAINT JULIEN LES METZ</title>
@@ -43,11 +46,11 @@ ob_start();
 				<!-- Sub nav -->
 				<div id="side-nav">
 					<ul>
-					    <li><div class="link"><a href="club.php">Présentation</a></div></li>
+					    <li><div class="link"><a href="club.php">Prï¿œsentation</a></div></li>
 						<li><div class="link"><a href="historique.php">Historique</a></div></li>
-					    <li class="active"><div class="link"><a href="palmares.php">Palmarès</a></div></li>
+					    <li class="active"><div class="link"><a href="palmares.php">Palmarï¿œs</a></div></li>
 					    <li><div class="link"><a href="stade.php">Installations</a></div></li>
-					    <li><div class="link"><a href="reglement.php">Règlement</a></div></li>
+					    <li><div class="link"><a href="reglement.php">Rï¿œglement</a></div></li>
 					</ul>
 				</div>
 				<!-- End Sub nav -->
@@ -57,14 +60,14 @@ ob_start();
 					<div id="heading-box-cnt">
 						<div class="cl">&nbsp;</div>
 						<div class="featured-main">
-							1904: Création du club<br/>
+							1904: Crï¿œation du club<br/>
 							2000: Vainqueur coupe de Moselle U15<br/>
 							2005: Vainqueur coupe de Moselle U17<br/>
 							2006: Vainqueur coupe de Moselle U17<br/>
-							2007: Accession en PHR (Séniors A)<br/>
-							2008: Accession en PH (Séniors A)<br/>
+							2007: Accession en PHR (Sï¿œniors A)<br/>
+							2008: Accession en PH (Sï¿œniors A)<br/>
 							2009: Vainqueur coupe de Moselle U17<br/>
-							2014: Accession en PHR (Séniors A), Finaliste de la coupe de Moselle Séniors, Accession en 2ème division (Séniors B), Finaliste de la coupe de Moselle des équipes réserves Séniors<br/>
+							2014: Accession en PHR (Sï¿œniors A), Finaliste de la coupe de Moselle Sï¿œniors, Accession en 2ï¿œme division (Sï¿œniors B), Finaliste de la coupe de Moselle des ï¿œquipes rï¿œserves Sï¿œniors<br/>
 						</div>
 					</div>
 				</div>
@@ -81,8 +84,8 @@ ob_start();
 							<a href="#"><img src="css/images/travaux_stade.jpg" width="438px" height="310px" alt="" /></a>
 							<div class="featured-main-details">
 								<div class="featured-main-details-cnt">
-									<h4><a href="#">Rénovation du terrain d'honneur</a></h4>
-									<p>Les travaux du nouveau terrain synthétique ont débuté il y a quelques jours et dureront jusqu'à la fin du mois. Un synthétique de dernière génération remplacera l'ancien tapis.</p>
+									<h4><a href="#">Rï¿œnovation du terrain d'honneur</a></h4>
+									<p>Les travaux du nouveau terrain synthï¿œtique ont dï¿œbutï¿œ il y a quelques jours et dureront jusqu'ï¿œ la fin du mois. Un synthï¿œtique de derniï¿œre gï¿œnï¿œration remplacera l'ancien tapis.</p>
 								</div>
 							</div>
 						</div>
@@ -94,8 +97,8 @@ ob_start();
 							<div class="featured-side-item">
 								<div class="cl">&nbsp;</div>
 								<a href="#" class="left"><img src="css/images/choucroute.gif" width="60px" height="60px" alt="" /></a>
-								<h4><a href="#">Soirée choucroute</a></h4>
-								<p>Le club organise une soirée "choucroute" le 20 Octobre 2013. Renseignements au 03  87 37 04 34.</p>
+								<h4><a href="#">Soirï¿œe choucroute</a></h4>
+								<p>Le club organise une soirï¿œe "choucroute" le 20 Octobre 2013. Renseignements au 03  87 37 04 34.</p>
 								<div class="cl">&nbsp;</div>
 							</div>
 							<!- End Slide Item 1 ->
@@ -105,7 +108,7 @@ ob_start();
 								<div class="cl">&nbsp;</div>
 								<a href="#" class="left"><img src="css/images/featured-side-2.jpg" width="60px" height="60px" alt="" /></a>
 								<h4><a href="#">Nouvelle saison</a></h4>
-								<p>La saison 2013/2014 reprend avec pour objectif la montée des Séniors au niveau Ligue.</p>
+								<p>La saison 2013/2014 reprend avec pour objectif la montï¿œe des Sï¿œniors au niveau Ligue.</p>
 								<div class="cl">&nbsp;</div>
 							</div>
 							<!- End Slide Item 2 ->
@@ -124,8 +127,8 @@ ob_start();
 							<div class="featured-side-item">
 								<div class="cl">&nbsp;</div>
 								<a href="#" class="left"><img src="css/images/featured-side-4.jpg" width="60px" height="60px" alt="" /></a>
-								<h4><a href="#">Fête du foot</a></h4>
-								<p>Comme chaque année, le club a organisé sa fête du football.</p>
+								<h4><a href="#">Fï¿œte du foot</a></h4>
+								<p>Comme chaque annï¿œe, le club a organisï¿œ sa fï¿œte du football.</p>
 								<div class="cl">&nbsp;</div>
 							</div>
 							<!- End Slide Item 4 ->

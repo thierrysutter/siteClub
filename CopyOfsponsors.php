@@ -6,8 +6,11 @@ $listeSponsors = array();
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+	<?php
+	  include("tac.php");
+	?>
 	<meta charset="iso-8859-15" />
-	<meta name="keywords" content="mots-clés" />
+	<meta name="keywords" content="mots-clï¿œs" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
 	<title>AS SAINT JULIEN LES METZ</title>
@@ -111,8 +114,8 @@ try {
 	if (isset($_SESSION['listeSponsors']))
 		$listeSponsors = $_SESSION['listeSponsors'];
 
-} catch (PDOException $error) { //Le catch est chargé dintercepter une éventuelle erreur
-	echo "N° : ".$error->getCode()."<br />";
+} catch (PDOException $error) { //Le catch est chargï¿œ dï¿œintercepter une ï¿œventuelle erreur
+	echo "Nï¿œ : ".$error->getCode()."<br />";
 	die ("Erreur : ".$error->getMessage()."<br />");
 }
 ?>
@@ -135,8 +138,8 @@ try {
 						<div class="cl">&nbsp;</div>
 						<div class="featured-main-joueur">
 						<div style="margin-bottom: 10px;">
-						Votre aide est pour beaucoup dans notre réussite et nous tenons à vous témoigner toute la reconnaissance de notre club pour votre aide. <br>
-						Si vous aussi, vous souhaitez nous apporter votre aide (financière, matérielle, etc ...), n'hésitez pas à prendre contact avec nous <img alt="" src="images/form_email.gif" width="16px" height="16px"  style="vertical-align: middle; cursor: pointer;" onclick="window.open('contact.php', '_self')"/><br>
+						Votre aide est pour beaucoup dans notre rï¿œussite et nous tenons ï¿œ vous tï¿œmoigner toute la reconnaissance de notre club pour votre aide. <br>
+						Si vous aussi, vous souhaitez nous apporter votre aide (financiï¿œre, matï¿œrielle, etc ...), n'hï¿œsitez pas ï¿œ prendre contact avec nous <img alt="" src="images/form_email.gif" width="16px" height="16px"  style="vertical-align: middle; cursor: pointer;" onclick="window.open('contact.php', '_self')"/><br>
 						</div>
 						
 						<?php
@@ -157,7 +160,7 @@ try {
 						<section id="options">
 						  	<input type="hidden" id="panel-count" value="<?php echo count($listeSponsors); ?>"/>
 						    <p id="navigation">
-						      <button class="bouton" id="previous" data-increment="-1" class="btn btn-default" role="button">Précédent</button>
+						      <button class="bouton" id="previous" data-increment="-1" class="btn btn-default" role="button">Prï¿œcï¿œdent</button>
 						      <button class="bouton" id="next" data-increment="1" class="btn btn-default" role="button">Suivant</button>
 						    </p>
 						</section>
@@ -193,7 +196,7 @@ try {
 						<h4><a id="detailURL" href="<?php echo $listeSponsors[0]->getURL(); ?>" target="_new"><?php echo $listeSponsors[0]->getNom(); ?></a></h4>
 						<div id="adresse"><?php echo $listeSponsors[0]->getAdresse(); ?></div>
 						<div id="cpville"><?php echo $listeSponsors[0]->getCP()." ".$listeSponsors[0]->getVille(); ?></div>
-						<div id="tel">Tél: <?php echo $listeSponsors[0]->getTel(); ?></div>
+						<div id="tel">Tï¿œl: <?php echo $listeSponsors[0]->getTel(); ?></div>
 						<div id="fax">Fax: <?php echo $listeSponsors[0]->getFax(); ?></div>
 						<div id="email">Email: <?php echo $listeSponsors[0]->getEmail(); ?></div>
 							<!--<span style="text-decoration: underline; cursor: pointer;" onclick="window.open('http://kinepolis.fr/splash?destination=cinemas/kinepolis-st-julien-les-metz')">Site web</span>-->

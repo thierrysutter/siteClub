@@ -2,6 +2,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+	<?php
+	  include("tac.php");
+	?>
 
 	<meta charset="iso-8859-1">
 	<meta name=viewport content="width=device-width, initial-scale=1">
@@ -51,9 +54,9 @@
 	        	$("#texteArticlePopup").html("");
 			  	// Load demo images from flickr:
 			    $.ajax({
-			        type: "POST", // methode de transmission des donn�es au fichier php
+			        type: "POST", // methode de transmission des données au fichier php
 				   	url: "AfficherPopupArticle2.php", // url du fichier php
-				   	data: {id : $(this).attr("id").split('_')[1], mode : "popup"}, // donn�es � transmettre
+				   	data: {id : $(this).attr("id").split('_')[1], mode : "popup"}, // données à transmettre
 				   	dataType: 'json' // JSON
 			    }).success(function (result) {
 			    	$('.single-item').slick('removeSlide', 0, 999, true);
@@ -81,11 +84,11 @@
 
 			$(".cr").click(function(){
 				$.ajax({ // fonction permettant de faire de l'ajax
-				   type: "POST", // methode de transmission des donn�es au fichier php
+				   type: "POST", // methode de transmission des données au fichier php
 				   url: "AfficherPopupCompteRendu.php", // url du fichier php
-				   data: {id : $(this).prop('id').split('_')[1], mode : "popup"}, // donn�es � transmettre
+				   data: {id : $(this).prop('id').split('_')[1], mode : "popup"}, // données à transmettre
 				   dataType: 'json', // JSON
-				   success: function(compteRendu){ // si l'appel a bien fonctionn�
+				   success: function(compteRendu){ // si l'appel a bien fonctionné
 					   //$("#imageArticlePopup").prop("src", "images/article/"+article.photo);
 					   $("#texteCompteRenduPopup").html(compteRendu.texte);
 
@@ -103,7 +106,7 @@
 
 				   },
 				   error: function(){
-					   // on affiche un message d'erreur dans le span pr�vu � cet effet
+					   // on affiche un message d'erreur dans le span prévu à cet effet
 
 				   }
 				});
@@ -168,32 +171,40 @@
 	}
 	?>
 
+	<div class="text-center text-white opaque-overlay bg-dark py-0">
+	    <div class="container">	    
+	    	<div class="row">
+	        	<div class="col-md-6 p-4 col-12 col-sm-6 col-lg-6 col-xl-6 mx-auto">
+				Suite aux annonces hier soir du  Président de la République, L'AS Saint Julien les Metz a le regret de vous informer de la suspension dès à present jusqu'à nouvel ordre de toutes ses activités.
+				Continuez à nous suivre notre page Facebook, nous vous informerons en temps réel ! <br/><br/>
+				Prenez soin de vous et de vos proches et surtout, restez chez vous ! <br/><br/>
+				#TousAntiCovid<br/><br/>
+				<a href="https://play.google.com/store/apps/details?id=fr.gouv.android.stopcovid" target="_blank"><img src="images/GooglePlay.jpg" alt="PlayStore" /></a>
+				<a href="https://apps.apple.com/fr/app/tousanticovid/id1511279125" target="_blank"><img src="images/AppStore.jpg" alt="AppStore" /></a>
+				<br/><br/>
+				Le comité de l'ASSJ.
+				<br/><br/>
+				Retrouvez le communiqué de la FFF <a href="https://www.fff.fr/actualites/195365-covid-19-decision-de-la-fff-concernant-les-competitions?themePath=la-fff%2F&fbclid=IwAR0-XS6mXbNIBSBsv5tiYjSKw-szxmNxiVmxhjDDSElUi5sO_pV4skgkqzo" target="_blank">ici</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<div class="py-5 bg-light text-center">
 	    <div class="container">
 	    
 	      
 	      <div class="row">
-	        <div class="col-12">
-				<div id="ytplayer"></div>
+	        <div class="col-12 text-center">
+				<!-- <div id="ytplayer"></div> -->
 
-				<script>
-				// Load the IFrame Player API code asynchronously.
-				var tag = document.createElement('script');
-				tag.src = "https://www.youtube.com/player_api";
-				var firstScriptTag = document.getElementsByTagName('script')[0];
-				firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-				// Replace the 'ytplayer' element with an <iframe> and
-				// YouTube player after the API code downloads.
-				var player;
-				function onYouTubePlayerAPIReady() {
-					player = new YT.Player('ytplayer', {
-						height: '360',
-						width: '640',
-						videoId: '5z1AndtkkRo',
-					});
-				}
-				</script>
+				<div id="ytplayer" class="youtube_player" 
+					videoID="5z1AndtkkRo" 
+					width="640" height="360" theme="dark" 
+					rel="1" controls="1" 
+					showinfo="1" autoplay="0" 
+					mute="0">
+				</div>
 			</div>
 		  </div>
 		</div>
@@ -249,7 +260,6 @@
 				<?php } ?>
 	          </ul>
 	        </div>
-			<!-- <div id="wonderpush-subscription-switch" data-sentence="Recevoir nos derni�res news par push web : " data-on="OUI" data-off="NON"></div> -->
 	      </div>
 	    </div>
 	</div>
@@ -322,31 +332,6 @@
 			</div>
 		</div>
 	</div>
-
-<script>
-(function(w,d,s,i,n){w[n]=w[n]||{q:[],init:function(o){w[n].initOpts=o;},ready:function(c){w[n].q.push(c);}};
-setTimeout(function(j,k){if(!d.getElementById(i)){k=d.getElementsByTagName(s)[0];j=d.createElement(s);j.id=i;
-j.src="https://cdn.by.wonderpush.com/sdk/1.1/wonderpush-loader.min.js";k.parentNode.insertBefore(j,k);}},0);
-}(window,document,"script","wonderpush-jssdk-loader","WonderPush"));
-
-WonderPush.init({
-    webKey: "75693edf678f57c0e05bcfa5eb80c65a1888c7ff7977f99eec1a7461b97237aa",
-    optInOptions: {
-        // Vous pouvez modifier ou traduire les chaines suivantes :
-        externalBoxMessage: "Nous aimerions vous envoyer des notifications",
-        externalBoxExampleTitle: "Notification exemple",
-        externalBoxExampleMessage: "Ceci est un exemple de notification",
-        externalBoxDisclaimer: "Vous pouvez vous d�sinscrire � n'importe quel moment.",
-        externalBoxProcessingMessage: "Inscription en cours...",
-        externalBoxSuccessMessage: "Merci de vous �tre inscrit !",
-        externalBoxFailureMessage: "D�sol�, un probl�me est survenu.",
-        externalBoxTooLongHint: "Mauvaise connexion ou navigation priv�e ?",
-        externalBoxCloseHint: "Fermer",
-        modalBoxMessage: "Recevez d�sormais nos news en temps r�el.<br/>Vous pouvez vous d�sinscrire � n'importe quel moment.",
-        modalBoxButton: "J'ai compris !"
-    }
-});
-</script>
 </body>
 </html>
 <?php

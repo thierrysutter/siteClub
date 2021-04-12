@@ -1,10 +1,10 @@
 <?php
 ob_start();
 function chargerClasse($classe) {
-	require $classe . '.class.php'; // On inclut la classe correspondante au paramètre passé.
+	require $classe . '.class.php'; // On inclut la classe correspondante au paramï¿½tre passï¿½.
 }
 
-spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelée dès qu'on instanciera une classe non déclarée.
+spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelï¿½e dï¿½s qu'on instanciera une classe non dï¿½clarï¿½e.
 
 $logger = new Logger('logs/');
 require_once("config/config.php");
@@ -12,9 +12,12 @@ require_once("config/config.php");
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+	<?php
+	  include("tac.php");
+	?>
 
 	<!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> -->
-	<meta name="keywords" content="mots-clés" />
+	<meta name="keywords" content="mots-clï¿½s" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
 	<title>AS SAINT JULIEN LES METZ</title>
@@ -49,15 +52,15 @@ require_once("config/config.php");
 	  			document.location="ActionCompetition.php";
 		  	});
 
-		 	// à la sélection d une catégorie dans la liste
+		 	// ï¿½ la sï¿½lection d une catï¿½gorie dans la liste
 		    $categories.on('change', function() {
 		    	$('.containerEquipe').css("display", "none");
 		    	$('.containerTypeCompetition').css("display", "none");
 		    	$('.containerDivision').css("display", "none");
-		        var val = $(this).val(); // on récupère la valeur de la catégorie
+		        var val = $(this).val(); // on rï¿½cupï¿½re la valeur de la catï¿½gorie
 		        if(val != '') {
-		            $equipes.empty(); // on vide la liste des équipes
-		            $typeCompetitions.empty(); // on vide la liste des équipes
+		            $equipes.empty(); // on vide la liste des ï¿½quipes
+		            $typeCompetitions.empty(); // on vide la liste des ï¿½quipes
 
 		            $.ajax({
 		                url: 'RechercherEquipe.php',
@@ -79,7 +82,7 @@ require_once("config/config.php");
 		                data: 'categorie='+ val, // on envoie $_GET['categorie']
 		                dataType: 'json',
 		                success: function(json) {
-		                	$typeCompetitions.append("<option value=''>Sélectionnez une compétition</option>");
+		                	$typeCompetitions.append("<option value=''>Sï¿½lectionnez une compï¿½tition</option>");
 		                    $.each(json, function(index, value) {
 		                        $typeCompetitions.append('<option value="'+ index +'">'+ value +'</option>');
 		                    });
@@ -92,11 +95,11 @@ require_once("config/config.php");
 		        }
 		    });
 
-		 	// à la sélection d une catégorie dans la liste
+		 	// ï¿½ la sï¿½lection d une catï¿½gorie dans la liste
 		    $typeCompetitions.on('change', function() {
-		        var idTypeCompetition = $(this).val(); // on récupère la valeur du type de compétition
-		        var libelleTypeCompetition = $("#typeCompetition option:selected").text(); // on récupère la valeur du type de compétition
-		        var idCategorie = $categories.val(); // on récupère la valeur de la catégorie
+		        var idTypeCompetition = $(this).val(); // on rï¿½cupï¿½re la valeur du type de compï¿½tition
+		        var libelleTypeCompetition = $("#typeCompetition option:selected").text(); // on rï¿½cupï¿½re la valeur du type de compï¿½tition
+		        var idCategorie = $categories.val(); // on rï¿½cupï¿½re la valeur de la catï¿½gorie
 		        if(idCategorie != "" && libelleTypeCompetition == "CHAMPIONNAT") {
 		            $divisions.empty(); // on vide la liste des divisions
 		            $.ajax({
@@ -104,7 +107,7 @@ require_once("config/config.php");
 		                data: 'categorie='+ idCategorie, // on envoie $_GET['categorie']
 		                dataType: 'json',
 		                success: function(json) {
-		                	$divisions.append('<option value="0">Sélectionnez une division</option>');
+		                	$divisions.append('<option value="0">Sï¿½lectionnez une division</option>');
 		                    $.each(json, function(index, value) {
 		                        $divisions.append('<option value="'+ index +'">'+ value +'</option>');
 		                    });
@@ -155,7 +158,7 @@ require_once("config/config.php");
 	        <div class="col-md-12 col-12 col-sm-12 col-lg-12 col-xl-12">
 	        	<form action="EnregistrerCompetition.php" method="post">
 	        		<input type="hidden" name="methode" id="methode" value="create"/>
-	        		<h3 class="mx-5 pb-3">Ajouter une compétition</h3>
+	        		<h3 class="mx-5 pb-3">Ajouter une compï¿½tition</h3>
 	        		
 	        		<div class="form-group row mx-5">
 	        			<label class="col-sm-1 col-form-label" for="saison">Saison</label>
@@ -176,10 +179,10 @@ require_once("config/config.php");
 			        </div>
 			        
 	        		<div class="form-group row mx-5">
-	        			<label class="col-sm-1 col-form-label" for="categorie">Catégorie</label>
+	        			<label class="col-sm-1 col-form-label" for="categorie">Catï¿½gorie</label>
 	        			<div class="col-sm-11">
 			              <select class="form-control w-100 form-control-md" name="categorie" id="categorie" required>
-			              	<option value="-1" value="">Sélectionnez une catégorie</option>
+			              	<option value="-1" value="">Sï¿½lectionnez une catï¿½gorie</option>
 							<?php foreach($listeCategories as $categorie) {?>
 							<option value="<?php echo $categorie->getId();?>" label="<?php echo $categorie->getLibelle(); ?>"><?php echo $categorie->getLibelle(); ?></option>
 							<?php } ?>

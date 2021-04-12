@@ -3,7 +3,7 @@ ob_start();
 session_start();
 $user = null;
 if (isset($_SESSION['session_started'])) {
-	// une session est ouverte, on récupère le login de l'utilisateur connecté
+	// une session est ouverte, on rï¿½cupï¿½re le login de l'utilisateur connectï¿½
 	if (isset($_SESSION['user'])) {
 		$user = $_SESSION['user'];
 		header("Location: ActionProfil.php");
@@ -15,9 +15,12 @@ if (isset($_SESSION['session_started'])) {
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+	<?php
+	  include("tac.php");
+	?>
 
 	<!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> -->
-	<meta name="keywords" content="mots-clés" />
+	<meta name="keywords" content="mots-clï¿½s" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
 	<title>AS SAINT JULIEN LES METZ</title>
@@ -38,44 +41,44 @@ if (isset($_SESSION['session_started'])) {
 		$("#login").focus();
 
 		$("#oubli").submit( function() {
-			// appel d'une action qui va générer un nouveau mot de passe et l'envoyer par mail
+			// appel d'une action qui va gï¿½nï¿½rer un nouveau mot de passe et l'envoyer par mail
 		});
 		
-		$("#connexionForm").submit( function() {	// à la soumission du formulaire
+		$("#connexionForm").submit( function() {	// ï¿½ la soumission du formulaire
 			$.ajax({ // fonction permettant de faire de l'ajax
-			   type: "POST", // methode de transmission des données au fichier php
+			   type: "POST", // methode de transmission des donnï¿½es au fichier php
 			   url: "ActionLogin.php", // url du fichier php
-			   data: "login="+$("#login").val()+"&password="+$("#password").val(), // données à transmettre
-			   success: function(msg){ // si l'appel a bien fonctionné
-					if(msg == 0) // si la connexion en php a fonctionnée mais l'utilisateur doit changer son mdp
+			   data: "login="+$("#login").val()+"&password="+$("#password").val(), // donnï¿½es ï¿½ transmettre
+			   success: function(msg){ // si l'appel a bien fonctionnï¿½
+					if(msg == 0) // si la connexion en php a fonctionnï¿½e mais l'utilisateur doit changer son mdp
 					{
 						//$("div#message").html("<span id=\"confirmMsg\" style=\"color: green; text-align: center;\">Vous &ecirc;tes maintenant connect&eacute;.</span>");
 						document.location = "ActionChangementMotDePasse.php";
 					}
-					if(msg == 1) // si la connexion en php a fonctionnée mais l'utilisateur doit changer son mdp
+					if(msg == 1) // si la connexion en php a fonctionnï¿½e mais l'utilisateur doit changer son mdp
 					{
 						$("div#message").html("<img src=\"images/interdit16.gif\" style=\"float:left;\" />&nbsp;Votre compte est verouille. Veuillez contactez l'administrateur.");
 					}
-				    if(msg == 2) // si la connexion en php a fonctionnée
+				    if(msg == 2) // si la connexion en php a fonctionnï¿½e
 					{
-				    	// on affiche un message de bienvenue à la place
+				    	// on affiche un message de bienvenue ï¿½ la place
 				    	//$("div#message").html("<span id=\"confirmMsg\" style=\"color: green; text-align: center;\">Vous &ecirc;tes maintenant connect&eacute;.</span>");
 						
 						//redirection vers la page de profil de l'utilisateur
 						document.location = "ActionProfil.php";
 					}
-					else // si la connexion en php n'a pas fonctionnée
+					else // si la connexion en php n'a pas fonctionnï¿½e
 					{
-						// on affiche un message d'erreur dans le span prévu à cet effet
+						// on affiche un message d'erreur dans le span prï¿½vu ï¿½ cet effet
 						$("div#message").html("Erreur lors de la connexion, veuillez v&eacute;rifier votre login et votre mot de passe.");
 					}
 			   },
 			   error: function(){
-				   // on affiche un message d'erreur dans le span prévu à cet effet
+				   // on affiche un message d'erreur dans le span prï¿½vu ï¿½ cet effet
 				   $("div#message").html("Erreur lors de la connexion, merci de reessayer ulterieurement.");
 			   }
 			});
-			return false; // permet de rester sur la même page à la soumission du formulaire
+			return false; // permet de rester sur la mï¿½me page ï¿½ la soumission du formulaire
 		});
 	});
 
@@ -122,7 +125,7 @@ if (isset($_SESSION['session_started'])) {
 						            <input type="text" id="login" name="login" required>
 						            <label for="password">Mot de passe:</label>
 						            <input type="password" id="password" name="password" required>
-						            <!-- <div style="margin-top: 15px;"><p><a id="oubli" href="#">Mot de passe oublié ?</a></p></div> -->
+						            <!-- <div style="margin-top: 15px;"><p><a id="oubli" href="#">Mot de passe oubliï¿½ ?</a></p></div> -->
 						            <div id="lower">
 						            	<input type="submit" class="bouton" value="Connexion">
 						            </div><!--/ lower-->

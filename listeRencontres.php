@@ -1,10 +1,10 @@
 <?php
 ob_start();
 function chargerClasse($classe) {
-	require $classe . '.class.php'; // On inclut la classe correspondante au paramètre passé.
+	require $classe . '.class.php'; // On inclut la classe correspondante au paramï¿½tre passï¿½.
 }
 
-spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelée dès qu'on instanciera une classe non déclarée.
+spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelï¿½e dï¿½s qu'on instanciera une classe non dï¿½clarï¿½e.
 
 $logger = new Logger('logs/');
 require_once("config/config.php");
@@ -16,12 +16,15 @@ require_once("config/config.php");
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+	<?php
+	  include("tac.php");
+	?>
 
 	<meta charset="ISO-8859-1">
 	<meta http-equiv="Cache-Control" content="max-age=600" />
 	<meta http-equiv="Expires" content="Thu, 31 Dec 2015 23:59:59 GMT" />
 	<meta name=viewport content="width=device-width, initial-scale=1">
-	<meta name="keywords" content="mots-clés" />
+	<meta name="keywords" content="mots-clï¿½s" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
 	<title>AS SAINT JULIEN LES METZ</title>
@@ -46,7 +49,7 @@ require_once("config/config.php");
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			/* méthode tri pour les colonnes contenant des dates */
+			/* mï¿½thode tri pour les colonnes contenant des dates */
 			jQuery.fn.dataTableExt.oSort['date-asc']  = function(a,b) {
 			    /*
 			    var datea = a.split('/');
@@ -148,11 +151,11 @@ require_once("config/config.php");
 
 			$(".cr").click(function(){
 				$.ajax({ // fonction permettant de faire de l'ajax
-				   type: "POST", // methode de transmission des données au fichier php
+				   type: "POST", // methode de transmission des donnï¿½es au fichier php
 				   url: "AfficherPopupCompteRendu.php", // url du fichier php
-				   data: {id : $(this).prop('id').split('_')[1], mode : "popup"}, // données à transmettre
+				   data: {id : $(this).prop('id').split('_')[1], mode : "popup"}, // donnï¿½es ï¿½ transmettre
 				   dataType: 'json', // JSON
-				   success: function(compteRendu){ // si l'appel a bien fonctionné
+				   success: function(compteRendu){ // si l'appel a bien fonctionnï¿½
 					   //$("#imageArticlePopup").prop("src", "images/article/"+article.photo);
 					   $("#texteCompteRenduPopup").val(compteRendu.texte);
 
@@ -174,7 +177,7 @@ require_once("config/config.php");
 
 				   },
 				   error: function(){
-					   // on affiche un message d'erreur dans le span prévu à cet effet
+					   // on affiche un message d'erreur dans le span prï¿½vu ï¿½ cet effet
 
 				   }
 				});
@@ -189,16 +192,16 @@ require_once("config/config.php");
 		function enregistrerCompteRendu(idRencontre) {
 
 			$.ajax({ // fonction permettant de faire de l'ajax
-			   type: "POST", // methode de transmission des données au fichier php
+			   type: "POST", // methode de transmission des donnï¿½es au fichier php
 			   url: "EnregistrerCompteRendu.php", // url du fichier php
-			   data: {id: idRencontre, texte : $("#texteCompteRenduPopup").val(), methode: "create", zone : "compteRendu"}, // données à transmettre
+			   data: {id: idRencontre, texte : $("#texteCompteRenduPopup").val(), methode: "create", zone : "compteRendu"}, // donnï¿½es ï¿½ transmettre
 			   dataType: 'json', // JSON
 			   success: function(){
-				   // si l'appel a bien fonctionné
-				   alert("Modification enregistrée");
+				   // si l'appel a bien fonctionnï¿½
+				   alert("Modification enregistrï¿½e");
 			   },
 			   error: function(){
-				   // on affiche un message d'erreur dans le span prévu à cet effet
+				   // on affiche un message d'erreur dans le span prï¿½vu ï¿½ cet effet
 
 			   }
 			});
@@ -258,7 +261,7 @@ require_once("config/config.php");
 	            </div>
 	            
 	            <div class="form-group row mx-5">
-	              <label for="categorie" class="col-sm-1 col-form-label">Catégorie</label>
+	              <label for="categorie" class="col-sm-1 col-form-label">Catï¿½gorie</label>
 	              <div class="col-sm-11">
 		              <select class="form-control w-100 form-control-md" id="categorie" name="categorie">
 			              <option label="Toutes" value="-1"  <?php echo ($_SESSION['$categorieSelectionnee'] == -1 ? "selected" : "") ;?>>Toutes</option>
@@ -300,8 +303,8 @@ require_once("config/config.php");
 		          <thead class="thead-inverse">
 		            <tr class="text-center">
 		              <th>Jour</th>
-		              <th>Catégorie</th>
-		              <th>Compétition</th>
+		              <th>Catï¿½gorie</th>
+		              <th>Compï¿½tition</th>
 		              <th>Adversaire</th>
 		              <th>Lieu</th>
 		              <th>Score</th>
@@ -315,7 +318,7 @@ require_once("config/config.php");
 					  <td class="text-center"><?php echo $rencontre->getLibelleCategorie();?></td>
 					  <td class="text-left"><?php echo $rencontre->getLibelleCompetition();?></td>
 					  <td class="text-left"><?php echo ($rencontre->getEquipeDom() == "ST JULIEN" ? $rencontre->getEquipeExt() : $rencontre->getEquipeDom());?></td>
-					  <td class="text-center"><?php echo ($rencontre->getEquipeDom() == "ST JULIEN" ? "Domicile" : "Extérieur");?></td>
+					  <td class="text-center"><?php echo ($rencontre->getEquipeDom() == "ST JULIEN" ? "Domicile" : "Extï¿½rieur");?></td>
 					  <td class="text-center"><?php echo ($rencontre->getStatut() == 1 ? $rencontre->getEquipeDom() == "ST JULIEN" ? $rencontre->getScoreDom()." - ".$rencontre->getScoreExt(): $rencontre->getScoreExt()." - ".$rencontre->getScoreDom() : "");?></td>
 					  <td class="text-center">
 						<img class="convocation" id="convocation_<?php echo $rencontre->getId();?>" src="images/rdv16.png" style="border: 0;cursor: pointer;" title="Convocation"/>

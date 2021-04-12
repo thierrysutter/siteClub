@@ -1,10 +1,10 @@
 <?php
 ob_start();
 function chargerClasse($classe) {
-	require $classe . '.class.php'; // On inclut la classe correspondante au paramètre passé.
+	require $classe . '.class.php'; // On inclut la classe correspondante au paramï¿½tre passï¿½.
 }
 
-spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelée dès qu'on instanciera une classe non déclarée.
+spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelï¿½e dï¿½s qu'on instanciera une classe non dï¿½clarï¿½e.
 
 $logger = new Logger('logs/');
 require_once("config/config.php");
@@ -12,12 +12,15 @@ require_once("config/config.php");
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+	<?php
+	  include("tac.php");
+	?>
 
 	<meta charset="ISO-8859-1">
 	<meta http-equiv="Cache-Control" content="max-age=600" />
 	<meta http-equiv="Expires" content="Thu, 31 Dec 2015 23:59:59 GMT" />
 	<meta name=viewport content="width=device-width, initial-scale=1">
-	<meta name="keywords" content="mots-clés" />
+	<meta name="keywords" content="mots-clï¿½s" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
 	<title>AS SAINT JULIEN LES METZ</title>
@@ -122,7 +125,7 @@ require_once("config/config.php");
 					        <td><?php echo $article->getTitre();?></td>
 					        <td><?php echo $article->getAuteur();?></td>
 							<td><?php echo date_format(new DateTime($article->getDateParution()), 'd/m/Y H:i:s');?></td>
-							<td><?php echo ($article->getStatut()==1 ? "En ligne" : "Désactivé" );?></td>
+							<td><?php echo ($article->getStatut()==1 ? "En ligne" : "Dï¿½sactivï¿½" );?></td>
 							<td>
 								<?php if ($user != null && (strtoupper($user->getLogin()) == strtoupper($article->getAuteur())) || $user->isSuperAdmin()) {?>
 								<img class="fiche" id="fiche_<?php echo $article->getId();?>_modif" src="images/modify16.png" style="border: 0;cursor: pointer;" title="Modifier"/>

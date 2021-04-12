@@ -1,10 +1,10 @@
 <?php
 ob_start();
 function chargerClasse($classe) {
-	require $classe . '.class.php'; // On inclut la classe correspondante au paramètre passé.
+	require $classe . '.class.php'; // On inclut la classe correspondante au paramï¿½tre passï¿½.
 }
 
-spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelée dès qu'on instanciera une classe non déclarée.
+spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelï¿½e dï¿½s qu'on instanciera une classe non dï¿½clarï¿½e.
 
 $logger = new Logger('logs/');
 require_once("config/config.php");
@@ -12,12 +12,15 @@ require_once("config/config.php");
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+	<?php
+	  include("tac.php");
+	?>
 
 	<meta charset="ISO-8859-1">
 	<meta http-equiv="Cache-Control" content="max-age=600" />
 	<meta http-equiv="Expires" content="Thu, 31 Dec 2015 23:59:59 GMT" />
 	<meta name=viewport content="width=device-width, initial-scale=1">
-	<meta name="keywords" content="mots-clés" />
+	<meta name="keywords" content="mots-clï¿½s" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
 	<title>AS SAINT JULIEN LES METZ</title>
@@ -138,13 +141,13 @@ require_once("config/config.php");
 	              </div>
 	            </div>
 	            <div class="form-group row mx-5">
-	              <label for="inputPrenom" class="col-form-label col-sm-1">Prénom</label>
+	              <label for="inputPrenom" class="col-form-label col-sm-1">Prï¿½nom</label>
 	              <div class="col-sm-5">
-	                <input type="text" class="form-control w-100 form-control-md" id="inputPrenom" name="prenom" placeholder="Prénom" value="<?php echo $user->getPrenom();?>">
+	                <input type="text" class="form-control w-100 form-control-md" id="inputPrenom" name="prenom" placeholder="Prï¿½nom" value="<?php echo $user->getPrenom();?>">
 	              </div>
-	              <label for="inputTelFixe" class="col-form-label col-sm-1">Tél. fixe</label>
+	              <label for="inputTelFixe" class="col-form-label col-sm-1">Tï¿½l. fixe</label>
 	              <div class="col-sm-5">
-	                <input type="text" class="form-control w-100 form-control-md" id="inputTelFixe" name="telFixe" placeholder="Téléphone fixe" value="<?php echo $user->getTelFixe();?>">
+	                <input type="text" class="form-control w-100 form-control-md" id="inputTelFixe" name="telFixe" placeholder="Tï¿½lï¿½phone fixe" value="<?php echo $user->getTelFixe();?>">
 	              </div>
 	            </div>
 	            <div class="form-group row mx-5">
@@ -152,9 +155,9 @@ require_once("config/config.php");
 	              <div class="col-sm-5">
 	                <input type="text" class="datepicker form-control w-100 form-control-md" id="inputDateNaissance" name="dateNaissance" placeholder="Date de naissance" value="<?php echo date_format(new DateTime($user->getDateNaissance()), 'd/m/Y');?>">
 	              </div>
-	              <label for="inputTelPort" class="col-form-label col-sm-1">Tél. portable</label>
+	              <label for="inputTelPort" class="col-form-label col-sm-1">Tï¿½l. portable</label>
 	              <div class="col-sm-5">
-	                <input type="text" class="form-control w-100 form-control-md" id="inputTelPort" name="telPortable" placeholder="Téléphone portable" value="<?php echo $user->getTelPortable();?>">
+	                <input type="text" class="form-control w-100 form-control-md" id="inputTelPort" name="telPortable" placeholder="Tï¿½lï¿½phone portable" value="<?php echo $user->getTelPortable();?>">
 	              </div>
 	            </div>
 	            <div class="form-group row mx-5">

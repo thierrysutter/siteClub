@@ -2,6 +2,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
+	<?php
+	  include("tac.php");
+	?>
 		<meta charset="ISO-8859-1">
 		<meta http-equiv="Cache-Control" content="max-age=600" />
 		<meta http-equiv="Expires" content="Thu, 31 Dec 2015 23:59:59 GMT" />
@@ -63,9 +66,9 @@
 							<div id="blueimp-gallery" class="blueimp-gallery">
 							    <div class="slides"></div>
 							    <h3 class="title"></h3>
-							    <a class="prev">‹</a>
-							    <a class="next">›</a>
-							    <a class="close">×</a>
+							    <a class="prev">ï¿½</a>
+							    <a class="next">ï¿½</a>
+							    <a class="close">ï¿½</a>
 							    <a class="play-pause"></a>
 							    <ol class="indicator"></ol>
 							</div>

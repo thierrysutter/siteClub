@@ -1,10 +1,10 @@
 <?php
 ob_start();
 function chargerClasse($classe) {
-	require $classe . '.class.php'; // On inclut la classe correspondante au paramètre passé.
+	require $classe . '.class.php'; // On inclut la classe correspondante au paramï¿½tre passï¿½.
 }
 
-spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelée dès qu'on instanciera une classe non déclarée.
+spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelï¿½e dï¿½s qu'on instanciera une classe non dï¿½clarï¿½e.
 
 $logger = new Logger('logs/');
 require_once("config/config.php");
@@ -12,12 +12,15 @@ require_once("config/config.php");
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+	<?php
+	  include("tac.php");
+	?>
 
 	<meta charset="ISO-8859-1">
 	<meta http-equiv="Cache-Control" content="max-age=600" />
 	<meta http-equiv="Expires" content="Thu, 31 Dec 2015 23:59:59 GMT" />
 	<meta name=viewport content="width=device-width, initial-scale=1">
-	<meta name="keywords" content="mots-clés" />
+	<meta name="keywords" content="mots-clï¿½s" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
 	<title>AS SAINT JULIEN LES METZ</title>
@@ -103,7 +106,7 @@ require_once("config/config.php");
 
 			function envoyer() {
 				$.post("EnvoyerMessage.php", // url
-					{origine: "organigramme", civilite: $("#civilite").val(), nom:$("#nom").val(), prenom: $("#prenom").val(), email: $("#email").val(), objet: $("#objet").val(), message: $("#contenu").val(), captcha: $("#captcha").val(), destinataire: $("#destinataire").val()}, //paramètres à passer
+					{origine: "organigramme", civilite: $("#civilite").val(), nom:$("#nom").val(), prenom: $("#prenom").val(), email: $("#email").val(), objet: $("#objet").val(), message: $("#contenu").val(), captcha: $("#captcha").val(), destinataire: $("#destinataire").val()}, //paramï¿½tres ï¿½ passer
 					function(data) {
 						// fonction au retour de l'appel
 						alert(data);
@@ -146,10 +149,10 @@ require_once("config/config.php");
 		        <table class="table table-bordered table-striped table-hover table-responsive">
 		          <thead class="thead-inverse">
 		            <tr>
-		              <th>Prénom Nom</th>
+		              <th>Prï¿½nom Nom</th>
 		              <th>Email</th>
 		              <th>Mdp expire le</th>
-		              <th>Dernière connexion le</th>
+		              <th>Derniï¿½re connexion le</th>
 		              <th>Action</th>
 		            </tr>
 		          </thead>
@@ -200,12 +203,12 @@ require_once("config/config.php");
 
 	<div id="emailDialog">
 		<form id="form1" action="EnvoyerMessage.php" method="post">
-			<div id="erreurFiltre"></div><!-- div qui contiendra les éventuels messages d'erreur -->
+			<div id="erreurFiltre"></div><!-- div qui contiendra les ï¿½ventuels messages d'erreur -->
 			<div id="messageFiltre"></div><!-- div qui contiendra le message de retour -->
 			<div>
 			<div style="width: 50%;float: left;">
 				<input type="hidden" id="destinataire" name="destinataire" value=""/>
-				<fieldset><legend>légende</legend>
+				<fieldset><legend>lï¿½gende</legend>
 				<p><label for="civilite">Civilit&eacute;</label></p>
 				<p>
 					<select name="civilite" id="civilite" >
@@ -219,7 +222,7 @@ require_once("config/config.php");
 					<input type="text" name="nom" id="nom" <?php if (isset($_SESSION['messageKO'])) { echo "value='$nom'"; } ?> required="required"/>
 				</p>
 
-				<p><label for="prenom">Prénom</label></p>
+				<p><label for="prenom">Prï¿½nom</label></p>
 				<p>
 					<input type="text" name="prenom" id="prenom" <?php if (isset($_SESSION['messageKO'])) { echo "value='$prenom'"; } ?> required="required"/>
 				</p>

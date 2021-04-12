@@ -1,10 +1,10 @@
 <?php
 ob_start();
 function chargerClasse($classe) {
-	require $classe . '.class.php'; // On inclut la classe correspondante au paramètre passé.
+	require $classe . '.class.php'; // On inclut la classe correspondante au paramï¿½tre passï¿½.
 }
 
-spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelée dès qu'on instanciera une classe non déclarée.
+spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelï¿½e dï¿½s qu'on instanciera une classe non dï¿½clarï¿½e.
 
 $logger = new Logger('logs/');
 require_once("config/config.php");
@@ -12,9 +12,12 @@ require_once("config/config.php");
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+	<?php
+	  include("tac.php");
+	?>
 
 	<!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> -->
-	<meta name="keywords" content="mots-clés" />
+	<meta name="keywords" content="mots-clï¿½s" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
 	<title>AS SAINT JULIEN LES METZ</title>
@@ -139,7 +142,7 @@ require_once("config/config.php");
 	        <div class="col-md-12 col-12 col-sm-12 col-lg-12 col-xl-12">
 	        	<form id="formRetour" action="ActionMembre.php" method="post">
 					<input type="hidden" name="methode" id="methode" value="retour"/>
-					<!-- Récup des filtres précédents -->
+					<!-- Rï¿½cup des filtres prï¿½cï¿½dents -->
 					<input type="hidden" name="filtreCategorie" id="filtreCategorie" value="<?php echo $_GET['filtreCategorie'];?>"/>
 					<input type="hidden" name="filtreFonction" id="filtreFonction" value="<?php echo $_GET['filtreFonction'];?>"/>
 					<input type="hidden" name="filtrePoste" id="filtrePoste" value="<?php echo $_GET['filtrePoste'];?>"/>
@@ -152,7 +155,7 @@ require_once("config/config.php");
 					<input type="hidden" name="filtreFonction" id="filtreFonction" value="<?php echo $_GET['filtreFonction'];?>"/>
 					<input type="hidden" name="filtrePoste" id="filtrePoste" value="<?php echo $_GET['filtrePoste'];?>"/>
 					<input type="hidden" name="filtreNom" id="filtreNom" value="<?php echo ($_GET['filtreNom']!='' ? $_GET['filtreNom'] : '');?>"/>
-	        		<h3 class="mx-5 pb-3">Ajouter un licencié</h3>
+	        		<h3 class="mx-5 pb-3">Ajouter un licenciï¿½</h3>
 	        		
 					<div class="form-group row mx-5">
 				        <div class="col-sm-12 text-center">
@@ -168,17 +171,17 @@ require_once("config/config.php");
 			        </div>
 			        
 			        <div class="form-group row mx-5">
-			        	<label class="col-sm-1 col-form-label" for="prenom">Prénom</label>
+			        	<label class="col-sm-1 col-form-label" for="prenom">Prï¿½nom</label>
 			        	<div class="col-sm-11">
 			        		<input class="form-control w-100 form-control-md" type="text" name="prenom" id="prenom" value="" required/>
 			        	</div>
 			        </div>
 	        		
 	        		<div class="form-group row mx-5">
-	        			<label class="col-sm-1 col-form-label" for="categorie">Catégorie</label>
+	        			<label class="col-sm-1 col-form-label" for="categorie">Catï¿½gorie</label>
 	        			<div class="col-sm-11">
 			              <select class="form-control w-100 form-control-md" name="categorie" id="categorie" required>
-			              	<option label="Sélectionnez une catégorie" value=""/>
+			              	<option label="Sï¿½lectionnez une catï¿½gorie" value=""/>
 							<?php foreach($listeCategories as $categorie) {?>
 							<option value="<?php echo $categorie->getId();?>"><?php echo $categorie->getLibelle(); ?></option>
 							<?php } ?>
@@ -190,7 +193,7 @@ require_once("config/config.php");
 	        			<label class="col-sm-1 col-form-label" for="fonction">Fonction</label>
 	        			<div class="col-sm-11">
 			              <select class="form-control w-100 form-control-md" name="fonction" id="fonction" required>
-			              	<option label="Sélectionnez une fonction" value=""/>
+			              	<option label="Sï¿½lectionnez une fonction" value=""/>
 							<?php foreach($listeFonctions as $fonction) {?>
 							<option value="<?php echo $fonction->getId();?>"><?php echo $fonction->getLibelle(); ?></option>
 							<?php } ?>
@@ -202,7 +205,7 @@ require_once("config/config.php");
 	        			<label class="col-sm-1 col-form-label" for="poste">Poste</label>
 	        			<div class="col-sm-11">
 			              <select class="form-control w-100 form-control-md" name="poste" id="poste" required>
-			              	<option label="Sélectionnez un poste" value=""/>
+			              	<option label="Sï¿½lectionnez un poste" value=""/>
 							<?php foreach($listePostes as $poste) {?>
 							<option value="<?php echo $poste->getId();?>"><?php echo $poste->getLibelle(); ?></option>
 							<?php } ?>
@@ -225,7 +228,7 @@ require_once("config/config.php");
 			        </div>
 			        
 			        <div class="form-group row mx-5">
-			        	<label class="col-sm-1 col-form-label" for="numLicence">N° licence</label>
+			        	<label class="col-sm-1 col-form-label" for="numLicence">Nï¿½ licence</label>
 			        	<div class="col-sm-11">
 			        		<input class="form-control w-100 form-control-md" type="text" name="numLicence" id="numLicence" value=""/>
 			        	</div>

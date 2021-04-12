@@ -4,9 +4,12 @@ ob_start();
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+	<?php
+	  include("tac.php");
+	?>
 
 	<!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> -->
-	<meta name="keywords" content="mots-clés" />
+	<meta name="keywords" content="mots-clï¿½s" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
 	<title>AS SAINT JULIEN LES METZ</title>
@@ -88,8 +91,8 @@ try {
 	if (isset($_SESSION['listeConvocations']))
 		$listeConvocations = $_SESSION['listeConvocations'];
 	
-} catch (PDOException $error) { //Le catch est chargé d’intercepter une éventuelle erreur
-	echo "N° : ".$error->getCode()."<br />";
+} catch (PDOException $error) { //Le catch est chargï¿½ dï¿½intercepter une ï¿½ventuelle erreur
+	echo "Nï¿½ : ".$error->getCode()."<br />";
 	die ("Erreur : ".$error->getMessage()."<br />");
 }
 ?>
@@ -108,7 +111,7 @@ try {
 						<input type="hidden" name="methode" id="methode" value="filtre"/>
 						<fieldset><legend>Affiner la recherche</legend>
 						<p class="first" id="container" >
-							<label for="categorie">Catégorie</label>
+							<label for="categorie">Catï¿½gorie</label>
 							<select name="categorie" id="categorie">
 							<option label="Toutes" value="-1"  <?php echo ($_SESSION['categorieSelectionnee'] == -1 ? "selected" : "") ;?>>Toutes</option>
 							<?php foreach($listeCategories as $categorie) {?>
@@ -148,8 +151,8 @@ try {
 								<thead>
 									<tr>
 									  <th>Jour<br><img src="images/sort-asc.png" style="border: 0;"/><img src="images/sort-desc.png" style="border: 0;"/></th>
-									  <th>Catégorie<br><img src="images/sort-asc.png" style="border: 0;"/><img src="images/sort-desc.png" style="border: 0;"/></th>
-									  <th>Compétition<br><img src="images/sort-asc.png" style="border: 0;"/><img src="images/sort-desc.png" style="border: 0;"/></th>
+									  <th>Catï¿½gorie<br><img src="images/sort-asc.png" style="border: 0;"/><img src="images/sort-desc.png" style="border: 0;"/></th>
+									  <th>Compï¿½tition<br><img src="images/sort-asc.png" style="border: 0;"/><img src="images/sort-desc.png" style="border: 0;"/></th>
 									  <th>Adversaire</th>
 									  <th>Lieu<br><img src="images/sort-asc.png" style="border: 0;"/><img src="images/sort-desc.png" style="border: 0;"/></th>
 									  <th>Liens</th>
@@ -162,7 +165,7 @@ try {
 										<td><?php echo $convocation->getRencontre()->getLibelleCategorie();?></td>
 										<td><?php echo $convocation->getRencontre()->getLibelleCompetition();?></td>
 										<td><?php echo ($convocation->getRencontre()->getEquipeDom() == "ST JULIEN" ? $convocation->getRencontre()->getEquipeExt() : $convocation->getRencontre()->getEquipeDom());?></td>
-										<td><?php echo ($convocation->getRencontre()->getEquipeDom() == "ST JULIEN" ? "Domicile" : "Extérieur");?></td>
+										<td><?php echo ($convocation->getRencontre()->getEquipeDom() == "ST JULIEN" ? "Domicile" : "Extï¿½rieur");?></td>
 										<td>
 											<img class="afficher" id="afficher_<?php echo $convocation->getRencontre()->getId();?>" src="images/loupe16.png" style="border: 0;cursor: pointer;" title="Afficher"/>
 										</td>

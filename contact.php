@@ -5,8 +5,11 @@ ob_start();
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+	<?php
+	  include("tac.php");
+	?>
 	<meta name=viewport content="width=device-width, initial-scale=1">
-	<meta name="keywords" content="mots-clÈs" />
+	<meta name="keywords" content="mots-clÔøΩs" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
 	<title>AS SAINT JULIEN LES METZ</title>
@@ -51,12 +54,6 @@ ob_start();
 	
 </head>
 <body class="w-75 mx-auto bg-light">
-	<!-- Header -->
-	<?php
-	  //include("head.php");
-	?>
-	<!-- End Header -->
-
 	<!-- Navigation Haut-->
 	<?php
 	  include("menuHaut.php");
@@ -80,7 +77,7 @@ ob_start();
 	  	  <div class="col-md-12">
 	  	  	<div class="alert alert-success" role="alert">
 	    	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-	    	  	<span aria-hidden="true">ù</span>
+	    	  	<span aria-hidden="true">ÔøΩ</span>
 	    	  </button>
 	    	  <h4 class="alert-heading">Votre message a bien &eacute;t&eacute; envoy&eacute; !</h4>
 	    	  <p class="mb-0">Nous vous r&eacute;pondrons dans les plus bref d&eacute;lais.</p>
@@ -104,7 +101,7 @@ ob_start();
 	      	  	<span aria-hidden="true">X</span>
 	      	  </button>
 	      	  <h4 class="alert-heading">Votre message n'a pas &eacute;t&eacute; envoy&eacute; !</h4>
-	    	  <p class="mb-0">Une erreur est intervenue pendant l'envoi de votre message. Merci de v&eacute;rifier tous les champs du formulaire. Si le problËme persiste, vous pouvez nous contactez au 03 87 37 04 34.</p>
+	    	  <p class="mb-0">Une erreur est intervenue pendant l'envoi de votre message. Merci de v&eacute;rifier tous les champs du formulaire. Si le problÔøΩme persiste, vous pouvez nous contactez au 03 87 37 04 34.</p>
 	      	</div>
 	      </div>
 	    </div>

@@ -5,6 +5,9 @@ $listeEvenements = array();
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+	<?php
+	  include("tac.php");
+	?>
 	<meta charset="ISO-8859-1">
 	<meta name="keywords" content="mots-cl�s" />
     <meta name="description" content="description" />

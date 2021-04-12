@@ -4,8 +4,11 @@ ob_start();
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+	<?php
+	  include("tac.php");
+	?>
 	<meta charset="iso-8859-15" />
-	<meta name="keywords" content="mots-clés" />
+	<meta name="keywords" content="mots-clï¿œs" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
 	<title>AS SAINT JULIEN LES METZ</title>

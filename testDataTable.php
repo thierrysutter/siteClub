@@ -1,10 +1,10 @@
 <?php
 ob_start();
 function chargerClasse($classe) {
-	require $classe . '.class.php'; // On inclut la classe correspondante au paramètre passé.
+	require $classe . '.class.php'; // On inclut la classe correspondante au paramï¿½tre passï¿½.
 }
 
-spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelée dès qu'on instanciera une classe non déclarée.
+spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelï¿½e dï¿½s qu'on instanciera une classe non dï¿½clarï¿½e.
 
 $logger = new Logger('logs/');
 require_once("config/config.php");
@@ -32,9 +32,12 @@ if (isset($_SESSION['session_started'])) {
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+	<?php
+	  include("tac.php");
+	?>
 
 	<!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> -->
-	<meta name="keywords" content="mots-clés" />
+	<meta name="keywords" content="mots-clï¿½s" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
 	<title>AS SAINT JULIEN LES METZ</title>
@@ -99,7 +102,7 @@ if (isset($_SESSION['session_started'])) {
 						<input type="hidden" name="methode" id="methode" value="filtre"/>
 						<fieldset><legend>Affiner la recherche</legend>
 						<p class="first" id="zoneFiltreCategorie" >
-							<label for="filtreCategorie">Catégorie</label>
+							<label for="filtreCategorie">Catï¿½gorie</label>
 							<select name="filtreCategorie" id="filtreCategorie">
 							<option label="" value="-1"  <?php echo ($_SESSION['filtreCategorie'] == -1 ? "selected" : "") ;?>>Toutes</option>
 							<?php foreach($listeCategories as $categorie) {?>
@@ -129,7 +132,7 @@ if (isset($_SESSION['session_started'])) {
 						</p>
 						
 						<p id="zoneFiltreNom" >
-							<label for="filtreNom">Nom/Prénom</label>
+							<label for="filtreNom">Nom/Prï¿½nom</label>
 							<input type="text" name="filtreNom" id="filtreNom" value="<?php echo $_SESSION['filtreNom'] ;?>"/>
 						</p>
 						
@@ -152,12 +155,12 @@ if (isset($_SESSION['session_started'])) {
 							        <thead>
 							            <tr>
 							            	<th>
-												<input type="checkbox" class="noprint" id="check_all" name="check_all" title="Tout cocher/décocher"/>
-												<img id="impression" class="noprint" src="images/print.gif" style="cursor: pointer; width: 20px; height: 20px; vertical-align: bottom;" title="Imprimer la sélection"/> 
+												<input type="checkbox" class="noprint" id="check_all" name="check_all" title="Tout cocher/dï¿½cocher"/>
+												<img id="impression" class="noprint" src="images/print.gif" style="cursor: pointer; width: 20px; height: 20px; vertical-align: bottom;" title="Imprimer la sï¿½lection"/> 
 											</th>
 											<th>Nom</th>
-											<th>Prénom</th>
-											<th>Catégorie</th>
+											<th>Prï¿½nom</th>
+											<th>Catï¿½gorie</th>
 											<th>Poste/Fonction</th>
 											<th>Liens</th>
 																	

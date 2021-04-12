@@ -1,10 +1,10 @@
 <?php
 ob_start();
 function chargerClasse($classe) {
-	require $classe . '.class.php'; // On inclut la classe correspondante au paramètre passé.
+	require $classe . '.class.php'; // On inclut la classe correspondante au paramï¿½tre passï¿½.
 }
 
-spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelée dès qu'on instanciera une classe non déclarée.
+spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelï¿½e dï¿½s qu'on instanciera une classe non dï¿½clarï¿½e.
 
 $logger = new Logger('logs/');
 require_once("config/config.php");
@@ -12,9 +12,12 @@ require_once("config/config.php");
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+	<?php
+	  include("tac.php");
+	?>
 
 	<!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> -->
-	<meta name="keywords" content="mots-clés" />
+	<meta name="keywords" content="mots-clï¿½s" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
 	<title>AS SAINT JULIEN LES METZ</title>
@@ -60,21 +63,21 @@ require_once("config/config.php");
 		    var $typeCompetitions = $('#competition');
 		    var $adversaire = $('#adversaire');
 
-		 // à la sélection d une catégorie dans la liste
+		 // ï¿½ la sï¿½lection d une catï¿½gorie dans la liste
 		    $categories.on('change', function() {
 		    	$('.containerEquipe').css("display", "none");
 
-		        var val = $(this).val(); // on récupère la valeur de la catégorie
+		        var val = $(this).val(); // on rï¿½cupï¿½re la valeur de la catï¿½gorie
 		        if(val != '') {
-		            $equipes.empty(); // on vide la liste des équipes
-		            $typeCompetitions.empty(); // on vide la liste des équipes
+		            $equipes.empty(); // on vide la liste des ï¿½quipes
+		            $typeCompetitions.empty(); // on vide la liste des ï¿½quipes
 
 		            $.ajax({
 		                url: 'RechercherEquipe.php',
 		                data: 'categorie='+ val, // on envoie $_GET['categorie']
 		                dataType: 'json',
 		                success: function(json) {
-		                	$equipes.append("<option value=''>Sélectionnez une équipe</option>");
+		                	$equipes.append("<option value=''>Sï¿½lectionnez une ï¿½quipe</option>");
 		                    $.each(json, function(index, value) {
 		                        $equipes.append('<option value="'+ index +'">'+ value +'</option>');
 		                    });
@@ -90,7 +93,7 @@ require_once("config/config.php");
 		                data: 'categorie='+ val, // on envoie $_GET['categorie']
 		                dataType: 'json',
 		                success: function(json) {
-		                	$typeCompetitions.append("<option value=''>Sélectionnez une compétition</option>");
+		                	$typeCompetitions.append("<option value=''>Sï¿½lectionnez une compï¿½tition</option>");
 		                    $.each(json, function(index, value) {
 		                        $typeCompetitions.append('<option value="'+ index +'">'+ value +'</option>');
 		                    });
@@ -110,15 +113,15 @@ require_once("config/config.php");
 		    	$('.containerTypeCompetition').css("display", "none");
 		    	$('.containerLieu').css("display", "none");
 		    	$('.containerAdversaire').css("display", "none");
-				var categorie = $categories.val(); // on récupère la valeur de la catégorie
-		    	var equipe = $(this).val(); // on récupère la valeur de l'equipe
-		    	$typeCompetitions.empty(); // on vide la liste des compétitions
+				var categorie = $categories.val(); // on rï¿½cupï¿½re la valeur de la catï¿½gorie
+		    	var equipe = $(this).val(); // on rï¿½cupï¿½re la valeur de l'equipe
+		    	$typeCompetitions.empty(); // on vide la liste des compï¿½titions
 			    $.ajax({
 	                url: 'RechercherCompetitionEquipe.php',
 	                data: 'categorie='+ categorie + '&equipe=' + equipe, // on envoie $_GET['categorie'] et $_GET['equipe']
 	                dataType: 'json',
 	                success: function(json) {
-	                	$typeCompetitions.append("<option value=''>Sélectionnez une compétition</option>");
+	                	$typeCompetitions.append("<option value=''>Sï¿½lectionnez une compï¿½tition</option>");
 	                    $.each(json, function(index, value) {
 	                        $typeCompetitions.append('<option value="'+ index +'">'+ value +'</option>');
 	                    });
@@ -127,7 +130,7 @@ require_once("config/config.php");
 				    	$('.containerAdversaire').css("display", "");
 	                },
 	                error: function(result){
-		                alert("Erreur lors de la racherche des compétitions de cette équipe.");
+		                alert("Erreur lors de la racherche des compï¿½titions de cette ï¿½quipe.");
 	                }
 	            });
 		    });
@@ -198,9 +201,9 @@ require_once("config/config.php");
 										<input type="text" class="datepicker" id="jour" name="jour" size="8" maxlength="10" value=""/>
 									</p>
 									<p id="container" >
-										<label for="categorie">Catégorie</label>
+										<label for="categorie">Catï¿½gorie</label>
 										<select name="categorie" id="categorie" required>
-										<option value="">Sélectionnez une catégorie</option>
+										<option value="">Sï¿½lectionnez une catï¿½gorie</option>
 										<?php foreach($listeCategories as $categorie) {?>
 										<option value="<?php echo $categorie->getId();?>"><?php echo $categorie->getLibelle(); ?></option>
 										<?php } ?>
@@ -224,10 +227,10 @@ require_once("config/config.php");
 										</select>
 									</p>
 									<p id="container" class="containerTypeCompetition" style="display: none;">
-										<label for="competition">Compétition</label>
+										<label for="competition">Compï¿½tition</label>
 
 										<select name="competition" id="competition" required>
-										<option value="">Sélectionnez une compétition</option>
+										<option value="">Sï¿½lectionnez une compï¿½tition</option>
 										<?php foreach($listeCompetitions as $competition) {?>
 										<option value="<?php echo $competition->getId();?>"><?php echo $competition->getLibelle(); ?></option>
 										<?php } ?>

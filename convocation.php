@@ -4,8 +4,11 @@ ob_start();
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+	<?php
+	  include("tac.php");
+	?>
 	<meta charset="iso-8859-15" />
-	<meta name="keywords" content="mots-clés" />
+	<meta name="keywords" content="mots-clï¿œs" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
 	<title>AS SAINT JULIEN LES METZ</title>
@@ -49,8 +52,8 @@ try {
 	$convocation = $_SESSION['convocation'];
 	$categorieSelectionnee = $_SESSION['categorieSelectionnee'];
 	
-} catch (PDOException $error) { //Le catch est chargé dintercepter une éventuelle erreur
-	echo "N° : ".$error->getCode()."<br />";
+} catch (PDOException $error) { //Le catch est chargï¿œ dï¿œintercepter une ï¿œventuelle erreur
+	echo "Nï¿œ : ".$error->getCode()."<br />";
 	die ("Erreur : ".$error->getMessage()."<br />");
 }
 
@@ -80,7 +83,7 @@ try {
 						<div class="cl">&nbsp;</div>
 						<form id="formRetour" action="ActionAfficherConvocations.php" method="post">
 							<input type="hidden" name="methode" id="methode" value="retour"/>
-							<!-- Récup des filtres précédents -->
+							<!-- Rï¿œcup des filtres prï¿œcï¿œdents -->
 							<input type="hidden" name="categorie" id="categorie" value="<?php echo $categorieSelectionnee; ?>"/>
 							<input type="hidden" name="debut" id="debut" value="<?php echo $debut; ?>"/>
 							<input type="hidden" name="fin" id="fin" value="<?php echo $fin; ?>"/>
@@ -99,7 +102,7 @@ try {
 							
 							<fieldset>
 								<p id="container" >
-								<label for="nomJoueur1" style="">Joueurs convoqués</label>
+								<label for="nomJoueur1" style="">Joueurs convoquï¿œs</label>
 								<div>
 									<?php 
 										$i=0;

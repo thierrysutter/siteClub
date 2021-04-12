@@ -1,10 +1,10 @@
 <?php
 ob_start();
 function chargerClasse($classe) {
-	require $classe . '.class.php'; // On inclut la classe correspondante au paramètre passé.
+	require $classe . '.class.php'; // On inclut la classe correspondante au paramï¿½tre passï¿½.
 }
 
-spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelée dès qu'on instanciera une classe non déclarée.
+spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelï¿½e dï¿½s qu'on instanciera une classe non dï¿½clarï¿½e.
 
 $logger = new Logger('logs/');
 require_once("config/config.php");
@@ -12,12 +12,15 @@ require_once("config/config.php");
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+	<?php
+	  include("tac.php");
+	?>
 
 	<meta charset="ISO-8859-1">
 	<meta http-equiv="Cache-Control" content="max-age=600" />
 	<meta http-equiv="Expires" content="Thu, 31 Dec 2015 23:59:59 GMT" />
 	<meta name=viewport content="width=device-width, initial-scale=1">
-	<meta name="keywords" content="mots-clés" />
+	<meta name="keywords" content="mots-clï¿½s" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
 	<title>AS SAINT JULIEN LES METZ</title>
@@ -41,25 +44,25 @@ require_once("config/config.php");
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$("#submit").click( function() {	// à la soumission du formulaire
+			$("#submit").click( function() {	// ï¿½ la soumission du formulaire
 				
 				if (validFormulaire()) {
 					$.ajax({ // fonction permettant de faire de l'ajax
-					   type: "POST", // methode de transmission des données au fichier php
+					   type: "POST", // methode de transmission des donnï¿½es au fichier php
 					   url: "EnregistrerMotDePasse.php", // url du fichier php
-					   data: "login="+$("#login").val()+"&ancienMdp="+$("#ancienMdp").val()+"&nouveauMdp="+$("#nouveauMdp").val()+"&confirmMdp="+$("#confirmMdp").val(), // données à transmettre
-					   success: function(msg){ // si l'appel a bien fonctionné
+					   data: "login="+$("#login").val()+"&ancienMdp="+$("#ancienMdp").val()+"&nouveauMdp="+$("#nouveauMdp").val()+"&confirmMdp="+$("#confirmMdp").val(), // donnï¿½es ï¿½ transmettre
+					   success: function(msg){ // si l'appel a bien fonctionnï¿½
 						    
 							$("div#message").html(msg);
 							document.connexionForm.reset();
 							document.location = "ActionProfil.php";
 					   },
 					   error: function(){
-						   // on affiche un message d'erreur dans le span prévu à cet effet
+						   // on affiche un message d'erreur dans le span prï¿½vu ï¿½ cet effet
 						   $("div#message").html("Erreur lors de la connexion, merci de reessayer ulterieurement.");
 					   }
 					});
-					return false; // permet de rester sur la même page à la soumission du formulaire
+					return false; // permet de rester sur la mï¿½me page ï¿½ la soumission du formulaire
 				}
 				return false;
 			});
@@ -94,7 +97,7 @@ require_once("config/config.php");
 			}
 
 			if ($nouveauMdp != $confirmMdp) {
-				alert("Mot de passe erroné");
+				alert("Mot de passe erronï¿½");
 				$("#confirmMdp").focus();
 				return false;
 			}
@@ -130,7 +133,7 @@ require_once("config/config.php");
 	      
 	      <div class="row my-4">
 	      	<div class="col-md-12 col-12 col-sm-12 col-lg-12 col-xl-12">
-				<div id="messageConnexion" style="text-align: center; height: 5px; color: red; font-size: 14px; font-weight: bold; ">Pour plus de sécurité et obtenir l'accès à l'espace membre, merci de mettre à jour votre mot de passe.</div>
+				<div id="messageConnexion" style="text-align: center; height: 5px; color: red; font-size: 14px; font-weight: bold; ">Pour plus de sï¿½curitï¿½ et obtenir l'accï¿½s ï¿½ l'espace membre, merci de mettre ï¿½ jour votre mot de passe.</div>
 				<div id="message" style="text-align: center; height: 5px; "></div>
 	      	</div>
 	      </div>
