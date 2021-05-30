@@ -175,16 +175,9 @@
 	    <div class="container">	    
 	    	<div class="row">
 	        	<div class="col-md-6 p-4 col-12 col-sm-6 col-lg-6 col-xl-6 mx-auto">
-				Suite aux annonces hier soir du  Pr&eacute;sident de la R&eacute;publique, L'AS Saint Julien les Metz a le regret de vous informer de la suspension d&egrave;s &agrave; present jusqu'&agrave; nouvel ordre de toutes ses activit&eacute;s.
-				Continuez &agrave; nous suivre notre page Facebook, nous vous informerons en temps r&eacute;el ! <br/><br/>
-				Prenez soin de vous et de vos proches et surtout, restez chez vous ! <br/><br/>
-				#TousAntiCovid<br/><br/>
-				<a href="https://play.google.com/store/apps/details?id=fr.gouv.android.stopcovid" target="_blank"><img src="images/GooglePlay.jpg" alt="PlayStore" /></a>
-				<a href="https://apps.apple.com/fr/app/tousanticovid/id1511279125" target="_blank"><img src="images/AppStore.jpg" alt="AppStore" /></a>
+				Lancement de la boutique du club !
 				<br/><br/>
-				Le comit&eacute; de l'ASSJ.
-				<br/><br/>
-				Retrouvez le communiqu&eacute; de la FFF <a href="https://www.fff.fr/actualites/195365-covid-19-decision-de-la-fff-concernant-les-competitions?themePath=la-fff%2F&fbclid=IwAR0-XS6mXbNIBSBsv5tiYjSKw-szxmNxiVmxhjDDSElUi5sO_pV4skgkqzo" target="_blank">ici</a>
+				Retrouvez tous les articles disponibles en téléchargeant le <a href="/document/BoutiqueASSJ.pdf" target="_blank">bon de commande</a>
 				</div>
 			</div>
 		</div>
