@@ -65,10 +65,6 @@
         </script>
 	<script type="text/javascript">
 		var tarteaucitronForceLanguage = 'fr'; /* supported: fr, en, de, es, it, pt, pl, ru */
-	
-		tarteaucitron.user.gtagUa = 'UA-59514469-3';
-        tarteaucitron.user.gtagMore = function () { /* add here your optionnal gtag() */ };
-        (tarteaucitron.job = tarteaucitron.job || []).push('gtag');
 
 		(tarteaucitron.job = tarteaucitron.job || []).push('youtube');
 
