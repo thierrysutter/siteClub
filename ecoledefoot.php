@@ -18,7 +18,7 @@ $cat2 = null;
 	<?php
 	  include("tac.php");
 	?>
-	<meta charset="UTF-8">
+	<meta charset="windows-1252">
 	<meta name=viewport content="width=device-width, initial-scale=1">
 	<meta name="keywords" content="mots-clés" />
     <meta name="description" content="description" />

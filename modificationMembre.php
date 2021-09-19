@@ -1,10 +1,10 @@
 <?php
 ob_start();
 function chargerClasse($classe) {
-	require $classe . '.class.php'; // On inclut la classe correspondante au paramètre passé.
+	require $classe . '.class.php'; // On inclut la classe correspondante au paramï¿½tre passï¿½.
 }
 
-spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelée dès qu'on instanciera une classe non déclarée.
+spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelï¿½e dï¿½s qu'on instanciera une classe non dï¿½clarï¿½e.
 
 $logger = new Logger('logs/');
 require_once("config/config.php");
@@ -14,8 +14,8 @@ require_once("config/config.php");
 <head>
 
 	<!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> -->
-	<meta charset="ISO-8859-1">
-	<meta name="keywords" content="mots-clés" />
+	<meta charset="windows-1252">
+	<meta name="keywords" content="mots-clï¿½s" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
 	<title>AS SAINT JULIEN LES METZ</title>
@@ -92,11 +92,11 @@ require_once("config/config.php");
 
 	  		$("#parcours").click(function(){
 	  			$.ajax({ // fonction permettant de faire de l'ajax
-					   type: "POST", // methode de transmission des données au fichier php
+					   type: "POST", // methode de transmission des donnï¿½es au fichier php
 					   url: "AfficherPopupParcours.php", // url du fichier php
-					   data: {id : $("#id").val(), mode : "popup"}, // données à transmettre
+					   data: {id : $("#id").val(), mode : "popup"}, // donnï¿½es ï¿½ transmettre
 					   //dataType: 'json', // JSON
-					   success: function(parcours){ // si l'appel a bien fonctionné
+					   success: function(parcours){ // si l'appel a bien fonctionnï¿½
 						   /*$("#imageArticlePopup").prop("src", article.photo);
 						   $("#texteArticlePopup").html(article.texte);*/
 						   $("#texteParcours").html(parcours);
@@ -104,7 +104,7 @@ require_once("config/config.php");
 					  			height: 200,
 					  			width: 200,
 					  			modal: true,
-					  			title: "Clubs précédents",
+					  			title: "Clubs prï¿½cï¿½dents",
 					  			buttons: {
 					  				/*Ajouter: function() {
 					  					$(this).dialog( "close" );
@@ -117,7 +117,7 @@ require_once("config/config.php");
 							
 					   },
 					   error: function(){
-						   // on affiche un message d'erreur dans le span prévu à cet effet
+						   // on affiche un message d'erreur dans le span prï¿½vu ï¿½ cet effet
 					   }
 					});
 			});
@@ -191,7 +191,7 @@ require_once("config/config.php");
 	        <div class="col-md-12 col-12 col-sm-12 col-lg-12 col-xl-12">
 	        	<form id="formRetour" action="ActionMembre.php" method="post">
 					<input type="hidden" name="methode" id="methode" value="retour"/>
-					<!-- Récup des filtres précédents -->
+					<!-- Rï¿½cup des filtres prï¿½cï¿½dents -->
 					<input type="hidden" name="filtreCategorie" id="filtreCategorie" value="<?php echo $_GET['filtreCategorie'];?>"/>
 					<input type="hidden" name="filtreFonction" id="filtreFonction" value="<?php echo $_GET['filtreFonction'];?>"/>
 					<input type="hidden" name="filtrePoste" id="filtrePoste" value="<?php echo $_GET['filtrePoste'];?>"/>
@@ -208,7 +208,7 @@ require_once("config/config.php");
 					<input type="hidden" name="filtrePoste" id="filtrePoste" value="<?php echo $_GET['filtrePoste'];?>"/>
 					<input type="hidden" name="filtreNom" id="filtreNom" value="<?php echo ($_GET['filtreNom']!='' ? $_GET['filtreNom'] : '');?>"/>
 					<!--<input type="file" class="file" name="photo" id="photo" accept="image/*" style="display: none;"/>-->
-	        		<h3 class="mx-5 pb-3">Modifier un licencié</h3>
+	        		<h3 class="mx-5 pb-3">Modifier un licenciï¿½</h3>
 	        		
 					<div class="form-group row mx-5">
 				        <div class="col-sm-12 text-center">
@@ -230,17 +230,17 @@ require_once("config/config.php");
 			        </div>
 			        
 			        <div class="form-group row mx-5">
-			        	<label class="col-sm-1 col-form-label" for="prenom">Prénom</label>
+			        	<label class="col-sm-1 col-form-label" for="prenom">Prï¿½nom</label>
 			        	<div class="col-sm-11">
 			        		<input class="form-control w-100 form-control-md" type="text" name="prenom" id="prenom" value="<?php echo $membre->getPrenom();?>" required/>
 			        	</div>
 			        </div>
 	        		
 	        		<div class="form-group row mx-5">
-	        			<label class="col-sm-1 col-form-label" for="categorie">Catégorie</label>
+	        			<label class="col-sm-1 col-form-label" for="categorie">Catï¿½gorie</label>
 	        			<div class="col-sm-11">
 			              <select class="form-control w-100 form-control-md" name="categorie" id="categorie" required>
-			              	<option label="Sélectionnez une catégorie" value=""/>
+			              	<option label="Sï¿½lectionnez une catï¿½gorie" value=""/>
 							<?php foreach($listeCategories as $categorie) {?>
 							<option value="<?php echo $categorie->getId();?>" <?php echo ($categorie->getId() == $membre->getCategorie() ? "selected" : "") ; ?>><?php echo $categorie->getLibelle(); ?></option>
 							<?php } ?>
@@ -254,7 +254,7 @@ require_once("config/config.php");
 	        			<label class="col-sm-1 col-form-label" for="fonction">Fonction</label>
 	        			<div class="col-sm-11">
 			              <select class="form-control w-100 form-control-md" name="fonction" id="fonction" required>
-			              	<option label="Sélectionnez une fonction" value=""/>
+			              	<option label="Sï¿½lectionnez une fonction" value=""/>
 							<?php foreach($listeFonctions as $fonction) {?>
 							<option value="<?php echo $fonction->getId();?>" <?php echo ($fonction->getId() == $membre->getFonction() ? "selected" : "") ; ?>><?php echo $fonction->getLibelle(); ?></option>
 							<?php } ?>
@@ -269,7 +269,7 @@ require_once("config/config.php");
 	        			<label class="col-sm-1 col-form-label" for="poste">Poste</label>
 	        			<div class="col-sm-11">
 			              <select class="form-control w-100 form-control-md" name="poste" id="poste" required>
-			              	<option label="Sélectionnez un poste" value=""/>
+			              	<option label="Sï¿½lectionnez un poste" value=""/>
 							<?php foreach($listePostes as $poste) {?>
 							<option value="<?php echo $poste->getId();?>" <?php echo (($poste->getId() == $membre->getPoste()) ? "selected" : "") ; ?>><?php echo $poste->getLibelle(); ?></option>
 							<?php } ?>
@@ -293,7 +293,7 @@ require_once("config/config.php");
 			        </div>
 			        
 			        <div class="form-group row mx-5">
-			        	<label class="col-sm-1 col-form-label" for="numLicence">N° licence</label>
+			        	<label class="col-sm-1 col-form-label" for="numLicence">Nï¿½ licence</label>
 			        	<div class="col-sm-11">
 			        		<input class="form-control w-100 form-control-md" type="text" name="numLicence" id="numLicence" value="<?php echo $membre->getNumeroLicence();?>"/>
 			        	</div>
@@ -322,7 +322,7 @@ require_once("config/config.php");
 			        
 			        <div class="form-group row mx-5">
 				        <label for="parcours">
-				        	<img src="images/tri_plus48.png" id="parcours" name="parcours" style="cursor: pointer; width: 16px; height: 16px; vertical-align: middle;"/>Clubs précédents
+				        	<img src="images/tri_plus48.png" id="parcours" name="parcours" style="cursor: pointer; width: 16px; height: 16px; vertical-align: middle;"/>Clubs prï¿½cï¿½dents
 				        </label>
 					</div>
 			        

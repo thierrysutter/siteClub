@@ -1,7 +1,7 @@
 <!DOCTYPE html>  
 <html lang="fr">  
 	<head>
-		<meta charset="UTF-8">
+		<meta charset="windows-1252">
 		<title>Prochainement...</title> 
 	  
 		<!-- Our CSS stylesheet file -->
@@ -87,7 +87,7 @@
 		50% {width:15%; height:15%; opacity:0.6}
 		100% {width:30%; height:30%; opacity:1}
 	}
-	/*enlever :hover pour que ça se fasse automatiquement*/
+	/*enlever :hover pour que ï¿½a se fasse automatiquement*/
 	.logo{
 		animation: zoomInPhoto 4s 1 linear;
 		-moz-animation: zoomInPhoto 4s 1 linear;

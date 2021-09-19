@@ -6,10 +6,10 @@ ob_start();
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 
-	<meta charset="ISO-8859-1">
+	<meta charset="windows-1252">
 	<META HTTP-EQUIV="Expires" CONTENT="Jeu, 31 Dec 2015 23:59:59 GMT" >
 	<meta name=viewport content="width=device-width, initial-scale=1">
-	<meta name="keywords" content="mots-clés" />
+	<meta name="keywords" content="mots-clï¿½s" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
 	<title>AS SAINT JULIEN LES METZ</title>
@@ -59,7 +59,7 @@ $listeArticles = array();
 $listeDernier = array();
 $listeProchain = array();
 //if (isset($_SESSION['session_started'])) {
-	// une session est ouverte, on récupère le login de l'utilisateur connecté
+	// une session est ouverte, on rï¿½cupï¿½re le login de l'utilisateur connectï¿½
 	if (isset($_SESSION['listeArticles'])) {
 		$listeArticles = $_SESSION['listeArticles'];
 	}
@@ -144,7 +144,7 @@ if (!empty($listeArticles)) {
 		<div class="shell">
 			<div class="cl">&nbsp;</div>
 			<div id="sidebar">
-				<!--<h2>Dernières nouvelles</h2>-->
+				<!--<h2>Derniï¿½res nouvelles</h2>-->
 
 				<!-- <h2>R&eacute;sultats du 25/08/2014 au 31/08/2014</h2> -->
 				<h1>Derniers r&eacute;sultats</h1>
@@ -208,18 +208,18 @@ if (!empty($listeArticles)) {
 
 				<!--
 				<div class="grey-box">
-					<h3><a href="#">Montée en PHR</a></h3>
+					<h3><a href="#">Montï¿½e en PHR</a></h3>
 					<a href="#"><img src="css/images/monteePHR.jpg" width="205px" height="101px" alt="" /></a>
 					<p>
-						<span>Les séniors A retrouvent niveau Promotion d'Honneur Régionale après une très belle saison.</span>
+						<span>Les sï¿½niors A retrouvent niveau Promotion d'Honneur Rï¿½gionale aprï¿½s une trï¿½s belle saison.</span>
 						<a href="#" class="button">Lire la suite</a>
 					 </p>
 				</div>
 				<div class="grey-box">
-					<h3><a href="#">Séniors B</a></h3>
+					<h3><a href="#">Sï¿½niors B</a></h3>
 					<a href="#"><img src="" width="205px" height="101px" alt="" /></a>
 					<p>
-						<span>Les séniors B montent en 2ème division de district.</span>
+						<span>Les sï¿½niors B montent en 2ï¿½me division de district.</span>
 						<a href="#" class="button">Lire la suite</a>
 					 </p>
 				</div>
@@ -227,15 +227,15 @@ if (!empty($listeArticles)) {
 					<h3><a href="#">Coupe de Moselle</a></h3>
 					<a href="#"><img src="" width="205px" height="101px" alt="" /></a>
 					<p>
-						<span>Les séniors A finaliste de la coupe de Moselle 2014. L'équipe B s'est quant à elle inclinée en 1/2 finale de la coupe des équipes réserves.</span>
+						<span>Les sï¿½niors A finaliste de la coupe de Moselle 2014. L'ï¿½quipe B s'est quant ï¿½ elle inclinï¿½e en 1/2 finale de la coupe des ï¿½quipes rï¿½serves.</span>
 						<a href="#" class="button">Lire la suite</a>
 					 </p>
 				</div>
 				<div class="grey-box">
-					<h3><a href="#">Tournoi à Besançon pour les U13</a></h3>
+					<h3><a href="#">Tournoi ï¿½ Besanï¿½on pour les U13</a></h3>
 					<a href="#"><img src="" width="205px" height="101px" alt="" /></a>
 					<p>
-						<span>Les jeunes U13 du club en tournoi à Besançon pendant le xeek end de la Pentecote.</span>
+						<span>Les jeunes U13 du club en tournoi ï¿½ Besanï¿½on pendant le xeek end de la Pentecote.</span>
 						<a href="#" class="button">Lire la suite</a>
 					 </p>
 				</div>
@@ -243,7 +243,7 @@ if (!empty($listeArticles)) {
 					<h3><a href="#">Tournoi du FC Woippy 2005.</a></h3>
 					<a href="#"><img src="css/images/benjamins2005_1annee.jpg" width="205px" height="101px" alt="" /></a>
 					<p>
-						<span>Les benjamins 1ère année ont remporté le tournoi organisé par le FC Woippy au stade du Patis.<br/><br/></span>
+						<span>Les benjamins 1ï¿½re annï¿½e ont remportï¿½ le tournoi organisï¿½ par le FC Woippy au stade du Patis.<br/><br/></span>
 						<a href="#" class="button">Lire la suite</a>
 					 </p>
 				</div> -->
@@ -253,13 +253,13 @@ if (!empty($listeArticles)) {
 				<div class="cl">&nbsp;</div>
 				<div class="video-box">
 					<div class="cl">&nbsp;</div>
-					<h2 class="left">Vidéos</h2>
+					<h2 class="left">Vidï¿½os</h2>
 					<a href="#" class="button">Plus...</a>
 					<div class="cl">&nbsp;</div>
 					<div class="video-item-box">
 						<a href="#" class="left"><img src="css/images/marly.jpg" width="85px" height="47px" alt="" /></a>
 						<p>Marly - AS St Julien</p>
-						<a href="http://www.dailymotion.com/video/x783w7_marly-as-saint-julien-les-metz_sport" target="new" class="watch-now">Voir la vidéo</a>
+						<a href="http://www.dailymotion.com/video/x783w7_marly-as-saint-julien-les-metz_sport" target="new" class="watch-now">Voir la vidï¿½o</a>
 						<!- <video width="180" height="101" controls  poster="http://www.dailymotion.com/video/x783w7_marly-as-saint-julien-les-metz_sport">
 						    <source src="http://www.dailymotion.com/video/x783w7_marly-as-saint-julien-les-metz_sport" type="video/mp4">
 						    <source src="http://www.dailymotion.com/video/x783w7_marly-as-saint-julien-les-metz_sport" type="video/ogg">
@@ -271,17 +271,17 @@ if (!empty($listeArticles)) {
 					<div class="video-item-box second">
 						<a href="#" class="left"><img src="css/images/DLP.jpg" width="85px" height="47px" alt="" /></a>
 						<p>Devant Les Ponts - AS St Julien, les tirs aux buts</p>
-						<a href="http://www.dailymotion.com/video/x7hxcy_devant-les-ponts-saint-julien-les-m_sport" target="new" class="watch-now">Voir la vidéo</a>
+						<a href="http://www.dailymotion.com/video/x7hxcy_devant-les-ponts-saint-julien-les-m_sport" target="new" class="watch-now">Voir la vidï¿½o</a>
 					</div>
 					<div class="video-item-box">
 						<a href="#" class="left"><img src="css/images/faitplay.jpg" width="85px" height="47px" alt="" /></a>
-						<p>Journée du fairplay</p>
-						<a href="http://www.dailymotion.com/video/x784g5_esprit-sportif_sport" target="new" class="watch-now">Voir la vidéo</a>
+						<p>Journï¿½e du fairplay</p>
+						<a href="http://www.dailymotion.com/video/x784g5_esprit-sportif_sport" target="new" class="watch-now">Voir la vidï¿½o</a>
 					</div>
 					<div class="video-item-box second">
 						<a href="#" class="left"><img src="css/images/footA5.jpg" width="85px" height="47px" alt="" /></a>
-						<p>Tournoi foot à 5</p>
-						<a href="http://www.dailymotion.com/video/x7zkgy_foot-a-5-organise-par-l-as-saint-ju_sport" target="new" class="watch-now">Voir la vidéo</a>
+						<p>Tournoi foot ï¿½ 5</p>
+						<a href="http://www.dailymotion.com/video/x7zkgy_foot-a-5-organise-par-l-as-saint-ju_sport" target="new" class="watch-now">Voir la vidï¿½o</a>
 					</div>
 					<div class="cl">&nbsp;</div>
 				</div>
@@ -337,11 +337,11 @@ if (!empty($listeArticles)) {
 
 			$(".lienArticle").click(function(){
 				$.ajax({ // fonction permettant de faire de l'ajax
-				   type: "POST", // methode de transmission des données au fichier php
+				   type: "POST", // methode de transmission des donnï¿½es au fichier php
 				   url: "AfficherPopupArticle.php", // url du fichier php
-				   data: {id : $(this).attr("id"), mode : "popup"}, // données à transmettre
+				   data: {id : $(this).attr("id"), mode : "popup"}, // donnï¿½es ï¿½ transmettre
 				   dataType: 'json', // JSON
-				   success: function(article){ // si l'appel a bien fonctionné
+				   success: function(article){ // si l'appel a bien fonctionnï¿½
 					   $("#imageArticlePopup").prop("src", article.photo);
 					   $("#texteArticlePopup").html(article.texte);
 					   
@@ -359,7 +359,7 @@ if (!empty($listeArticles)) {
 						
 				   },
 				   error: function(){
-					   // on affiche un message d'erreur dans le span prévu à cet effet
+					   // on affiche un message d'erreur dans le span prï¿½vu ï¿½ cet effet
 					   
 				   }
 				});

@@ -14,7 +14,7 @@ if (isset($_SESSION['session_started'])) {
 	<META HTTP-EQUIV="Expires" CONTENT="Jeu, 31 Dec 2015 23:59:59 GMT" >
 	<meta name="Description" content="Phrases pertinentes" />
 	<meta name="Keywords" content="Mots pertinent" />
-	<meta charset="iso-8859-15" />
+	<meta charset="windows-1252">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<script async src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -27,12 +27,12 @@ if (isset($_SESSION['session_started'])) {
 <body>
 
 <?php include_once("analyticstracking.php"); ?>
-<a href="ActionAccueil.php">Accéder directement au site</a>
+<a href="ActionAccueil.php">Accï¿œder directement au site</a>
 
 <div class="anim">
-<p class="titre">Site officiel de l'Association Sportive de Saint-Julien-lès-Metz</p>
+<p class="titre">Site officiel de l'Association Sportive de Saint-Julien-lï¿œs-Metz</p>
 <img class="logo" src="images/ASSJLMVERT.png" style="background-color: white;" alt="" onerror="this.removeAttribute('onerror'); this.src='images/ASSJLMBLANC.png'" onclick="document.location='ActionAccueil.php'" />
-<p class="info">Cliquez sur l'image pour accéder au site</p>
+<p class="info">Cliquez sur l'image pour accï¿œder au site</p>
 </div>
 </body>
 </html>

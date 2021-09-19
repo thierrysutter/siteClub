@@ -18,7 +18,7 @@ $cat = null;
 	<?php
 	  include("tac.php");
 	?>
-	<meta charset="UTF-8">
+	<meta charset="windows-1252">
 	<meta http-equiv="Cache-Control" content="max-age=600" />
 	<meta http-equiv="Expires" content="Thu, 31 Dec 2015 23:59:59 GMT" />
 	<meta name=viewport content="width=device-width, initial-scale=1">

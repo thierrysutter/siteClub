@@ -9,7 +9,7 @@ $listeSponsors = array();
 	<?php
 	  include("tac.php");
 	?>
-	<meta charset="iso-8859-15" />
+	<meta charset="windows-1252">
 	<meta name="keywords" content="mots-cl�s" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">

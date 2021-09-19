@@ -6,7 +6,7 @@
 	  include("tac.php");
 	?>
 
-	<meta charset="iso-8859-1">
+	<meta charset="windows-1252">
 	<meta name=viewport content="width=device-width, initial-scale=1">
 	<meta name="keywords" content="football, association, sport, article, moselle, lorraine, metz, france, fff, district, mosellan, saint julien les metz" />
     <meta name="description" content="page d'accueil du site officiel de l'AS Saint Julien Les Metz" />
@@ -177,7 +177,7 @@
 	        	<div class="col-md-6 p-4 col-12 col-sm-6 col-lg-6 col-xl-6 mx-auto">
 				Lancement de la boutique du club !
 				<br/><br/>
-				Retrouvez tous les articles disponibles en tÃ©lÃ©chargeant le <a href="/document/BoutiqueASSJ.pdf" target="_blank">bon de commande</a>
+				Retrouvez tous les articles disponibles en téléchargeant le <a href="/document/BoutiqueASSJ.pdf" target="_blank">bon de commande</a>
 				</div>
 			</div>
 		</div>

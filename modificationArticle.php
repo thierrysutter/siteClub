@@ -13,7 +13,7 @@ require_once("config/config.php");
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 
-	<meta charset="ISO-8859-1">
+	<meta charset="windows-1252">
 	<meta http-equiv="Cache-Control" content="max-age=600" />
 	<meta http-equiv="Expires" content="Thu, 31 Dec 2015 23:59:59 GMT" />
 	<meta name=viewport content="width=device-width, initial-scale=1">
