@@ -1,10 +1,10 @@
 <?php
 ob_start();
 function chargerClasse($classe) {
-	require $classe . '.class.php'; // On inclut la classe correspondante au paramï¿½tre passï¿½.
+	require $classe . '.class.php'; // On inclut la classe correspondante au paramétre passé.
 }
 
-spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelï¿½e dï¿½s qu'on instanciera une classe non dï¿½clarï¿½e.
+spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelée dés qu'on instanciera une classe non déclarée.
 
 $logger = new Logger('logs/');
 require_once("config/config.php");
@@ -23,7 +23,7 @@ session_start();
 	<meta http-equiv="Cache-Control" content="max-age=600" />
 	<meta http-equiv="Expires" content="Thu, 31 Dec 2015 23:59:59 GMT" />
 	<meta name=viewport content="width=device-width, initial-scale=1">
-	<meta name="keywords" content="mots-clï¿½s" />
+	<meta name="keywords" content="mots-clés" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
 	<title>AS SAINT JULIEN LES METZ</title>
@@ -51,7 +51,7 @@ session_start();
 
 
 		$(document).ready(function(){
-			/* mï¿½thode tri pour les colonnes contenant des dates */
+			/* méthode tri pour les colonnes contenant des dates */
 			jQuery.extend( jQuery.fn.dataTableExt.oSort, {
 			    "date-dmy-pre": function ( a ) {
 			        if (a == null || a == "") {
@@ -92,14 +92,20 @@ session_start();
 				$idRrencontre = $(this).prop('id').split('_')[1];
 				document.location = "RechercherCompteRendu.php?id="+$idRrencontre;
 			});*/
+			
+
+			$("#submitResultats").click(function(){
+				//document.location = "EnregistrerResultats.php";
+				$("#formRes").submit();
+			});
 
 			$(".cr").click(function(){
 				$.ajax({ // fonction permettant de faire de l'ajax
-				   type: "POST", // methode de transmission des donnï¿½es au fichier php
+				   type: "POST", // methode de transmission des données au fichier php
 				   url: "AfficherPopupCompteRendu.php", // url du fichier php
-				   data: {id : $(this).prop('id').split('_')[1], mode : "popup"}, // donnï¿½es ï¿½ transmettre
+				   data: {id : $(this).prop('id').split('_')[1], mode : "popup"}, // données é transmettre
 				   dataType: 'json', // JSON
-				   success: function(compteRendu){ // si l'appel a bien fonctionnï¿½
+				   success: function(compteRendu){ // si l'appel a bien fonctionné
 					   //$("#imageArticlePopup").prop("src", "images/article/"+article.photo);
 					   $("#texteCompteRenduPopup").val(compteRendu.texte);
 
@@ -121,7 +127,7 @@ session_start();
 
 				   },
 				   error: function(){
-					   // on affiche un message d'erreur dans le span prï¿½vu ï¿½ cet effet
+					   // on affiche un message d'erreur dans le span prévu é cet effet
 
 				   }
 				});
@@ -131,16 +137,16 @@ session_start();
 		function enregistrerCompteRendu(idRencontre) {
 
 			$.ajax({ // fonction permettant de faire de l'ajax
-			   type: "POST", // methode de transmission des donnï¿½es au fichier php
+			   type: "POST", // methode de transmission des données au fichier php
 			   url: "EnregistrerCompteRendu.php", // url du fichier php
-			   data: {id: idRencontre, texte : $("#texteCompteRenduPopup").val(), methode: "create", zone : "compteRendu"}, // donnï¿½es ï¿½ transmettre
+			   data: {id: idRencontre, texte : $("#texteCompteRenduPopup").val(), methode: "create", zone : "compteRendu"}, // données é transmettre
 			   dataType: 'json', // JSON
 			   success: function(){
-				   // si l'appel a bien fonctionnï¿½
-				   alert("Modification enregistrï¿½e");
+				   // si l'appel a bien fonctionné
+				   alert("Modification enregistrée");
 			   },
 			   error: function(){
-				   // on affiche un message d'erreur dans le span prï¿½vu ï¿½ cet effet
+				   // on affiche un message d'erreur dans le span prévu é cet effet
 
 			   }
 			});
@@ -187,7 +193,7 @@ session_start();
 	            <h3 class="mx-5 pb-3">Affiner la recherche</h3>
 	            
 	            <div class="form-group row mx-5">
-	              <label for="categorie" class="col-sm-1 col-form-label">Catï¿½gorie</label>
+	              <label for="categorie" class="col-sm-1 col-form-label">Catégorie</label>
 	              <div class="col-sm-11">
 		              <select class="form-control w-100 form-control-md" id="categorie" name="categorie">
 			              <option label="Toutes" value="-1"  <?php echo ($_SESSION['filtreCategorie'] == -1 ? "selected" : "") ;?>>Toutes</option>
@@ -224,8 +230,8 @@ session_start();
 			          <thead class="thead-inverse">
 			            <tr>
 			              <th>Jour</th>
-			              <th>Catï¿½gorie</th>
-			              <th>Compï¿½tition</th>
+			              <th>Catégorie</th>
+			              <th>Compétition</th>
 			              <th>Rencontre</th>
 			              <th>Score</th>
 			              <th>CR</th>
@@ -255,12 +261,12 @@ session_start();
 			      </div>
 		      </div>
 		      
+	      </form>
 		      <div class="row text-center py-4">
 			      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
- 			      	<button type="submit" id="submit" class="btn btn-success btn-lg active">Enregistrer</button>
+					<input type="button" id="submitResultats" class="btn btn-success btn-lg active" value="Enregistrer"/>
 			      </div>
 		      </div>
-	      </form>
 	    </div>
 	</div>
 
