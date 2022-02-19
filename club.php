@@ -9,7 +9,7 @@ ob_start();
 	?>
 	<meta charset="windows-1252">
 	<meta name=viewport content="width=device-width, initial-scale=1">
-	<meta name="keywords" content="mots-clÃ©s" />
+	<meta name="keywords" content="mots-clés" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
 	<title>AS SAINT JULIEN LES METZ</title>
@@ -52,7 +52,7 @@ ob_start();
 		if (isset($_SESSION['listeReglements']))
 			$listeReglements = $_SESSION['listeReglements'];
 	} catch (PDOException $error) { //Le catch est charg? d'intercepter une ?ventuelle erreur
-		echo "Nï¿½ : ".$error->getCode()."<br />";
+		echo "N : ".$error->getCode()."<br />";
 		die ("Erreur : ".$error->getMessage()."<br />");
 	}
 	?>
@@ -63,18 +63,18 @@ ob_start();
 	        <div class="col-md-12 ">
 	          <ul class="nav nav-pills nav-justified" role="tablist">
 	            <li class="nav-item">
-	              <a data-toggle="pill" href="#presentation" class="active nav-link" role="tab"> <i class="fa fa-book"></i>&nbsp;PrÃ©sentation</a>
+	              <a data-toggle="pill" href="#presentation" class="active nav-link" role="tab"> <i class="fa fa-book"></i>&nbsp;Présentation</a>
 	            </li>
 	            <!--
 				<li class="nav-item">
-	              <a data-toggle="pill" href="#palmares" class="nav-link" role="tab"><i class="fa fa-history"></i>&nbsp;PalmarÃ¨s</a>
+	              <a data-toggle="pill" href="#palmares" class="nav-link" role="tab"><i class="fa fa-history"></i>&nbsp;Palmarès</a>
 	            </li>
 				-->
 	            <!-- <li class="nav-item">
 	              <a data-toggle="pill" href="#organigramme" class="nav-link" role="tab"><i class="fa fa-user"></i>&nbsp;Organigramme</a>
 	            </li>
 	            <li class="nav-item">
-	              <a data-toggle="pill" href="#reglement" class="nav-link" role="tab"><i class="fa fa-bars"></i>&nbsp;RÃ©glement intÃ©rieur</a>
+	              <a data-toggle="pill" href="#reglement" class="nav-link" role="tab"><i class="fa fa-bars"></i>&nbsp;Réglement intérieur</a>
 	            </li>
 	            <li class="nav-item">
 	              <a data-toggle="pill" href="#installation" class="nav-link" role="tab"><i class="fa fa-photo"></i>&nbsp;Installations</a>
@@ -94,18 +94,18 @@ ob_start();
 					          <img class="img-fluid d-block mb-5" src="images/ASSJLMVERT.png"> </div>
 					        <div class="col-md-9">
 					          <h3 class="text-primary pt-3">Ligue Lorraine > District Mosellan</h3>
-					          <p class="">NÂ° Affiliation FFF: 521781</p>
+					          <p class="">N° Affiliation FFF: 521781</p>
 					          <p style="font-size: 14px; padding-top: 0px;">
 								Stade de Grimont<br>
-								Boucle de la bergerie<br>57070 Saint-Julien-LÃ¨s-Metz<br>
-								TÃ©l/Fax: 03 87 37 04 34<br>
+								Boucle de la bergerie<br>57070 Saint-Julien-Lès-Metz<br>
+								Tél/Fax: 03 87 37 04 34<br>
 								Email: saintjulienlesmetz.as@moselle.lgef.fr
 							  </p>
-							  <p id="presentationClub" style="text-align: justify;">Le club a Ã©tÃ© crÃ©Ã© vers 1935. Nous avons peu de traces de cette Ã©poque mis Ã  part une photo de 1936. 
-							  	A partir de 1946, le club Ã©volue son les couleurs de la manufacture lorraine de tabac, en grenat, en ce jusqu'au dÃ©but des annÃ©es 60. 
-							  	En 1965, le club prend un nouveau dÃ©part, pour compter plus de 300 licenciÃ©s en 2010, rÃ©partis 8 catÃ©gories d'Ã¢ge allant des dÃ©butants (6 ans) Ã  vÃ©tÃ©rans (+35 ans). 9 arbitres officient pour le compte du club. Le club obtient le label "QualitÃ© Argent" du district mosellan pour les annÃ©es 2007 Ã  2010, rÃ©compensant ainsi le travail de tous les Ã©ducateurs bÃ©nÃ©voles du club. 
-							  	Cette annÃ©e lÃ , nous avons Ã©galement obtenu les AlÃ©rions d'Or rÃ©compensant le club classÃ© premier au challenge de la promotion de l'arbitrage en Lorraine. 
-							  	Depuis 2007, le club organise un tournoi international pour les U11 et U13 rÃ©unissant plus de 30 Ã©quipes, soit environ 1000 personnes (joueurs, Ã©ducateurs, arbitres, spectateurs et bÃ©nÃ©voles) Ã  accueillir sur nos installations du stade de Grimont.
+							  <p id="presentationClub" style="text-align: justify;">Le club a été créé vers 1935. Nous avons peu de traces de cette époque mis à part une photo de 1936. 
+							  	A partir de 1946, le club évolue son les couleurs de la manufacture lorraine de tabac, en grenat, en ce jusqu'au début des années 60. 
+							  	En 1965, le club prend un nouveau départ, pour compter plus de 300 licenciés en 2010, répartis 8 catégories d'âge allant des débutants (6 ans) à vétérans (+35 ans). 9 arbitres officient pour le compte du club. Le club obtient le label "Qualité Argent" du district mosellan pour les années 2007 à 2010, récompensant ainsi le travail de tous les éducateurs bénévoles du club. 
+							  	Cette année là, nous avons également obtenu les Alérions d'Or récompensant le club classé premier au challenge de la promotion de l'arbitrage en Lorraine. 
+							  	Depuis 2007, le club organise un tournoi international pour les U11 et U13 réunissant plus de 30 équipes, soit environ 1000 personnes (joueurs, éducateurs, arbitres, spectateurs et bénévoles) à accueillir sur nos installations du stade de Grimont.
 							  </p>
 					        </div>
 					      </div>
@@ -160,7 +160,7 @@ ob_start();
 		  			height: 425,
 		  			width: 705,
 		  			modal: true,
-		  			title: "Prï¿½sentation du club",
+		  			title: "Prsentation du club",
 		  			buttons: {
 		  				Fermer: function() {
 		  					$(this).dialog( "close" );
@@ -177,16 +177,16 @@ ob_start();
 		function enregistrerPresentation() {
 			$("#presentationClub").html($("#textePopup").val());
 			$.ajax({ // fonction permettant de faire de l'ajax
-			   type: "POST", // methode de transmission des donnï¿½es au fichier php
+			   type: "POST", // methode de transmission des donnes au fichier php
 			   url: "EnregistrerContenu.php", // url du fichier php
-			   data: {texte : $("#textePopup").val(), zone : "presentation"}, // donnï¿½es ï¿½ transmettre
+			   data: {texte : $("#textePopup").val(), zone : "presentation"}, // donnes  transmettre
 			   dataType: 'json', // JSON
 			   success: function(){
-				   // si l'appel a bien fonctionnï¿½
-				   alert("Modification enregistrï¿½e");
+				   // si l'appel a bien fonctionn
+				   alert("Modification enregistre");
 			   },
 			   error: function(){
-				   // on affiche un message d'erreur dans le span prï¿½vu ï¿½ cet effet
+				   // on affiche un message d'erreur dans le span prvu  cet effet
 
 			   }
 			});

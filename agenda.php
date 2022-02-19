@@ -11,7 +11,7 @@ ob_start();
 	<meta http-equiv="Cache-Control" content="max-age=600" />
 	<meta http-equiv="Expires" content="Thu, 31 Dec 2015 23:59:59 GMT" />
 	<meta name=viewport content="width=device-width, initial-scale=1">
-	<meta name="keywords" content="mots-clï¿½s" />
+	<meta name="keywords" content="mots-clés" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
 	<title>AS SAINT JULIEN LES METZ</title>
@@ -35,7 +35,7 @@ ob_start();
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
-			/* mï¿½thode tri pour les colonnes contenant des dates */
+			/* méthode tri pour les colonnes contenant des dates */
 			jQuery.fn.dataTableExt.oSort['date-asc']  = function(a,b) {
 			    /*
 			    var datea = a.split('/');
@@ -179,11 +179,11 @@ ob_start();
 	          <form action="ActionAgenda.php" method="post" name="filtre">
 	          	<input type="hidden" name="methode" id="methode" value="filtre"/>
 	            <h3 class="mx-5 pb-3">Agenda</h3>
-	            <div class="form-group row mx-5"> <label for="inputCategorie" class="col-sm-1 col-form-label">Catï¿½gorie</label>
+	            <div class="form-group row mx-5"> <label for="inputCategorie" class="col-sm-1 col-form-label">Catégorie</label>
 	              <div class="col-sm-5">
 		              <select class="form-control w-100 form-control-md" id="inputCategorie" name="categorie">
-			              <option selected="selected" value="-1">Toutes les catï¿½gories</option>
-			              <option value="9" <?php echo ($categorie == 9 ? "selected='selected'" : "");?>>Sï¿½niors</option>
+			              <option selected="selected" value="-1">Toutes les catégories</option>
+			              <option value="9" <?php echo ($categorie == 9 ? "selected='selected'" : "");?>>Séniors</option>
 			              <option value="6" <?php echo ($categorie == 6 ? "selected='selected'" : "");?>>U17</option>
 			              <option value="5" <?php echo ($categorie == 5 ? "selected='selected'" : "");?>>U15</option>
 			              <option value="4" <?php echo ($categorie == 4 ? "selected='selected'" : "");?>>U13</option>
@@ -194,10 +194,10 @@ ob_start();
 	              </div> <label for="inputEquipe" class="col-sm-1 col-form-label">Equipe</label>
 	              <div class="col-sm-5">
 		              <select class="form-control w-100 form-control-md" id="inputEquipe" name="equipe">
-			              <option selected="selected" value="-1">Toutes les ï¿½quipes</option>
-			              <option value="1" <?php echo ($equipe == 1 ? "selected='selected'" : "");?>>Sï¿½niors A</option>
-			              <option value="2" <?php echo ($equipe== 2 ? "selected='selected'" : "");?>>Sï¿½niors B</option>
-			              <option value="19" <?php echo ($equipe== 19 ? "selected='selected'" : "");?>>Sï¿½niors C</option>
+			              <option selected="selected" value="-1">Toutes les équipes</option>
+			              <option value="1" <?php echo ($equipe == 1 ? "selected='selected'" : "");?>>Séniors A</option>
+			              <option value="2" <?php echo ($equipe== 2 ? "selected='selected'" : "");?>>Séniors B</option>
+			              <option value="19" <?php echo ($equipe== 19 ? "selected='selected'" : "");?>>Séniors C</option>
 			              <option value="20" <?php echo ($equipe== 20 ? "selected='selected'" : "");?>>U17</option>
 			              <option value="3" <?php echo ($equipe== 3 ? "selected='selected'" : "");?>>U15</option>
 			              <option value="4" <?php echo ($equipe== 4 ? "selected='selected'" : "");?>>U13</option>
@@ -238,7 +238,7 @@ ob_start();
 	              <h1 class="text-center">24 Sept. 2017</h1>
 	              <h3>&nbsp;</h3>
 	              <hr>
-	              <p><i class="fa d-inline fa-clock-o"></i>&nbsp;SENIOR C - Coupe des rï¿½serves
+	              <p><i class="fa d-inline fa-clock-o"></i>&nbsp;SENIOR C - Coupe des réserves
 	                <br> <b>AUGNY C - ST JULIEN : 3 - 10</b></p>
 	            </div>
 	          </div>
@@ -249,7 +249,7 @@ ob_start();
 	              <h1 class="text-center">30 Sept. 2017</h1>
 	              <h3>&nbsp;</h3>
 	              <hr>
-	              <p><i class="fa d-inline fa-clock-o"></i>&nbsp;SENIOR A - Rï¿½gional 4 Groupe A
+	              <p><i class="fa d-inline fa-clock-o"></i>&nbsp;SENIOR A - Régional 4 Groupe A
 	                <br> <b>ST JULIEN - ES VILLERUPT THIL B</b></p>
 	              <hr>
 	              <p><i class="fa d-inline fa-clock-o"></i>&nbsp;U17 - Moselle Groupe E
@@ -285,9 +285,9 @@ ob_start();
 	            <tr>
 	              <th>#</th>
 	              <th>Date</th>
-	              <th>Catï¿½gorie</th>
+	              <th>Catégorie</th>
 	              <th>Equipe</th>
-	              <th>Compï¿½tition</th>
+	              <th>Compétition</th>
 	              <th>Adversaire</th>
 	              <th>Lieu</th>
 	              <th>Score</th>
@@ -303,7 +303,7 @@ ob_start();
 				  <td><?php echo $rencontre->getLibelleEquipe();?></td>
 				  <td><?php echo $rencontre->getLibelleCompetition();?></td>
 				  <td><?php echo ($rencontre->getEquipeDom() == "ST JULIEN" ? $rencontre->getEquipeExt() : $rencontre->getEquipeDom());?></td>
-				  <td><?php echo ($rencontre->getEquipeDom() == "ST JULIEN" ? "Domicile" : "Extï¿½rieur");?></td>
+				  <td><?php echo ($rencontre->getEquipeDom() == "ST JULIEN" ? "Domicile" : "Extérieur");?></td>
 				  <td><?php echo $rencontre->getStatut()>0 ? $rencontre->getScoreDom()." - ".$rencontre->getScoreExt() : "";?></td>
 				  <td>
 					<?php if ($rencontre->getStatut()>0) { ?>

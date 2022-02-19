@@ -10,7 +10,7 @@ $listeSponsors = array();
 	  include("tac.php");
 	?>
 	<meta charset="windows-1252">
-	<meta name="keywords" content="mots-clï¿½s" />
+	<meta name="keywords" content="mots-cls" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
 	<title>AS SAINT JULIEN LES METZ</title>
@@ -124,8 +124,8 @@ try {
 	if (isset($_SESSION['listeSponsors']))
 		$listeSponsors = $_SESSION['listeSponsors'];
 
-} catch (PDOException $error) { //Le catch est chargï¿½ dï¿½intercepter une ï¿½ventuelle erreur
-	echo "Nï¿½ : ".$error->getCode()."<br />";
+} catch (PDOException $error) { //Le catch est charg dintercepter une ventuelle erreur
+	echo "N : ".$error->getCode()."<br />";
 	die ("Erreur : ".$error->getMessage()."<br />");
 }
 ?>
@@ -134,7 +134,7 @@ try {
 	    <div class="container">
 	      <div class="row text-center">
 	        <div class="col-md-12">
-	          <h1 class="mb-4">Merci ï¿½ tous nos partenaires !</h1>
+	          <h1 class="mb-4">Merci à tous nos partenaires !</h1>
 	          <div class="row text-left mt-5">
 	            
 	            <!-- On boucle 6 fois -->

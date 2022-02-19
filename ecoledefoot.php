@@ -20,7 +20,7 @@ $cat2 = null;
 	?>
 	<meta charset="windows-1252">
 	<meta name=viewport content="width=device-width, initial-scale=1">
-	<meta name="keywords" content="mots-clÃ©s" />
+	<meta name="keywords" content="mots-clés" />
     <meta name="description" content="description" />
     <meta name="author" content="auteur">
 	<title>AS SAINT JULIEN LES METZ</title>
@@ -160,8 +160,8 @@ try {
 	if (isset($_SESSION['listeAttaquants']))
 		$listeAttaquants = $_SESSION['listeAttaquants'];*/
 	
-} catch (PDOException $error) { //Le catch est chargï¿½ dï¿½intercepter une ï¿½ventuelle erreur
-	echo "Nï¿½ : ".$error->getCode()."<br />";
+} catch (PDOException $error) { //Le catch est charg dintercepter une ventuelle erreur
+	echo "N : ".$error->getCode()."<br />";
 	die ("Erreur : ".$error->getMessage()."<br />");
 }
 ?>
@@ -201,11 +201,11 @@ try {
 					          <img class="img-fluid d-block mb-4 w-50 img-thumbnail" src="images/ASSJLMVERT.jpg"> </div>
 					        <div class="col-md-9">
 					          <h3 class="text-primary pt-3">Categorie U12/U13</h3>
-					          <p class="">Joueurs et joueuses nÃ©.e.s en 2008 et 2009 </p>
+					          <p class="">Joueurs et joueuses né.e.s en 2008 et 2009 </p>
 					          <h5 class="text-primary pt-3">Entrainements </h5>
 					          <p style="font-size: 14px; padding-top: 0px;">
-								Tous les mercredis Ã  17:30:00 au Stade de Grimont<br/>
-								Tous les vendredis Ã  18:00:00 au Stade de Grimont<br/>
+								Tous les mercredis à 17:30:00 au Stade de Grimont<br/>
+								Tous les vendredis à 18:00:00 au Stade de Grimont<br/>
 							  </p>
 							  <h5 class="text-primary pt-3">Educateurs </h5>
 					          <p style="font-size: 14px; padding-top: 0px;">
@@ -224,11 +224,11 @@ try {
 					          <img class="img-fluid d-block mb-4 w-50 img-thumbnail" src="images/ASSJLMVERT.jpg"> </div>
 					        <div class="col-md-9">
 					          <h3 class="text-primary pt-3">Categorie U14/U15</h3>
-					          <p class="">Joueurs et joueuses nÃ©.e.s en 2006 et 2007 </p>
+					          <p class="">Joueurs et joueuses né.e.s en 2006 et 2007 </p>
 					          <h5 class="text-primary pt-3">Entrainements </h5>
 					          <p style="font-size: 14px; padding-top: 0px;">
-								Tous les mercredis Ã  18:00:00 au Stade de Grimont
-								Tous les vendredis Ã  18:00:00 au Stade de Grimont
+								Tous les mercredis à 18:00:00 au Stade de Grimont
+								Tous les vendredis à 18:00:00 au Stade de Grimont
 							  </p>
 							  <h5 class="text-primary pt-3">Educateurs </h5>
 					          <p style="font-size: 14px; padding-top: 0px;">
@@ -248,11 +248,11 @@ try {
 					          <img class="img-fluid d-block mb-4 w-50 img-thumbnail" src="images/ASSJLMVERT.jpg"> </div>
 					        <div class="col-md-9">
 					          <h3 class="text-primary pt-3">Categorie U16/U17</h3>
-					          <p class="">Joueurs et joueuses nÃ©.e.s en 2004 et 2005 </p>
+					          <p class="">Joueurs et joueuses né.e.s en 2004 et 2005 </p>
 					          <h5 class="text-primary pt-3">Entrainements </h5>
 					          <p style="font-size: 14px; padding-top: 0px;">
-								Tous les mardis Ã  18:00:00 au Stade de Grimont
-								Tous les jeudis Ã  18:30:00 au Stade de Grimont
+								Tous les mardis à 18:00:00 au Stade de Grimont
+								Tous les jeudis à 18:30:00 au Stade de Grimont
 							  </p>
 							  <h5 class="text-primary pt-3">Educateurs </h5>
 					          <p style="font-size: 14px; padding-top: 0px;">
@@ -272,7 +272,7 @@ try {
 					          <img class="img-fluid d-block mb-4 w-50 img-thumbnail" src="images/ASSJLMVERT.jpg"> </div>
 					        <div class="col-md-9">
 					          <h3 class="text-primary pt-3">Categorie U18</h3>
-					          <p class="">Joueurs et joueuses nÃ©.e.s en 2003</p>
+					          <p class="">Joueurs et joueuses né.e.s en 2003</p>
 					          <h5 class="text-primary pt-3">Entrainements </h5>
 					          <p style="font-size: 14px; padding-top: 0px;">
 							  </p>
