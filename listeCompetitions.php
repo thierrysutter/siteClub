@@ -13,7 +13,7 @@ require_once("config/config.php");
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 
-	<meta charset="windows-1252">
+	<meta charset="utf-8">
 	<meta http-equiv="Cache-Control" content="max-age=600" />
 	<meta http-equiv="Expires" content="Thu, 31 Dec 2015 23:59:59 GMT" />
 	<meta name=viewport content="width=device-width, initial-scale=1">
@@ -125,7 +125,7 @@ require_once("config/config.php");
 	            </div>
 	            
 	            <div class="form-group row mx-5">
-	              <label for="categorie" class="col-sm-1 col-form-label">Cat�gorie</label>
+	              <label for="categorie" class="col-sm-1 col-form-label">Catégorie</label>
 	              <div class="col-sm-11">
 		              <select class="form-control w-100 form-control-md" id="categorie" name="categorie">
 			              <option label="Toutes" value="-1"  <?php echo ($_SESSION['categorieSelectionnee'] == -1 ? "selected" : "") ;?>>Toutes</option>
@@ -167,9 +167,9 @@ require_once("config/config.php");
 		          <thead class="thead-inverse">
 		            <tr>
 		              <th>Saison</th>
-		              <th>Cat�gorie</th>
+		              <th>Catégorie</th>
 		              <th>Equipe</th>
-		              <th>Comp�tition</th>
+		              <th>Compétition</th>
 		              <th>Division/Niveau</th>
 		              <th>Action</th>
 		            </tr>
@@ -195,7 +195,7 @@ require_once("config/config.php");
 	      
 	      <div class="row text-center py-4">
 		      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-		      	<input type="button" id="ajoutCompetition" class="btn btn-success btn-lg active" value="Ajouter une comp�tition"/>
+		      	<input type="button" id="ajoutCompetition" class="btn btn-success btn-lg active" value="Ajouter une compétition"/>
 		      </div>
 	      </div>
 	    </div>
